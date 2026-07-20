@@ -18,10 +18,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/health', function () {
+    $deps = [];
+    try {
+        $deps['db'] = DB::connection()->getPdo() ? 'ok' : 'error';
+    } catch (\Throwable $e) {
+        $deps['db'] = 'error';
+    }
+    try {
+        \Illuminate\Support\Facades\Cache::store()->get('health-check');
+        $deps['cache'] = 'ok';
+    } catch (\Throwable $e) {
+        $deps['cache'] = 'error';
+    }
+    try {
+        \Illuminate\Support\Facades\Queue::size();
+        $deps['queue'] = 'ok';
+    } catch (\Throwable $e) {
+        $deps['queue'] = 'error';
+    }
+
     return response()->json([
-        'status'  => 'ok',
-        'message' => 'Setting service berhasil diakses',
-        'time'    => now()->toDateTimeString(),
+        'status'       => 'ok',
+        'message'      => 'Setting service berhasil diakses',
+        'time'         => now()->toDateTimeString(),
+        'dependencies' => $deps,
     ]);
 });
 

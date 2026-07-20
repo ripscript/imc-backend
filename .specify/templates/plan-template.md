@@ -40,7 +40,18 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Reference: `.specify/memory/constitution.md` (v1.0.0)
+
+### Gates (all MUST pass)
+
+1. **Microservice Autonomy** — Does this feature respect bounded contexts? Does it introduce cross-service DB reads? If yes, justify.
+2. **Layered Architecture** — Are controllers transport-only? Is `Request` kept out of services? Are DTOs used for cross-layer data?
+3. **Contract-First** — Are inter-service contracts versioned? Are OpenAPI specs included? Are contract tests planned?
+4. **Test-First** — Are tests written before implementation? Are factories planned for new models? Is coverage gate (80% new, no regression) achievable?
+5. **Performance** — Are list endpoints paginated? Are N+1 queries avoided? Is caching/queuing considered for hot paths?
+6. **Observability** — Is structured logging included? Are activity log events planned? Is correlation ID propagation addressed?
+7. **Security** — Are JWT guards in place? Are Policies used instead of inline role checks? Is mass-assignment protected?
+8. **Simplicity/YAGNI** — Is the simplest solution chosen? Are any pattern deviations justified in Complexity Tracking below?
 
 ## Project Structure
 

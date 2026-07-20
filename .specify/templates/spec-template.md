@@ -98,6 +98,14 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+### Non-Functional Requirements (Constitution-Driven)
+
+- **NFR-001 (Performance)**: All list endpoints MUST support pagination. N+1 queries MUST be avoided via eager loading. Full-text search MUST be used over `ILIKE '%...%'` for search features.
+- **NFR-002 (Testability)**: Every new model MUST include a factory. Every new endpoint MUST include a feature test. Unit tests MUST mock external dependencies. Coverage gate: 80% new code, no regression.
+- **NFR-003 (Layered Architecture)**: Controllers MUST be transport-only. `Illuminate\Http\Request` MUST NOT be passed to services — use DTOs. Business logic MUST NOT live in controllers.
+- **NFR-004 (Observability)**: Activity log MUST be captured via model events. Structured logging with context (user, action, entity) is required. Correlation ID propagation across services MUST be included.
+- **NFR-005 (Security)**: JWT guards on all non-public routes. Authorization via Policies + middleware, not inline role checks. Mass-assignment protection via `$fillable`/`$guarded`.
+
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
