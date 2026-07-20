@@ -1,0 +1,70 @@
+FROM php:8.2-fpm-alpine
+
+ENV APP /var/www/html
+
+WORKDIR ${APP}
+
+# * Install system dependencies
+RUN apk upgrade --update && apk add --no-cache \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    libmcrypt-dev \
+    libxml2-dev \
+    libzip-dev \
+    libxslt-dev \
+    curl \
+    libtool \
+    libmemcached-dev \
+    openssl-dev \
+    icu-dev \
+    libevent-dev \
+    imagemagick \
+    imagemagick-dev \
+    postgresql-dev \
+    libpq \
+    git \
+    openldap-dev \
+    oniguruma-dev \
+    nginx \
+    autoconf \
+    g++ \
+    make \
+    dos2unix
+
+# * Install PHP extensions
+RUN pecl install imagick \ 
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-configure ldap --with-libdir=lib \
+    && docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip ldap \
+    && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini
+
+# * Config
+COPY ./docker/server/passwd.default /etc/passwd
+
+# * Setup nginx
+RUN chown -R linux:root /var/log/nginx
+RUN chmod -R 0775 /var/log/nginx
+RUN chown -R linux:root /var/lib/nginx
+RUN chmod -R 0775 /var/lib/nginx
+RUN chown -R linux:root /run/nginx
+RUN chmod -R 0775 /run/nginx
+
+# * Setup Projects
+COPY . .
+COPY ./docker/nginx/default.conf.staging /etc/nginx/http.d/default.conf
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+COPY ./docker/scripts/start.sh.staging /usr/local/bin/run.sh
+
+# * Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install && composer dump-autoload
+
+# * Setup Permission Projects
+RUN chown -R linux:root /var/www/html/*
+RUN chown linux:root ./.env
+RUN chown -R linux:root /var/www/html/storage/*
+RUN chmod -R 0775 /var/www/html/storage/*
+RUN dos2unix /usr/local/bin/run.sh && chmod +x /usr/local/bin/run.sh
+
+ENTRYPOINT [ "sh", "/usr/local/bin/run.sh"]

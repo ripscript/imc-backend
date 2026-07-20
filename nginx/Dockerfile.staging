@@ -1,0 +1,6 @@
+FROM nginx:stable-alpine
+
+COPY ./app.config.staging /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf.staging /etc/nginx/nginx.conf
+
+EXPOSE 8080

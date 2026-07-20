@@ -1,0 +1,46 @@
+FROM php:8.2-fpm-alpine
+
+ENV APP=/var/www/html
+WORKDIR ${APP}
+
+# * Install system dependencies
+RUN apk upgrade --update && apk add --no-cache \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    libmcrypt-dev \
+    libxml2-dev \
+    libzip-dev \
+    libxslt-dev \
+    curl \
+    vim \
+    libtool \
+    libmemcached-dev \
+    openssl-dev \
+    icu-dev \
+    libevent-dev \
+    imagemagick \
+    imagemagick-dev \
+    postgresql-dev \
+    libpq \
+    git \
+    openldap-dev \
+    oniguruma-dev \
+    autoconf \
+    g++ \
+    make
+
+# * Install PHP extensions
+RUN pecl install imagick \ 
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo pgsql pdo_pgsql mbstring exif pcntl intl bcmath gd zip \
+    && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini
+
+# * Setup Projects
+COPY . .
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+
+# * Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+ENTRYPOINT [ "sh", "./docker/scripts/start.sh" ]

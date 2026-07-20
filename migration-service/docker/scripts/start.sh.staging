@@ -1,0 +1,7 @@
+#!/bin/sh
+
+chown -R www-data:www-data /var/www/html/storage/*
+
+php artisan storage:link
+
+php-fpm & nginx -g 'pid /run/nginx/nginx.pid; daemon off;'
