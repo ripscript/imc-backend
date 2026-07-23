@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class MsRole extends Model
 {
     use HasFactory;
+
     protected $table = 'ms_roles';
+
+    protected $fillable = ['name', 'code'];
 }

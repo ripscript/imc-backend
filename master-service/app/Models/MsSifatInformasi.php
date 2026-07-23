@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsSifatInformasi extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_sifat_informasi';
+
+    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+
     protected $logName = 'sifat informasi';
 }

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsKategoriFaq extends Model
 {
+    protected $guarded = ['id'];
     use HasFactory, SoftDeletes;
+
     protected $table = 'ms_kategori_faq';
 
     public function faqActive()

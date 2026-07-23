@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class GlobalSearchService
 {
-    public function insertContent($contentId) 
+    public function insertContent($contentId)
     {
         DB::statement("
             INSERT INTO global_search_index (

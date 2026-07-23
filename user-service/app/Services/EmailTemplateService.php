@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\TemplateEmail;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Exception;
 
 class EmailTemplateService
 {
@@ -14,11 +14,11 @@ class EmailTemplateService
         try {
             preg_match_all('/{{(.*?)}}/', $templateContent, $matches);
 
-            if (!empty($matches[1])) {
+            if (! empty($matches[1])) {
                 foreach ($matches[1] as $rawVar) {
                     $key = trim($rawVar);
                     $value = data_get($data, $key, '');
-                    $templateContent = str_replace('{{' . $key . '}}', e($value), $templateContent);
+                    $templateContent = str_replace('{{'.$key.'}}', e($value), $templateContent);
                 }
             }
 
@@ -26,12 +26,13 @@ class EmailTemplateService
 
             return $templateContent;
         } catch (Exception $e) {
-            Log::error('Gagal render template email: ' . $e->getMessage());
+            Log::error('Gagal render template email: '.$e->getMessage());
+
             return $templateContent;
         }
     }
 
-    function formatEmailHtml($html)
+    public function formatEmailHtml($html)
     {
         libxml_use_internal_errors(true);
 
@@ -47,7 +48,7 @@ class EmailTemplateService
         /** @var \DOMElement $img */
         foreach ($xpath->query('//img') as $img) {
 
-            if (!($img instanceof \DOMElement)) {
+            if (! ($img instanceof \DOMElement)) {
                 continue;
             }
 
@@ -104,7 +105,7 @@ class EmailTemplateService
 
             $img->setAttribute(
                 'style',
-                implode(';', $styles) . ';'
+                implode(';', $styles).';'
             );
 
             // Hapus class bawaan CKEditor
@@ -115,13 +116,14 @@ class EmailTemplateService
 
         return $dom->saveHTML();
     }
-    
+
     public function sendTemplate($templateName, $to, $data = [], $subjectOverride = null): bool
     {
         try {
             $template = TemplateEmail::where('name', $templateName)->first();
-            if (!$template) {
+            if (! $template) {
                 Log::warning("Template email dengan name '{$templateName}' tidak ditemukan.");
+
                 return false;
             }
 
@@ -133,7 +135,7 @@ class EmailTemplateService
             $finalContent = '';
             if ($header) {
                 $renderedHeader = $this->renderTemplate($header->content, $data);
-                $finalContent = $renderedHeader . "\n" . $renderedMain;
+                $finalContent = $renderedHeader."\n".$renderedMain;
             } else {
                 $finalContent = $renderedMain;
             }
@@ -145,9 +147,9 @@ class EmailTemplateService
 
             Mail::html($finalContent, function ($message) use ($to, $subject, $fromEmail, $fromName) {
                 $message->to($to)
-                        ->subject($subject)
-                        ->from($fromEmail, $fromName)
-                        ->replyTo($fromEmail);
+                    ->subject($subject)
+                    ->from($fromEmail, $fromName)
+                    ->replyTo($fromEmail);
 
                 $message->getHeaders()->addTextHeader('X-Mailer', 'Kemlu-SMTP');
                 $message->getHeaders()->addTextHeader('X-Environment', app()->environment());
@@ -167,7 +169,8 @@ class EmailTemplateService
 
             return true;
         } catch (Exception $e) {
-            Log::error('Gagal kirim email: ' . $e->getMessage());
+            Log::error('Gagal kirim email: '.$e->getMessage());
+
             return false;
         }
     }

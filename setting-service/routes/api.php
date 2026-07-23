@@ -3,7 +3,6 @@
 use App\Http\Controllers\ChatSettingController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\TemplateEmailController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,27 +37,27 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'Setting service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'Setting service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
 
 Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin_pustik,admin_satker,pimpinan'])->group(function () {
-    Route::prefix('template-email')->group(function() {
+    Route::prefix('template-email')->group(function () {
         Route::get('/', [TemplateEmailController::class, 'index']);
         Route::put('update-all', [TemplateEmailController::class, 'updateAll']);
         Route::put('{id}', [TemplateEmailController::class, 'update']);
         Route::get('{id}', [TemplateEmailController::class, 'detail']);
     });
 
-    Route::prefix('site-setting')->group(function() {
+    Route::prefix('site-setting')->group(function () {
         Route::get('/', [SiteSettingController::class, 'index']);
         Route::put('/', [SiteSettingController::class, 'update']);
     });
 
-    Route::prefix('chat-setting')->group(function() {
+    Route::prefix('chat-setting')->group(function () {
         Route::get('/', [ChatSettingController::class, 'index']);
         Route::put('/', [ChatSettingController::class, 'update']);
     });

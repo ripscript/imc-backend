@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
         $status = $e instanceof HttpExceptionInterface
             ? $e->getStatusCode()
             : 500;
-        
+
         if ($status === 500) {
             return ApiResponse::error('Something went wrong', $e->getMessage(), 500);
         }

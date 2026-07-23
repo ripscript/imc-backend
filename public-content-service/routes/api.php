@@ -7,7 +7,6 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\VisitorController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,9 +41,9 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'Public content service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'Public content service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
@@ -54,7 +53,7 @@ Route::get('site-setting', [SettingController::class, 'index']);
 Route::get('quick-link', [QuickLinkController::class, 'index']);
 Route::post('visitor', [VisitorController::class, 'create']);
 
-Route::prefix('home')->group(function() {
+Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('latest-information', [HomeController::class, 'latestInformation']);
     Route::get('summary-permohonan', [HomeController::class, 'summaryPermohonan']);
@@ -62,7 +61,7 @@ Route::prefix('home')->group(function() {
     Route::get('{id}', [HomeController::class, 'detail']);
 });
 
-Route::prefix('content')->group(function() {
+Route::prefix('content')->group(function () {
     Route::get('/', [ContentController::class, 'index']);
     Route::get('publication', [ContentController::class, 'detailPublication']);
     Route::get('repository', [ContentController::class, 'detailRepository']);
@@ -70,7 +69,7 @@ Route::prefix('content')->group(function() {
     Route::get('search', [ContentController::class, 'globalSearch']);
 });
 
-Route::prefix('chat')->group(function() {
+Route::prefix('chat')->group(function () {
     Route::post('/', [ChatbotController::class, 'sendMessageV2']);
     Route::post('start', [ChatbotController::class, 'startSession']);
     Route::post('end', [ChatbotController::class, 'endSession']);

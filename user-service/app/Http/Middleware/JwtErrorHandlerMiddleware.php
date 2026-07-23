@@ -18,11 +18,8 @@ class JwtErrorHandlerMiddleware
             $auth = auth($guard);
             $token = JWTAuth::parseToken()->getToken();
             $user = $auth->setToken($token)->authenticate();
-            if (!$user) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'User not found'
-                ], 404);
+            if (! $user) {
+                return ApiResponse::error('User not found', null, 404);
             }
             if ($guard === 'pemohon') {
                 $payload = JWTAuth::getPayload($token);
@@ -31,10 +28,7 @@ class JwtErrorHandlerMiddleware
                     ! isset($payload['token_version']) ||
                     (int) $payload['token_version'] !== (int) $user->token_version
                 ) {
-                    return response()->json([
-                        'status'  => false,
-                        'message' => 'Sesi telah berakhir. Silakan login kembali.',
-                    ], 401);
+                    return ApiResponse::error('Sesi telah berakhir. Silakan login kembali.', null, 401);
                 }
             }
             $request->attributes->set('guard', $guard);

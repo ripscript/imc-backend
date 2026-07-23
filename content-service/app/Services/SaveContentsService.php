@@ -17,11 +17,9 @@ use App\Models\ContentDetailText;
 use App\Models\ContentDetailVideoCarousel;
 use App\Models\ContentTag;
 use App\Models\MsTag;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
-class SaveContentsService 
+class SaveContentsService
 {
     protected bool $uploadVideoEnabled;
 
@@ -30,21 +28,22 @@ class SaveContentsService
         $this->uploadVideoEnabled = config('app.upload_video_enabled');
     }
 
-    public function store($content, $request, $user)
+    public function store($content, array $data, $user)
     {
-        if (!$request->has('content') && !in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure'])) {
+        if (! isset($data['content']) && ! in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure'])) {
             throw ValidationException::withMessages([
                 'error' => 'Content is missing.',
             ]);
         }
 
-        $dataContent = $request->content;
+        $dataContent = $data['content'];
 
         switch ($content->type) {
             case 'text':
                 $payload = $this->buildTextPayload($content, $dataContent, $user);
+
                 return $this->saveRecord(ContentDetailText::class, $dataContent['id'], $payload, $user);
-            break;
+                break;
 
             case 'card_link':
                 $results = [];
@@ -52,11 +51,12 @@ class SaveContentsService
                     $payload = $this->buildCardLinkPayload($content, $value, $user, $key);
                     $results[] = $this->saveRecord(ContentDetailCardLink::class, $value['id'], $payload, $user);
                 }
-                if ($request->filled('deleted_content_detail_id')) {
-                    $this->deleteRecordByIds(ContentDetailCardLink::class, $request->deleted_content_detail_id);
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailCardLink::class, $data['deleted_content_detail_id']);
                 }
+
                 return $results;
-            break;
+                break;
 
             case 'image_link':
                 $results = [];
@@ -64,11 +64,12 @@ class SaveContentsService
                     $payload = $this->buildImageLinkPayload($content, $value, $user, $key);
                     $results[] = $this->saveRecord(ContentDetailImageLink::class, $value['id'], $payload, $user);
                 }
-                if ($request->filled('deleted_content_detail_id')) {
-                    $this->deleteRecordByIds(ContentDetailImageLink::class, $request->deleted_content_detail_id);
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailImageLink::class, $data['deleted_content_detail_id']);
                 }
+
                 return $results;
-            break;
+                break;
 
             case 'image_carousel':
                 $results = [];
@@ -76,11 +77,12 @@ class SaveContentsService
                     $payload = $this->buildImageCarouselPayload($content, $value, $user, $key);
                     $results[] = $this->saveRecord(ContentDetailImageCarousel::class, $value['id'], $payload, $user);
                 }
-                if ($request->filled('deleted_content_detail_id')) {
-                    $this->deleteRecordByIds(ContentDetailImageCarousel::class, $request->deleted_content_detail_id);
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailImageCarousel::class, $data['deleted_content_detail_id']);
                 }
+
                 return $results;
-            break;
+                break;
 
             case 'video_carousel':
                 $results = [];
@@ -88,11 +90,12 @@ class SaveContentsService
                     $payload = $this->buildVideoCarouselPayload($content, $value, $user, $key);
                     $results[] = $this->saveRecord(ContentDetailVideoCarousel::class, $value['id'], $payload, $user);
                 }
-                if ($request->filled('deleted_content_detail_id')) {
-                    $this->deleteRecordByIds(ContentDetailVideoCarousel::class, $request->deleted_content_detail_id);
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailVideoCarousel::class, $data['deleted_content_detail_id']);
                 }
+
                 return $results;
-            break;
+                break;
 
             case 'accordion':
                 $results = [];
@@ -110,14 +113,15 @@ class SaveContentsService
                     $resultGroup->list = $resultLists;
                     $results[] = $resultGroup;
                 }
-                if ($request->filled('deleted_content_detail_id')) {
-                    $this->deleteRecordByIds(ContentDetailAccordionGroup::class, $request->deleted_content_detail_id);
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailAccordionGroup::class, $data['deleted_content_detail_id']);
                 }
-                if ($request->filled('deleted_content_detail_list_id')) {
-                    $this->deleteRecordByIds(ContentDetailAccordionList::class, $request->deleted_content_detail_list_id);
+                if (! empty($data['deleted_content_detail_list_id'])) {
+                    $this->deleteRecordByIds(ContentDetailAccordionList::class, $data['deleted_content_detail_list_id']);
                 }
+
                 return $results;
-            break;
+                break;
 
             case 'consume':
                 $results = [];
@@ -134,19 +138,20 @@ class SaveContentsService
                         [
                             'order' => ($key + 1),
                             'created_by' => $user,
-                            'updated_by' => $user
+                            'updated_by' => $user,
                         ]
                     );
                     $results[] = $result;
                     $ids[] = $result->id;
                 }
                 ContentDetailConsume::where('content_id', $content->id)->whereNotIn('id', $ids)->delete();
+
                 return $results;
-            break;
+                break;
 
             default:
                 return [];
-            break;
+                break;
         }
     }
 
@@ -154,18 +159,20 @@ class SaveContentsService
     {
         if (empty($id) || $id == 0) {
             $payload['created_by'] = $user;
+
             return $modelClass::create($payload);
         }
 
         $record = $modelClass::find($id);
-        if (!$record) {
+        if (! $record) {
             throw ValidationException::withMessages([
-                'error' => class_basename($modelClass) . ' is invalid.',
+                'error' => class_basename($modelClass).' is invalid.',
             ]);
         }
 
         $record->fill($payload);
         $record->save();
+
         return $record;
     }
 
@@ -178,7 +185,7 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'content'    => $data['content'],
+            'content' => $data['content'],
             'updated_by' => $user,
         ];
     }
@@ -187,10 +194,10 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title'      => $data['title'],
+            'title' => $data['title'],
             'color_code' => $data['color_code'],
-            'link'       => $data['link'],
-            'order'      => ($key + 1),
+            'link' => $data['link'],
+            'order' => ($key + 1),
             'updated_by' => $user,
         ];
     }
@@ -199,10 +206,10 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title'      => $data['title'],
+            'title' => $data['title'],
             'image_path' => $data['image_path'],
-            'link'       => $data['link'],
-            'order'      => ($key + 1),
+            'link' => $data['link'],
+            'order' => ($key + 1),
             'updated_by' => $user,
         ];
     }
@@ -210,27 +217,28 @@ class SaveContentsService
     private function buildImageCarouselPayload($content, $data, $user, $key = 0)
     {
         return [
-            'content_id'    => $content->id,
-            'title'         => $data['title'],
-            'image_path'    => $data['image_path'],
-            'description'   => $data['description'] ?? '',
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
-            'link'          => $data['link'] ?? '',
+            'content_id' => $content->id,
+            'title' => $data['title'],
+            'image_path' => $data['image_path'],
+            'description' => $data['description'] ?? '',
+            'order' => ($key + 1),
+            'updated_by' => $user,
+            'link' => $data['link'] ?? '',
         ];
     }
 
     private function buildVideoCarouselPayload($content, $data, $user, $key = 0)
     {
         $type = $this->uploadVideoEnabled ? $data['type'] : 'link';
+
         return [
             'content_id' => $content->id,
-            'title'      => $data['title'],
-            'order'      => ($key + 1),
+            'title' => $data['title'],
+            'order' => ($key + 1),
             'updated_by' => $user,
-            'type'       => $type,
-            'url'        => $type == 'link' ? $data['url'] : null,
-            'video_path' => $type == 'upload' ? $data['video_path'] : null
+            'type' => $type,
+            'url' => $type == 'link' ? $data['url'] : null,
+            'video_path' => $type == 'upload' ? $data['video_path'] : null,
         ];
     }
 
@@ -238,8 +246,8 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title'      => $data['title'],
-            'order'      => ($key + 1),
+            'title' => $data['title'],
+            'order' => ($key + 1),
             'updated_by' => $user,
         ];
     }
@@ -248,82 +256,82 @@ class SaveContentsService
     {
         return [
             'content_detail_accordion_group_id' => $accordionGroup->id,
-            'title'         => $data['title'],
-            'description'   => $data['description'],
-            'file_path'     => $data['file_path'] ?? '',
-            'link'          => $data['link'] ?? '',
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'file_path' => $data['file_path'] ?? '',
+            'link' => $data['link'] ?? '',
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
 
     private function buildAdditionalImagePayload($contentType, $contentId, $data, $user, $key = 0)
     {
         return [
-            'content_type'  => $contentType,
-            'content_id'    => $contentId,
-            'image_path'    => $data['image_path'],
-            'description'   => $data['description'] ?? '',
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
+            'content_type' => $contentType,
+            'content_id' => $contentId,
+            'image_path' => $data['image_path'],
+            'description' => $data['description'] ?? '',
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
 
     private function buildAdditionalFilePayload($contentType, $contentId, $data, $user, $key = 0)
     {
         return [
-            'content_type'  => $contentType,
-            'content_id'    => $contentId,
-            'file_path'     => $data['file_path'],
-            'title'         => $data['title'],
-            'description'   => $data['description'] ?? '',
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
+            'content_type' => $contentType,
+            'content_id' => $contentId,
+            'file_path' => $data['file_path'],
+            'title' => $data['title'],
+            'description' => $data['description'] ?? '',
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
 
     private function buildAdditionalLinkPayload($contentType, $contentId, $data, $user, $key = 0)
     {
         return [
-            'content_type'  => $contentType,
-            'content_id'    => $contentId,
-            'link'          => $data['link'],
-            'title'         => $data['title'],
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
+            'content_type' => $contentType,
+            'content_id' => $contentId,
+            'link' => $data['link'],
+            'title' => $data['title'],
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
 
     private function buildAdditionalTextPayload($contentType, $contentId, $data, $user)
     {
         return [
-            'content_type'  => $contentType,
-            'content_id'    => $contentId,
-            'description'   => $data['description'],
-            'updated_by'    => $user,
+            'content_type' => $contentType,
+            'content_id' => $contentId,
+            'description' => $data['description'],
+            'updated_by' => $user,
         ];
     }
 
     private function buildAdditionalVideoPayload($contentType, $contentId, $data, $user, $key = 0)
     {
         $type = $this->uploadVideoEnabled ? $data['type'] : 'link';
+
         return [
-            'content_type'  => $contentType,
-            'content_id'    => $contentId,
-            'title'         => $data['title'],
-            'type'          => $type,
-            'url'           => $type == 'link' ? $data['url'] : null,
-            'video_path'    => $type == 'upload' ? $data['video_path'] : null,
-            'order'         => ($key + 1),
-            'updated_by'    => $user,
+            'content_type' => $contentType,
+            'content_id' => $contentId,
+            'title' => $data['title'],
+            'type' => $type,
+            'url' => $type == 'link' ? $data['url'] : null,
+            'video_path' => $type == 'upload' ? $data['video_path'] : null,
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
-
 
     public function syncTags($contentType, $contentId, $tagIds, $user)
     {
         $tagIds = $tagIds ?? [];
-        
+
         if (count($tagIds) > 0) {
             $totalTagValid = MsTag::whereIn('id', $tagIds)->count();
 
@@ -337,8 +345,8 @@ class SaveContentsService
                 ContentTag::firstOrCreate(
                     [
                         'content_type' => $contentType,
-                        'content_id'   => $contentId,
-                        'tag_id'       => $tag,
+                        'content_id' => $contentId,
+                        'tag_id' => $tag,
                     ],
                     [
                         'created_by' => $user,
@@ -349,126 +357,126 @@ class SaveContentsService
 
             ContentTag::where([
                 'content_type' => $contentType,
-                'content_id'   => $contentId,
+                'content_id' => $contentId,
             ])->whereNotIn('tag_id', $tagIds)->delete();
         } else {
             ContentTag::where([
                 'content_type' => $contentType,
-                'content_id'   => $contentId,
+                'content_id' => $contentId,
             ])->delete();
         }
     }
 
-    public function storeAdditionalContent($contentType, $content, $request, $user)
+    public function storeAdditionalContent($contentType, $content, array $data, $user)
     {
-        $content->fill($request->only([
-            'has_additional_image',
-            'has_additional_video',
-            'has_additional_link',
-            'has_additional_file',
-            'has_additional_text',
-        ]))->save();
+        $content->fill([
+            'has_additional_image' => $data['has_additional_image'] ?? false,
+            'has_additional_video' => $data['has_additional_video'] ?? false,
+            'has_additional_link' => $data['has_additional_link'] ?? false,
+            'has_additional_file' => $data['has_additional_file'] ?? false,
+            'has_additional_text' => $data['has_additional_text'] ?? false,
+        ])->save();
 
         $contentId = $content->id;
 
         // validasi
-        if ($content->has_additional_image && empty($request->content_additional_image)) {
+        if ($content->has_additional_image && empty($data['content_additional_image'])) {
             throw ValidationException::withMessages([
                 'content_additional_image' => 'Minimal harus ada 1 gambar pada konten tambahan.',
             ]);
         }
 
-        if ($content->has_additional_video && empty($request->content_additional_video)) {
+        if ($content->has_additional_video && empty($data['content_additional_video'])) {
             throw ValidationException::withMessages([
                 'content_additional_video' => 'Minimal harus ada 1 video pada konten tambahan.',
             ]);
         }
 
-        if ($content->has_additional_file && empty($request->content_additional_file)) {
+        if ($content->has_additional_file && empty($data['content_additional_file'])) {
             throw ValidationException::withMessages([
                 'content_additional_file' => 'Minimal harus ada 1 file pada konten tambahan.',
             ]);
         }
 
-        if ($content->has_additional_link && empty($request->content_additional_link)) {
+        if ($content->has_additional_link && empty($data['content_additional_link'])) {
             throw ValidationException::withMessages([
                 'content_additional_link' => 'Minimal harus ada 1 link pada konten tambahan.',
             ]);
         }
 
-        if ($content->has_additional_text && empty($request->content_additional_text['description'] ?? null)) {
+        if ($content->has_additional_text && empty($data['content_additional_text']['description'] ?? null)) {
             throw ValidationException::withMessages([
                 'content_additional_text' => 'Teks tambahan tidak boleh kosong.',
             ]);
         }
 
         if ($content->has_additional_image == true) {
-            foreach ($request->content_additional_image as $key => $value) {
+            foreach ($data['content_additional_image'] as $key => $value) {
                 $payload = $this->buildAdditionalImagePayload($contentType, $contentId, $value, $user, $key);
                 $this->saveRecord(ContentAdditionalImage::class, $value['id'], $payload, $user);
             }
-            if ($request->filled('deleted_content_additional_image_id')) {
-                $this->deleteRecordByIds(ContentAdditionalImage::class, $request->deleted_content_additional_image_id);
+            if (! empty($data['deleted_content_additional_image_id'])) {
+                $this->deleteRecordByIds(ContentAdditionalImage::class, $data['deleted_content_additional_image_id']);
             }
         } else {
             ContentAdditionalImage::where([
                 'content_type' => $contentType,
-                'content_id' => $contentId
+                'content_id' => $contentId,
             ])->delete();
         }
 
         if ($content->has_additional_video == true) {
-            foreach ($request->content_additional_video as $key => $value) {
+            foreach ($data['content_additional_video'] as $key => $value) {
                 $payload = $this->buildAdditionalVideoPayload($contentType, $contentId, $value, $user, $key);
                 $this->saveRecord(ContentAdditionalVideo::class, $value['id'], $payload, $user);
             }
-            if ($request->filled('deleted_content_additional_video_id')) {
-                $this->deleteRecordByIds(ContentAdditionalVideo::class, $request->deleted_content_additional_video_id);
+            if (! empty($data['deleted_content_additional_video_id'])) {
+                $this->deleteRecordByIds(ContentAdditionalVideo::class, $data['deleted_content_additional_video_id']);
             }
         } else {
             ContentAdditionalVideo::where([
                 'content_type' => $contentType,
-                'content_id' => $contentId
+                'content_id' => $contentId,
             ])->delete();
         }
 
         if ($content->has_additional_file == true) {
-            foreach ($request->content_additional_file as $key => $value) {
+            foreach ($data['content_additional_file'] as $key => $value) {
                 $payload = $this->buildAdditionalFilePayload($contentType, $contentId, $value, $user, $key);
                 $this->saveRecord(ContentAdditionalFile::class, $value['id'], $payload, $user);
             }
-            if ($request->filled('deleted_content_additional_file_id')) {
-                $this->deleteRecordByIds(ContentAdditionalFile::class, $request->deleted_content_additional_file_id);
+            if (! empty($data['deleted_content_additional_file_id'])) {
+                $this->deleteRecordByIds(ContentAdditionalFile::class, $data['deleted_content_additional_file_id']);
             }
         } else {
             ContentAdditionalFile::where([
                 'content_type' => $contentType,
-                'content_id' => $contentId
+                'content_id' => $contentId,
             ])->delete();
         }
 
         if ($content->has_additional_link == true) {
-            foreach ($request->content_additional_link as $key => $value) {
+            foreach ($data['content_additional_link'] as $key => $value) {
                 $payload = $this->buildAdditionalLinkPayload($contentType, $contentId, $value, $user, $key);
                 $this->saveRecord(ContentAdditionalLink::class, $value['id'], $payload, $user);
             }
-            if ($request->filled('deleted_content_additional_link_id')) {
-                $this->deleteRecordByIds(ContentAdditionalLink::class, $request->deleted_content_additional_link_id);
+            if (! empty($data['deleted_content_additional_link_id'])) {
+                $this->deleteRecordByIds(ContentAdditionalLink::class, $data['deleted_content_additional_link_id']);
             }
         } else {
             ContentAdditionalLink::where([
                 'content_type' => $contentType,
-                'content_id' => $contentId
+                'content_id' => $contentId,
             ])->delete();
         }
 
         if ($content->has_additional_text == true) {
-            $payload = $this->buildAdditionalTextPayload($contentType, $contentId, $request->content_additional_text, $user);
-            $this->saveRecord(ContentAdditionalText::class, $request->content_additional_text['id'], $payload, $user);
+            $payload = $this->buildAdditionalTextPayload($contentType, $contentId, $data['content_additional_text'], $user);
+            $this->saveRecord(ContentAdditionalText::class, $data['content_additional_text']['id'], $payload, $user);
         } else {
             ContentAdditionalText::where([
                 'content_type' => $contentType,
-                'content_id' => $contentId
+                'content_id' => $contentId,
             ])->delete();
         }
     }

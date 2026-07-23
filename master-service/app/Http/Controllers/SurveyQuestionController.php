@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\MsSurveyQuestion;
+use App\Http\Requests\CreateSurveyQuestionRequest;
+use App\Http\Requests\UpdateSurveyQuestionRequest;
+use App\Http\Resources\SurveyQuestionResource;
+use App\Services\DTOs\QueryFilterDTO;
+use App\Services\DTOs\SurveyQuestionDTO;
+use App\Services\SurveyQuestionService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SurveyQuestionController extends Controller
 {
+    public function __construct(
+        protected SurveyQuestionService $surveyQuestionService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = DB::table('ms_survey_questions')
-                ->select('id','question', 'type', 'is_active');
-            
-            if ($request->filled('is_active')) {
-                $query->where('is_active', $request->is_active);
-            }
-
-            $data = $this->queryService->applyFiltersAndPaginate($query, $request, ['question', 'type']);
+            $data = $this->surveyQuestionService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
         } catch (\Throwable $th) {
@@ -30,79 +31,50 @@ class SurveyQuestionController extends Controller
     public function detail($id)
     {
         try {
-            $question = MsSurveyQuestion::findOrFail($id);
-            return ApiResponse::success($question, 'Berhasil mengambil detail pertanyaan survei');
+            $question = $this->surveyQuestionService->detail($id);
+
+            return ApiResponse::success(new SurveyQuestionResource($question), 'Berhasil mengambil detail pertanyaan survei');
         } catch (\Exception $th) {
-            throw $th; 
-        }
-    }
-
-    public function create(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'question' => 'required|string',
-                'type' => 'required|in:skala_likert,essay',
-                'is_active' => 'required|boolean',
-            ]);
-
-            $user = auth('admin')->user()->name;
-
-            $question = new MsSurveyQuestion();
-            $question->question = $request->question;
-            $question->type = $request->type;
-            $question->is_active = $request->is_active;
-            $question->order = $request->order ?? 0;
-            $question->created_by = $user;
-            $question->updated_by = $user;
-            $question->save();
-
-            DB::commit();
-            return ApiResponse::success($question, 'Berhasil menambahkan data pertanyaan survei', 201);
-        } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(Request $request, $id)
+    public function create(CreateSurveyQuestionRequest $request)
     {
-        DB::beginTransaction();
         try {
-            $question = MsSurveyQuestion::findOrFail($id);
-            
-            $request->validate([
-                'question' => 'required|string',
-                'is_active' => 'required|boolean'
-            ]);
+            $dto = new SurveyQuestionDTO($request->validated());
+            $dto->created_by = auth('admin')->user()->name;
+            $dto->updated_by = auth('admin')->user()->name;
 
-            $user = auth('admin')->user()->name;
+            $result = $this->surveyQuestionService->create($dto);
 
-            $question->question = $request->question;
-            $question->is_active = $request->is_active;
-            $question->order = $request->order ?? $question->order;
-            $question->updated_by = $user;
-            $question->save();
-
-            DB::commit();
-            return ApiResponse::success($question, 'Berhasil memperbarui data pertanyaan survei');
+            return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil menambahkan data pertanyaan survei', 201);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            throw $th;
+        }
+    }
+
+    public function update(UpdateSurveyQuestionRequest $request, $id)
+    {
+        try {
+            $dto = new SurveyQuestionDTO($request->validated());
+            $dto->updated_by = auth('admin')->user()->name;
+
+            $result = $this->surveyQuestionService->update($id, $dto);
+
+            return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil memperbarui data pertanyaan survei');
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            MsSurveyQuestion::findOrFail($id)->delete();
+            $this->surveyQuestionService->destroy($id);
 
-            DB::commit();
             return ApiResponse::success('', 'Berhasil menghapus data pertanyaan survei');
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
@@ -110,26 +82,11 @@ class SurveyQuestionController extends Controller
     public function listActive()
     {
         try {
-            $data = DB::table('ms_survey_questions')
-                ->select('uuid', 'question', 'type')
-                ->orderBy('order', 'asc')
-                ->where('is_active', true)
-                ->get();
+            $data = $this->surveyQuestionService->listActive();
 
-            $skalaLikert = DB::table('ms_survey_skala_likert')
-                ->select('id', 'label')
-                ->orderBy('order')
-                ->get();
-            foreach ($data as $value) {
-                if ($value->type == 'skala_likert') {
-                    $value->skala_likert = $skalaLikert;
-                }
-            }
-            
             return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-
 }

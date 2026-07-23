@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use App\Http\Requests\ContentDetailRequest;
+use App\Http\Requests\ContentIndexRequest;
 use App\Models\ChildSubMenu;
 use App\Models\Content;
 use App\Models\ContentDetailGallery;
@@ -18,16 +20,12 @@ class ContentController extends Controller
     const TYPE_CLASS = [
         'menu' => Menu::class,
         'sub_menu' => SubMenu::class,
-        'child_sub_menu' => ChildSubMenu::class
+        'child_sub_menu' => ChildSubMenu::class,
     ];
 
-    public function index(Request $request)
+    public function index(ContentIndexRequest $request)
     {
         try {
-            $request->validate([
-                'type' => 'required|in:menu,sub_menu,child_sub_menu',
-                'slug' => 'required|array'
-            ]);
 
             $type = $request->type;
             $slug = $request->slug;
@@ -40,7 +38,7 @@ class ContentController extends Controller
                             $query->accessible();
                         })
                         ->first();
-                break;
+                    break;
 
                 case 'sub_menu':
                     $content = SubMenu::where('slug', $slug[1])
@@ -53,7 +51,7 @@ class ContentController extends Controller
                             $query->accessible();
                         })
                         ->first();
-                break;
+                    break;
 
                 case 'child_sub_menu':
                     $content = ChildSubMenu::where('slug', $slug[2])
@@ -70,16 +68,16 @@ class ContentController extends Controller
                             $query->accessible();
                         })
                         ->first();
-                break;
+                    break;
             }
 
-            if (!$content) {
+            if (! $content) {
                 return ApiResponse::error("Content {$type} tidak ditemukan", '', 404);
             }
 
             $detailContent = Content::where([
                 'parent_type' => self::TYPE_CLASS[$type],
-                'parent_id' => $content->id
+                'parent_id' => $content->id,
             ])->first();
             $content->applyContent($detailContent, $request);
             $content->applyAdditionalContent($detailContent);
@@ -91,37 +89,32 @@ class ContentController extends Controller
         }
     }
 
-    public function detailPublication(Request $request)
+    public function detailPublication(ContentDetailRequest $request)
     {
         try {
-            $request->validate([
-                'slug' => 'required',
-                'type' => 'required|in:menu,sub_menu,child_sub_menu',
-                'content_slug' => 'required'
-            ]);
 
             $content = Content::whereHas('parent', function ($query) use ($request) {
-                    $query->where('slug', $request->content_slug);
-                })
+                $query->where('slug', $request->content_slug);
+            })
                 ->where('parent_type', self::TYPE_CLASS[$request->type])
                 ->accessible()
                 ->first();
-            
-            if (!$content) {
+
+            if (! $content) {
                 return ApiResponse::error('Parent content tidak ditemukan', '', 404);
             }
 
             $breadcrumb = $this->getBreadcrumb($request->type, $content->parent);
 
             $publication = ContentDetailPublication::where([
-                    'content_id' => $content->id,
-                    'slug' => $request->slug,
-                    'is_publicated' => true
-                ])
+                'content_id' => $content->id,
+                'slug' => $request->slug,
+                'is_publicated' => true,
+            ])
                 ->with('contentTag', 'layout')
                 ->first();
 
-            if (!$publication) {
+            if (! $publication) {
                 return ApiResponse::error('Publikasi tidak ditemukan', '', 404);
             }
             $breadcrumb[] = $publication->title;
@@ -135,37 +128,32 @@ class ContentController extends Controller
         }
     }
 
-    public function detailRepository(Request $request)
+    public function detailRepository(ContentDetailRequest $request)
     {
         try {
-            $request->validate([
-                'slug' => 'required',
-                'type' => 'required|in:menu,sub_menu,child_sub_menu',
-                'content_slug' => 'required'
-            ]);
 
             $content = Content::whereHas('parent', function ($query) use ($request) {
-                    $query->where('slug', $request->content_slug);
-                })
+                $query->where('slug', $request->content_slug);
+            })
                 ->where('parent_type', self::TYPE_CLASS[$request->type])
                 ->accessible()
                 ->first();
-            
-            if (!$content) {
+
+            if (! $content) {
                 return ApiResponse::error('Parent content tidak ditemukan', '', 404);
             }
 
             $breadcrumb = $this->getBreadcrumb($request->type, $content->parent);
 
             $repository = ContentDetailRepository::where([
-                    'content_id' => $content->id,
-                    'slug' => $request->slug,
-                    'is_publicated' => true
-                ])
+                'content_id' => $content->id,
+                'slug' => $request->slug,
+                'is_publicated' => true,
+            ])
                 ->with('contentTag', 'layout')
                 ->first();
 
-            if (!$repository) {
+            if (! $repository) {
                 return ApiResponse::error('Repositori tidak ditemukan', '', 404);
             }
             $breadcrumb[] = $repository->title;
@@ -178,37 +166,32 @@ class ContentController extends Controller
         }
     }
 
-    public function detailGallery(Request $request)
+    public function detailGallery(ContentDetailRequest $request)
     {
         try {
-            $request->validate([
-                'slug' => 'required',
-                'type' => 'required|in:menu,sub_menu,child_sub_menu',
-                'content_slug' => 'required'
-            ]);
 
             $content = Content::whereHas('parent', function ($query) use ($request) {
-                    $query->where('slug', $request->content_slug);
-                })
+                $query->where('slug', $request->content_slug);
+            })
                 ->where('parent_type', self::TYPE_CLASS[$request->type])
                 ->accessible()
                 ->first();
-            
-            if (!$content) {
+
+            if (! $content) {
                 return ApiResponse::error('Parent content tidak ditemukan', '', 404);
             }
 
             $breadcrumb = $this->getBreadcrumb($request->type, $content->parent);
 
             $gallery = ContentDetailGallery::where([
-                    'content_id' => $content->id,
-                    'slug' => $request->slug,
-                    'is_publicated' => true
-                ])
+                'content_id' => $content->id,
+                'slug' => $request->slug,
+                'is_publicated' => true,
+            ])
                 ->with('list', 'contentTag', 'layout')
                 ->first();
 
-            if (!$gallery) {
+            if (! $gallery) {
                 return ApiResponse::error('Galeri tidak ditemukan', '', 404);
             }
             $breadcrumb[] = $gallery->title;
@@ -220,25 +203,26 @@ class ContentController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-    }  
-    
-    function getBreadcrumb($type, $content)
+    }
+
+    public function getBreadcrumb($type, $content)
     {
         $breadcrumb = [];
         switch ($type) {
             case 'menu':
                 $breadcrumb[] = $content->title;
-            break;
+                break;
             case 'sub_menu':
                 $breadcrumb[] = $content->menu?->title;
                 $breadcrumb[] = $content->title;
-            break;
+                break;
             case 'child_sub_menu':
                 $breadcrumb[] = $content->subMenu?->menu?->title;
                 $breadcrumb[] = $content->subMenu?->title;
                 $breadcrumb[] = $content->title;
-            break;
+                break;
         }
+
         return $breadcrumb;
     }
 
@@ -248,14 +232,14 @@ class ContentController extends Controller
             $keyword = $request->input('q');
             $page = (int) $request->input('page', 1);
             $limit = (int) $request->input('limit', 10);
-    
-            if (!$keyword) {
+
+            if (! $keyword) {
                 return ApiResponse::error('Keyword tidak boleh kosong', '', 422);
             }
-                
-            $service = new GlobalSearchService();
+
+            $service = new GlobalSearchService;
             $data = $service->search($keyword, $page, $limit);
-    
+
             return ApiResponse::success($data, 'Berhasil mendapatkan data pencarian');
         } catch (\Throwable $th) {
             throw $th;

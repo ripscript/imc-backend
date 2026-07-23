@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChatLog extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
     public function session()

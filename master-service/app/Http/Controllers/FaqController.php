@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\MsFaq;
-use App\Models\MsKategoriFaq;
-use App\Rules\UniqueSoftDelete;
+use App\Http\Requests\CreateFaqRequest;
+use App\Http\Requests\UpdateFaqRequest;
+use App\Http\Resources\FaqResource;
+use App\Services\DTOs\FaqDTO;
+use App\Services\DTOs\QueryFilterDTO;
+use App\Services\FaqService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FaqController extends Controller
 {
+    public function __construct(
+        protected FaqService $faqService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = DB::table('ms_faq')
-                ->join('ms_kategori_faq', 'ms_faq.kategori_faq_id', '=', 'ms_kategori_faq.id')
-                ->whereNull('ms_faq.deleted_at')
-                ->whereNull('ms_kategori_faq.deleted_at')
-                ->select('ms_faq.id', 'title', 'description', 'ms_kategori_faq.name as kategori_faq', 'ms_faq.is_active', 'ms_faq.updated_at');
-            
-            $data = $this->queryService->applyFiltersAndPaginate($query, $request, ['title', 'description', 'ms_kategori_faq.name']);
+            $data = $this->faqService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil data FAQ');
         } catch (\Throwable $th) {
@@ -31,95 +31,58 @@ class FaqController extends Controller
     public function detail($id)
     {
         try {
-            $faq = MsFaq::findOrFail($id);
-            return ApiResponse::success($faq, 'Berhasil mengambil data detail FAQ');
+            $faq = $this->faqService->detail($id);
+
+            return ApiResponse::success(new FaqResource($faq), 'Berhasil mengambil data detail FAQ');
         } catch (\Exception $th) {
-            throw $th; 
-        }
-    }
-
-    public function create(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'title' => ['required', 'string', 'max:255', new UniqueSoftDelete('ms_faq', 'title')],
-                'description' => 'required|string',
-                'is_active' => 'required|boolean',
-                'kategori_faq_id' => 'required'
-            ]);
-
-            $user = auth('admin')->user()->name;
-
-            $exists = MsKategoriFaq::find($request->kategori_faq_id);
-            if (!$exists) {
-                DB::rollBack();
-                return ApiResponse::error('Kategori FAQ tidak valid', '', 422);
-            }
-
-            $faq = new MsFaq();
-            $faq->title = $request->title;
-            $faq->description = $request->description;
-            $faq->is_active = $request->is_active;
-            $faq->kategori_faq_id = $request->kategori_faq_id;
-            $faq->created_by = $user;
-            $faq->updated_by = $user;
-            $faq->save();
-
-            DB::commit();
-            return ApiResponse::success($faq, 'Berhasil menambahkan data FAQ', 201);
-        } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(Request $request, $id)
+    public function create(CreateFaqRequest $request)
     {
-        DB::beginTransaction();
         try {
-            $faq = MsFaq::findOrFail($id);
-            
-            $request->validate([
-                'title' => ['required', 'string', 'max:255', new UniqueSoftDelete('ms_faq', 'title', $id)],
-                'description' => 'required|string',
-                'is_active' => 'required|boolean',
-                'kategori_faq_id' => 'required'
-            ]);
+            $dto = new FaqDTO($request->validated());
+            $dto->created_by = auth('admin')->user()->name;
+            $dto->updated_by = auth('admin')->user()->name;
 
-            $user = auth('admin')->user()->name;
+            $result = $this->faqService->create($dto);
 
-            $exists = MsKategoriFaq::find($request->kategori_faq_id);
-            if (!$exists) {
-                DB::rollBack();
-                return ApiResponse::error('Kategori FAQ tidak valid', '', 422);
+            if ($result instanceof \Illuminate\Http\JsonResponse) {
+                return $result;
             }
 
-            $faq->title = $request->title;
-            $faq->description = $request->description;
-            $faq->is_active = $request->is_active;
-            $faq->kategori_faq_id = $request->kategori_faq_id;
-            $faq->updated_by = $user;
-            $faq->save();
-
-            DB::commit();
-            return ApiResponse::success($faq, 'Berhasil memperbarui data FAQ');
+            return ApiResponse::success(new FaqResource($result), 'Berhasil menambahkan data FAQ', 201);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            throw $th;
+        }
+    }
+
+    public function update(UpdateFaqRequest $request, $id)
+    {
+        try {
+            $dto = new FaqDTO($request->validated());
+            $dto->updated_by = auth('admin')->user()->name;
+
+            $result = $this->faqService->update($id, $dto);
+
+            if ($result instanceof \Illuminate\Http\JsonResponse) {
+                return $result;
+            }
+
+            return ApiResponse::success(new FaqResource($result), 'Berhasil memperbarui data FAQ');
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            MsFaq::findOrFail($id)->delete();
+            $this->faqService->destroy($id);
 
-            DB::commit();
             return ApiResponse::success('', 'Berhasil menghapus data FAQ');
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }

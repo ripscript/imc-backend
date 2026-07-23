@@ -15,6 +15,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->queryService = new QueryService();
+        $this->queryService = new QueryService;
     }
 }

@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use App\Services\GlobalSearchService;
+use App\Traits\HasActivityLog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
-    use HasFactory;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
+    protected $logName = 'content';
 
     public function parent()
     {
@@ -78,29 +81,28 @@ class Content extends Model
 
     public function getDetailBasedOnType()
     {
-        switch($this->type) 
-        {
-            case "card_link":
+        switch ($this->type) {
+            case 'card_link':
                 return $this->contentDetailCardLink;
-            break;
-            case "image_carousel":
+                break;
+            case 'image_carousel':
                 return $this->contentDetailImageCarousel;
-            break;
-            case "image_link":
+                break;
+            case 'image_link':
                 return $this->contentDetailImageLink;
-            break;
-            case "text":
+                break;
+            case 'text':
                 return $this->contentDetailText;
-            break;
-            case "video_carousel":
+                break;
+            case 'video_carousel':
                 return $this->contentDetailVideoCarousel;
-            break;
-            case "accordion":
+                break;
+            case 'accordion':
                 return $this->contentDetailAccordionGroup()->with('list')->get();
-            break;
-            case "consume":
+                break;
+            case 'consume':
                 return $this->contentDetailConsume;
-            break;
+                break;
         }
     }
 

@@ -12,6 +12,7 @@ class ClassificationPemohonController extends Controller
     {
         try {
             $data = DB::table('ms_classification_pemohon')->get();
+
             return ApiResponse::success($data, 'Berhasil mengambil data klasifikasi pemohon');
         } catch (\Throwable $th) {
             throw $th;

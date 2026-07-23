@@ -3,33 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\Content;
+use App\Services\ContentService;
+use App\Services\DTOs\QueryFilterDTO;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
 {
+    public function __construct(
+        protected ContentService $contentService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = Content::select('id', 'type', 'is_show_home', 'parent_type', 'parent_id');
-            $query->whereHas('parent', function ($qq) use ($request) {
-                if ($request->filled('is_active')) {
-                    $qq->where('is_active', $request->is_active)->whereNotNull('id');
-                } else {
-                    $qq->whereNotNull('id');
-                }
-            });
-            $query->with(['parent' => function ($qq) {
-                $qq->select('id', 'title', 'slug', 'is_active');
-            }]);
-            if ($request->filled('is_show_home')) {
-                $query->where('is_show_home', $request->is_show_home);
-            }
-            if ($request->filled('type')) {
-                $query->where('type', $request->type);
-            }
-            $data = $query->get();
+            $data = $this->contentService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil list content');
         } catch (\Throwable $th) {

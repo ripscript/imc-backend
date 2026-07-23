@@ -2,6 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Domain\AccountBlockedException;
+use App\Exceptions\Domain\AuthenticationException;
+use App\Exceptions\Domain\EntityNotFoundException;
+use App\Exceptions\Domain\InvalidRoleException;
+use App\Exceptions\Domain\OtpException;
+use App\Exceptions\Domain\RateLimitException;
+use App\Exceptions\Domain\ValidationException as DomainValidationException;
 use App\Helpers\ApiResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -11,20 +18,12 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * The list of the inputs that are never flashed to the session on validation exceptions.
-     *
-     * @var array<int, string>
-     */
     protected $dontFlash = [
         'current_password',
         'password',
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
@@ -34,6 +33,34 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if ($e instanceof DomainValidationException) {
+            return ApiResponse::error($e->getMessage(), $e->getErrors(), $e->getCode());
+        }
+
+        if ($e instanceof EntityNotFoundException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof AuthenticationException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof AccountBlockedException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof InvalidRoleException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof OtpException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof RateLimitException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
         if ($e instanceof ValidationException) {
             $errors = $e->errors();
             $flatErrors = collect($errors)->flatten()->implode(', ');
@@ -48,7 +75,7 @@ class Handler extends ExceptionHandler
         $status = $e instanceof HttpExceptionInterface
             ? $e->getStatusCode()
             : 500;
-        
+
         if ($status === 500) {
             return ApiResponse::error('Something went wrong', $e->getMessage(), 500);
         }

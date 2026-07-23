@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class MsClassificationPemohon extends Model
 {
     use HasFactory;
+
     protected $table = 'ms_classification_pemohon';
+
+    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
 
     const NAME_PERORANGAN = 'Perorangan';
 

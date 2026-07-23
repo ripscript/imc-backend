@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContentDetailGallery extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'is_publicated', 'layout_id'];
 
     public function content()
@@ -25,7 +26,7 @@ class ContentDetailGallery extends Model
         return $this->morphMany(ContentTag::class, 'content');
     }
 
-    function layout()
+    public function layout()
     {
         return $this->belongsTo(MsLayout::class);
     }

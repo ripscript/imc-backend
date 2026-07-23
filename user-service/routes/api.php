@@ -6,7 +6,6 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PemohonAuthController;
 use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +40,9 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'User service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'User service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
@@ -51,13 +50,13 @@ Route::get('/health', function () {
 Route::post('auth/login', [AdminAuthController::class, 'login']);
 
 Route::middleware(['jwt.error:admin'])->group(function () {
-    Route::prefix('auth')->group(function() {
+    Route::prefix('auth')->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'logout']);
-        Route::get('/profile', [AdminAuthController::class, 'profile']); 
+        Route::get('/profile', [AdminAuthController::class, 'profile']);
     });
 
     Route::middleware(['check.role:super_admin,admin_pusat,admin_pustik'])->group(function () {
-        Route::prefix('user')->group(function() {
+        Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'index']);
             Route::post('/', [UserController::class, 'create']);
             Route::put('{id}', [UserController::class, 'update']);
@@ -65,7 +64,7 @@ Route::middleware(['jwt.error:admin'])->group(function () {
             Route::delete('{id}', [UserController::class, 'destroy']);
         });
 
-        Route::prefix('management-pemohon')->group(function() {
+        Route::prefix('management-pemohon')->group(function () {
             Route::get('/', [PemohonController::class, 'index']);
             Route::put('{id}', [PemohonController::class, 'updateByAdmin']);
             Route::get('{id}', [PemohonController::class, 'detail']);
@@ -73,13 +72,13 @@ Route::middleware(['jwt.error:admin'])->group(function () {
             Route::delete('delete/{id}', [PemohonController::class, 'delete']);
         });
 
-        Route::prefix('log')->group(function() {
+        Route::prefix('log')->group(function () {
             Route::get('/activity', [LogController::class, 'activity']);
             Route::get('/chat', [LogController::class, 'chat']);
             Route::get('/chat/{session}', [LogController::class, 'chatDetail']);
         });
 
-        Route::prefix('bulk-password')->group(function() {
+        Route::prefix('bulk-password')->group(function () {
             Route::get('template', [BulkPasswordController::class, 'template']);
             Route::post('import', [BulkPasswordController::class, 'import']);
         });
@@ -87,8 +86,8 @@ Route::middleware(['jwt.error:admin'])->group(function () {
 });
 
 // Pemohon
-Route::prefix('pemohon')->group(function() {
-    Route::prefix('auth')->group(function() {
+Route::prefix('pemohon')->group(function () {
+    Route::prefix('auth')->group(function () {
         Route::post('/login', [PemohonAuthController::class, 'login']);
         Route::post('/register', [PemohonAuthController::class, 'register']);
         Route::post('/forgot-password', [PemohonAuthController::class, 'sendResetLinkEmail']);
@@ -99,9 +98,9 @@ Route::prefix('pemohon')->group(function() {
     });
 
     Route::middleware(['jwt.error:pemohon'])->group(function () {
-        Route::prefix('auth')->group(function() {
+        Route::prefix('auth')->group(function () {
             Route::post('/logout', [PemohonAuthController::class, 'logout']);
-            Route::get('/profile', [PemohonAuthController::class, 'profile']); 
+            Route::get('/profile', [PemohonAuthController::class, 'profile']);
         });
 
         Route::put('/profile', [PemohonController::class, 'updateByPemohon']);

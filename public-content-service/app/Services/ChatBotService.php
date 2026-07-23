@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Str;
 use App\Models\ChatSetting;
-use App\Models\MsKategoriFaq;
 use App\Models\MsFaq;
+use App\Models\MsKategoriFaq;
 use App\Models\SiteSetting;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class ChatBotService
 {
@@ -16,16 +15,16 @@ class ChatBotService
         $userMessage = strtolower(trim($message));
 
         $settings = ChatSetting::first();
-        $settings->wa_number = SiteSetting::first()->value('wa_number') ?? "";
+        $settings->wa_number = SiteSetting::first()->value('wa_number') ?? '';
 
         $botReply = [];
         if (Str::startsWith($userMessage, 'kategori_faq_')) {
             $botReply = $this->handleKategori($userMessage, $settings);
-        } else if (Str::startsWith($userMessage, 'faq_')) {
+        } elseif (Str::startsWith($userMessage, 'faq_')) {
             $botReply = $this->handleFaq($userMessage, $settings);
-        } else if (Str::startsWith($userMessage, 'confirmation_')) {
+        } elseif (Str::startsWith($userMessage, 'confirmation_')) {
             $botReply = $this->handleConfirmation($userMessage, $settings);
-        } else if (Str::startsWith($userMessage, 'another_question_')) {
+        } elseif (Str::startsWith($userMessage, 'another_question_')) {
             $botReply = $this->handleAnotherQuestion($userMessage, $settings, $sessionId);
         } else {
             $botReply = [[
@@ -49,7 +48,7 @@ class ChatBotService
         }
 
         $kategori = MsKategoriFaq::where('uuid', $uuid)->first();
-        if (!$kategori) {
+        if (! $kategori) {
             return [[
                 'type' => 'message',
                 'message' => 'Kategori yang dipilih tidak valid.',
@@ -75,7 +74,7 @@ class ChatBotService
                 'type' => 'option',
                 'category' => 'faq',
                 'message' => $faq,
-            ]
+            ],
         ];
     }
 
@@ -86,12 +85,12 @@ class ChatBotService
         if ($uuid === '0') {
             return [
                 ...$this->toWhatsApp($settings),
-                ...$this->askAnotherQuestion($settings)
+                ...$this->askAnotherQuestion($settings),
             ];
         }
 
         $faq = MsFaq::where('uuid', $uuid)->where('is_active', true)->first();
-        if (!$faq) {
+        if (! $faq) {
             return [[
                 'type' => 'message',
                 'message' => 'Pertanyaan yang dipilih tidak valid.',
@@ -103,7 +102,7 @@ class ChatBotService
                 'type' => 'message',
                 'message' => $faq->description,
             ],
-            ...$this->confirmation($settings)
+            ...$this->confirmation($settings),
         ];
     }
 
@@ -113,9 +112,9 @@ class ChatBotService
 
         if ($uuid == '1') {
             return [
-                ...$this->askAnotherQuestion($settings)
+                ...$this->askAnotherQuestion($settings),
             ];
-        } else if ($uuid == '2') {
+        } elseif ($uuid == '2') {
             return [
                 ...$this->toWhatsApp($settings),
                 ...$this->askAnotherQuestion($settings),
@@ -134,9 +133,9 @@ class ChatBotService
 
         if ($uuid == '1') {
             return [
-                ...$this->kategoriList()
+                ...$this->kategoriList(),
             ];
-        } else if ($uuid == '2') {
+        } elseif ($uuid == '2') {
             return [[
                 'type' => 'message',
                 'message' => $settings['closing'] ?? 'Terima kasih telah menghubungi kami!',
@@ -204,6 +203,7 @@ class ChatBotService
     {
         $list = MsKategoriFaq::whereHas('faqActive')->select('uuid', 'name as title')->get();
         $list->push(['uuid' => '0', 'title' => 'Lainnya']);
+
         return [
             [
                 'type' => 'message',

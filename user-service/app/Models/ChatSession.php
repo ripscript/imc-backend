@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class ChatSession extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
     public function logs()

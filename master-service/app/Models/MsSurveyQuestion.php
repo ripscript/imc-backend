@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MsSurveyQuestion extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $table = 'ms_survey_questions';
+
     protected $logName = 'pertanyaan survei kepuasan';
 }

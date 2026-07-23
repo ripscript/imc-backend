@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TemplateEmail extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $logName = 'template email';
 }

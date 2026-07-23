@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MsSubSatuanKerja extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $table = 'ms_sub_satuan_kerja';
+
     protected $guarded = ['id'];
 }

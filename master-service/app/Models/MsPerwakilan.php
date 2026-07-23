@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsPerwakilan extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_perwakilan';
+
     protected $guarded = ['id'];
+
     protected $logName = 'perwakilan';
 
     public function negara()
@@ -23,11 +26,11 @@ class MsPerwakilan extends Model
     protected static function booted()
     {
         static::creating(function ($perwakilan) {
-            $perwakilan->full_name = $perwakilan->type ." ". $perwakilan->name;
+            $perwakilan->full_name = $perwakilan->type.' '.$perwakilan->name;
         });
 
         static::updating(function ($perwakilan) {
-            $perwakilan->full_name = $perwakilan->type ." ". $perwakilan->name;
+            $perwakilan->full_name = $perwakilan->type.' '.$perwakilan->name;
         });
     }
 }

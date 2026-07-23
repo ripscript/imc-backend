@@ -43,12 +43,13 @@ class SafeFileExtension implements ValidationRule
         $extension = strtolower($value->getClientOriginalExtension());
 
         if (! in_array($extension, $this->allowedExtensions, true)) {
-            $fail("The :attribute file type is not allowed.");
+            $fail('The :attribute file type is not allowed.');
+
             return;
         }
 
         if (in_array($extension, $this->dangerousExtensions, true)) {
-            $fail("The :attribute has a dangerous file extension.");
+            $fail('The :attribute has a dangerous file extension.');
         }
     }
 }

@@ -6,14 +6,14 @@ class LogActivity
 {
     public static function create($logName, $model, $action = 'unknown', $user = null)
     {
-        if (!$user) {
+        if (! $user) {
             $user = auth()->user();
         }
         $description = match (strtolower($action)) {
-            'create' => 'Menambahkan data ' . $logName,
-            'update' => 'Memperbarui data ' . $logName,
-            'delete' => 'Menghapus data ' . $logName,
-            default => ucfirst($action) . ' data ' . $logName,
+            'create' => 'Menambahkan data '.$logName,
+            'update' => 'Memperbarui data '.$logName,
+            'delete' => 'Menghapus data '.$logName,
+            default => ucfirst($action).' data '.$logName,
         };
 
         activity($logName)

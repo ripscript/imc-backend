@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsFaq extends Model
 {
+    protected $guarded = ['id'];
     use HasFactory, SoftDeletes;
+
     protected $table = 'ms_faq';
 }

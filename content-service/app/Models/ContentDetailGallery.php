@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentDetailGallery extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $logName = 'galeri';
 
     public function content()
@@ -26,7 +28,7 @@ class ContentDetailGallery extends Model
     protected static function booted()
     {
         static::deleted(function ($content) {
-            $service = new GlobalSearchService();
+            $service = new GlobalSearchService;
             $service->delete(ContentDetailGallery::class, $content->id);
         });
     }

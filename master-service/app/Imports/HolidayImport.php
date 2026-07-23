@@ -2,18 +2,16 @@
 
 namespace App\Imports;
 
-use App\Models\MsHoliday;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class HolidayImport implements ToCollection, SkipsEmptyRows
+class HolidayImport implements SkipsEmptyRows, ToCollection
 {
     public $invalidDates = [];
+
     public $parsedRows = [];
 
     public function collection(Collection $rows)
@@ -21,7 +19,9 @@ class HolidayImport implements ToCollection, SkipsEmptyRows
         $user = auth('admin')->user()->name;
         $now = now();
         foreach ($rows as $index => $row) {
-            if ($index === 0) continue;
+            if ($index === 0) {
+                continue;
+            }
 
             if (empty(array_filter($row->toArray()))) {
                 continue;
@@ -37,11 +37,12 @@ class HolidayImport implements ToCollection, SkipsEmptyRows
 
             $parsed = $this->parseExcelDate($raw);
 
-            if (!$parsed) {
+            if (! $parsed) {
                 $this->invalidDates[] = [
-                    'row'   => $rowNumber,
-                    'value' => $raw
+                    'row' => $rowNumber,
+                    'value' => $raw,
                 ];
+
                 continue;
             }
 
@@ -51,7 +52,7 @@ class HolidayImport implements ToCollection, SkipsEmptyRows
                 'created_by' => $user,
                 'updated_by' => $user,
                 'created_at' => $now,
-                'updated_at' => $now
+                'updated_at' => $now,
             ];
         }
     }

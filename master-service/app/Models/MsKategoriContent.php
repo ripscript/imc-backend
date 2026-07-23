@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MsKategoriContent extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $table = 'ms_kategori_contents';
+
+    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+
     protected $logName = 'kategori konten';
 }

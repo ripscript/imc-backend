@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class HolidayTemplateExport implements FromCollection, WithHeadings, WithTitle, WithEvents
+class HolidayTemplateExport implements FromCollection, WithEvents, WithHeadings, WithTitle
 {
     public function collection()
     {

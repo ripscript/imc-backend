@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContentAdditionalVideo extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
     public function content()

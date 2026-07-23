@@ -2,36 +2,39 @@
 
 namespace App\Models;
 
+use App\Traits\HasActivityLog;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class Pemohon extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, Notifiable, SoftDeletes;
+    use HasActivityLog, HasApiTokens, Notifiable, SoftDeletes;
+
     protected $table = 'pemohon';
+
     protected $guarded = ['id'];
 
     protected $hidden = [
         'password',
         'remember_token',
         'token',
-        'otp'
+        'otp',
     ];
 
     const STATUS = [
         'BELUM_TERVERIFIKASI' => 0,
         'EMAIL_TERVERIFIKASI' => 1,
         'DATA_TERVERIFIKASI' => 2,
-        'DIBLOKIR' => 3
+        'DIBLOKIR' => 3,
     ];
 
     const GENDER = [
         'LAKI_LAKI' => 1,
-        'PEREMPUAN' => 2
+        'PEREMPUAN' => 2,
     ];
 
     public function classification()
@@ -64,7 +67,7 @@ class Pemohon extends Authenticatable implements JWTSubject
         $countToday = self::whereDate('created_at', now()->toDateString())->count();
         $prefix = str_pad($countToday + 1, 2, '0', STR_PAD_LEFT);
 
-        return $prefix . $date . 'REG';
+        return $prefix.$date.'REG';
     }
 
     public static function generateUniqueToken()
@@ -82,11 +85,12 @@ class Pemohon extends Authenticatable implements JWTSubject
         for ($i = 0; $i < 5; $i++) {
             $otp .= (string) random_int(0, 9);
         }
+
         return $otp;
     }
 
     public function getIsEmailVerifiedAttribute()
     {
-        return !is_null($this->email_verified_at);
+        return ! is_null($this->email_verified_at);
     }
 }

@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsKategoriFaq extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_kategori_faq';
+
+    protected $fillable = ['name', 'created_by', 'updated_by'];
+
     protected $logName = 'kategori FAQ';
 }

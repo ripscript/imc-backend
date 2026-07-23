@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ContentDetailOrganizationalStructureMember extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_detail_organizational_structure_group_id', 'parent_id'];
 }

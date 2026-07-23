@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\FileController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,9 +35,9 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'File service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'File service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
@@ -53,4 +52,3 @@ Route::middleware(['jwt.error:admin,pemohon'])->group(function () {
     Route::post('lock-pdf', [FileController::class, 'lockUploadedPdf']);
     Route::post('lock-image', [FileController::class, 'lockUploadedImage']);
 });
-

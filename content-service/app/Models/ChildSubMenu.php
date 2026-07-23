@@ -11,9 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChildSubMenu extends Model
 {
-    use HasFactory, HasContentMapping, HasAdditionalContentMapping, HasActivityLog;
+    use HasActivityLog, HasAdditionalContentMapping, HasContentMapping, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $appends = ['menu_id'];
+
     protected $logName = 'child sub menu';
 
     public function content()
@@ -31,7 +34,7 @@ class ChildSubMenu extends Model
         static::deleted(function ($child) {
             $child->content?->delete();
 
-            $service = new GlobalSearchService();
+            $service = new GlobalSearchService;
             $service->delete(ChildSubMenu::class, $child->id);
         });
     }
@@ -43,6 +46,6 @@ class ChildSubMenu extends Model
 
     public function getFullUrlAttribute()
     {
-        return "/" . $this->subMenu?->menu?->slug . "/" . $this->subMenu?->slug . "/" . $this->slug;
+        return '/'.$this->subMenu?->menu?->slug.'/'.$this->subMenu?->slug.'/'.$this->slug;
     }
 }

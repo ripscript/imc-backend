@@ -4,8 +4,6 @@ namespace App\Imports;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
@@ -13,12 +11,14 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 class BulkPasswordImport implements WithMultipleSheets
 {
     private array $invalidEmails = [];
+
     private int $totalRows = 0;
 
     public function sheets(): array
     {
         return [
-            'Template Update' => new class($this) implements ToCollection, WithHeadingRow {
+            'Template Update' => new class($this) implements ToCollection, WithHeadingRow
+            {
                 private BulkPasswordImport $parent;
 
                 public function __construct(BulkPasswordImport $parent)
@@ -38,15 +38,17 @@ class BulkPasswordImport implements WithMultipleSheets
                         $email = trim($row['email'] ?? '');
                         $newPassword = trim($row['new_password'] ?? '');
 
-                        if (!$email || !$newPassword) {
+                        if (! $email || ! $newPassword) {
                             $this->parent->addInvalidEmail($email ?: '(email kosong)');
+
                             continue;
                         }
 
                         $user = User::where('email', $email)->first();
 
-                        if (!$user) {
+                        if (! $user) {
                             $this->parent->addInvalidEmail($email);
+
                             continue;
                         }
 
@@ -55,7 +57,7 @@ class BulkPasswordImport implements WithMultipleSheets
                         $user->save();
                     }
                 }
-            }
+            },
         ];
     }
 

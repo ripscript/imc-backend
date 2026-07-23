@@ -2,22 +2,23 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Query\Builder as QueryBuilder;
+use App\Services\DTOs\QueryFilterDTO;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class QueryService
 {
-    public function applyFiltersAndPaginate(EloquentBuilder|QueryBuilder $query, Request $request, array $searchable = [], $defaultSort = 'updated_at')
+    public function applyFiltersAndPaginate(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, array $searchable = [], $defaultSort = 'updated_at')
     {
-        $query = $this->search($query, $request, $searchable);
-        $query = $this->sort($query, $request, $defaultSort);
-        return $this->paginate($query, $request);
+        $query = $this->search($query, $filter, $searchable);
+        $query = $this->sort($query, $filter, $defaultSort);
+
+        return $this->paginate($query, $filter);
     }
 
-    public function search(EloquentBuilder|QueryBuilder $query, Request $request, array $searchable = [])
+    public function search(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, array $searchable = [])
     {
-        $search = $request->input('search');
+        $search = $filter->search;
         if ($search && $searchable) {
             $query->where(function ($q) use ($searchable, $search) {
                 foreach ($searchable as $column) {
@@ -29,45 +30,44 @@ class QueryService
         return $query;
     }
 
-    public function sort(EloquentBuilder|QueryBuilder $query, Request $request, $defaultSort)
+    public function sort(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, $defaultSort)
     {
         $query->orderBy($defaultSort, 'desc');
-        if ($sortBy = $request->input('sort_by')) {
-            $sortOrder = $request->input('sort_order', 'asc');
-            $query->orderBy($sortBy, $sortOrder);
+        if ($filter->sort_by) {
+            $query->orderBy($filter->sort_by, $filter->sort_order ?? 'asc');
         }
 
         return $query;
     }
 
-    public function paginate(EloquentBuilder|QueryBuilder $query, Request $request)
+    public function paginate(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter)
     {
-        $limit = $request->input('limit');
-        $page  = max((int) $request->input('page', 1), 1);
+        $limit = $filter->limit;
+        $page = max($filter->page, 1);
 
         $total = $query->count();
 
         if ($limit) {
             $results = $query->forPage($page, $limit)->get();
             $meta = [
-                'page'       => $page,
-                'limit'      => (int) $limit,
-                'total'      => $total,
+                'page' => $page,
+                'limit' => (int) $limit,
+                'total' => $total,
                 'total_page' => (int) ceil($total / $limit),
             ];
         } else {
             $results = $query->get();
             $meta = [
-                'total'      => $total,
-                'page'       => 1,
-                'limit'      => $total,
+                'total' => $total,
+                'page' => 1,
+                'limit' => $total,
                 'total_page' => 1,
             ];
         }
 
         return [
             'data' => $results,
-            'meta' => $meta
+            'meta' => $meta,
         ];
     }
 }

@@ -11,16 +11,16 @@ class ApiResponse
         return response()->json([
             'success' => true,
             'message' => $message,
-            'data'    => $data,
+            'data' => $data,
         ], $status);
     }
 
     public static function error($message = 'Error', $errors = null, $status = 400)
     {
         if ($status == 500 && app()->environment('production')) {
-            if (!empty($errors)) {
-                Log::error('[API ERROR] ' . $message, [
-                    'errors' => $errors
+            if (! empty($errors)) {
+                Log::error('[API ERROR] '.$message, [
+                    'errors' => $errors,
                 ]);
             }
 
@@ -30,8 +30,8 @@ class ApiResponse
         return response()->json([
             'success' => false,
             'message' => $message,
-            'errors'  => $errors,
-            'data'    => null,
+            'errors' => $errors,
+            'data' => null,
         ], $status);
     }
 }

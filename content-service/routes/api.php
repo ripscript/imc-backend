@@ -12,7 +12,6 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\SubMenuController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,15 +46,15 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'Content service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'Content service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
 
 Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin_pustik'])->group(function () {
-    Route::prefix('menu')->group(function() {
+    Route::prefix('menu')->group(function () {
         Route::get('/', [MenuController::class, 'index']);
         Route::post('/', [MenuController::class, 'create']);
         Route::get('/{id}', [MenuController::class, 'detail']);
@@ -63,7 +62,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [MenuController::class, 'delete']);
     });
 
-    Route::prefix('sub-menu')->group(function() {
+    Route::prefix('sub-menu')->group(function () {
         Route::get('/', [SubMenuController::class, 'index']);
         Route::post('/', [SubMenuController::class, 'create']);
         Route::get('/{id}', [SubMenuController::class, 'detail']);
@@ -71,7 +70,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [SubMenuController::class, 'delete']);
     });
 
-    Route::prefix('child-sub-menu')->group(function() {
+    Route::prefix('child-sub-menu')->group(function () {
         Route::get('/', [ChildSubMenuController::class, 'index']);
         Route::post('/', [ChildSubMenuController::class, 'create']);
         Route::get('/{id}', [ChildSubMenuController::class, 'detail']);
@@ -79,7 +78,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [ChildSubMenuController::class, 'delete']);
     });
 
-    Route::prefix('publication')->group(function() {
+    Route::prefix('publication')->group(function () {
         Route::get('/side-menu', [PublicationController::class, 'sideMenu']);
         Route::get('/list/{contentId}', [PublicationController::class, 'index']);
         Route::post('/', [PublicationController::class, 'create']);
@@ -88,7 +87,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [PublicationController::class, 'delete']);
     });
 
-    Route::prefix('gallery')->group(function() {
+    Route::prefix('gallery')->group(function () {
         Route::get('/side-menu', [GalleryController::class, 'sideMenu']);
         Route::get('/list/{contentId}', [GalleryController::class, 'index']);
         Route::post('/', [GalleryController::class, 'create']);
@@ -97,7 +96,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [GalleryController::class, 'delete']);
     });
 
-    Route::prefix('repository')->group(function() {
+    Route::prefix('repository')->group(function () {
         Route::get('/side-menu', [RepositoryController::class, 'sideMenu']);
         Route::get('/list/{contentId}', [RepositoryController::class, 'index']);
         Route::post('/', [RepositoryController::class, 'create']);
@@ -106,7 +105,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [RepositoryController::class, 'delete']);
     });
 
-    Route::prefix('agenda')->group(function() {
+    Route::prefix('agenda')->group(function () {
         Route::get('/side-menu', [AgendaController::class, 'sideMenu']);
         Route::get('/list/{contentId}', [AgendaController::class, 'index']);
         Route::post('/', [AgendaController::class, 'create']);
@@ -115,7 +114,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [AgendaController::class, 'delete']);
     });
 
-    Route::prefix('section')->group(function() {
+    Route::prefix('section')->group(function () {
         Route::get('/', [HomeController::class, 'index']);
         Route::post('/', [HomeController::class, 'create']);
         Route::get('/{id}', [HomeController::class, 'detail']);
@@ -123,7 +122,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         // Route::delete('/{id}', [HomeController::class, 'delete']);
     });
 
-    Route::prefix('latest-information')->group(function() {
+    Route::prefix('latest-information')->group(function () {
         Route::get('/', [LatestInformationController::class, 'index']);
         Route::post('/', [LatestInformationController::class, 'create']);
         Route::get('/{id}', [LatestInformationController::class, 'detail']);
@@ -131,7 +130,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [LatestInformationController::class, 'delete']);
     });
 
-    Route::prefix('quick-link')->group(function() {
+    Route::prefix('quick-link')->group(function () {
         Route::get('/', [QuickLinkController::class, 'index']);
         Route::post('/', [QuickLinkController::class, 'create']);
         Route::get('/{id}', [QuickLinkController::class, 'detail']);
@@ -141,7 +140,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
 
     Route::get('content', [ContentController::class, 'index']);
 
-    Route::prefix('dashboard')->group(function() {
+    Route::prefix('dashboard')->group(function () {
         Route::get('jumlah-perangkat', [DashboardController::class, 'jumlahPerangkat']);
         Route::get('grafik-pengunjung', [DashboardController::class, 'grafikPengunjung']);
     });

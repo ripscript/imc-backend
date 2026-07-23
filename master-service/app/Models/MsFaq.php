@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsFaq extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_faq';
+
+    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+
     protected $logName = 'FAQ';
 }

@@ -16,7 +16,6 @@ use App\Http\Controllers\SifatInformasiController;
 use App\Http\Controllers\SurveyQuestionController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\VariableTemplateEmailController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,15 +50,15 @@ Route::get('/health', function () {
     }
 
     return response()->json([
-        'status'       => 'ok',
-        'message'      => 'Master service berhasil diakses',
-        'time'         => now()->toDateTimeString(),
+        'status' => 'ok',
+        'message' => 'Master service berhasil diakses',
+        'time' => now()->toDateTimeString(),
         'dependencies' => $deps,
     ]);
 });
 
 Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik'])->group(function () {
-    Route::prefix('negara')->group(function() {
+    Route::prefix('negara')->group(function () {
         Route::get('/', [NegaraController::class, 'index']);
         Route::post('/', [NegaraController::class, 'create']);
         Route::put('{id}', [NegaraController::class, 'update']);
@@ -67,14 +66,14 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [NegaraController::class, 'destroy']);
     });
 
-    Route::prefix('perwakilan')->group(function() {
+    Route::prefix('perwakilan')->group(function () {
         Route::post('/', [PerwakilanController::class, 'create']);
         Route::put('{id}', [PerwakilanController::class, 'update']);
         Route::get('{id}', [PerwakilanController::class, 'detail']);
         Route::delete('{id}', [PerwakilanController::class, 'destroy']);
     });
 
-    Route::prefix('sifat-informasi')->group(function() {
+    Route::prefix('sifat-informasi')->group(function () {
         Route::get('/', [SifatInformasiController::class, 'index']);
         Route::post('/', [SifatInformasiController::class, 'create']);
         Route::put('{id}', [SifatInformasiController::class, 'update']);
@@ -82,7 +81,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [SifatInformasiController::class, 'destroy']);
     });
 
-    Route::prefix('kategori-faq')->group(function() {
+    Route::prefix('kategori-faq')->group(function () {
         Route::get('/', [KategoriFaqController::class, 'index']);
         Route::post('/', [KategoriFaqController::class, 'create']);
         Route::put('{id}', [KategoriFaqController::class, 'update']);
@@ -90,7 +89,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [KategoriFaqController::class, 'destroy']);
     });
 
-    Route::prefix('faq')->group(function() {
+    Route::prefix('faq')->group(function () {
         Route::get('/', [FaqController::class, 'index']);
         Route::post('/', [FaqController::class, 'create']);
         Route::put('{id}', [FaqController::class, 'update']);
@@ -98,7 +97,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [FaqController::class, 'destroy']);
     });
 
-    Route::prefix('satuan-kerja')->group(function() {
+    Route::prefix('satuan-kerja')->group(function () {
         Route::post('/', [SatuanKerjaController::class, 'create']);
         Route::put('{id}', [SatuanKerjaController::class, 'update']);
         Route::get('{id}', [SatuanKerjaController::class, 'detail']);
@@ -106,7 +105,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::get('sub/{id}', [SatuanKerjaController::class, 'getSub']);
     });
 
-    Route::prefix('kategori-content')->group(function() {
+    Route::prefix('kategori-content')->group(function () {
         Route::get('/', [KategoriContentController::class, 'index']);
         Route::post('/', [KategoriContentController::class, 'create']);
         Route::put('{id}', [KategoriContentController::class, 'update']);
@@ -114,7 +113,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [KategoriContentController::class, 'destroy']);
     });
 
-    Route::prefix('tag')->group(function() {
+    Route::prefix('tag')->group(function () {
         Route::get('/', [TagController::class, 'index']);
         Route::post('/', [TagController::class, 'create']);
         Route::put('{id}', [TagController::class, 'update']);
@@ -122,14 +121,14 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [TagController::class, 'destroy']);
     });
 
-     Route::prefix('alasan-keberatan')->group(function() {
+    Route::prefix('alasan-keberatan')->group(function () {
         Route::post('/', [AlasanKeberatanController::class, 'create']);
         Route::put('{id}', [AlasanKeberatanController::class, 'update']);
         Route::get('{id}', [AlasanKeberatanController::class, 'detail']);
         // Route::delete('{id}', [AlasanKeberatanController::class, 'destroy']);
     });
 
-    Route::prefix('hari-libur')->group(function() {
+    Route::prefix('hari-libur')->group(function () {
         Route::get('/', [HolidayController::class, 'index']);
         Route::post('/', [HolidayController::class, 'create']);
         Route::get('template-import', [HolidayController::class, 'templateImport']);
@@ -139,7 +138,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [HolidayController::class, 'destroy']);
     });
 
-    Route::prefix('survey-question')->group(function() {
+    Route::prefix('survey-question')->group(function () {
         Route::get('/', [SurveyQuestionController::class, 'index']);
         Route::post('/', [SurveyQuestionController::class, 'create']);
         Route::put('{id}', [SurveyQuestionController::class, 'update']);
@@ -147,14 +146,13 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [SurveyQuestionController::class, 'destroy']);
     });
 
-
     Route::get('role', [RoleController::class, 'index']);
     Route::get('variable-template-email', [VariableTemplateEmailController::class, 'index']);
     Route::get('layout', [LayoutController::class, 'index']);
 });
 
 Route::middleware(['jwt.error:admin,pemohon'])->group(function () {
-    Route::prefix('permohonan')->group(function() {
+    Route::prefix('permohonan')->group(function () {
         Route::get('akses-data', [PermohonanController::class, 'aksesData']);
         Route::get('format-data', [PermohonanController::class, 'formatData']);
         Route::get('salinan-informasi', [PermohonanController::class, 'salinanInformasi']);

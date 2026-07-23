@@ -6,7 +6,7 @@ trait HasAdditionalContentMapping
 {
     public function applyAdditionalContent($source): void
     {
-        if (!$source) {
+        if (! $source) {
             return;
         }
 
@@ -24,8 +24,8 @@ trait HasAdditionalContentMapping
 
         $this->content_additional_image = $source->contentAdditionalImage ?? [];
         $this->content_additional_video = $source->contentAdditionalVideo ?? [];
-        $this->content_additional_link  = $source->contentAdditionalLink ?? [];
-        $this->content_additional_file  = $source->contentAdditionalFile ?? [];
-        $this->content_additional_text  = $source->contentAdditionalText ?? null;
+        $this->content_additional_link = $source->contentAdditionalLink ?? [];
+        $this->content_additional_file = $source->contentAdditionalFile ?? [];
+        $this->content_additional_text = $source->contentAdditionalText ?? null;
     }
 }

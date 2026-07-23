@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsSatuanKerja extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_satuan_kerja';
+
     protected $guarded = ['id'];
+
     protected $logName = 'satuan kerja';
 
     public function subSatuanKerja()

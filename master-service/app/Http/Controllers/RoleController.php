@@ -12,6 +12,7 @@ class RoleController extends Controller
     {
         try {
             $data = DB::table('ms_roles')->get();
+
             return ApiResponse::success($data, 'Berhasil mengambil data role');
         } catch (\Throwable $th) {
             throw $th;

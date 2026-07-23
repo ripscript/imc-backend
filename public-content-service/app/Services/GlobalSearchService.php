@@ -26,7 +26,7 @@ class GlobalSearchService
             ->addBinding($keyword)
             ->where(function ($q) use ($tsQuery, $keyword) {
                 $q->whereRaw("search_vector @@ {$tsQuery}")
-                ->orWhereRaw("title % ?", [$keyword]);
+                    ->orWhereRaw('title % ?', [$keyword]);
             });
 
         // Total Count
@@ -47,8 +47,8 @@ class GlobalSearchService
                 'page' => (int) $page,
                 'limit' => (int) $limit,
                 'total' => $total,
-                'total_page' => ceil($total / $limit)
-            ]
+                'total_page' => ceil($total / $limit),
+            ],
         ];
     }
 
@@ -58,7 +58,7 @@ class GlobalSearchService
 
         $query = collect($terms)
             ->filter()
-            ->map(fn ($t) => $t . ':*')
+            ->map(fn ($t) => $t.':*')
             ->implode(' & ');
 
         return "to_tsquery('simple', '{$query}')";

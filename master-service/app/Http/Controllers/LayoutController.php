@@ -17,7 +17,7 @@ class LayoutController extends Controller
             if ($request->filled('is_custom')) {
                 $query->where('is_custom', '=', $request->is_custom);
             }
-            
+
             if ($request->filled('type')) {
                 $query->where('type', '=', $request->type);
             }

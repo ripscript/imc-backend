@@ -1,0 +1,18 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class AdminLogoutTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_endpoint_returns_success_envelope(): void
+    {
+        $response = $this->getJson('/api/auth/logout');
+        $response->assertStatus(200)
+            ->assertJsonStructure(['success', 'message', 'data']);
+    }
+}

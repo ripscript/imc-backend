@@ -2,3 +2,33 @@ docker-compose-local.yaml
 
 # code agent whitelist
 .clinerules
+.agents
+
+# PHP
+vendor/
+*.log
+*.cache
+.env
+.env.*
+dist/
+build/
+*.tmp
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose-local.yaml
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

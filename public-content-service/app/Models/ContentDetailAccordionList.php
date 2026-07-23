@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ContentDetailAccordionList extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_detail_accordion_group_id'];
 }

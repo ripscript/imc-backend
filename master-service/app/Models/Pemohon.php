@@ -6,31 +6,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Str;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class Pemohon extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, Notifiable, SoftDeletes;
+
     protected $table = 'pemohon';
 
     protected $hidden = [
         'password',
         'remember_token',
         'token',
-        'otp'
+        'otp',
     ];
+
+    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
 
     const STATUS = [
         'BELUM_TERVERIFIKASI' => 0,
         'EMAIL_TERVERIFIKASI' => 1,
         'DATA_TERVERIFIKASI' => 2,
-        'DIBLOKIR' => 3
+        'DIBLOKIR' => 3,
     ];
 
     const GENDER = [
         'LAKI_LAKI' => 1,
-        'PEREMPUAN' => 2
+        'PEREMPUAN' => 2,
     ];
 
     public function getJWTIdentifier()
@@ -47,6 +49,6 @@ class Pemohon extends Authenticatable implements JWTSubject
 
     public function getIsEmailVerifiedAttribute()
     {
-        return !is_null($this->email_verified_at);
+        return ! is_null($this->email_verified_at);
     }
 }

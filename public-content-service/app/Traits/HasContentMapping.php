@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Models\Content;
 use App\Services\QueryService;
 use Illuminate\Support\Facades\DB;
 
@@ -12,12 +11,12 @@ trait HasContentMapping
 
     public function __construct()
     {
-        $this->queryService = new QueryService();
+        $this->queryService = new QueryService;
     }
 
     public function applyContent($content, $request = null)
     {
-        if (!$content) {
+        if (! $content) {
             return;
         }
 
@@ -40,9 +39,9 @@ trait HasContentMapping
                             'thumbnail_path',
                             'publish_date'
                         );
-                    
+
                     $listContent = $this->queryService->applyFiltersAndPaginate($query, $request, ['title']);
-                break;
+                    break;
                 case 'repository':
                     $query = DB::table('content_detail_repositories')
                         ->where('content_id', $content->id)
@@ -53,9 +52,9 @@ trait HasContentMapping
                             'thumbnail_path',
                             'publish_date'
                         );
-                    
+
                     $listContent = $this->queryService->applyFiltersAndPaginate($query, $request, ['title']);
-                break;
+                    break;
                 case 'gallery':
                     $query = DB::table('content_detail_galleries as g')
                         ->where('g.content_id', $content->id)
@@ -67,14 +66,14 @@ trait HasContentMapping
                         )
                         ->selectSub(function ($q) {
                             $q->from('content_detail_gallery_lists as l')
-                            ->select('l.image_path')
-                            ->whereColumn('l.content_detail_gallery_id', 'g.id')
-                            ->orderBy('l.order', 'asc')
-                            ->limit(1);
+                                ->select('l.image_path')
+                                ->whereColumn('l.content_detail_gallery_id', 'g.id')
+                                ->orderBy('l.order', 'asc')
+                                ->limit(1);
                         }, 'first_image_path');
-                    
+
                     $listContent = $this->queryService->applyFiltersAndPaginate($query, $request, ['g.title']);
-                break;
+                    break;
             }
             $this->content = $listContent['data'] ?? [];
             $this->meta = $listContent['meta'] ?? [];

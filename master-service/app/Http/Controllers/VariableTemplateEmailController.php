@@ -16,6 +16,7 @@ class VariableTemplateEmailController extends Controller
                 $query->where('template_email', $request->template_email);
             }
             $data = $query->get();
+
             return ApiResponse::success($data, 'Berhasil mengambil data variabel template email');
         } catch (\Throwable $th) {
             throw $th;

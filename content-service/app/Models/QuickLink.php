@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuickLink extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $table = 'quick_links';
+
     protected $logName = 'link cepat';
 }

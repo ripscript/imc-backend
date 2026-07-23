@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsNegara extends Model
 {
-    use HasFactory, SoftDeletes, HasActivityLog;
+    use HasActivityLog, HasFactory, SoftDeletes;
+
     protected $table = 'ms_negara';
+
     protected $guarded = ['id'];
+
     protected $logName = 'negara';
 }

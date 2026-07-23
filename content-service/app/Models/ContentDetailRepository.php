@@ -9,14 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentDetailRepository extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $logName = 'repositori';
 
     protected static function booted()
     {
         static::deleted(function ($content) {
-            $service = new GlobalSearchService();
+            $service = new GlobalSearchService;
             $service->delete(ContentDetailRepository::class, $content->id);
         });
     }

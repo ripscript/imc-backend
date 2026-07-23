@@ -10,8 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentDetailPublication extends Model
 {
-    use HasFactory, HasAdditionalContentMapping, HasActivityLog;
+    use HasActivityLog, HasAdditionalContentMapping, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $logName = 'publikasi';
 
     public function contentAdditionalImage()
@@ -50,7 +52,7 @@ class ContentDetailPublication extends Model
         });
 
         static::deleted(function ($content) {
-            $service = new GlobalSearchService();
+            $service = new GlobalSearchService;
             $service->delete(ContentDetailPublication::class, $content->id);
         });
     }

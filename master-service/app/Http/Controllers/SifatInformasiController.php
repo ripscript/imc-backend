@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\MsSifatInformasi;
-use App\Rules\UniqueSoftDelete;
+use App\Http\Requests\CreateSifatInformasiRequest;
+use App\Http\Requests\UpdateSifatInformasiRequest;
+use App\Http\Resources\SifatInformasiResource;
+use App\Services\DTOs\QueryFilterDTO;
+use App\Services\DTOs\SifatInformasiDTO;
+use App\Services\SifatInformasiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SifatInformasiController extends Controller
 {
+    public function __construct(
+        protected SifatInformasiService $sifatInformasiService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = DB::table('ms_sifat_informasi')
-                ->whereNull('deleted_at')
-                ->select('id','name', 'icon_path');
-
-            $data = $this->queryService->applyFiltersAndPaginate($query, $request, ['name']);
+            $data = $this->sifatInformasiService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil data sifat informasi');
         } catch (\Throwable $th) {
@@ -28,85 +31,51 @@ class SifatInformasiController extends Controller
     public function detail($id)
     {
         try {
-            $sifatInformasi = MsSifatInformasi::findOrFail($id);
-            return ApiResponse::success($sifatInformasi, 'Berhasil mengambil data detail sifat informasi');
+            $sifatInformasi = $this->sifatInformasiService->detail($id);
+
+            return ApiResponse::success(new SifatInformasiResource($sifatInformasi), 'Berhasil mengambil data detail sifat informasi');
         } catch (\Exception $th) {
-            throw $th; 
-        }
-    }
-
-    public function create(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'name' => ['required', 'string', 'max:100', new UniqueSoftDelete('ms_sifat_informasi')],
-                'icon_path' => 'nullable|string',
-                'description' => 'nullable|string',
-                'link' => 'nullable|string',
-            ]);
-
-            $user = auth('admin')->user()->name;
-
-            $sifatInformasi = new MsSifatInformasi();
-            $sifatInformasi->name = $request->name;
-            $sifatInformasi->icon_path = $request->icon_path;
-            $sifatInformasi->description = $request->description;
-            $sifatInformasi->link = $request->link;
-            $sifatInformasi->created_by = $user;
-            $sifatInformasi->updated_by = $user;
-            $sifatInformasi->save();
-
-            DB::commit();
-            return ApiResponse::success($sifatInformasi, 'Berhasil menambahkan data sifat informasi', 201);
-        } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(Request $request, $id)
+    public function create(CreateSifatInformasiRequest $request)
     {
-        DB::beginTransaction();
         try {
-            $sifatInformasi = MsSifatInformasi::findOrFail($id);
-            
-            $request->validate([
-                'name' => ['required', 'string', 'max:100', new UniqueSoftDelete('ms_sifat_informasi', 'name', $id)],
-                'icon_path' => 'nullable|string',
-                'description' => 'nullable|string',
-                'link' => 'nullable|string',
-            ]);
+            $dto = new SifatInformasiDTO($request->validated());
+            $dto->created_by = auth('admin')->user()->name;
+            $dto->updated_by = auth('admin')->user()->name;
 
-            $user = auth('admin')->user()->name;
+            $result = $this->sifatInformasiService->create($dto);
 
-            $sifatInformasi->name = $request->name;
-            $sifatInformasi->icon_path = $request->icon_path;
-            $sifatInformasi->description = $request->description;
-            $sifatInformasi->link = $request->link;
-            $sifatInformasi->updated_by = $user;
-            $sifatInformasi->save();
-
-            DB::commit();
-            return ApiResponse::success($sifatInformasi, 'Berhasil memperbarui data sifat informasi');
+            return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil menambahkan data sifat informasi', 201);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            throw $th;
+        }
+    }
+
+    public function update(UpdateSifatInformasiRequest $request, $id)
+    {
+        try {
+            $dto = new SifatInformasiDTO($request->validated());
+            $dto->updated_by = auth('admin')->user()->name;
+
+            $result = $this->sifatInformasiService->update($id, $dto);
+
+            return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil memperbarui data sifat informasi');
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            MsSifatInformasi::findOrFail($id)->delete();
+            $this->sifatInformasiService->destroy($id);
 
-            DB::commit();
             return ApiResponse::success('', 'Berhasil menghapus data sifat informasi');
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 }
-

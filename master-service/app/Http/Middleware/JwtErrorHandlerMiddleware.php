@@ -37,13 +37,14 @@ class JwtErrorHandlerMiddleware
                             (int) $payload['token_version'] !== (int) $user->token_version
                         ) {
                             return response()->json([
-                                'status'  => false,
+                                'status' => false,
                                 'message' => 'Sesi telah berakhir. Silakan login kembali.',
                             ], 401);
                         }
                     }
 
                     $request->attributes->set('guard', $guard);
+
                     return $next($request);
                 }
             } catch (TokenExpiredException $e) {

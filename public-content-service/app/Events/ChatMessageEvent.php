@@ -4,8 +4,6 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -15,7 +13,9 @@ class ChatMessageEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $sessionId;
+
     public $sender;
+
     public $message;
 
     /**
@@ -30,7 +30,7 @@ class ChatMessageEvent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel('chat.session.' . $this->sessionId);
+        return new Channel('chat.session.'.$this->sessionId);
     }
 
     public function broadcastAs()
@@ -41,8 +41,8 @@ class ChatMessageEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            "message" => $this->message,
-            "sender" => $this->sender,
+            'message' => $this->message,
+            'sender' => $this->sender,
         ];
     }
 }

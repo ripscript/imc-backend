@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 class UniqueSoftDelete implements Rule
 {
     protected $table;
+
     protected $column;
+
     protected $ignore;
 
     public function __construct($table, $column = 'name', $ignore = null)

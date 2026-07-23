@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MsHoliday extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $table = 'ms_holidays';
+
     protected $guarded = ['id'];
+
     protected $logName = 'hari libur';
 }

@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class LatestInformation extends Model
 {
-    use HasFactory, HasActivityLog;
+    use HasActivityLog, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $table = 'latest_informations';
+
     protected $logName = 'informasi terkini';
 }

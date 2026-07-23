@@ -3,26 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\MsTag;
+use App\Http\Requests\CreateTagRequest;
+use App\Http\Requests\UpdateTagRequest;
+use App\Http\Resources\TagResource;
+use App\Services\DTOs\QueryFilterDTO;
+use App\Services\DTOs\TagDTO;
+use App\Services\TagService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
+    public function __construct(
+        protected TagService $tagService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = DB::table('ms_tags')->select('id','title', 'is_active');
-            if ($request->filled('is_active')) {
-                $query->where('is_active', $request->is_active);
-            }
-
-            if ($request->filled('without_pagination') && $request->without_pagination == true) {
-                $data = $query->get();
-            } else {
-                $data = $this->queryService->applyFiltersAndPaginate($query, $request, ['title']);
-            }
+            $data = $this->tagService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil data tag');
         } catch (\Throwable $th) {
@@ -33,77 +31,51 @@ class TagController extends Controller
     public function detail($id)
     {
         try {
-            $tag = MsTag::findOrFail($id);
-            return ApiResponse::success($tag, 'Berhasil mengambil data detail tag');
+            $tag = $this->tagService->detail($id);
+
+            return ApiResponse::success(new TagResource($tag), 'Berhasil mengambil data detail tag');
         } catch (\Exception $th) {
-            throw $th; 
-        }
-    }
-
-    public function create(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'title' => ['required', 'string', 'max:100', Rule::unique('ms_tags', 'title')],
-                'is_active' => 'boolean'
-            ]);
-
-            $user = auth('admin')->user()->name;
-
-            $tag = new MsTag();
-            $tag->title = $request->title;
-            $tag->is_active = $request->is_active;
-            $tag->created_by = $user;
-            $tag->updated_by = $user;
-            $tag->save();
-
-            DB::commit();
-            return ApiResponse::success($tag, 'Berhasil menambahkan data tag', 201);
-        } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(Request $request, $id)
+    public function create(CreateTagRequest $request)
     {
-        DB::beginTransaction();
         try {
-            $tag = MsTag::findOrFail($id);
-            
-            $request->validate([
-                'title' => ['required', 'string', 'max:100', Rule::unique('ms_tags', 'title')->ignore($id)],
-                'is_active' => 'boolean'
-            ]);
+            $dto = new TagDTO($request->validated());
+            $dto->created_by = auth('admin')->user()->name;
+            $dto->updated_by = auth('admin')->user()->name;
 
-            $user = auth('admin')->user()->name;
+            $result = $this->tagService->create($dto);
 
-            $tag->title = $request->title;
-            $tag->is_active = $request->is_active;
-            $tag->updated_by = $user;
-            $tag->save();
-
-            DB::commit();
-            return ApiResponse::success($tag, 'Berhasil memperbarui data tag');
+            return ApiResponse::success(new TagResource($result), 'Berhasil menambahkan data tag', 201);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            throw $th;
+        }
+    }
+
+    public function update(UpdateTagRequest $request, $id)
+    {
+        try {
+            $dto = new TagDTO($request->validated());
+            $dto->updated_by = auth('admin')->user()->name;
+
+            $result = $this->tagService->update($id, $dto);
+
+            return ApiResponse::success(new TagResource($result), 'Berhasil memperbarui data tag');
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            MsTag::findOrFail($id)->delete();
+            $this->tagService->destroy($id);
 
-            DB::commit();
             return ApiResponse::success('', 'Berhasil menghapus data tag');
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 }
-

@@ -9,10 +9,10 @@ class File
         $timestamp = now()->timestamp;
         $filenameWithoutExtension = pathinfo($filename, PATHINFO_FILENAME);
         $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
-        $result = $timestamp . uniqid() ."_". $filenameWithoutExtension;
-        $result = preg_replace("/[^A-Za-z0-9 ]/", '_', $result);
+        $result = $timestamp.uniqid().'_'.$filenameWithoutExtension;
+        $result = preg_replace('/[^A-Za-z0-9 ]/', '_', $result);
         $result = str_replace(' ', '_', $result);
-        $result = $result .'.'. $fileExtension;
+        $result = $result.'.'.$fileExtension;
 
         return $result;
     }

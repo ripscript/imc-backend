@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\DB;
 class ContentDetailConsume extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'consume_id'];
+
     protected $appends = ['list_content', 'parent_menu'];
 
     public function getListContentAttribute()
@@ -28,12 +30,13 @@ class ContentDetailConsume extends Model
                     ->orderBy('publish_date', 'desc')
                     ->limit(5)
                     ->get();
+
                 return $query;
-            break;
+                break;
 
             case 'gallery':
                 $query = DB::table('content_detail_galleries as g')
-                    ->where('g.content_id',$this->consume_id)
+                    ->where('g.content_id', $this->consume_id)
                     ->where('g.is_publicated', true)
                     ->select(
                         'g.title',
@@ -52,7 +55,7 @@ class ContentDetailConsume extends Model
                     ->get();
 
                 return $query;
-            break;
+                break;
 
             case 'repository':
                 $query = DB::table('content_detail_repositories')
@@ -67,21 +70,23 @@ class ContentDetailConsume extends Model
                     ->orderBy('publish_date', 'desc')
                     ->limit(5)
                     ->get();
+
                 return $query;
-            break;
-            
+                break;
+
             default:
                 return [];
-            break;
+                break;
         }
     }
 
     public function getParentMenuAttribute()
     {
         $content = Content::find($this->consume_id);
-        if (!$content) {
+        if (! $content) {
             return null;
         }
+
         return $content->parent_slug;
     }
 }

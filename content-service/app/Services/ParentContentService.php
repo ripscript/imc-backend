@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\ChildSubMenu;
 use App\Models\Menu;
 use App\Models\SubMenu;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ParentContentService

@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\QuickLinkService;
 
 class QuickLinkController extends Controller
 {
+    public function __construct(
+        protected QuickLinkService $quickLinkService
+    ) {}
+
     public function index()
     {
         try {
-            $data = DB::table('quick_links')
-                ->select(
-                    'title',
-                    'url',
-                    'order'
-                )
-                ->where('is_active', true)
-                ->orderBy('order')
-                ->get();
+            $data = $this->quickLinkService->index();
 
             return ApiResponse::success($data, 'Berhasil mengambil data link cepat');
         } catch (\Throwable $th) {

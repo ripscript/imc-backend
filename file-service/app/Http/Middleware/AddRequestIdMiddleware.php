@@ -14,7 +14,7 @@ class AddRequestIdMiddleware
     {
         $requestId = $request->header('X-Request-ID');
 
-        if (!$requestId) {
+        if (! $requestId) {
             $requestId = (string) Str::uuid();
         }
 

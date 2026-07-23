@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class MsKategoriContent extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $table = 'ms_kategori_contents';
-    protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'is_active'];
 
+    protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'is_active'];
 }

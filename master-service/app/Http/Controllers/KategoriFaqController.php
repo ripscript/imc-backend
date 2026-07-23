@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\MsKategoriFaq;
-use App\Rules\UniqueSoftDelete;
+use App\Http\Requests\CreateKategoriFaqRequest;
+use App\Http\Requests\UpdateKategoriFaqRequest;
+use App\Http\Resources\KategoriFaqResource;
+use App\Services\DTOs\KategoriFaqDTO;
+use App\Services\DTOs\QueryFilterDTO;
+use App\Services\KategoriFaqService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class KategoriFaqController extends Controller
 {
+    public function __construct(
+        protected KategoriFaqService $kategoriFaqService
+    ) {}
+
     public function index(Request $request)
     {
         try {
-            $query = DB::table('ms_kategori_faq')
-                ->whereNull('deleted_at')
-                ->select('id','name');
-
-            if ($request->filled('without_pagination') && $request->without_pagination == true) {
-                $data = $query->get();
-            } else {
-                $data = $this->queryService->applyFiltersAndPaginate($query, $request, ['name']);
-            }
+            $data = $this->kategoriFaqService->index(QueryFilterDTO::fromRequest($request));
 
             return ApiResponse::success($data, 'Berhasil mengambil data kategori FAQ');
         } catch (\Throwable $th) {
@@ -32,71 +31,50 @@ class KategoriFaqController extends Controller
     public function detail($id)
     {
         try {
-            $kategoriFaq = MsKategoriFaq::findOrFail($id);
-            return ApiResponse::success($kategoriFaq, 'Berhasil mengambil data detail kategori FAQ');
+            $kategoriFaq = $this->kategoriFaqService->detail($id);
+
+            return ApiResponse::success(new KategoriFaqResource($kategoriFaq), 'Berhasil mengambil data detail kategori FAQ');
         } catch (\Exception $th) {
-            throw $th; 
-        }
-    }
-
-    public function create(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'name' => ['required', 'string', 'max:100', new UniqueSoftDelete('ms_kategori_faq')],
-            ]);
-
-            $user = auth('admin')->user()->name;
-
-            $kategoriFaq = new MsKategoriFaq();
-            $kategoriFaq->name = $request->name;
-            $kategoriFaq->created_by = $user;
-            $kategoriFaq->updated_by = $user;
-            $kategoriFaq->save();
-
-            DB::commit();
-            return ApiResponse::success($kategoriFaq, 'Berhasil menambahkan data kategori FAQ', 201);
-        } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(Request $request, $id)
+    public function create(CreateKategoriFaqRequest $request)
     {
-        DB::beginTransaction();
         try {
-            $kategoriFaq = MsKategoriFaq::findOrFail($id);
-            
-            $request->validate([
-                'name' => ['required', 'string', 'max:100', new UniqueSoftDelete('ms_kategori_faq', 'name', $id)],
-            ]);
+            $dto = new KategoriFaqDTO($request->validated()['name']);
+            $dto->created_by = auth('admin')->user()->name;
+            $dto->updated_by = auth('admin')->user()->name;
 
-            $user = auth('admin')->user()->name;
+            $result = $this->kategoriFaqService->create($dto);
 
-            $kategoriFaq->name = $request->name;
-            $kategoriFaq->updated_by = $user;
-            $kategoriFaq->save();
-
-            DB::commit();
-            return ApiResponse::success($kategoriFaq, 'Berhasil memperbarui data kategori FAQ');
+            return ApiResponse::success(new KategoriFaqResource($result), 'Berhasil menambahkan data kategori FAQ', 201);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            throw $th;
+        }
+    }
+
+    public function update(UpdateKategoriFaqRequest $request, $id)
+    {
+        try {
+            $dto = new KategoriFaqDTO($request->validated()['name']);
+            $dto->updated_by = auth('admin')->user()->name;
+
+            $result = $this->kategoriFaqService->update($id, $dto);
+
+            return ApiResponse::success(new KategoriFaqResource($result), 'Berhasil memperbarui data kategori FAQ');
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            MsKategoriFaq::findOrFail($id)->delete();
+            $this->kategoriFaqService->destroy($id);
 
-            DB::commit();
             return ApiResponse::success('', 'Berhasil menghapus data kategori FAQ');
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }

@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentDetailPublication extends Model
 {
-    use HasFactory, HasAdditionalContentMapping;
+    protected $guarded = ['id'];
+    use HasAdditionalContentMapping, HasFactory;
+
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'is_publicated', 'layout_id', 'kategori_content_id', 'kategori'];
+
     protected $appends = ['kategori_title'];
 
     public function content()
@@ -52,7 +55,7 @@ class ContentDetailPublication extends Model
         return $this->morphMany(ContentTag::class, 'content');
     }
 
-    function layout()
+    public function layout()
     {
         return $this->belongsTo(MsLayout::class);
     }

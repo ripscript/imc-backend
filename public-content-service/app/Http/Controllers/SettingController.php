@@ -3,25 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\SettingService;
 
 class SettingController extends Controller
 {
+    public function __construct(
+        protected SettingService $settingService
+    ) {}
+
     public function index()
     {
         try {
-            $data = DB::table('site_settings')
-                ->select(
-                    'address',
-                    'phone',
-                    'email',
-                    'facebook_url',
-                    'instagram_url',
-                    'youtube_url',
-                    'twitter_url'
-                )
-                ->first();
+            $data = $this->settingService->index();
 
             return ApiResponse::success($data, 'Berhasil mengambil data pengaturan website');
         } catch (\Throwable $th) {

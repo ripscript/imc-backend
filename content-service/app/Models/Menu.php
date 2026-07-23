@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    use HasFactory, HasContentMapping, HasAdditionalContentMapping, HasActivityLog;
+    use HasActivityLog, HasAdditionalContentMapping, HasContentMapping, HasFactory;
+
     protected $guarded = ['id'];
+
     protected $logName = 'menu';
 
     public function content()
@@ -43,13 +45,13 @@ class Menu extends Model
         static::deleted(function ($menu) {
             $menu->content?->delete();
 
-            $service = new GlobalSearchService();
+            $service = new GlobalSearchService;
             $service->delete(Menu::class, $menu->id);
         });
     }
 
     public function getFullUrlAttribute()
     {
-        return "/" . $this->slug;
+        return '/'.$this->slug;
     }
 }
