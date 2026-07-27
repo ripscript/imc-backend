@@ -12,7 +12,10 @@ class MsFaqFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(5), 'is_active' => true, 'created_by' => 'factory', 'updated_by' => 'factory',
+            'title' => fake()->sentence(),
+            'description' => fake()->paragraph(),
+            'is_active' => fake()->boolean(),
+            'kategori_faq_id' => 1,
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use App\Http\Requests\CreateSurveyQuestionRequest;
 use App\Http\Requests\UpdateSurveyQuestionRequest;
 use App\Http\Resources\SurveyQuestionResource;
+use App\Models\MsSurveyQuestion;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\DTOs\SurveyQuestionDTO;
 use App\Services\SurveyQuestionService;
@@ -19,74 +20,58 @@ class SurveyQuestionController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->surveyQuestionService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', MsSurveyQuestion::class);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $data = $this->surveyQuestionService->index(QueryFilterDTO::fromRequest($request));
+
+        return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
     }
 
     public function detail($id)
     {
-        try {
-            $question = $this->surveyQuestionService->detail($id);
+        $question = $this->surveyQuestionService->detail($id);
+        $this->authorize('view', $question);
 
-            return ApiResponse::success(new SurveyQuestionResource($question), 'Berhasil mengambil detail pertanyaan survei');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new SurveyQuestionResource($question), 'Berhasil mengambil detail pertanyaan survei');
     }
 
     public function create(CreateSurveyQuestionRequest $request)
     {
-        try {
-            $dto = new SurveyQuestionDTO($request->validated());
-            $dto->created_by = auth('admin')->user()->name;
-            $dto->updated_by = auth('admin')->user()->name;
+        $this->authorize('create', MsSurveyQuestion::class);
 
-            $result = $this->surveyQuestionService->create($dto);
+        $dto = new SurveyQuestionDTO($request->validated());
+        $dto->created_by = auth('admin')->user()->name;
+        $dto->updated_by = auth('admin')->user()->name;
 
-            return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil menambahkan data pertanyaan survei', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->surveyQuestionService->create($dto);
+
+        return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil menambahkan data pertanyaan survei', 201);
     }
 
     public function update(UpdateSurveyQuestionRequest $request, $id)
     {
-        try {
-            $dto = new SurveyQuestionDTO($request->validated());
-            $dto->updated_by = auth('admin')->user()->name;
+        $dto = new SurveyQuestionDTO($request->validated());
+        $dto->updated_by = auth('admin')->user()->name;
 
-            $result = $this->surveyQuestionService->update($id, $dto);
+        $result = $this->surveyQuestionService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil memperbarui data pertanyaan survei');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new SurveyQuestionResource($result), 'Berhasil memperbarui data pertanyaan survei');
     }
 
     public function destroy($id)
     {
-        try {
-            $this->surveyQuestionService->destroy($id);
+        $this->authorize('delete', MsSurveyQuestion::class);
 
-            return ApiResponse::success('', 'Berhasil menghapus data pertanyaan survei');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->surveyQuestionService->destroy($id);
+
+        return ApiResponse::success('', 'Berhasil menghapus data pertanyaan survei');
     }
 
     public function listActive()
     {
-        try {
-            $data = $this->surveyQuestionService->listActive();
+        $data = $this->surveyQuestionService->listActive();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data pertanyaan survei');
     }
 }

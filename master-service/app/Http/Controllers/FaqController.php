@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use App\Http\Requests\CreateFaqRequest;
 use App\Http\Requests\UpdateFaqRequest;
 use App\Http\Resources\FaqResource;
+use App\Models\MsFaq;
 use App\Services\DTOs\FaqDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\FaqService;
@@ -19,71 +20,51 @@ class FaqController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->faqService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', MsFaq::class);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data FAQ');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $data = $this->faqService->index(QueryFilterDTO::fromRequest($request));
+
+        return ApiResponse::success($data, 'Berhasil mengambil data FAQ');
     }
 
     public function detail($id)
     {
-        try {
-            $faq = $this->faqService->detail($id);
+        $faq = $this->faqService->detail($id);
+        $this->authorize('view', $faq);
 
-            return ApiResponse::success(new FaqResource($faq), 'Berhasil mengambil data detail FAQ');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new FaqResource($faq), 'Berhasil mengambil data detail FAQ');
     }
 
     public function create(CreateFaqRequest $request)
     {
-        try {
-            $dto = new FaqDTO($request->validated());
-            $dto->created_by = auth('admin')->user()->name;
-            $dto->updated_by = auth('admin')->user()->name;
+        $this->authorize('create', MsFaq::class);
 
-            $result = $this->faqService->create($dto);
+        $dto = new FaqDTO($request->validated());
+        $dto->created_by = auth('admin')->user()->name;
+        $dto->updated_by = auth('admin')->user()->name;
 
-            if ($result instanceof \Illuminate\Http\JsonResponse) {
-                return $result;
-            }
+        $result = $this->faqService->create($dto);
 
-            return ApiResponse::success(new FaqResource($result), 'Berhasil menambahkan data FAQ', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new FaqResource($result), 'Berhasil menambahkan data FAQ', 201);
     }
 
     public function update(UpdateFaqRequest $request, $id)
     {
-        try {
-            $dto = new FaqDTO($request->validated());
-            $dto->updated_by = auth('admin')->user()->name;
+        $dto = new FaqDTO($request->validated());
+        $dto->updated_by = auth('admin')->user()->name;
 
-            $result = $this->faqService->update($id, $dto);
+        $result = $this->faqService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            if ($result instanceof \Illuminate\Http\JsonResponse) {
-                return $result;
-            }
-
-            return ApiResponse::success(new FaqResource($result), 'Berhasil memperbarui data FAQ');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new FaqResource($result), 'Berhasil memperbarui data FAQ');
     }
 
     public function destroy($id)
     {
-        try {
-            $this->faqService->destroy($id);
+        $this->authorize('delete', MsFaq::class);
 
-            return ApiResponse::success('', 'Berhasil menghapus data FAQ');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->faqService->destroy($id);
+
+        return ApiResponse::success('', 'Berhasil menghapus data FAQ');
     }
 }

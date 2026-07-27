@@ -9,6 +9,14 @@ class SatuanKerjaResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'subSatuanKerja' => $this->whenLoaded('subSatuanKerja'),
+        ];
     }
 }
