@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,6 +26,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('viewApiDocs', function ($user = null) {
+            $docsUser = env('DOCS_USER');
+            $docsPass = env('DOCS_PASS');
+
+            if (empty($docsUser) || empty($docsPass)) {
+                return true;
+            }
+
+            return request()->getUser() === $docsUser
+                && request()->getPassword() === $docsPass;
+        });
     }
 }
