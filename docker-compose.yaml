@@ -73,6 +73,42 @@ services:
     networks:
       - server_database-postgres-network
 
+  eppid-public-content-service:
+    container_name: eppid-public-content-service
+    build: 
+      context: ./public-content-service
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./public-content-service:/var/www/html
+      - ./public-content-service/storage:/var/www/html/storage
+      - ./public-content-service/docker/php/php.ini:/etc/local/etc/php/php.ini
+    networks:
+      - server_database-postgres-network
+
+  eppid-setting-service:
+    container_name: eppid-setting-service
+    build: 
+      context: ./setting-service
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./setting-service:/var/www/html
+      - ./setting-service/storage:/var/www/html/storage
+      - ./setting-service/docker/php/php.ini:/etc/local/etc/php/php.ini
+    networks:
+      - server_database-postgres-network
+
+  eppid-docs-service:
+    container_name: eppid-docs-service
+    build: 
+      context: ./docs-service
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./docs-service:/var/www/html
+      - ./docs-service/storage:/var/www/html/storage
+      - ./docs-service/docker/php/php.ini:/etc/local/etc/php/php.ini
+    networks:
+      - server_database-postgres-network
+
 networks:
     server_database-postgres-network:
       external:

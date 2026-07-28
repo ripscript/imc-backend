@@ -1,0 +1,4520 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api"
+        }
+    ],
+    "paths": {
+        "/health": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "const": "ok"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Content service berhasil diakses"
+                                        },
+                                        "time": {
+                                            "type": "string"
+                                        },
+                                        "dependencies": {
+                                            "type": "object",
+                                            "properties": {
+                                                "db": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                },
+                                                "cache": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                },
+                                                "queue": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                }
+                                            },
+                                            "required": [
+                                                "db",
+                                                "cache",
+                                                "queue"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "status",
+                                        "message",
+                                        "time",
+                                        "dependencies"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agenda/side-menu": {
+            "get": {
+                "operationId": "agenda.sideMenu",
+                "tags": [
+                    "Agenda"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil side menu untuk tipe agenda"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agenda/list/{contentId}": {
+            "get": {
+                "operationId": "agenda.index",
+                "tags": [
+                    "Agenda"
+                ],
+                "parameters": [
+                    {
+                        "name": "contentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data agenda"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agenda": {
+            "post": {
+                "operationId": "agenda.create",
+                "tags": [
+                    "Agenda"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAgendaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data agenda"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ContentDetailAgenda"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/agenda/{id}": {
+            "get": {
+                "operationId": "agenda.detail",
+                "tags": [
+                    "Agenda"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail agenda"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "agenda.update",
+                "tags": [
+                    "Agenda"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAgendaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data agenda"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "agenda.delete",
+                "tags": [
+                    "Agenda"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus agenda"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/child-sub-menu": {
+            "get": {
+                "operationId": "childSubMenu.index",
+                "tags": [
+                    "ChildSubMenu"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data child sub menu"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "object"
+                                                                },
+                                                                {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "type": "object"
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "childSubMenu.create",
+                "tags": [
+                    "ChildSubMenu"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateChildSubMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data child sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ChildSubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/child-sub-menu/{id}": {
+            "get": {
+                "operationId": "childSubMenu.detail",
+                "tags": [
+                    "ChildSubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail child sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ChildSubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "childSubMenu.update",
+                "tags": [
+                    "ChildSubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChildSubMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data child sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ChildSubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "childSubMenu.delete",
+                "tags": [
+                    "ChildSubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus child sub menu"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/content": {
+            "get": {
+                "operationId": "content.index",
+                "tags": [
+                    "Content"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil list content"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Content"
+                                                    }
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/jumlah-perangkat": {
+            "get": {
+                "operationId": "dashboard.jumlahPerangkat",
+                "tags": [
+                    "Dashboard"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data jumlah perangkat"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Mobile": {
+                                                    "type": "number"
+                                                },
+                                                "Desktop": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "Mobile",
+                                                "Desktop"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/grafik-pengunjung": {
+            "get": {
+                "operationId": "dashboard.grafikPengunjung",
+                "tags": [
+                    "Dashboard"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data pengunjung"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "graph": {
+                                                    "type": "array",
+                                                    "prefixItems": [
+                                                        {}
+                                                    ],
+                                                    "minItems": 1,
+                                                    "maxItems": 1,
+                                                    "additionalItems": false
+                                                },
+                                                "card": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "hari_ini": {
+                                                            "type": "integer"
+                                                        },
+                                                        "bulan_ini": {
+                                                            "type": "integer"
+                                                        },
+                                                        "keseluruhan": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "hari_ini",
+                                                        "bulan_ini",
+                                                        "keseluruhan"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "graph",
+                                                "card"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery/side-menu": {
+            "get": {
+                "operationId": "gallery.sideMenu",
+                "tags": [
+                    "Gallery"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil side menu untuk tipe galeri"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery/list/{contentId}": {
+            "get": {
+                "operationId": "gallery.index",
+                "tags": [
+                    "Gallery"
+                ],
+                "parameters": [
+                    {
+                        "name": "contentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data galeri"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery": {
+            "post": {
+                "operationId": "gallery.create",
+                "tags": [
+                    "Gallery"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateGalleryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data galeri"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/GalleryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/gallery/{id}": {
+            "get": {
+                "operationId": "gallery.detail",
+                "tags": [
+                    "Gallery"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail galeri"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/GalleryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "gallery.update",
+                "tags": [
+                    "Gallery"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateGalleryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data galeri"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/GalleryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "gallery.delete",
+                "tags": [
+                    "Gallery"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus galeri"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/section": {
+            "get": {
+                "operationId": "home.index",
+                "tags": [
+                    "Home"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data section"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "home.create",
+                "tags": [
+                    "Home"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateHomeSectionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Menu beranda tidak ditemukan"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data section"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Content"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/section/{id}": {
+            "get": {
+                "operationId": "home.detail",
+                "tags": [
+                    "Home"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail section"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "home.update",
+                "tags": [
+                    "Home"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateHomeSectionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data section"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/latest-information": {
+            "get": {
+                "operationId": "latestInformation.index",
+                "tags": [
+                    "LatestInformation"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data informasi terkini"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "latestInformation.create",
+                "tags": [
+                    "LatestInformation"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateLatestInformationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data informasi terkini"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LatestInformationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/latest-information/{id}": {
+            "get": {
+                "operationId": "latestInformation.detail",
+                "tags": [
+                    "LatestInformation"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data informasi terkini"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LatestInformationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "latestInformation.update",
+                "tags": [
+                    "LatestInformation"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateLatestInformationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data informasi terkini"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LatestInformationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "latestInformation.delete",
+                "tags": [
+                    "LatestInformation"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus data informasi terkini"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/menu": {
+            "get": {
+                "operationId": "menu.index",
+                "tags": [
+                    "Menu"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data menu"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "object"
+                                                                },
+                                                                {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "type": "object"
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "menu.create",
+                "tags": [
+                    "Menu"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/menu/{id}": {
+            "get": {
+                "operationId": "menu.detail",
+                "tags": [
+                    "Menu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "menu.update",
+                "tags": [
+                    "Menu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "menu.delete",
+                "tags": [
+                    "Menu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus menu"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/publication/side-menu": {
+            "get": {
+                "operationId": "publication.sideMenu",
+                "tags": [
+                    "Publication"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil side menu untuk tipe publikasi"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/publication/list/{contentId}": {
+            "get": {
+                "operationId": "publication.index",
+                "tags": [
+                    "Publication"
+                ],
+                "parameters": [
+                    {
+                        "name": "contentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data publikasi"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/publication": {
+            "post": {
+                "operationId": "publication.create",
+                "tags": [
+                    "Publication"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreatePublicationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data publikasi"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PublicationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/publication/{id}": {
+            "get": {
+                "operationId": "publication.detail",
+                "tags": [
+                    "Publication"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail publikasi"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PublicationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "publication.update",
+                "tags": [
+                    "Publication"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePublicationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data publikasi"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PublicationResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "publication.delete",
+                "tags": [
+                    "Publication"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus publikasi"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/quick-link": {
+            "get": {
+                "operationId": "quickLink.index",
+                "tags": [
+                    "QuickLink"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data link cepat"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "quickLink.create",
+                "tags": [
+                    "QuickLink"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateQuickLinkRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data link cepat"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/QuickLink"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/quick-link/{id}": {
+            "get": {
+                "operationId": "quickLink.detail",
+                "tags": [
+                    "QuickLink"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data link cepat"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "quickLink.update",
+                "tags": [
+                    "QuickLink"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateQuickLinkRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data link cepat"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "quickLink.delete",
+                "tags": [
+                    "QuickLink"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus data link cepat"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/repository/side-menu": {
+            "get": {
+                "operationId": "repository.sideMenu",
+                "tags": [
+                    "Repository"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil side menu untuk tipe repositori"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/repository/list/{contentId}": {
+            "get": {
+                "operationId": "repository.index",
+                "tags": [
+                    "Repository"
+                ],
+                "parameters": [
+                    {
+                        "name": "contentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data repositori"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "integer",
+                                                            "const": 1
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "total",
+                                                        "page",
+                                                        "limit",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/repository": {
+            "post": {
+                "operationId": "repository.create",
+                "tags": [
+                    "Repository"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateRepositoryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data repository"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/RepositoryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/repository/{id}": {
+            "get": {
+                "operationId": "repository.detail",
+                "tags": [
+                    "Repository"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail repository"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/RepositoryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "repository.update",
+                "tags": [
+                    "Repository"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateRepositoryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data repository"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/RepositoryResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "repository.delete",
+                "tags": [
+                    "Repository"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus repository"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sub-menu": {
+            "get": {
+                "operationId": "subMenu.index",
+                "tags": [
+                    "SubMenu"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data sub menu"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "object"
+                                                                },
+                                                                {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "data": {
+                                                            "type": "object"
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "total": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                },
+                                                                "limit": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "total_page": {
+                                                                    "type": "integer",
+                                                                    "const": 1
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "total",
+                                                                "page",
+                                                                "limit",
+                                                                "total_page"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "data",
+                                                        "meta"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "subMenu.create",
+                "tags": [
+                    "SubMenu"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSubMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menambahkan data sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/SubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/sub-menu/{id}": {
+            "get": {
+                "operationId": "subMenu.detail",
+                "tags": [
+                    "SubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/SubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "subMenu.update",
+                "tags": [
+                    "SubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateSubMenuRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil memperbarui data sub menu"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/SubMenuResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "subMenu.delete",
+                "tags": [
+                    "SubMenu"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menghapus sub menu"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ChildSubMenuResource": {
+                "type": "object",
+                "properties": {
+                    "menu_id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "menu_id"
+                ],
+                "title": "ChildSubMenuResource"
+            },
+            "Content": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "Content"
+            },
+            "ContentDetailAgenda": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "ContentDetailAgenda"
+            },
+            "CreateAgendaRequest": {
+                "type": "object",
+                "properties": {
+                    "content_id": {
+                        "type": "integer"
+                    },
+                    "event_name": {
+                        "type": "string"
+                    },
+                    "is_range": {
+                        "type": "boolean"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "datetime_start": {
+                        "type": "string"
+                    },
+                    "datetime_end": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "content_id",
+                    "event_name",
+                    "is_range",
+                    "is_active",
+                    "datetime_start"
+                ],
+                "title": "CreateAgendaRequest"
+            },
+            "CreateChildSubMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "sub_menu_id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "sub_menu_id",
+                    "slug",
+                    "title",
+                    "is_active",
+                    "order",
+                    "type",
+                    "layout_id"
+                ],
+                "title": "CreateChildSubMenuRequest"
+            },
+            "CreateGalleryRequest": {
+                "type": "object",
+                "properties": {
+                    "content_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "list": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "content_id",
+                    "title",
+                    "slug",
+                    "publish_date",
+                    "is_publicated",
+                    "list"
+                ],
+                "title": "CreateGalleryRequest"
+            },
+            "CreateHomeSectionRequest": {
+                "type": "object",
+                "properties": {
+                    "section_title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_section": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "section_title",
+                    "is_section",
+                    "order",
+                    "type"
+                ],
+                "title": "CreateHomeSectionRequest"
+            },
+            "CreateLatestInformationRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "title",
+                    "is_active",
+                    "publish_date"
+                ],
+                "title": "CreateLatestInformationRequest"
+            },
+            "CreateMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "has_sub": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "is_show_front": {
+                        "type": "boolean"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "slug",
+                    "title",
+                    "has_sub",
+                    "is_active",
+                    "is_show_front",
+                    "order"
+                ],
+                "title": "CreateMenuRequest"
+            },
+            "CreatePublicationRequest": {
+                "type": "object",
+                "properties": {
+                    "content_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "headline": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "kategori_content_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "content_id",
+                    "title",
+                    "slug",
+                    "headline",
+                    "content",
+                    "publish_date",
+                    "is_publicated"
+                ],
+                "title": "CreatePublicationRequest"
+            },
+            "CreateQuickLinkRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "required": [
+                    "title",
+                    "is_active"
+                ],
+                "title": "CreateQuickLinkRequest"
+            },
+            "CreateRepositoryRequest": {
+                "type": "object",
+                "properties": {
+                    "content_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "file_path": {
+                        "type": "string"
+                    },
+                    "thumbnail_path": {
+                        "type": "string"
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "content_id",
+                    "title",
+                    "slug",
+                    "file_path",
+                    "thumbnail_path",
+                    "publish_date",
+                    "is_publicated"
+                ],
+                "title": "CreateRepositoryRequest"
+            },
+            "CreateSubMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "menu_id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "has_child": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "menu_id",
+                    "slug",
+                    "title",
+                    "has_child",
+                    "is_active",
+                    "order"
+                ],
+                "title": "CreateSubMenuRequest"
+            },
+            "GalleryResource": {
+                "type": "string",
+                "title": "GalleryResource"
+            },
+            "LatestInformationResource": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "LatestInformationResource"
+            },
+            "MenuResource": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "MenuResource"
+            },
+            "PublicationResource": {
+                "type": "string",
+                "title": "PublicationResource"
+            },
+            "QuickLink": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "QuickLink"
+            },
+            "RepositoryResource": {
+                "type": "string",
+                "title": "RepositoryResource"
+            },
+            "SubMenuResource": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "SubMenuResource"
+            },
+            "UpdateAgendaRequest": {
+                "type": "object",
+                "properties": {
+                    "event_name": {
+                        "type": "string"
+                    },
+                    "is_range": {
+                        "type": "boolean"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "datetime_start": {
+                        "type": "string"
+                    },
+                    "datetime_end": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "event_name",
+                    "is_range",
+                    "is_active",
+                    "datetime_start"
+                ],
+                "title": "UpdateAgendaRequest"
+            },
+            "UpdateChildSubMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "sub_menu_id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "sub_menu_id",
+                    "slug",
+                    "title",
+                    "is_active",
+                    "order",
+                    "layout_id"
+                ],
+                "title": "UpdateChildSubMenuRequest"
+            },
+            "UpdateGalleryRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "list": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "id"
+                            ]
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "title",
+                    "slug",
+                    "publish_date",
+                    "is_publicated",
+                    "list"
+                ],
+                "title": "UpdateGalleryRequest"
+            },
+            "UpdateHomeSectionRequest": {
+                "type": "object",
+                "properties": {
+                    "section_title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_section": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "section_title",
+                    "is_section",
+                    "order"
+                ],
+                "title": "UpdateHomeSectionRequest"
+            },
+            "UpdateLatestInformationRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "title",
+                    "is_active",
+                    "publish_date"
+                ],
+                "title": "UpdateLatestInformationRequest"
+            },
+            "UpdateMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "is_show_front": {
+                        "type": "boolean"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "slug",
+                    "title",
+                    "is_active",
+                    "is_show_front",
+                    "order"
+                ],
+                "title": "UpdateMenuRequest"
+            },
+            "UpdatePublicationRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "headline": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "kategori_content_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "slug",
+                    "headline",
+                    "content",
+                    "publish_date",
+                    "is_publicated"
+                ],
+                "title": "UpdatePublicationRequest"
+            },
+            "UpdateQuickLinkRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "required": [
+                    "title",
+                    "is_active"
+                ],
+                "title": "UpdateQuickLinkRequest"
+            },
+            "UpdateRepositoryRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "file_path": {
+                        "type": "string"
+                    },
+                    "thumbnail_path": {
+                        "type": "string"
+                    },
+                    "publish_date": {
+                        "type": "string"
+                    },
+                    "is_publicated": {
+                        "type": "boolean"
+                    },
+                    "tag_id": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "slug",
+                    "file_path",
+                    "thumbnail_path",
+                    "publish_date",
+                    "is_publicated"
+                ],
+                "title": "UpdateRepositoryRequest"
+            },
+            "UpdateSubMenuRequest": {
+                "type": "object",
+                "properties": {
+                    "menu_id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "is_active": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    },
+                    "layout_id": {
+                        "type": "string"
+                    },
+                    "is_accessible": {
+                        "type": "boolean"
+                    },
+                    "is_show_home": {
+                        "type": "boolean"
+                    },
+                    "is_show_tag": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "menu_id",
+                    "slug",
+                    "title",
+                    "is_active",
+                    "order"
+                ],
+                "title": "UpdateSubMenuRequest"
+            }
+        },
+        "responses": {
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
