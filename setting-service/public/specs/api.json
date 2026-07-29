@@ -6,7 +6,12 @@
     },
     "servers": [
         {
-            "url": "http://localhost/api"
+            "url": "http://localhost:8005/api",
+            "description": "local"
+        },
+        {
+            "url": "http://62.72.44.203:4121/setting-service/api",
+            "description": "API"
         }
     ],
     "paths": {
@@ -64,7 +69,8 @@
                             }
                         }
                     }
-                }
+                },
+                "security": []
             }
         },
         "/chat-setting": {
@@ -101,7 +107,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "put": {
                 "operationId": "chatSetting.update",
@@ -179,7 +190,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/site-setting": {
@@ -216,7 +232,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "put": {
                 "operationId": "siteSetting.update",
@@ -294,7 +315,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/template-email": {
@@ -331,7 +357,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/template-email/update-all": {
@@ -381,7 +412,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/template-email/{id}": {
@@ -451,7 +487,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "templateEmail.detail",
@@ -506,11 +547,26 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         }
     },
     "components": {
+        "securitySchemes": {
+            "bearerAdmin": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "bearerPemohon": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "ChatSettingResource": {
                 "type": "array",

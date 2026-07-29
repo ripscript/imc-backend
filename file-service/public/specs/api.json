@@ -6,7 +6,12 @@
     },
     "servers": [
         {
-            "url": "http://localhost/api"
+            "url": "http://localhost:8004/api",
+            "description": "local"
+        },
+        {
+            "url": "http://62.72.44.203:4121/file-service/api",
+            "description": "API"
         }
     ],
     "paths": {
@@ -64,7 +69,8 @@
                             }
                         }
                     }
-                }
+                },
+                "security": []
             }
         },
         "/show": {
@@ -137,7 +143,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/download": {
@@ -210,7 +217,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/base64": {
@@ -306,7 +314,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/upload": {
@@ -413,7 +422,15 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/compress-image": {
@@ -520,7 +537,15 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/lock-pdf": {
@@ -597,7 +622,15 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/lock-image": {
@@ -674,11 +707,29 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         }
     },
     "components": {
+        "securitySchemes": {
+            "bearerAdmin": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "bearerPemohon": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "FileDownloadRequest": {
                 "type": "object",

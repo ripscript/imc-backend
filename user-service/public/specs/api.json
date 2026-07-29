@@ -6,7 +6,12 @@
     },
     "servers": [
         {
-            "url": "http://localhost/api"
+            "url": "http://localhost:8001/api",
+            "description": "Live"
+        },
+        {
+            "url": "http://62.72.44.203:4121/user-service/api",
+            "description": "API"
         }
     ],
     "paths": {
@@ -64,7 +69,8 @@
                             }
                         }
                     }
-                }
+                },
+                "security": []
             }
         },
         "/auth/login": {
@@ -131,7 +137,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/auth/logout": {
@@ -168,7 +175,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/auth/profile": {
@@ -205,7 +217,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/bulk-password/template": {
@@ -225,7 +242,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/bulk-password/import": {
@@ -296,7 +318,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/log/activity": {
@@ -368,7 +395,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/log/chat": {
@@ -449,7 +481,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/log/chat/{session}": {
@@ -511,7 +548,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/management-pemohon": {
@@ -595,7 +637,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/management-pemohon/{id}": {
@@ -658,7 +705,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "pemohon.detail",
@@ -706,7 +758,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/management-pemohon/resend-verification/{id}": {
@@ -756,7 +813,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/management-pemohon/delete/{id}": {
@@ -806,7 +868,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/pemohon/profile": {
@@ -856,7 +923,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/pemohon/auth/login": {
@@ -923,7 +995,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/register": {
@@ -973,7 +1046,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/forgot-password": {
@@ -1019,7 +1093,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/reset-password": {
@@ -1063,7 +1138,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/verify-email": {
@@ -1147,7 +1223,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             },
             "get": {
                 "operationId": "pemohonAuth.checkVerifyEmail",
@@ -1208,7 +1285,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/resend-otp": {
@@ -1242,7 +1320,8 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": []
             }
         },
         "/pemohon/auth/logout": {
@@ -1279,7 +1358,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/pemohon/auth/profile": {
@@ -1316,7 +1400,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/user": {
@@ -1400,7 +1489,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "user.create",
@@ -1451,7 +1545,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/user/{id}": {
@@ -1514,7 +1613,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "user.detail",
@@ -1562,7 +1666,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "user.destroy",
@@ -1610,11 +1719,26 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         }
     },
     "components": {
+        "securitySchemes": {
+            "bearerAdmin": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "bearerPemohon": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "BulkPasswordImportRequest": {
                 "type": "object",

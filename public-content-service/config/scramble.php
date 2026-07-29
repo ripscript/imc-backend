@@ -102,7 +102,10 @@ return [
      * ],
      * ```
      */
-    'servers' => null,
+    'servers' => [
+        'Live' => '/api',
+        'API' => env('SWAGGER_SERVER_URL', '/api'),
+    ],
 
     /**
      * Determines how Scramble stores the descriptions of enum cases.
@@ -142,7 +145,7 @@ return [
 
     'middleware' => [
         'web',
-        \Dedoc\Scramble\Http\Middleware\RestrictedDocsAccess::class,
+        \App\Http\Middleware\DocsAccess::class,
     ],
 
     'extensions' => [],

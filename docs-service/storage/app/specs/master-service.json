@@ -6,7 +6,12 @@
     },
     "servers": [
         {
-            "url": "http://localhost/api"
+            "url": "http://localhost:8000/api",
+            "description": "Live"
+        },
+        {
+            "url": "http://62.72.44.203:4121/master-service/api",
+            "description": "API"
         }
     ],
     "paths": {
@@ -64,7 +69,8 @@
                             }
                         }
                     }
-                }
+                },
+                "security": []
             }
         },
         "/alasan-keberatan": {
@@ -117,7 +123,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "alasanKeberatan.index",
@@ -206,7 +217,15 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/alasan-keberatan/{id}": {
@@ -269,7 +288,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "alasanKeberatan.detail",
@@ -317,7 +341,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/classification-pemohon": {
@@ -357,7 +386,8 @@
                             }
                         }
                     }
-                }
+                },
+                "security": []
             }
         },
         "/faq": {
@@ -441,7 +471,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "faq.create",
@@ -492,7 +527,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/faq/{id}": {
@@ -555,7 +595,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "faq.detail",
@@ -603,7 +648,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "faq.destroy",
@@ -651,7 +701,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/hari-libur": {
@@ -735,7 +790,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "holiday.create",
@@ -786,7 +846,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/hari-libur/template-import": {
@@ -806,7 +871,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/hari-libur/import": {
@@ -856,7 +926,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/hari-libur/{id}": {
@@ -919,7 +994,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "holiday.detail",
@@ -967,7 +1047,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "holiday.destroy",
@@ -1015,7 +1100,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/kategori-content": {
@@ -1106,7 +1196,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "kategoriContent.create",
@@ -1157,7 +1252,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/kategori-content/{id}": {
@@ -1220,7 +1320,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "kategoriContent.detail",
@@ -1268,7 +1373,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "kategoriContent.destroy",
@@ -1316,7 +1426,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/kategori-faq": {
@@ -1400,7 +1515,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "kategoriFaq.create",
@@ -1451,7 +1571,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/kategori-faq/{id}": {
@@ -1514,7 +1639,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "kategoriFaq.detail",
@@ -1562,7 +1692,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "kategoriFaq.destroy",
@@ -1610,7 +1745,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/layout": {
@@ -1650,7 +1790,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/negara": {
@@ -1741,7 +1886,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "negara.create",
@@ -1792,7 +1942,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/negara/{id}": {
@@ -1855,7 +2010,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "negara.detail",
@@ -1903,7 +2063,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "negara.destroy",
@@ -1951,7 +2116,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/permohonan/akses-data": {
@@ -1991,7 +2161,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/permohonan/format-data": {
@@ -2031,7 +2209,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/permohonan/salinan-informasi": {
@@ -2071,7 +2257,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/perwakilan": {
@@ -2124,7 +2318,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "perwakilan.index",
@@ -2232,7 +2431,15 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/perwakilan/{id}": {
@@ -2295,7 +2502,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "perwakilan.detail",
@@ -2343,7 +2555,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "perwakilan.destroy",
@@ -2391,7 +2608,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/role": {
@@ -2431,7 +2653,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/satuan-kerja": {
@@ -2484,7 +2711,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "satuanKerja.index",
@@ -2566,7 +2798,15 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/satuan-kerja/{id}": {
@@ -2629,7 +2869,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "satuanKerja.detail",
@@ -2677,7 +2922,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "satuanKerja.destroy",
@@ -2725,7 +2975,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/sifat-informasi": {
@@ -2809,7 +3064,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "sifatInformasi.create",
@@ -2860,7 +3120,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/sifat-informasi/{id}": {
@@ -2923,7 +3188,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "sifatInformasi.detail",
@@ -2971,7 +3241,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "sifatInformasi.destroy",
@@ -3019,7 +3294,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/survey-question": {
@@ -3103,7 +3383,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "surveyQuestion.create",
@@ -3154,7 +3439,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/survey-question/{id}": {
@@ -3217,7 +3507,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "surveyQuestion.detail",
@@ -3265,7 +3560,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "surveyQuestion.destroy",
@@ -3313,7 +3613,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/list-pertanyaan-survei": {
@@ -3350,7 +3655,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    },
+                    {
+                        "bearerPemohon": []
+                    }
+                ]
             }
         },
         "/tag": {
@@ -3441,7 +3754,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "post": {
                 "operationId": "tag.create",
@@ -3492,7 +3810,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/tag/{id}": {
@@ -3555,7 +3878,12 @@
                     "422": {
                         "$ref": "#/components/responses/ValidationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "get": {
                 "operationId": "tag.detail",
@@ -3603,7 +3931,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             },
             "delete": {
                 "operationId": "tag.destroy",
@@ -3651,7 +3984,12 @@
                     "403": {
                         "$ref": "#/components/responses/AuthorizationException"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         },
         "/variable-template-email": {
@@ -3691,11 +4029,26 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
             }
         }
     },
     "components": {
+        "securitySchemes": {
+            "bearerAdmin": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "bearerPemohon": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "AlasanKeberatanResource": {
                 "type": "object",
