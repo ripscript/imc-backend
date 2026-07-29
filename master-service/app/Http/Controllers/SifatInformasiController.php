@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use App\Http\Requests\CreateSifatInformasiRequest;
 use App\Http\Requests\UpdateSifatInformasiRequest;
 use App\Http\Resources\SifatInformasiResource;
+use App\Models\MsSifatInformasi;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\DTOs\SifatInformasiDTO;
 use App\Services\SifatInformasiService;
@@ -19,63 +20,51 @@ class SifatInformasiController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->sifatInformasiService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', MsSifatInformasi::class);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data sifat informasi');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $data = $this->sifatInformasiService->index(QueryFilterDTO::fromRequest($request));
+
+        return ApiResponse::success($data, 'Berhasil mengambil data sifat informasi');
     }
 
     public function detail($id)
     {
-        try {
-            $sifatInformasi = $this->sifatInformasiService->detail($id);
+        $sifatInformasi = $this->sifatInformasiService->detail($id);
+        $this->authorize('view', $sifatInformasi);
 
-            return ApiResponse::success(new SifatInformasiResource($sifatInformasi), 'Berhasil mengambil data detail sifat informasi');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new SifatInformasiResource($sifatInformasi), 'Berhasil mengambil data detail sifat informasi');
     }
 
     public function create(CreateSifatInformasiRequest $request)
     {
-        try {
-            $dto = new SifatInformasiDTO($request->validated());
-            $dto->created_by = auth('admin')->user()->name;
-            $dto->updated_by = auth('admin')->user()->name;
+        $this->authorize('create', MsSifatInformasi::class);
 
-            $result = $this->sifatInformasiService->create($dto);
+        $dto = new SifatInformasiDTO($request->validated());
+        $dto->created_by = auth('admin')->user()->name;
+        $dto->updated_by = auth('admin')->user()->name;
 
-            return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil menambahkan data sifat informasi', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->sifatInformasiService->create($dto);
+
+        return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil menambahkan data sifat informasi', 201);
     }
 
     public function update(UpdateSifatInformasiRequest $request, $id)
     {
-        try {
-            $dto = new SifatInformasiDTO($request->validated());
-            $dto->updated_by = auth('admin')->user()->name;
+        $dto = new SifatInformasiDTO($request->validated());
+        $dto->updated_by = auth('admin')->user()->name;
 
-            $result = $this->sifatInformasiService->update($id, $dto);
+        $result = $this->sifatInformasiService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil memperbarui data sifat informasi');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new SifatInformasiResource($result), 'Berhasil memperbarui data sifat informasi');
     }
 
     public function destroy($id)
     {
-        try {
-            $this->sifatInformasiService->destroy($id);
+        $this->authorize('delete', MsSifatInformasi::class);
 
-            return ApiResponse::success('', 'Berhasil menghapus data sifat informasi');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->sifatInformasiService->destroy($id);
+
+        return ApiResponse::success('', 'Berhasil menghapus data sifat informasi');
     }
 }

@@ -11,7 +11,7 @@ class UpdateSifatInformasiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateSifatInformasiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string',
+            'icon_path' => 'nullable|string',
+            'description' => 'nullable|string',
+            'link' => 'nullable|string',
         ];
     }
 }

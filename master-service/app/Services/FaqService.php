@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Helpers\ApiResponse;
+use App\Exceptions\Domain\ValidationException;
 use App\Models\MsFaq;
 use App\Models\MsKategoriFaq;
 use App\Services\DTOs\FaqDTO;
@@ -39,7 +39,7 @@ class FaqService
             if (! $exists) {
                 DB::rollBack();
 
-                return ApiResponse::error('Kategori FAQ tidak valid', '', 422);
+                throw new ValidationException('Kategori FAQ tidak valid');
             }
 
             $faq = new MsFaq;
@@ -70,7 +70,7 @@ class FaqService
             if (! $exists) {
                 DB::rollBack();
 
-                return ApiResponse::error('Kategori FAQ tidak valid', '', 422);
+                throw new ValidationException('Kategori FAQ tidak valid');
             }
 
             $faq->title = $dto->title;

@@ -3,41 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\PermohonanResource;
+use App\Services\PermohonanService;
 
 class PermohonanController extends Controller
 {
-    public function aksesData(Request $request)
-    {
-        try {
-            $data = DB::table('ms_permohonan_akses_data')->get();
+    public function __construct(
+        protected PermohonanService $permohonanService
+    ) {}
 
-            return ApiResponse::success($data, 'Berhasil mengambil data master akses data permohonan');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+    public function aksesData()
+    {
+        $data = $this->permohonanService->aksesData();
+
+        return ApiResponse::success(PermohonanResource::collection($data), 'Data akses data berhasil diambil');
     }
 
-    public function formatData(Request $request)
+    public function formatData()
     {
-        try {
-            $data = DB::table('ms_permohonan_format_data')->get();
+        $data = $this->permohonanService->formatData();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data master format data permohonan');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(PermohonanResource::collection($data), 'Data format data berhasil diambil');
     }
 
-    public function salinanInformasi(Request $request)
+    public function salinanInformasi()
     {
-        try {
-            $data = DB::table('ms_permohonan_salinan_informasi')->get();
+        $data = $this->permohonanService->salinanInformasi();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data master salinan informasi permohonan');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(PermohonanResource::collection($data), 'Data salinan informasi berhasil diambil');
     }
 }

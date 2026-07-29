@@ -1,0 +1,1866 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8003/api",
+            "description": "Live"
+        },
+        {
+            "url": "http://62.72.44.203:4121/public-content-service/api",
+            "description": "API"
+        }
+    ],
+    "paths": {
+        "/health": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "const": "ok"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Public content service berhasil diakses"
+                                        },
+                                        "time": {
+                                            "type": "string"
+                                        },
+                                        "dependencies": {
+                                            "type": "object",
+                                            "properties": {
+                                                "db": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                },
+                                                "cache": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                },
+                                                "queue": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                }
+                                            },
+                                            "required": [
+                                                "db",
+                                                "cache",
+                                                "queue"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "status",
+                                        "message",
+                                        "time",
+                                        "dependencies"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat": {
+            "post": {
+                "operationId": "chatbot.sendMessageV2",
+                "tags": [
+                    "Chatbot"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SendMessageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Terjadi kesalahan pada server, silakan coba lagi nanti."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengirimkan balasan"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "user_message": {
+                                                    "type": "string"
+                                                },
+                                                "bot_reply": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "user_message",
+                                                "bot_reply"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Session tidak ditemukan atau sudah berakhir."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/chat/start": {
+            "post": {
+                "operationId": "chatbot.startSession",
+                "tags": [
+                    "Chatbot"
+                ],
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Terjadi kesalahan pada server, silakan coba lagi nanti."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Sesi chat berhasil dibuat"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "session_id": {
+                                                    "type": "string"
+                                                },
+                                                "bot_reply": {
+                                                    "type": "array",
+                                                    "prefixItems": [
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "message"
+                                                                },
+                                                                "message": {}
+                                                            },
+                                                            "required": [
+                                                                "type",
+                                                                "message"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string"
+                                                        }
+                                                    ],
+                                                    "minItems": 2,
+                                                    "maxItems": 2,
+                                                    "additionalItems": false
+                                                }
+                                            },
+                                            "required": [
+                                                "session_id",
+                                                "bot_reply"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/end": {
+            "post": {
+                "operationId": "chatbot.endSession",
+                "tags": [
+                    "Chatbot"
+                ],
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Terjadi kesalahan pada server, silakan coba lagi nanti."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Sesi chat berhasil diakhiri"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Session tidak ditemukan atau sudah berakhir."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/history/{uuid}": {
+            "get": {
+                "operationId": "chatbot.history",
+                "tags": [
+                    "Chatbot"
+                ],
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil histori chat"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ChatLog"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Session tidak ditemukan atau sudah berakhir."
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/test-websocket": {
+            "get": {
+                "operationId": "chatbot.test",
+                "tags": [
+                    "Chatbot"
+                ],
+                "parameters": [
+                    {
+                        "name": "message",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "default": "Hello from Laravel WebSocket!"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Event broadcasted!"
+                                        },
+                                        "data": {}
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/content": {
+            "get": {
+                "operationId": "content.index",
+                "tags": [
+                    "Content"
+                ],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "menu",
+                                "sub_menu",
+                                "child_sub_menu"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "slug[]",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/content/publication": {
+            "get": {
+                "operationId": "content.detailPublication",
+                "tags": [
+                    "Content"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "menu",
+                                "sub_menu",
+                                "child_sub_menu"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "content_slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil detail publikasi"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Publikasi tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Parent content tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/content/repository": {
+            "get": {
+                "operationId": "content.detailRepository",
+                "tags": [
+                    "Content"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "menu",
+                                "sub_menu",
+                                "child_sub_menu"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "content_slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil detail repositori"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Repositori tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Parent content tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/content/gallery": {
+            "get": {
+                "operationId": "content.detailGallery",
+                "tags": [
+                    "Content"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "menu",
+                                "sub_menu",
+                                "child_sub_menu"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "content_slug",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil detail galeri"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Galeri tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "success": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "const": "Parent content tidak ditemukan"
+                                                },
+                                                "errors": {
+                                                    "type": "null"
+                                                },
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "required": [
+                                                "success",
+                                                "message",
+                                                "errors",
+                                                "data"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        },
+        "/content/search": {
+            "get": {
+                "operationId": "content.globalSearch",
+                "tags": [
+                    "Content"
+                ],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mendapatkan data pencarian"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "object"
+                                                },
+                                                "meta": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "page": {
+                                                            "type": "integer"
+                                                        },
+                                                        "limit": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "type": "integer"
+                                                        },
+                                                        "total_page": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "page",
+                                                        "limit",
+                                                        "total",
+                                                        "total_page"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "meta"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Keyword tidak boleh kosong"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home": {
+            "get": {
+                "operationId": "home.index",
+                "tags": [
+                    "Home"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil list section beranda"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "content_id": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "content_id",
+                                                    "type"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/latest-information": {
+            "get": {
+                "operationId": "home.latestInformation",
+                "tags": [
+                    "Home"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data informasi terkini"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LatestInformation"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/summary-permohonan": {
+            "get": {
+                "operationId": "home.summaryPermohonan",
+                "tags": [
+                    "Home"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data summary permohonan"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "informasi_publik": {
+                                                    "type": "integer"
+                                                },
+                                                "permohonan": {
+                                                    "type": "integer"
+                                                },
+                                                "permohonan_selesai": {
+                                                    "type": "integer"
+                                                },
+                                                "pengunjung": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "informasi_publik",
+                                                "permohonan",
+                                                "permohonan_selesai",
+                                                "pengunjung"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/sifat-informasi": {
+            "get": {
+                "operationId": "home.sifatInformasi",
+                "tags": [
+                    "Home"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data sifat informasi"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/{id}": {
+            "get": {
+                "operationId": "home.detail",
+                "tags": [
+                    "Home"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "null"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "errors",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil detail section"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/menu": {
+            "get": {
+                "operationId": "menu.index",
+                "tags": [
+                    "Menu"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil list menu"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "slug": {
+                                                        "type": "string"
+                                                    },
+                                                    "has_sub": {
+                                                        "type": "string"
+                                                    },
+                                                    "is_show_front": {
+                                                        "type": "string"
+                                                    },
+                                                    "sub_menu": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "slug": {
+                                                                    "type": "string"
+                                                                },
+                                                                "has_child": {
+                                                                    "type": "string"
+                                                                },
+                                                                "child_sub_menu": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "title": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "slug": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "content": {
+                                                                                "type": "object",
+                                                                                "properties": {
+                                                                                    "type": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "layout": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "required": [
+                                                                                    "type",
+                                                                                    "layout"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "title",
+                                                                            "slug",
+                                                                            "content"
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                "content": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "type": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "layout": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "type",
+                                                                        "layout"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "title",
+                                                                "slug",
+                                                                "has_child",
+                                                                "child_sub_menu",
+                                                                "content"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "content": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "layout": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "type",
+                                                            "layout"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "title",
+                                                    "slug",
+                                                    "has_sub",
+                                                    "is_show_front",
+                                                    "sub_menu",
+                                                    "content"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/quick-link": {
+            "get": {
+                "operationId": "quickLink.index",
+                "tags": [
+                    "QuickLink"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data link cepat"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/site-setting": {
+            "get": {
+                "operationId": "setting.index",
+                "tags": [
+                    "Setting"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data pengaturan website"
+                                        },
+                                        "data": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/visitor": {
+            "post": {
+                "operationId": "visitor.create",
+                "tags": [
+                    "Visitor"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateVisitorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil menyimpan data pengunjung"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ChatLog": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "ChatLog"
+            },
+            "CreateVisitorRequest": {
+                "type": "object",
+                "properties": {
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "latitude": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "minimum": -90,
+                        "maximum": 90
+                    },
+                    "longitude": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "minimum": -180,
+                        "maximum": 180
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "maxLength": 255
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "maxLength": 255
+                    },
+                    "user_agent": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "device_type": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "desktop",
+                            "tablet",
+                            "mobile",
+                            "unknown",
+                            null
+                        ],
+                        "maxLength": 100
+                    }
+                },
+                "required": [
+                    "slug"
+                ],
+                "title": "CreateVisitorRequest"
+            },
+            "LatestInformation": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 0,
+                "maxItems": 0,
+                "additionalItems": false,
+                "title": "LatestInformation"
+            },
+            "SendMessageRequest": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "session_id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "message",
+                    "session_id"
+                ],
+                "title": "SendMessageRequest"
+            }
+        },
+        "responses": {
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

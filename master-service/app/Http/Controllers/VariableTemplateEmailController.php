@@ -3,23 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use App\Http\Resources\VariableTemplateEmailResource;
+use App\Services\VariableTemplateEmailService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class VariableTemplateEmailController extends Controller
 {
+    public function __construct(
+        protected VariableTemplateEmailService $variableTemplateEmailService
+    ) {}
+
     public function index(Request $request)
     {
-        try {
-            $query = DB::table('ms_variable_template_email');
-            if ($request->filled('template_email')) {
-                $query->where('template_email', $request->template_email);
-            }
-            $data = $query->get();
+        $data = $this->variableTemplateEmailService->index($request);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data variabel template email');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(VariableTemplateEmailResource::collection($data), 'Data variable template email berhasil diambil');
     }
 }

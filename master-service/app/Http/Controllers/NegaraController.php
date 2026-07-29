@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use App\Http\Requests\CreateNegaraRequest;
 use App\Http\Requests\UpdateNegaraRequest;
 use App\Http\Resources\NegaraResource;
+use App\Models\MsNegara;
 use App\Services\DTOs\NegaraDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\NegaraService;
@@ -19,63 +20,51 @@ class NegaraController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->negaraService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', MsNegara::class);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data negara');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $data = $this->negaraService->index(QueryFilterDTO::fromRequest($request));
+
+        return ApiResponse::success($data, 'Berhasil mengambil data negara');
     }
 
     public function detail($id)
     {
-        try {
-            $negara = $this->negaraService->detail($id);
+        $negara = $this->negaraService->detail($id);
+        $this->authorize('view', $negara);
 
-            return ApiResponse::success(new NegaraResource($negara), 'Berhasil mengambil data detail negara');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new NegaraResource($negara), 'Berhasil mengambil data detail negara');
     }
 
     public function create(CreateNegaraRequest $request)
     {
-        try {
-            $dto = new NegaraDTO($request->validated());
-            $dto->created_by = auth('admin')->user()->name;
-            $dto->updated_by = auth('admin')->user()->name;
+        $this->authorize('create', MsNegara::class);
 
-            $result = $this->negaraService->create($dto);
+        $dto = new NegaraDTO($request->validated());
+        $dto->created_by = auth('admin')->user()->name;
+        $dto->updated_by = auth('admin')->user()->name;
 
-            return ApiResponse::success(new NegaraResource($result), 'Berhasil menambahkan data negara', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->negaraService->create($dto);
+
+        return ApiResponse::success(new NegaraResource($result), 'Berhasil menambahkan data negara', 201);
     }
 
     public function update(UpdateNegaraRequest $request, $id)
     {
-        try {
-            $dto = new NegaraDTO($request->validated());
-            $dto->updated_by = auth('admin')->user()->name;
+        $dto = new NegaraDTO($request->validated());
+        $dto->updated_by = auth('admin')->user()->name;
 
-            $result = $this->negaraService->update($id, $dto);
+        $result = $this->negaraService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new NegaraResource($result), 'Berhasil memperbarui data negara');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new NegaraResource($result), 'Berhasil memperbarui data negara');
     }
 
     public function destroy($id)
     {
-        try {
-            $this->negaraService->destroy($id);
+        $this->authorize('delete', MsNegara::class);
 
-            return ApiResponse::success('', 'Berhasil menghapus data negara');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->negaraService->destroy($id);
+
+        return ApiResponse::success('', 'Berhasil menghapus data negara');
     }
 }

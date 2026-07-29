@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\RoleResource;
+use App\Services\RoleService;
 
 class RoleController extends Controller
 {
-    public function index(Request $request)
-    {
-        try {
-            $data = DB::table('ms_roles')->get();
+    public function __construct(
+        protected RoleService $roleService
+    ) {}
 
-            return ApiResponse::success($data, 'Berhasil mengambil data role');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+    public function index()
+    {
+        $data = $this->roleService->index();
+
+        return ApiResponse::success(RoleResource::collection($data), 'Data role berhasil diambil');
     }
 }
