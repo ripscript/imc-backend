@@ -9,5 +9,13 @@ class ContentDetailGalleryList extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'gallery_id',
+        'title',
+        'image_url',
+        'description',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

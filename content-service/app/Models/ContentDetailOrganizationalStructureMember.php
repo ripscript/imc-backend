@@ -9,5 +9,13 @@ class ContentDetailOrganizationalStructureMember extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'group_id',
+        'name',
+        'position',
+        'image_url',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

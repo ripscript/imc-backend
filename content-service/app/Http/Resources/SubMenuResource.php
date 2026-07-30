@@ -8,6 +8,22 @@ class SubMenuResource extends JsonResource
 {
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'menu_id' => $this->menu_id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'is_active' => $this->is_active,
+            'order' => $this->order,
+            'has_child' => $this->has_child,
+            'is_show_side_menu' => $this->is_show_side_menu,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'menu' => $this->whenLoaded('menu'),
+            'content' => $this->whenLoaded('content'),
+            'childSubMenu' => $this->whenLoaded('childSubMenu'),
+        ];
     }
 }

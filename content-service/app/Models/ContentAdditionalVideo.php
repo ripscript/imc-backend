@@ -9,7 +9,14 @@ class ContentAdditionalVideo extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_type',
+        'content_id',
+        'video_url',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     public function content()
     {

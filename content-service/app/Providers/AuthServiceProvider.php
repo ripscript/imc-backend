@@ -19,6 +19,10 @@ class AuthServiceProvider extends ServiceProvider
         \App\Models\Content::class => \App\Policies\ContentPolicy::class,
         \App\Models\LatestInformation::class => \App\Policies\LatestInformationPolicy::class,
         \App\Models\QuickLink::class => \App\Policies\QuickLinkPolicy::class,
+        \App\Models\ContentDetailPublication::class => \App\Policies\ContentDetailPublicationPolicy::class,
+        \App\Models\ContentDetailGallery::class => \App\Policies\ContentDetailGalleryPolicy::class,
+        \App\Models\ContentDetailRepository::class => \App\Policies\ContentDetailRepositoryPolicy::class,
+        \App\Models\ContentDetailAgenda::class => \App\Policies\ContentDetailAgendaPolicy::class,
     ];
 
     /**

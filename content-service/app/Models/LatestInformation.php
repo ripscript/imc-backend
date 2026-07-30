@@ -10,7 +10,17 @@ class LatestInformation extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'title',
+        'description',
+        'image_url',
+        'date',
+        'url',
+        'is_active',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $table = 'latest_informations';
 

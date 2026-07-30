@@ -9,5 +9,11 @@ class ContentTag extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_type',
+        'content_id',
+        'tag_id',
+        'created_by',
+        'updated_by',
+    ];
 }

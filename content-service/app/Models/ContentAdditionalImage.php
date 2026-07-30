@@ -9,7 +9,14 @@ class ContentAdditionalImage extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_type',
+        'content_id',
+        'image_url',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     public function content()
     {

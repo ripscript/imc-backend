@@ -11,7 +11,16 @@ class ContentDetailRepository extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'description',
+        'file_url',
+        'date',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'repositori';
 

@@ -13,7 +13,18 @@ class Menu extends Model
 {
     use HasActivityLog, HasAdditionalContentMapping, HasContentMapping, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'is_active',
+        'order',
+        'has_sub',
+        'is_show_front',
+        'is_show_side_menu',
+        'is_dedicated',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'menu';
 

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateQuickLinkRequest;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\DTOs\QuickLinkDTO;
 use App\Services\QuickLinkService;
+use App\Models\QuickLink;
 use Illuminate\Http\Request;
 
 class QuickLinkController extends Controller
@@ -16,54 +17,41 @@ class QuickLinkController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            return ApiResponse::success($this->quickLinkService->index(QueryFilterDTO::fromRequest($request)), 'Berhasil mengambil data link cepat');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->authorize('viewAny', QuickLink::class);
+        return ApiResponse::success($this->quickLinkService->index(QueryFilterDTO::fromRequest($request)), 'Berhasil mengambil data link cepat');
     }
 
     public function detail($id)
     {
-        try {
-            return ApiResponse::success($this->quickLinkService->detail($id), 'Berhasil mengambil data link cepat');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        $result = $this->quickLinkService->detail($id);
+        $this->authorize('view', $result);
+        return ApiResponse::success($result, 'Berhasil mengambil data link cepat');
     }
 
     public function create(CreateQuickLinkRequest $req)
     {
-        try {
-            $dto = new QuickLinkDTO($req->validated());
-            $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $dto = new QuickLinkDTO($req->validated());
+        $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', QuickLink::class);
 
-            return ApiResponse::success($this->quickLinkService->create($dto), 'Berhasil menambahkan data link cepat', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($this->quickLinkService->create($dto), 'Berhasil menambahkan data link cepat', 201);
     }
 
     public function update(UpdateQuickLinkRequest $req, $id)
     {
-        try {
-            $dto = new QuickLinkDTO($req->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new QuickLinkDTO($req->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            return ApiResponse::success($this->quickLinkService->update($id, $dto), 'Berhasil memperbarui data link cepat');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->quickLinkService->update($id, $dto);
+        $this->authorize('update', $result);
+        return ApiResponse::success($result, 'Berhasil memperbarui data link cepat');
     }
 
     public function delete($id)
     {
-        try {
-            $this->quickLinkService->destroy($id);
+        $this->authorize('delete', QuickLink::class);
+        $this->quickLinkService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus data link cepat');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus data link cepat');
     }
 }

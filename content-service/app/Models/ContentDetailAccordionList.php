@@ -9,5 +9,12 @@ class ContentDetailAccordionList extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'accordion_group_id',
+        'title',
+        'description',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

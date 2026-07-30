@@ -185,7 +185,7 @@ class SubMenuService
             $data = SubMenu::findOrFail($id);
             if ($data->childSubMenu()->exists()) {
                 DB::rollBack();
-                throw new \Exception('Sub menu masih memiliki child sub menu', 409);
+                throw new \App\Exceptions\Domain\ValidationException('Sub menu masih memiliki child sub menu');
             }
             $data->delete();
 

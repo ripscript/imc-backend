@@ -9,5 +9,11 @@ class ContentDetailImageCarousel extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'image_url',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

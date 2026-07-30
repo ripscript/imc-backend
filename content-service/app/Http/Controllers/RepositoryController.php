@@ -9,6 +9,7 @@ use App\Http\Resources\RepositoryResource;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\DTOs\RepositoryDTO;
 use App\Services\RepositoryService;
+use App\Models\ContentDetailRepository;
 use Illuminate\Http\Request;
 
 class RepositoryController extends Controller
@@ -17,63 +18,47 @@ class RepositoryController extends Controller
 
     public function sideMenu()
     {
-        try {
-            return ApiResponse::success($this->repositoryService->sideMenu(), 'Berhasil mengambil side menu untuk tipe repositori');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->authorize('viewAny', ContentDetailRepository::class);
+        return ApiResponse::success($this->repositoryService->sideMenu(), 'Berhasil mengambil side menu untuk tipe repositori');
     }
 
     public function index(Request $request, $contentId)
     {
-        try {
-            return ApiResponse::success($this->repositoryService->index(QueryFilterDTO::fromRequest($request), $contentId), 'Berhasil mengambil data repositori');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->authorize('viewAny', ContentDetailRepository::class);
+        return ApiResponse::success($this->repositoryService->index(QueryFilterDTO::fromRequest($request), $contentId), 'Berhasil mengambil data repositori');
     }
 
     public function create(CreateRepositoryRequest $req)
     {
-        try {
-            $dto = new RepositoryDTO($req->validated());
-            $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $dto = new RepositoryDTO($req->validated());
+        $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', ContentDetailRepository::class);
 
-            return ApiResponse::success(new RepositoryResource($this->repositoryService->create($dto)), 'Berhasil menambahkan data repository', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new RepositoryResource($this->repositoryService->create($dto)), 'Berhasil menambahkan data repository', 201);
     }
 
     public function detail($id)
     {
-        try {
-            return ApiResponse::success(new RepositoryResource($this->repositoryService->detail($id)), 'Berhasil mengambil data detail repository');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        $result = $this->repositoryService->detail($id);
+        $this->authorize('view', $result);
+        return ApiResponse::success(new RepositoryResource($result), 'Berhasil mengambil data detail repository');
     }
 
     public function update(UpdateRepositoryRequest $req, $id)
     {
-        try {
-            $dto = new RepositoryDTO($req->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new RepositoryDTO($req->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            return ApiResponse::success(new RepositoryResource($this->repositoryService->update($id, $dto)), 'Berhasil memperbarui data repository');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->repositoryService->update($id, $dto);
+        $this->authorize('update', $result);
+        return ApiResponse::success(new RepositoryResource($result), 'Berhasil memperbarui data repository');
     }
 
     public function delete($id)
     {
-        try {
-            $this->repositoryService->destroy($id);
+        $this->authorize('delete', ContentDetailRepository::class);
+        $this->repositoryService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus repository');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus repository');
     }
 }
