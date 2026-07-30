@@ -11,7 +11,15 @@ class ContentDetailGallery extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'description',
+        'date',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'galeri';
 

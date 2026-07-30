@@ -10,7 +10,14 @@ class QuickLink extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'title',
+        'url',
+        'order',
+        'is_active',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $table = 'quick_links';
 

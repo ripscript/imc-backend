@@ -9,5 +9,13 @@ class ContentDetailImageLink extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'image_url',
+        'url',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

@@ -34,6 +34,22 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if ($e instanceof \App\Exceptions\Domain\ValidationException) {
+            return \App\Helpers\ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof \App\Exceptions\Domain\EntityNotFoundException) {
+            return \App\Helpers\ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof \App\Exceptions\Domain\AuthenticationException) {
+            return \App\Helpers\ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof \App\Exceptions\Domain\InvalidRoleException) {
+            return \App\Helpers\ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
         if ($e instanceof ValidationException) {
             $errors = $e->errors();
             $flatErrors = collect($errors)->flatten()->implode(', ');

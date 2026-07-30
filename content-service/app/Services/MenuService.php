@@ -111,7 +111,7 @@ class MenuService
 
             if ($menu->is_show_front == true && $menu->countMenusWithShowFront() >= $this->maxMenusShowFront()) {
                 DB::rollBack();
-                throw new \Exception('Anda telah mencapai batas maksimum untuk menampilkan menu prioritas di halaman depan (Maksimal '.$this->maxMenusShowFront().')', 409);
+                throw new \App\Exceptions\Domain\ValidationException('Anda telah mencapai batas maksimum untuk menampilkan menu prioritas di halaman depan (Maksimal '.$this->maxMenusShowFront().')');
             }
 
             $menu->save();
@@ -167,7 +167,7 @@ class MenuService
 
             if ($menu->is_show_front == true && $menu->countMenusWithShowFront() >= $this->maxMenusShowFront()) {
                 DB::rollBack();
-                throw new \Exception('Anda telah mencapai batas maksimum untuk menampilkan menu prioritas di halaman depan (Maksimal '.$this->maxMenusShowFront().')', 409);
+                throw new \App\Exceptions\Domain\ValidationException('Anda telah mencapai batas maksimum untuk menampilkan menu prioritas di halaman depan (Maksimal '.$this->maxMenusShowFront().')');
             }
 
             $menu->save();
@@ -211,11 +211,11 @@ class MenuService
             $data = Menu::findOrFail($id);
             if ($data->is_dedicated) {
                 DB::rollBack();
-                throw new \Exception('Menu tidak boleh dihapus', 403);
+                throw new \App\Exceptions\Domain\ValidationException('Menu tidak boleh dihapus');
             }
             if ($data->subMenu()->exists()) {
                 DB::rollBack();
-                throw new \Exception('Menu masih memiliki sub menu', 409);
+                throw new \App\Exceptions\Domain\ValidationException('Menu masih memiliki sub menu');
             }
             $data->delete();
 

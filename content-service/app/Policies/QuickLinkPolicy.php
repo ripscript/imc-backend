@@ -11,7 +11,7 @@ class QuickLinkPolicy
 
     protected function isAllowed(User $user): bool
     {
-        return in_array($user->role?->slug ?? $user->role, self::ALLOWED_ROLES);
+        return in_array($user->role?->code ?? $user->role, self::ALLOWED_ROLES);
     }
 
     public function viewAny(User $user): bool

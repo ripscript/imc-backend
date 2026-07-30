@@ -13,7 +13,17 @@ class SubMenu extends Model
 {
     use HasActivityLog, HasAdditionalContentMapping, HasContentMapping, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'menu_id',
+        'title',
+        'slug',
+        'is_active',
+        'order',
+        'has_child',
+        'is_show_side_menu',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'sub menu';
 

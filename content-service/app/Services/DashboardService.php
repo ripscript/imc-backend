@@ -2,16 +2,17 @@
 
 namespace App\Services;
 
+use App\Services\DTOs\DashboardDTO;
 use Illuminate\Support\Facades\DB;
 
 class DashboardService
 {
-    public function jumlahPerangkat(array $data)
+    public function jumlahPerangkat(DashboardDTO $data)
     {
         $user = auth()->user();
         $role = $user->role->name;
         if ($role == 'Admin Satker/Perwakilan') {
-            throw new \Exception('Anda tidak memiliki akses', 401);
+            throw new \App\Exceptions\Domain\AuthenticationException('Anda tidak memiliki akses');
         }
 
         $query = DB::table('visitors')
@@ -37,12 +38,12 @@ class DashboardService
         ];
     }
 
-    public function grafikPengunjung(array $data)
+    public function grafikPengunjung(DashboardDTO $data)
     {
         $user = auth()->user();
         $role = $user->role->name;
         if ($role == 'Admin Satker/Perwakilan') {
-            throw new \Exception('Anda tidak memiliki akses', 401);
+            throw new \App\Exceptions\Domain\AuthenticationException('Anda tidak memiliki akses');
         }
 
         $year = $data['year'] ?? date('Y');

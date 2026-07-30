@@ -416,7 +416,7 @@ php artisan test --testsuite=Feature
 | # | Service | P1: Resources | P1b: Exceptions | P1c: DTOs | P2: Svc-Exceptions | P3: Handler | P3b: No-JsonResp | P3c: DTO-in-Ctrl | P4: Policies | P5: No-Dup-Log | P6: MW-ApiResp | P7: Resource-Map | P8: Fillable | P9: Factories | P10: UnitTests | P11: FeatTests |
 |---|---------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | **user-service** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| 2 | content-service | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| 2 | **content-service** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | 3 | public-content-service | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 4 | file-service | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 5 | setting-service | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -478,4 +478,4 @@ done
 
 ---
 
-**Last updated**: 2026-07-23 | **Version**: 1.0.0 | **Pilot**: user-service
+**Last updated**: 2026-07-30 | **Version**: 1.1.0 | **Pilot**: user-service | **content-service**

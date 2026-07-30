@@ -10,7 +10,21 @@ class Content extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'parent_type',
+        'parent_id',
+        'type',
+        'layout_id',
+        'section_title',
+        'is_section',
+        'is_show_home',
+        'is_show_tag',
+        'sub_type',
+        'is_accessible',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'content';
 

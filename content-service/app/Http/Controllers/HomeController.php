@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateHomeSectionRequest;
 use App\Services\DTOs\ContentDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\HomeService;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,56 +17,41 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            return ApiResponse::success($this->homeService->index(QueryFilterDTO::fromRequest($request)), 'Berhasil mengambil data section');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->authorize('viewAny', Content::class);
+        return ApiResponse::success($this->homeService->index(QueryFilterDTO::fromRequest($request)), 'Berhasil mengambil data section');
     }
 
     public function detail($id)
     {
-        try {
-            return ApiResponse::success($this->homeService->detail($id), 'Berhasil mengambil data detail section');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->homeService->detail($id);
+        $this->authorize('view', $result);
+        return ApiResponse::success($result, 'Berhasil mengambil data detail section');
     }
 
     public function create(CreateHomeSectionRequest $req)
     {
-        try {
-            $dto = new ContentDTO($req->validated());
-            $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $dto = new ContentDTO($req->validated());
+        $dto->created_by = $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', Content::class);
 
-            return ApiResponse::success($this->homeService->create($dto), 'Berhasil menambahkan data section', 201);
-        } catch (\Exception $e) {
-            if ($e->getCode() == 404) {
-                return ApiResponse::error('Menu beranda tidak ditemukan', 404);
-            } throw $e;
-        }
+        return ApiResponse::success($this->homeService->create($dto), 'Berhasil menambahkan data section', 201);
     }
 
     public function update(UpdateHomeSectionRequest $req, $id)
     {
-        try {
-            $dto = new ContentDTO($req->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new ContentDTO($req->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            return ApiResponse::success($this->homeService->update($id, $dto), 'Berhasil memperbarui data section');
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $result = $this->homeService->update($id, $dto);
+        $this->authorize('update', $result);
+        return ApiResponse::success($result, 'Berhasil memperbarui data section');
     }
 
     public function delete($id)
     {
-        try {
-            $this->homeService->destroy($id);
+        $this->authorize('delete', Content::class);
+        $this->homeService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus section');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus section');
     }
 }
