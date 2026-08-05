@@ -34,6 +34,16 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if ($e instanceof \App\Exceptions\Domain\ValidationException) {
+            return ApiResponse::error($e->getMessage(), $e->getErrors(), $e->getCode());
+        }
+        if ($e instanceof \App\Exceptions\Domain\EntityNotFoundException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+        if ($e instanceof \Illuminate\Auth\AuthenticationException) {
+            return ApiResponse::error('Unauthenticated', null, 401);
+        }
+
         if ($e instanceof ValidationException) {
             $errors = $e->errors();
             $flatErrors = collect($errors)->flatten()->implode(', ');

@@ -9,7 +9,11 @@ class ChatLog extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'chat_session_id',
+        'sender',
+        'message',
+    ];
 
     public function session()
     {

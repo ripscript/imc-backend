@@ -10,7 +10,14 @@ class ChatSession extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'uuid',
+        'pemohon_id',
+        'last_activity_at',
+        'started_at',
+        'ended_at',
+        'is_active',
+    ];
 
     public function logs()
     {

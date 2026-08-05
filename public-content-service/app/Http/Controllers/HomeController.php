@@ -13,62 +13,36 @@ class HomeController extends Controller
 
     public function index()
     {
-        try {
-            $data = $this->homeService->index();
+        $data = $this->homeService->index();
 
-            return ApiResponse::success($data, 'Berhasil mengambil list section beranda');
-        } catch (\Throwable $th) {
-            if ($th->getCode() == 404) {
-                return ApiResponse::error($th->getMessage(), 404);
-            }
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil list section beranda');
     }
 
     public function detail($id)
     {
-        try {
-            $content = $this->homeService->detail($id);
+        $content = $this->homeService->detail($id);
 
-            return ApiResponse::success($content, 'Berhasil mengambil detail section');
-        } catch (\Throwable $th) {
-            if ($th->getCode() == 404) {
-                return ApiResponse::error($th->getMessage(), '', 404);
-            }
-            throw $th;
-        }
+        return ApiResponse::success($content, 'Berhasil mengambil detail section');
     }
 
     public function latestInformation()
     {
-        try {
-            $content = $this->homeService->latestInformation();
+        $content = $this->homeService->latestInformation();
 
-            return ApiResponse::success($content, 'Berhasil mengambil data informasi terkini');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($content, 'Berhasil mengambil data informasi terkini');
     }
 
     public function summaryPermohonan()
     {
-        try {
-            $data = $this->homeService->summaryPermohonan();
+        $data = $this->homeService->summaryPermohonan();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data summary permohonan');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data summary permohonan');
     }
 
     public function sifatInformasi()
     {
-        try {
-            $data = $this->homeService->sifatInformasi();
+        $data = $this->homeService->sifatInformasi();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data sifat informasi');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data sifat informasi');
     }
 }

@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class ContentResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'content_id' => $this->content_id,
+            'type' => $this->type,
+            'section_title' => $this->section_title,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'layout' => $this->layout,
+            'order' => $this->order,
+            'is_section' => $this->is_section,
+            'is_accessible' => $this->is_accessible,
+            'sub_type' => $this->sub_type,
+            'content' => $this->content,
+            'breadcrumb' => $this->breadcrumb,
+            'parent_menu' => $this->when(isset($this->parent_menu), $this->parent_menu),
+            'image_link' => $this->whenLoaded('contentDetailImageLink'),
+            'image_carousel' => $this->whenLoaded('contentDetailImageCarousel'),
+            'card_link' => $this->whenLoaded('contentDetailCardLink'),
+            'video_carousel' => $this->whenLoaded('contentDetailVideoCarousel'),
+            'accordion_group' => $this->whenLoaded('contentDetailAccordionGroup'),
+            'text' => $this->whenLoaded('contentDetailText'),
+            'consume' => $this->whenLoaded('contentDetailConsume'),
+            'agenda' => $this->whenLoaded('contentDetailAgenda'),
+            'additional_image' => $this->whenLoaded('contentAdditionalImage'),
+            'additional_video' => $this->whenLoaded('contentAdditionalVideo'),
+            'additional_link' => $this->whenLoaded('contentAdditionalLink'),
+            'additional_file' => $this->whenLoaded('contentAdditionalFile'),
+            'additional_text' => $this->whenLoaded('contentAdditionalText'),
+        ];
+    }
+}

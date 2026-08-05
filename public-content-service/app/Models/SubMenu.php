@@ -9,7 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubMenu extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'menu_id',
+        'title',
+        'slug',
+        'order',
+        'has_child',
+        'is_active',
+        'created_by',
+        'updated_by',
+    ];
     use HasAdditionalContentMapping, HasContentMapping, HasFactory;
 
     protected $hidden = ['id', 'menu_id', 'created_at', 'updated_at', 'created_by', 'updated_by'];

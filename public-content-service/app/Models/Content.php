@@ -8,7 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'layout_id',
+        'parent_type',
+        'parent_id',
+        'type',
+        'sub_type',
+        'title',
+        'slug',
+        'section_title',
+        'order',
+        'is_section',
+        'is_accessible',
+        'created_by',
+        'updated_by',
+    ];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'layout_id', 'parent_type', 'parent_id'];
 
     public function parent()

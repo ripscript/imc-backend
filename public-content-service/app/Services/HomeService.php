@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\Domain\EntityNotFoundException;
 use App\Models\Content;
 use App\Models\LatestInformation;
 use App\Models\Menu;
@@ -15,7 +16,7 @@ class HomeService
     {
         $beranda = Menu::findBySlug(self::SLUG_BERANDA);
         if (! $beranda) {
-            throw new \Exception('Beranda tidak ditemukan', 404);
+            throw new EntityNotFoundException('Beranda');
         }
 
         $contents = Content::where([
@@ -40,7 +41,7 @@ class HomeService
             ->select('id', 'section_title', 'type', 'order')
             ->first();
         if (! $content) {
-            throw new \Exception('Section tidak ditemukan', 404);
+            throw new EntityNotFoundException('Section');
         }
 
         $content->content = Content::find($content->id)->getDetailBasedOnType();

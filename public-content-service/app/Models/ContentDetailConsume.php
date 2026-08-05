@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\DB;
 class ContentDetailConsume extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'consume_id',
+        'consume_type',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'consume_id'];
 
     protected $appends = ['list_content', 'parent_menu'];
