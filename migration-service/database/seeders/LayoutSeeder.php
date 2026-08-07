@@ -29,7 +29,9 @@ class LayoutSeeder extends Seeder
             'M' => 'accordion',
             'N' => 'landing_page',
             'O' => 'agenda',
-            'P' => 'organizational_structure'
+            'P' => 'organizational_structure',
+            'Q' => 'project',
+            'R' => 'project_detail',
         ];
 
         $custom = [];

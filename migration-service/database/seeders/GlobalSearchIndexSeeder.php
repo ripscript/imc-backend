@@ -83,7 +83,7 @@ class GlobalSearchIndexSeeder extends Seeder
 
                                 WHEN c.type = 'text' THEN
                                     to_tsvector('simple', coalesce((
-                                        SELECT dt.content
+                                        SELECT string_agg(coalesce(dt.content, ''), ' ')
                                         FROM content_detail_texts dt
                                         WHERE dt.content_id = c.id
                                     ), '')) ||
