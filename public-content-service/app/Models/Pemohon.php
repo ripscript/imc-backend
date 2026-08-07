@@ -11,7 +11,18 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 class Pemohon extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, Notifiable, SoftDeletes;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'phone',
+        'token',
+        'otp',
+        'token_version',
+        'remember_token',
+        'created_by',
+        'updated_by',
+    ];
     protected $table = 'pemohon';
 
     protected $hidden = [

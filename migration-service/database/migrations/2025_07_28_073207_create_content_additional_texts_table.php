@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('content_additional_texts', function (Blueprint $table) {
             $table->id();
             $table->morphs('content');
+            $table->string('title')->nullable();
             $table->text('description');
+            $table->integer('order')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

@@ -30,7 +30,7 @@ class SaveContentsService
 
     public function store($content, array $data, $user)
     {
-        if (! isset($data['content']) && ! in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure'])) {
+        if (! isset($data['content']) && ! in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure', 'project'])) {
             throw ValidationException::withMessages([
                 'error' => 'Content is missing.',
             ]);
@@ -302,12 +302,14 @@ class SaveContentsService
         ];
     }
 
-    private function buildAdditionalTextPayload($contentType, $contentId, $data, $user)
+    private function buildAdditionalTextPayload($contentType, $contentId, $data, $user, $key = 0)
     {
         return [
             'content_type' => $contentType,
             'content_id' => $contentId,
+            'title' => $data['title'] ?? null,
             'description' => $data['description'],
+            'order' => ($key + 1),
             'updated_by' => $user,
         ];
     }
@@ -404,7 +406,7 @@ class SaveContentsService
             ]);
         }
 
-        if ($content->has_additional_text && empty($data['content_additional_text']['description'] ?? null)) {
+        if ($content->has_additional_text && empty($data['content_additional_text'])) {
             throw ValidationException::withMessages([
                 'content_additional_text' => 'Teks tambahan tidak boleh kosong.',
             ]);
@@ -471,8 +473,18 @@ class SaveContentsService
         }
 
         if ($content->has_additional_text == true) {
-            $payload = $this->buildAdditionalTextPayload($contentType, $contentId, $data['content_additional_text'], $user);
-            $this->saveRecord(ContentAdditionalText::class, $data['content_additional_text']['id'], $payload, $user);
+            $texts = $data['content_additional_text'];
+            if (isset($texts['description'])) {
+                $texts = [$texts];
+            }
+            $results = [];
+            foreach ($texts as $key => $value) {
+                $payload = $this->buildAdditionalTextPayload($contentType, $contentId, $value, $user, $key);
+                $results[] = $this->saveRecord(ContentAdditionalText::class, $value['id'], $payload, $user);
+            }
+            if (! empty($data['deleted_content_additional_text_id'])) {
+                $this->deleteRecordByIds(ContentAdditionalText::class, $data['deleted_content_additional_text_id']);
+            }
         } else {
             ContentAdditionalText::where([
                 'content_type' => $contentType,

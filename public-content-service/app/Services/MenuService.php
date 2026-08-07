@@ -3,15 +3,16 @@
 namespace App\Services;
 
 use App\Models\Menu;
+use App\Services\DTOs\MenuFilterDTO;
 
 class MenuService
 {
-    public function index($request)
+    public function index(MenuFilterDTO $filter)
     {
         $query = Menu::active();
 
-        if ($request->filled('is_show_front')) {
-            $query->where('is_show_front', $request->is_show_front);
+        if ($filter->is_show_front !== null) {
+            $query->where('is_show_front', $filter->is_show_front);
         }
 
         $query->orderBy('order', 'asc')

@@ -9,7 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'order',
+        'has_sub',
+        'is_show_front',
+        'is_active',
+        'is_dedicated',
+        'created_by',
+        'updated_by',
+    ];
     use HasAdditionalContentMapping, HasContentMapping, HasFactory;
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'is_active', 'is_dedicated'];

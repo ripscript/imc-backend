@@ -9,5 +9,14 @@ class Visitor extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'ip_address',
+        'slug',
+        'latitude',
+        'longitude',
+        'country',
+        'city',
+        'user_agent',
+        'device_type',
+    ];
 }

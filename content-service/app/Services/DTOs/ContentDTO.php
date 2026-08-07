@@ -26,6 +26,12 @@ class ContentDTO extends BaseDTO
 
     public ?bool $is_accessible;
 
+    public mixed $content;
+
+    public ?array $deleted_content_detail_id;
+
+    public ?array $deleted_content_detail_list_id;
+
     public ?string $created_by;
 
     public ?string $updated_by;
@@ -43,6 +49,9 @@ class ContentDTO extends BaseDTO
         $this->is_show_tag = $data['is_show_tag'] ?? null;
         $this->sub_type = $data['sub_type'] ?? null;
         $this->is_accessible = $data['is_accessible'] ?? null;
+        $this->content = $data['content'] ?? null;
+        $this->deleted_content_detail_id = $data['deleted_content_detail_id'] ?? null;
+        $this->deleted_content_detail_list_id = $data['deleted_content_detail_list_id'] ?? null;
         $this->created_by = $data['created_by'] ?? null;
         $this->updated_by = $data['updated_by'] ?? null;
     }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,22 @@ class DatabaseSeeder extends Seeder
         $this->call(TemplateEmailSeeder::class);
         $this->call(LayoutSeeder::class);
         $this->call(MenuSeeder::class);
+
+        // Content detail seeders
+        $this->call(ContentDetailTextSeeder::class);
+        $this->call(ContentDetailCardLinkSeeder::class);
+        $this->call(ContentDetailImageLinkSeeder::class);
+        $this->call(ContentDetailImageCarouselSeeder::class);
+        $this->call(ContentDetailVideoCarouselSeeder::class);
+        $this->call(ContentDetailAccordionSeeder::class);
+        $this->call(ContentDetailRepositorySeeder::class);
+        $this->call(ContentDetailOrganizationalStructureSeeder::class);
+        $this->call(ContentDetailProjectSeeder::class);
+        $this->call(ContentDetailGallerySeeder::class);
+        $this->call(ContentDetailPublicationSeeder::class);
+        $this->call(ContentDetailAgendaSeeder::class);
+        $this->call(ContentDetailConsumeSeeder::class);
+
         $this->call(ClassificationPemohonSeeder::class);
         $this->call(PermohonanSeeder::class);
         $this->call(KeberatanSeeder::class);

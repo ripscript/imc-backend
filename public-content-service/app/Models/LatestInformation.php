@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class LatestInformation extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'title',
+        'url',
+        'publish_date',
+        'is_active',
+        'created_by',
+        'updated_by',
+    ];
     protected $table = 'latest_informations';
 }

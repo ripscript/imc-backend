@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         \App\Models\ContentDetailGallery::class => \App\Policies\ContentDetailGalleryPolicy::class,
         \App\Models\ContentDetailRepository::class => \App\Policies\ContentDetailRepositoryPolicy::class,
         \App\Models\ContentDetailAgenda::class => \App\Policies\ContentDetailAgendaPolicy::class,
+        \App\Models\ContentDetailProject::class => \App\Policies\ContentDetailProjectPolicy::class,
     ];
 
     /**

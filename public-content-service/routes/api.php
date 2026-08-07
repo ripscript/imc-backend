@@ -56,7 +56,7 @@ Route::post('visitor', [VisitorController::class, 'create']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('latest-information', [HomeController::class, 'latestInformation']);
-    Route::get('summary-permohonan', [HomeController::class, 'summaryPermohonan']);
+    Route::get('statistics', [HomeController::class, 'summaryStatistic']);
     Route::get('sifat-informasi', [HomeController::class, 'sifatInformasi']);
     Route::get('{id}', [HomeController::class, 'detail']);
 });

@@ -17,6 +17,9 @@ class UpdateHomeSectionRequest extends FormRequest
             'section_title' => 'required|string|max:200',
             'is_section' => 'required',
             'order' => 'required',
+            'content' => 'nullable|array',
+            'deleted_content_detail_id' => 'nullable|array',
+            'deleted_content_detail_list_id' => 'nullable|array',
         ];
     }
 }

@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ContentDetailText extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'body',
+        'created_by',
+        'updated_by',
+    ];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id'];
 }

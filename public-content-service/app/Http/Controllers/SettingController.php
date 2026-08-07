@@ -13,12 +13,8 @@ class SettingController extends Controller
 
     public function index()
     {
-        try {
-            $data = $this->settingService->index();
+        $data = $this->settingService->index();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data pengaturan website');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data pengaturan website');
     }
 }
