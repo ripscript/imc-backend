@@ -15,7 +15,7 @@ server {
 
     # Mapping ke master-service
     location /master-service/ {
-        proxy_pass http://eppid-master-service:8000/;
+        proxy_pass http://imc-master-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -24,25 +24,7 @@ server {
 
     # Mapping ke user-service
     location /user-service/ {
-        proxy_pass http://eppid-user-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke migration-service
-    location /migration-service/ {
-        proxy_pass http://eppid-migration-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke file-service
-    location /file-service/ {
-        proxy_pass http://eppid-file-service:8000/;
+        proxy_pass http://imc-user-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -51,25 +33,7 @@ server {
 
     # Mapping ke content-service
     location /content-service/ {
-        proxy_pass http://eppid-content-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke permohonan-service
-    location /permohonan-service/ {
-        proxy_pass http://eppid-permohonan-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke setting-service
-    location /setting-service/ {
-        proxy_pass http://eppid-setting-service:8000/;
+        proxy_pass http://imc-content-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -78,7 +42,16 @@ server {
 
     # Mapping ke public-content-service
     location /public-content-service/ {
-        proxy_pass http://eppid-public-content-service:8000/;
+        proxy_pass http://imc-public-content-service:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Mapping ke file-service
+    location /file-service/ {
+        proxy_pass http://imc-file-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -87,16 +60,7 @@ server {
 
     # Mapping ke setting-service
     location /setting-service/ {
-        proxy_pass http://eppid-setting-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # API Documentation Hub
-    location /docs-service/ {
-        proxy_pass http://eppid-docs-service:8000/;
+        proxy_pass http://imc-setting-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

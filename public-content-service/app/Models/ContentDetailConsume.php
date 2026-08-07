@@ -81,6 +81,23 @@ class ContentDetailConsume extends Model
                 return $query;
                 break;
 
+            case 'project':
+                $query = DB::table('content_detail_projects')
+                    ->where('content_id', $this->consume_id)
+                    ->where('is_publicated', true)
+                    ->select(
+                        'title',
+                        'slug',
+                        'thumbnail_path',
+                        'publish_date'
+                    )
+                    ->orderBy('publish_date', 'desc')
+                    ->limit(5)
+                    ->get();
+
+                return $query;
+                break;
+
             default:
                 return [];
                 break;

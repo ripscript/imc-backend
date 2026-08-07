@@ -32,11 +32,11 @@ class HomeController extends Controller
         return ApiResponse::success($content, 'Berhasil mengambil data informasi terkini');
     }
 
-    public function summaryPermohonan()
+    public function summaryStatistic()
     {
-        $data = $this->homeService->summaryPermohonan();
+        $data = $this->homeService->summaryStatistic();
 
-        return ApiResponse::success($data, 'Berhasil mengambil data summary permohonan');
+        return ApiResponse::success($data->toArray(), 'Berhasil mengambil data summary statistic');
     }
 
     public function sifatInformasi()

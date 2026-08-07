@@ -6,6 +6,7 @@ use App\Exceptions\Domain\EntityNotFoundException;
 use App\Models\Content;
 use App\Models\LatestInformation;
 use App\Models\Menu;
+use App\Services\DTOs\SummaryStatisticDTO;
 use Illuminate\Support\Facades\DB;
 
 class HomeService
@@ -57,18 +58,9 @@ class HomeService
             ->get();
     }
 
-    public function summaryPermohonan()
+    public function summaryStatistic(): SummaryStatisticDTO
     {
-        $totalPengunjung = DB::table('visitors')->count();
-        $permohonan = DB::table('permohonan')->whereNull('deleted_at')->count();
-        $permohonanSelesai = DB::table('permohonan')->whereNull('deleted_at')->whereIn('status', [2, 3])->count();
-
-        return [
-            'informasi_publik' => 0,
-            'permohonan' => $permohonan,
-            'permohonan_selesai' => $permohonanSelesai,
-            'pengunjung' => $totalPengunjung,
-        ];
+        return new SummaryStatisticDTO([]);
     }
 
     public function sifatInformasi()
