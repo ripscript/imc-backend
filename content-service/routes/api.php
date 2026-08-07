@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LatestInformationController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\SubMenuController;
@@ -112,6 +113,15 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::get('/{id}', [AgendaController::class, 'detail']);
         Route::put('/{id}', [AgendaController::class, 'update']);
         Route::delete('/{id}', [AgendaController::class, 'delete']);
+    });
+
+    Route::prefix('project')->group(function () {
+        Route::get('/side-menu', [ProjectController::class, 'sideMenu']);
+        Route::get('/list/{contentId}', [ProjectController::class, 'index']);
+        Route::post('/', [ProjectController::class, 'create']);
+        Route::get('/{id}', [ProjectController::class, 'detail']);
+        Route::put('/{id}', [ProjectController::class, 'update']);
+        Route::delete('/{id}', [ProjectController::class, 'delete']);
     });
 
     Route::prefix('section')->group(function () {

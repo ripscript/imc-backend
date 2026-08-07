@@ -22,6 +22,11 @@ class Content extends Model
         'sub_type',
         'is_accessible',
         'order',
+        'has_additional_image',
+        'has_additional_video',
+        'has_additional_file',
+        'has_additional_link',
+        'has_additional_text',
         'created_by',
         'updated_by',
     ];
@@ -90,7 +95,7 @@ class Content extends Model
 
     public function contentAdditionalText()
     {
-        return $this->morphOne(ContentAdditionalText::class, 'content');
+        return $this->morphMany(ContentAdditionalText::class, 'content')->orderBy('order', 'asc');
     }
 
     public function getDetailBasedOnType()
@@ -120,6 +125,11 @@ class Content extends Model
         }
     }
 
+    public function contentDetailProject()
+    {
+        return $this->hasMany(ContentDetailProject::class)->orderBy('order', 'asc');
+    }
+
     protected static function booted()
     {
         static::deleting(function ($content) {
@@ -127,7 +137,7 @@ class Content extends Model
             $content->contentAdditionalVideo()->delete();
             $content->contentAdditionalFile()->delete();
             $content->contentAdditionalLink()->delete();
-            $content->contentAdditionalText?->delete();
+            $content->contentAdditionalText()->delete();
         });
     }
 }

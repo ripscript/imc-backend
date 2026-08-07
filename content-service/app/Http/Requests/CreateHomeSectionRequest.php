@@ -18,6 +18,9 @@ class CreateHomeSectionRequest extends FormRequest
             'is_section' => 'required',
             'order' => 'required',
             'type' => 'required',
+            'content' => 'nullable|array',
+            'deleted_content_detail_id' => 'nullable|array',
+            'deleted_content_detail_list_id' => 'nullable|array',
         ];
     }
 }

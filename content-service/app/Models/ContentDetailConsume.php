@@ -11,11 +11,8 @@ class ContentDetailConsume extends Model
 
     protected $fillable = [
         'content_id',
-        'type',
-        'title',
-        'description',
-        'file_url',
-        'image_url',
+        'consume_id',
+        'consume_type',
         'order',
         'created_by',
         'updated_by',
