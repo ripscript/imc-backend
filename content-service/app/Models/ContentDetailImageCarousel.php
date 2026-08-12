@@ -11,8 +11,11 @@ class ContentDetailImageCarousel extends Model
 
     protected $fillable = [
         'content_id',
-        'image_url',
+        'title',
+        'image_path',
+        'description',
         'order',
+        'link',
         'created_by',
         'updated_by',
     ];

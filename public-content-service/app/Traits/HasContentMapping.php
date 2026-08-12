@@ -27,7 +27,7 @@ trait HasContentMapping
             $this->sub_type = $content->sub_type;
         }
 
-        if (in_array($this->type, ['publication', 'repository', 'gallery'])) {
+        if (in_array($this->type, ['publication', 'repository', 'gallery', 'project'])) {
             switch ($this->type) {
                 case 'publication':
                     $query = DB::table('content_detail_publications')
@@ -73,6 +73,30 @@ trait HasContentMapping
                         }, 'first_image_path');
 
                     $listContent = $this->queryService->applyFiltersAndPaginate($query, $request, ['g.title']);
+                    break;
+                case 'project':
+                    $query = DB::table('content_detail_projects')
+                        ->where('content_id', $content->id)
+                        ->where('is_publicated', true)
+                        ->select(
+                            'title',
+                            'slug',
+                            'thumbnail_path',
+                            'publish_date',
+                            'duration',
+                            'location',
+                            'start_date',
+                            'budget',
+                            'organization_name'
+                        )
+                        ->selectSub(function ($q) {
+                            $q->from('ms_kategori_contents')
+                                ->select('ms_kategori_contents.title')
+                                ->whereColumn('ms_kategori_contents.id', 'content_detail_projects.kategori_content_id')
+                                ->limit(1);
+                        }, 'kategori_title');
+
+                    $listContent = $this->queryService->applyFiltersAndPaginate($query, $request, ['title']);
                     break;
             }
             $this->content = $listContent['data'] ?? [];

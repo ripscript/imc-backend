@@ -7,6 +7,7 @@ use App\Http\Requests\ContentDetailRequest;
 use App\Http\Requests\ContentIndexRequest;
 use App\Http\Requests\GlobalSearchRequest;
 use App\Http\Resources\ContentDetailGalleryResource;
+use App\Http\Resources\ContentDetailProjectResource;
 use App\Http\Resources\ContentDetailPublicationResource;
 use App\Http\Resources\ContentDetailRepositoryResource;
 use App\Http\Resources\ContentResource;
@@ -61,6 +62,17 @@ class ContentController extends Controller
         );
 
         return ApiResponse::success(new ContentDetailGalleryResource($gallery), 'Berhasil mengambil detail galeri');
+    }
+
+    public function detailProject(ContentDetailRequest $request)
+    {
+        $project = $this->contentService->detailProject(
+            $request->type,
+            $request->content_slug,
+            $request->slug
+        );
+
+        return ApiResponse::success(new ContentDetailProjectResource($project), 'Berhasil mengambil detail proyek');
     }
 
     public function globalSearch(GlobalSearchRequest $request)

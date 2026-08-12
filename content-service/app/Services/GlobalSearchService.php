@@ -317,7 +317,7 @@ class GlobalSearchService
                 to_tsvector('simple',
                     coalesce(p.title,'') || ' ' ||
                     coalesce(p.headline,'') || ' ' ||
-                    coalesce(p.content,'')
+                    coalesce(p.description,'')
                 )
                 ||
                 to_tsvector('simple',

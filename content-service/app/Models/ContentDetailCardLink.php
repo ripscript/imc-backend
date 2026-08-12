@@ -12,9 +12,8 @@ class ContentDetailCardLink extends Model
     protected $fillable = [
         'content_id',
         'title',
-        'image_url',
-        'description',
-        'url',
+        'color_code',
+        'link',
         'order',
         'created_by',
         'updated_by',

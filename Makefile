@@ -1,5 +1,6 @@
+
 SERVICES := master-service user-service content-service public-content-service file-service setting-service
-COMPOSE  := docker compose
+COMPOSE  := docker compose -f docker-compose.local.yaml
 
 # Default target
 .DEFAULT_GOAL := help

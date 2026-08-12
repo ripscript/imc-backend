@@ -10,10 +10,15 @@ class ContentDetailOrganizationalStructureMember extends Model
     use HasFactory;
 
     protected $fillable = [
-        'group_id',
+        'content_detail_organizational_structure_group_id',
         'name',
+        'level',
         'position',
-        'image_url',
+        'description',
+        'image_path',
+        'is_child',
+        'have_child',
+        'parent_id',
         'order',
         'created_by',
         'updated_by',

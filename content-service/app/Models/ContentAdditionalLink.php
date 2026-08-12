@@ -13,7 +13,7 @@ class ContentAdditionalLink extends Model
         'content_type',
         'content_id',
         'title',
-        'url',
+        'link',
         'order',
         'created_by',
         'updated_by',

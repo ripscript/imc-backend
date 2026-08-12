@@ -32,6 +32,7 @@ class ContentDetailProject extends Model
         'budget',
         'organization_address',
         'organization_name',
+        'kategori_content_id',
         'created_by',
         'updated_by',
     ];

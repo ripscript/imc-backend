@@ -6,6 +6,7 @@ use App\Exceptions\Domain\EntityNotFoundException;
 use App\Models\ChildSubMenu;
 use App\Models\Content;
 use App\Models\ContentDetailGallery;
+use App\Models\ContentDetailProject;
 use App\Models\ContentDetailPublication;
 use App\Models\ContentDetailRepository;
 use App\Models\Menu;
@@ -177,6 +178,40 @@ class ContentService
         $gallery->breadcrumb = $breadcrumb;
 
         return $gallery;
+    }
+
+    public function detailProject(string $type, string $contentSlug, string $slug)
+    {
+        $content = Content::whereHas('parent', function ($query) use ($contentSlug) {
+            $query->where('slug', $contentSlug);
+        })
+            ->where('parent_type', self::TYPE_CLASS[$type])
+            ->accessible()
+            ->first();
+
+        if (! $content) {
+            throw new EntityNotFoundException('Parent content');
+        }
+
+        $breadcrumb = $this->getBreadcrumb($type, $content->parent);
+
+        $project = ContentDetailProject::where([
+            'content_id' => $content->id,
+            'slug' => $slug,
+            'is_publicated' => true,
+        ])
+            ->with('layout')
+            ->first();
+
+        if (! $project) {
+            throw new EntityNotFoundException('Proyek');
+        }
+        $breadcrumb[] = $project->title;
+        $project->applyAdditionalContent($project);
+        $project->parent_menu = $content->parent_slug;
+        $project->breadcrumb = $breadcrumb;
+
+        return $project;
     }
 
     public function globalSearch(string $keyword, int $page, int $limit)

@@ -12,7 +12,10 @@ class ContentAdditionalVideo extends Model
     protected $fillable = [
         'content_type',
         'content_id',
-        'video_url',
+        'title',
+        'type',
+        'url',
+        'video_path',
         'order',
         'created_by',
         'updated_by',

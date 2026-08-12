@@ -1,5 +1,5 @@
 # Docker local overrides
-docker-compose-local.yaml
+docker-compose.local.yaml
 **/Dockerfile.local
 **/php.ini.local
 **/xdebug.ini.local

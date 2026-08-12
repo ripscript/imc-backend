@@ -12,7 +12,7 @@ class PublicationDTO extends BaseDTO
 
     public ?string $headline;
 
-    public ?string $content;
+    public ?string $description;
 
     public ?string $publish_date;
 
@@ -36,7 +36,7 @@ class PublicationDTO extends BaseDTO
         $this->title = $data['title'] ?? '';
         $this->slug = $data['slug'] ?? '';
         $this->headline = $data['headline'] ?? null;
-        $this->content = $data['content'] ?? null;
+        $this->description = $data['description'] ?? null;
         $this->publish_date = $data['publish_date'] ?? null;
         $this->is_publicated = $data['is_publicated'] ?? null;
         $this->is_slider = $data['is_slider'] ?? null;

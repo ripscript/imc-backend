@@ -14,10 +14,13 @@ class ContentDetailRepository extends Model
     protected $fillable = [
         'content_id',
         'title',
+        'file_path',
         'description',
-        'file_url',
-        'date',
-        'order',
+        'thumbnail_path',
+        'slug',
+        'is_publicated',
+        'publish_date',
+        'layout_id',
         'created_by',
         'updated_by',
     ];
