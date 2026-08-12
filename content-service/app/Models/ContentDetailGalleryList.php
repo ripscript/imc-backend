@@ -10,10 +10,13 @@ class ContentDetailGalleryList extends Model
     use HasFactory;
 
     protected $fillable = [
-        'gallery_id',
+        'content_detail_gallery_id',
         'title',
-        'image_url',
         'description',
+        'image_path',
+        'video_type',
+        'video_path',
+        'video_url',
         'order',
         'created_by',
         'updated_by',

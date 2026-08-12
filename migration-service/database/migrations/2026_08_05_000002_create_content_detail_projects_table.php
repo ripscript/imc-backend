@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer('budget')->nullable();
             $table->text('organization_address')->nullable();
             $table->string('organization_name')->nullable();
+            $table->foreignId('kategori_content_id')->nullable()->references('id')->on('ms_kategori_contents')->onDelete('set null');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

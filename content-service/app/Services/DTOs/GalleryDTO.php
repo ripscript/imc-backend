@@ -20,6 +20,8 @@ class GalleryDTO extends BaseDTO
 
     public ?array $tag_id;
 
+    public ?array $deleted_content_detail_id;
+
     public ?string $created_by;
 
     public ?string $updated_by;
@@ -34,6 +36,7 @@ class GalleryDTO extends BaseDTO
         $this->is_publicated = $data['is_publicated'] ?? null;
         $this->list = $data['list'] ?? null;
         $this->tag_id = $data['tag_id'] ?? null;
+        $this->deleted_content_detail_id = $data['deleted_content_detail_id'] ?? null;
         $this->created_by = $data['created_by'] ?? null;
         $this->updated_by = $data['updated_by'] ?? null;
     }

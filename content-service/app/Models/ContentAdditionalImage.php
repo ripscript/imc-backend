@@ -12,7 +12,8 @@ class ContentAdditionalImage extends Model
     protected $fillable = [
         'content_type',
         'content_id',
-        'image_url',
+        'image_path',
+        'description',
         'order',
         'created_by',
         'updated_by',

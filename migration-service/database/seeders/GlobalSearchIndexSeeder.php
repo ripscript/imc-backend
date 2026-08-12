@@ -320,7 +320,7 @@ class GlobalSearchIndexSeeder extends Seeder
                 to_tsvector('simple',
                     coalesce(p.title,'') || ' ' ||
                     coalesce(p.headline,'') || ' ' ||
-                    coalesce(p.content,'')
+                    coalesce(p.description,'')
                 )
                 ||
                 to_tsvector('simple',

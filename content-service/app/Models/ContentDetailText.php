@@ -11,10 +11,7 @@ class ContentDetailText extends Model
 
     protected $fillable = [
         'content_id',
-        'type',
-        'title',
-        'description',
-        'order',
+        'content',
         'created_by',
         'updated_by',
     ];

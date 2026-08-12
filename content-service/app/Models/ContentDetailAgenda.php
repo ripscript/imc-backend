@@ -12,12 +12,11 @@ class ContentDetailAgenda extends Model
 
     protected $fillable = [
         'content_id',
-        'title',
-        'date',
-        'time',
-        'location',
-        'description',
-        'order',
+        'is_range',
+        'datetime_start',
+        'datetime_end',
+        'event_name',
+        'is_active',
         'created_by',
         'updated_by',
     ];

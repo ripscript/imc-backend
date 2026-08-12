@@ -21,7 +21,7 @@ class CreatePublicationRequest extends FormRequest
                 $query->where('content_id', $this->content_id);
             })],
             'headline' => 'required',
-            'content' => 'required',
+            'description' => 'required',
             'publish_date' => 'required',
             'is_publicated' => 'required|boolean',
             'kategori_content_id' => 'nullable|exists:ms_kategori_contents,id',

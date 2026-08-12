@@ -12,12 +12,9 @@ class LatestInformation extends Model
 
     protected $fillable = [
         'title',
-        'description',
-        'image_url',
-        'date',
+        'publish_date',
         'url',
         'is_active',
-        'order',
         'created_by',
         'updated_by',
     ];

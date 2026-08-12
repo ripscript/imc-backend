@@ -15,8 +15,10 @@ class ContentDetailGallery extends Model
         'content_id',
         'title',
         'description',
-        'date',
-        'order',
+        'slug',
+        'is_publicated',
+        'publish_date',
+        'layout_id',
         'created_by',
         'updated_by',
     ];

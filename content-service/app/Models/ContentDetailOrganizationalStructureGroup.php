@@ -11,7 +11,7 @@ class ContentDetailOrganizationalStructureGroup extends Model
 
     protected $fillable = [
         'content_id',
-        'title',
+        'name',
         'order',
         'created_by',
         'updated_by',

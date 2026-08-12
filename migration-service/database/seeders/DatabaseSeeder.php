@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call(LayoutSeeder::class);
         $this->call(MenuSeeder::class);
 
+        // Master data
+        $this->call(MsKategoriContentSeeder::class);
+        $this->call(MsTagSeeder::class);
+        $this->call(QuickLinkSeeder::class);
+
         // Content detail seeders
         $this->call(ContentDetailTextSeeder::class);
         $this->call(ContentDetailCardLinkSeeder::class);
@@ -29,8 +34,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDetailProjectSeeder::class);
         $this->call(ContentDetailGallerySeeder::class);
         $this->call(ContentDetailPublicationSeeder::class);
+        $this->call(ContentTagSeeder::class);
         $this->call(ContentDetailAgendaSeeder::class);
         $this->call(ContentDetailConsumeSeeder::class);
+        $this->call(LatestInformationSeeder::class);
 
         $this->call(ClassificationPemohonSeeder::class);
         $this->call(PermohonanSeeder::class);

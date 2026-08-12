@@ -66,6 +66,7 @@ Route::prefix('content')->group(function () {
     Route::get('publication', [ContentController::class, 'detailPublication']);
     Route::get('repository', [ContentController::class, 'detailRepository']);
     Route::get('gallery', [ContentController::class, 'detailGallery']);
+    Route::get('project', [ContentController::class, 'detailProject']);
     Route::get('search', [ContentController::class, 'globalSearch']);
 });
 

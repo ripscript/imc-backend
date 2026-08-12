@@ -76,7 +76,7 @@ class PublicationService
             $data->title = $dto->title;
             $data->slug = $dto->slug;
             $data->headline = $dto->headline;
-            $data->content = $dto->content ?? '';
+            $data->description = $dto->description ?? '';
             $data->publish_date = $dto->publish_date;
             $data->is_publicated = $dto->is_publicated;
             $data->is_slider = $dto->is_slider ?? false;
@@ -112,7 +112,7 @@ class PublicationService
             $data->title = $dto->title;
             $data->slug = $dto->slug;
             $data->headline = $dto->headline;
-            $data->content = $dto->content ?? '';
+            $data->description = $dto->description ?? '';
             $data->publish_date = $dto->publish_date;
             $data->is_publicated = $dto->is_publicated;
             $data->is_slider = $dto->is_slider ?? $data->is_slider;

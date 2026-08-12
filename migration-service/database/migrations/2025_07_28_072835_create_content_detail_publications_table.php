@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('headline');
-            $table->text('content');
+            $table->text('description');
             $table->boolean('is_publicated')->default(true);
             $table->text('thumbnail_path')->nullable();
             $table->date('publish_date')->nullable();

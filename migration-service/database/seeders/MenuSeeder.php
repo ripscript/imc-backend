@@ -29,9 +29,10 @@ class MenuSeeder extends Seeder
             'slug' => 'tentang-imc',
             'is_active' => 1,
             'is_dedicated' => 1,
-            'has_sub' => false,
+            'has_sub' => true,
             'order' => 2,
             'is_show_front' => true,
+            'is_show_side_menu' => true,
         ]);
 
         $proyekId = $this->createMenu([
@@ -84,13 +85,15 @@ class MenuSeeder extends Seeder
             'is_show_front' => true,
         ]);
 
-        // --- Content records for non-Beranda menus ---
-        $this->createContentRecord($tentangImcId, 'text');
+        // --- Content records for non-Beranda, non-TentangIMC menus ---
         $this->createContentRecord($proyekId, 'project');
         $this->createContentRecord($hasilId, 'project');
         $this->createContentRecord($showcaseId, 'gallery');
         $this->createContentRecord($kegiatanId, 'agenda');
         $this->createContentRecord($beritaId, 'publication');
+
+        // --- Tentang IMC sub-menus ---
+        $this->createTentangImcSubMenus($tentangImcId);
 
         // --- Beranda sections ---
         $this->createBerandaSections($berandaId);
@@ -102,6 +105,14 @@ class MenuSeeder extends Seeder
         $data['updated_at'] = $this->datetime;
 
         return DB::table('menus')->insertGetId($data);
+    }
+
+    private function createSubMenu(array $data): int
+    {
+        $data['created_at'] = $this->datetime;
+        $data['updated_at'] = $this->datetime;
+
+        return DB::table('sub_menus')->insertGetId($data);
     }
 
     private function createContentRecord(int $menuId, string $type): void
@@ -120,6 +131,51 @@ class MenuSeeder extends Seeder
             'created_at' => $this->datetime,
             'updated_at' => $this->datetime,
         ]);
+    }
+
+    private function createSubMenuContentRecord(int $subMenuId, string $type): void
+    {
+        $layout = DB::table('ms_layout')->where('type', $type)->first();
+
+        DB::table('contents')->insert([
+            'parent_type' => 'App\Models\SubMenu',
+            'parent_id' => $subMenuId,
+            'type' => $type,
+            'layout_id' => $layout?->id,
+            'is_section' => false,
+            'is_show_home' => false,
+            'is_show_tag' => true,
+            'is_accessible' => true,
+            'created_at' => $this->datetime,
+            'updated_at' => $this->datetime,
+        ]);
+    }
+
+    private function createTentangImcSubMenus(int $tentangImcId): void
+    {
+        $subMenus = [
+            ['title' => 'Profil IMC', 'slug' => 'profil-imc', 'order' => 1, 'type' => 'text'],
+            ['title' => 'Tugas dan Fungsi', 'slug' => 'tugas-dan-fungsi', 'order' => 2, 'type' => 'text'],
+            ['title' => 'Visi dan Misi', 'slug' => 'visi-dan-misi', 'order' => 3, 'type' => 'text'],
+            ['title' => 'Sejarah IMC', 'slug' => 'sejarah-imc', 'order' => 4, 'type' => 'text'],
+            ['title' => 'Struktur Organisasi', 'slug' => 'struktur-organisasi', 'order' => 5, 'type' => 'organizational_structure'],
+            ['title' => 'Layanan Kami', 'slug' => 'layanan-kami', 'order' => 6, 'type' => 'text'],
+            ['title' => 'Kontak Kami', 'slug' => 'kontak-kami', 'order' => 7, 'type' => 'text'],
+        ];
+
+        foreach ($subMenus as $subMenuData) {
+            $subMenuId = $this->createSubMenu([
+                'menu_id' => $tentangImcId,
+                'title' => $subMenuData['title'],
+                'slug' => $subMenuData['slug'],
+                'order' => $subMenuData['order'],
+                'has_child' => false,
+                'is_active' => true,
+                'is_show_side_menu' => true,
+            ]);
+
+            $this->createSubMenuContentRecord($subMenuId, $subMenuData['type']);
+        }
     }
 
     private function createBerandaSections(int $berandaId): void
