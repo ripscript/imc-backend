@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\ApiResponse;
 use Closure;
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
@@ -23,9 +24,6 @@ class CheckJwtMultiGuard
             }
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Unauthorized',
-        ], 401);
+        return ApiResponse::error('Unauthorized', null, 401);
     }
 }

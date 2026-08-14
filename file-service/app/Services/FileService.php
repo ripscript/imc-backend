@@ -2,8 +2,13 @@
 
 namespace App\Services;
 
+use App\Exceptions\Domain\EntityNotFoundException;
+use App\Exceptions\Domain\ValidationException;
 use App\Helpers\File;
-use Illuminate\Http\Request;
+use App\Services\DTOs\CompressImageDTO;
+use App\Services\DTOs\FileAccessDTO;
+use App\Services\DTOs\LockFileDTO;
+use App\Services\DTOs\UploadFileDTO;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -20,29 +25,29 @@ class FileService
             ?? self::DEFAULT_MAX_FILE_SIZE;
     }
 
-    public function upload(Request $request)
+    public function upload(UploadFileDTO $dto): array
     {
-        $uploadedFile = $request->file('file');
+        $uploadedFile = $dto->file;
 
         if (! $uploadedFile || ! $uploadedFile->isValid()) {
-            throw new \Exception('File tidak valid atau tidak ditemukan');
+            throw new ValidationException('File tidak valid atau tidak ditemukan');
         }
 
         $maxFileSize = $this->getMaxFileSize();
         $maxSizeInBytes = $maxFileSize * 1024 * 1024;
         if ($uploadedFile->getSize() > $maxSizeInBytes) {
-            throw new \Exception('Ukuran file tidak boleh lebih dari '.$maxFileSize.' MB');
+            throw new ValidationException('Ukuran file tidak boleh lebih dari '.$maxFileSize.' MB');
         }
 
-        $path = $request->filled('path') ? $request->path : 'uploads';
+        $path = $dto->path ?? 'uploads';
 
         $filename = File::generateFilename($uploadedFile->getClientOriginalName());
         $relativePath = $uploadedFile->storeAs($path, $filename, 'public');
         $publicPath = Storage::url($relativePath);
 
         $url = url($publicPath);
-        $baseUrlBefore = env('BASE_URL_BEFORE');
-        $baseUrlAfter = env('BASE_URL_AFTER');
+        $baseUrlBefore = config('app.base_url_before');
+        $baseUrlAfter = config('app.base_url_after');
         $newUrl = str_replace($baseUrlBefore, $baseUrlAfter, $url);
 
         return [
@@ -51,18 +56,18 @@ class FileService
         ];
     }
 
-    public function compressImage(Request $request)
+    public function compressImage(CompressImageDTO $dto): array
     {
-        $image = $request->file('image');
+        $image = $dto->file;
 
         if (! $image || strpos($image->getMimeType(), 'image') === false) {
-            throw new \Exception('Tidak ada gambar atau file tidak valid');
+            throw new ValidationException('Tidak ada gambar atau file tidak valid');
         }
 
         $imageName = File::generateFilename($image->getClientOriginalName());
         $imageExtension = $image->getClientOriginalExtension();
 
-        $pathFolder = $request->filled('path') ? $request->path : 'compressed_images';
+        $pathFolder = $dto->path ?? 'compressed_images';
         $relativePath = $image->storeAs($pathFolder, $imageName, 'public');
 
         $widthLimit = 1920;
@@ -82,8 +87,8 @@ class FileService
         }
         Storage::disk('public')->put($relativePath, $compressedImage->stream());
         $url = url(Storage::url($relativePath));
-        $baseUrlBefore = env('BASE_URL_BEFORE');
-        $baseUrlAfter = env('BASE_URL_AFTER');
+        $baseUrlBefore = config('app.base_url_before');
+        $baseUrlAfter = config('app.base_url_after');
         $newUrl = str_replace($baseUrlBefore, $baseUrlAfter, $url);
 
         return [
@@ -92,45 +97,39 @@ class FileService
         ];
     }
 
-    public function download(Request $request)
+    public function download(FileAccessDTO $dto): array
     {
-        $file = $request->file;
-        $path = 'public/'.$file;
+        $path = 'public/'.$dto->file;
 
         if (! Storage::exists($path)) {
-            throw new \Exception('File tidak ditemukan', 404);
+            throw new EntityNotFoundException('File tidak ditemukan');
         }
 
-        return response()->download(storage_path('app/'.$path));
+        return [
+            'path' => storage_path('app/'.$path),
+            'filename' => basename($dto->file),
+        ];
     }
 
-    public function show(Request $request)
+    public function show(FileAccessDTO $dto): array
     {
-        $file = $request->file;
-        $path = 'public/'.$file;
+        $path = 'public/'.$dto->file;
 
         if (! Storage::exists($path)) {
-            throw new \Exception('File tidak ditemukan', 404);
+            throw new EntityNotFoundException('File tidak ditemukan');
         }
 
-        $absolutePath = storage_path("app/{$path}");
-        $mimeType = Storage::mimeType($path);
-
-        if ($request->boolean('download')) {
-            return response()->download($absolutePath, basename($absolutePath), [
-                'Content-Type' => $mimeType,
-            ]);
-        }
-
-        return response()->file($absolutePath, [
-            'Content-Type' => $mimeType,
-            'Content-Disposition' => 'inline; filename="'.basename($absolutePath).'"',
-        ]);
+        return [
+            'path' => storage_path("app/{$path}"),
+            'mime_type' => Storage::mimeType($path),
+            'filename' => basename($dto->file),
+            'download' => $dto->download,
+        ];
     }
 
-    public function lockUploadedPdf(Request $request)
+    public function lockUploadedPdf(LockFileDTO $dto): array
     {
-        $uploadedFile = $request->file('file');
+        $uploadedFile = $dto->file;
         $inputPath = $uploadedFile->getRealPath();
         $outputPath = storage_path('app/public/locked_'.time().'.pdf');
 
@@ -144,7 +143,8 @@ class FileService
             $pdf->useTemplate($tplIdx);
         }
 
-        $pdf->SetProtection(['print'], 'secret123', null, 0, null);
+        $password = config('file.lock_password');
+        $pdf->SetProtection(['print'], $password, null, 0, null);
         $pdf->Output($outputPath, 'F');
 
         $publicPath = str_replace(storage_path('app/public'), 'storage', $outputPath);
@@ -156,9 +156,9 @@ class FileService
         ];
     }
 
-    public function lockUploadedImage(Request $request)
+    public function lockUploadedImage(LockFileDTO $dto): array
     {
-        $uploadedFile = $request->file('file');
+        $uploadedFile = $dto->file;
         $imagePath = $uploadedFile->getRealPath();
 
         $outputPath = storage_path('app/public/locked_img_'.time().'.pdf');
@@ -170,7 +170,8 @@ class FileService
 
         $pdf->Image($imagePath, 15, 20, 180, 160);
 
-        $pdf->SetProtection(['print', 'copy'], 'secret123', null, 0, null);
+        $password = config('file.lock_password');
+        $pdf->SetProtection(['print', 'copy'], $password, null, 0, null);
         $pdf->Output($outputPath, 'F');
 
         $publicPath = str_replace(storage_path('app/public'), 'storage', $outputPath);
@@ -182,12 +183,12 @@ class FileService
         ];
     }
 
-    public function getFileBase64(Request $request)
+    public function getFileBase64(FileAccessDTO $dto): array
     {
-        $path = 'public/'.$request->file;
+        $path = 'public/'.$dto->file;
 
         if (! Storage::exists($path)) {
-            throw new \Exception('File tidak ditemukan', 404);
+            throw new EntityNotFoundException('File tidak ditemukan');
         }
 
         $fileContent = Storage::get($path);
