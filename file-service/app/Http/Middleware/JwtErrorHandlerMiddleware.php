@@ -36,10 +36,7 @@ class JwtErrorHandlerMiddleware
                             ! isset($payload['token_version']) ||
                             (int) $payload['token_version'] !== (int) $user->token_version
                         ) {
-                            return response()->json([
-                                'status' => false,
-                                'message' => 'Sesi telah berakhir. Silakan login kembali.',
-                            ], 401);
+                            return ApiResponse::error('Sesi telah berakhir. Silakan login kembali.', null, 401);
                         }
                     }
 

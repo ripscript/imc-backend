@@ -14,7 +14,32 @@ class Pemohon extends Authenticatable implements JWTSubject
 
     protected $table = 'pemohon';
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'registration_number',
+        'name',
+        'email',
+        'email_verified_at',
+        'identity_number',
+        'gender',
+        'classification_pemohon_id',
+        'organization',
+        'job_title',
+        'username',
+        'phone_number',
+        'address',
+        'status',
+        'token',
+        'password',
+        'last_login_at',
+        'created_by',
+        'updated_by',
+        'otp',
+        'otp_created_at',
+        'identity_card_file_path',
+        'legal_document_file_path',
+        'token_version',
+        'is_privacy_policy_accepted',
+    ];
 
     protected $hidden = [
         'password',

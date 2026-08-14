@@ -2,10 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Domain\EntityNotFoundException;
+use App\Exceptions\Domain\ValidationException;
 use App\Helpers\ApiResponse;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\ValidationException as LaravelValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
@@ -35,6 +39,22 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         if ($e instanceof ValidationException) {
+            return ApiResponse::error($e->getMessage(), $e->getErrors(), $e->getCode());
+        }
+
+        if ($e instanceof EntityNotFoundException) {
+            return ApiResponse::error($e->getMessage(), null, 404);
+        }
+
+        if ($e instanceof AuthenticationException) {
+            return ApiResponse::error('Unauthenticated', null, 401);
+        }
+
+        if ($e instanceof AuthorizationException) {
+            return ApiResponse::error('Unauthorized', null, 403);
+        }
+
+        if ($e instanceof LaravelValidationException) {
             $errors = $e->errors();
             $flatErrors = collect($errors)->flatten()->implode(', ');
 
