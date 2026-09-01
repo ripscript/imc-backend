@@ -49,7 +49,8 @@ class QuickLinkController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', QuickLink::class);
+        $model = QuickLink::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->quickLinkService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus data link cepat');

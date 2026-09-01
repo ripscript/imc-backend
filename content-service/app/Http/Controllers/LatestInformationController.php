@@ -59,7 +59,8 @@ class LatestInformationController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', LatestInformation::class);
+        $model = LatestInformation::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->latestInformationService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus data informasi terkini');

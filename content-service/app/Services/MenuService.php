@@ -217,6 +217,10 @@ class MenuService
                 DB::rollBack();
                 throw new \App\Exceptions\Domain\ValidationException('Menu masih memiliki sub menu');
             }
+            $content = Content::where(['parent_type' => Menu::class, 'parent_id' => $data->id])->first();
+            if ($content) {
+                $content->delete();
+            }
             $data->delete();
 
             DB::commit();

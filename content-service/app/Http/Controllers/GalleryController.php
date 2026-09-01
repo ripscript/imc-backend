@@ -65,7 +65,8 @@ class GalleryController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', ContentDetailGallery::class);
+        $model = ContentDetailGallery::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->galleryService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus galeri');

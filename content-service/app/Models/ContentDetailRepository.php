@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,8 @@ class ContentDetailRepository extends Model
     protected static function booted()
     {
         static::deleted(function ($content) {
+            ContentTag::where('content_type', ContentDetailRepository::class)
+                ->where('content_id', $content->id)->delete();
             $service = new GlobalSearchService;
             $service->delete(ContentDetailRepository::class, $content->id);
         });

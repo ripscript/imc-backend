@@ -49,7 +49,8 @@ class HomeController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', Content::class);
+        $model = Content::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->homeService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus section');

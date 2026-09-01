@@ -32,6 +32,7 @@ class ProjectResource extends JsonResource
             'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'tag_id' => $this->tag_id ?? [],
             'contentAdditionalImage' => $this->whenLoaded('contentAdditionalImage'),
             'contentAdditionalVideo' => $this->whenLoaded('contentAdditionalVideo'),
             'contentAdditionalFile' => $this->whenLoaded('contentAdditionalFile'),

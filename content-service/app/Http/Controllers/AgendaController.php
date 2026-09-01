@@ -57,7 +57,8 @@ class AgendaController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', ContentDetailAgenda::class);
+        $model = ContentDetailAgenda::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->agendaService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus agenda');

@@ -187,6 +187,10 @@ class SubMenuService
                 DB::rollBack();
                 throw new \App\Exceptions\Domain\ValidationException('Sub menu masih memiliki child sub menu');
             }
+            $content = Content::where(['parent_type' => SubMenu::class, 'parent_id' => $data->id])->first();
+            if ($content) {
+                $content->delete();
+            }
             $data->delete();
 
             DB::commit();

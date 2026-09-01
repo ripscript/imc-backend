@@ -59,7 +59,8 @@ class SubMenuController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', SubMenu::class);
+        $model = SubMenu::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->subMenuService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus sub menu');
