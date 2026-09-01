@@ -56,7 +56,8 @@ class RepositoryController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', ContentDetailRepository::class);
+        $model = ContentDetailRepository::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->repositoryService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus repository');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use App\Traits\HasAdditionalContentMapping;
@@ -75,6 +76,8 @@ class ContentDetailProject extends Model
         });
 
         static::deleted(function ($content) {
+            ContentTag::where('content_type', ContentDetailProject::class)
+                ->where('content_id', $content->id)->delete();
             $service = new GlobalSearchService;
             $service->delete(ContentDetailProject::class, $content->id);
         });

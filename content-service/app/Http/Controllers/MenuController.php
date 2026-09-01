@@ -59,7 +59,8 @@ class MenuController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', Menu::class);
+        $model = Menu::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->menuService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus menu');

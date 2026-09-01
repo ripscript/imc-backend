@@ -41,6 +41,7 @@ class PublicationService
             ->select(
                 'id',
                 'title',
+                'description',
                 'is_publicated',
                 'thumbnail_path',
                 'publish_date',

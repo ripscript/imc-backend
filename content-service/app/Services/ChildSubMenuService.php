@@ -167,6 +167,10 @@ class ChildSubMenuService
         DB::beginTransaction();
         try {
             $data = ChildSubMenu::findOrFail($id);
+            $content = Content::where(['parent_type' => ChildSubMenu::class, 'parent_id' => $data->id])->first();
+            if ($content) {
+                $content->delete();
+            }
             $data->delete();
 
             DB::commit();

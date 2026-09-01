@@ -56,7 +56,8 @@ class ProjectController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', ContentDetailProject::class);
+        $model = ContentDetailProject::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->projectService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus proyek');

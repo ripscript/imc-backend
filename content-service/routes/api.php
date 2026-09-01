@@ -129,7 +129,7 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::post('/', [HomeController::class, 'create']);
         Route::get('/{id}', [HomeController::class, 'detail']);
         Route::put('/{id}', [HomeController::class, 'update']);
-        // Route::delete('/{id}', [HomeController::class, 'delete']);
+        Route::delete('/{id}', [HomeController::class, 'delete']);
     });
 
     Route::prefix('latest-information')->group(function () {

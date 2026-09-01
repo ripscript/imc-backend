@@ -56,7 +56,8 @@ class PublicationController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', ContentDetailPublication::class);
+        $model = ContentDetailPublication::findOrFail($id);
+        $this->authorize('delete', $model);
         $this->publicationService->destroy($id);
 
         return ApiResponse::success('', 'Berhasil menghapus publikasi');
