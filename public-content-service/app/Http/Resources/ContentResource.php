@@ -25,6 +25,7 @@ class ContentResource extends JsonResource
             'parent_menu' => $this->when(isset($this->parent_menu), $this->parent_menu),
             'image_link' => $this->whenLoaded('contentDetailImageLink'),
             'image_carousel' => $this->whenLoaded('contentDetailImageCarousel'),
+            'hero_carousel' => $this->whenLoaded('contentDetailHeroCarousel'),
             'card_link' => $this->whenLoaded('contentDetailCardLink'),
             'video_carousel' => $this->whenLoaded('contentDetailVideoCarousel'),
             'accordion_group' => $this->whenLoaded('contentDetailAccordionGroup'),

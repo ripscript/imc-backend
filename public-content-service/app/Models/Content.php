@@ -45,6 +45,11 @@ class Content extends Model
         return $this->hasMany(ContentDetailImageCarousel::class)->orderBy('order', 'asc');
     }
 
+    public function contentDetailHeroCarousel()
+    {
+        return $this->hasMany(ContentDetailHeroCarousel::class)->orderBy('order', 'asc');
+    }
+
     public function contentDetailCardLink()
     {
         return $this->hasMany(ContentDetailCardLink::class)->orderBy('order', 'asc');
@@ -108,6 +113,9 @@ class Content extends Model
                 break;
             case 'image_carousel':
                 return $this->contentDetailImageCarousel;
+                break;
+            case 'hero_carousel':
+                return $this->contentDetailHeroCarousel;
                 break;
             case 'image_link':
                 return $this->contentDetailImageLink;
