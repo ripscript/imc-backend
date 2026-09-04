@@ -15,7 +15,7 @@ class ContentFactory extends Factory
             'layout_id' => null,
             'parent_type' => 'App\Models\Menu',
             'parent_id' => 1,
-            'type' => fake()->randomElement(['publication', 'repository', 'gallery', 'text', 'card_link', 'image_carousel', 'image_link', 'video_carousel', 'accordion', 'consume', 'agenda']),
+            'type' => fake()->randomElement(['publication', 'repository', 'gallery', 'text', 'card_link', 'image_carousel', 'image_link', 'video_carousel', 'accordion', 'consume', 'agenda', 'hero_carousel']),
             'sub_type' => null,
             'title' => fake()->sentence(),
             'slug' => fake()->unique()->slug(),

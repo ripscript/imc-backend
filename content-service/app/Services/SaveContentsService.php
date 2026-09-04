@@ -11,6 +11,7 @@ use App\Models\ContentDetailAccordionGroup;
 use App\Models\ContentDetailAccordionList;
 use App\Models\ContentDetailCardLink;
 use App\Models\ContentDetailConsume;
+use App\Models\ContentDetailHeroCarousel;
 use App\Models\ContentDetailImageCarousel;
 use App\Models\ContentDetailImageLink;
 use App\Models\ContentDetailText;
@@ -79,6 +80,19 @@ class SaveContentsService
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailImageCarousel::class, $data['deleted_content_detail_id']);
+                }
+
+                return $results;
+                break;
+
+            case 'hero_carousel':
+                $results = [];
+                foreach ($dataContent as $key => $value) {
+                    $payload = $this->buildHeroCarouselPayload($content, $value, $user, $key);
+                    $results[] = $this->saveRecord(ContentDetailHeroCarousel::class, $value['id'], $payload, $user);
+                }
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailHeroCarousel::class, $data['deleted_content_detail_id']);
                 }
 
                 return $results;
@@ -224,6 +238,21 @@ class SaveContentsService
             'order' => ($key + 1),
             'updated_by' => $user,
             'link' => $data['link'] ?? '',
+        ];
+    }
+
+    private function buildHeroCarouselPayload($content, $data, $user, $key = 0)
+    {
+        return [
+            'content_id' => $content->id,
+            'image_path' => $data['image_path'],
+            'tag' => $data['tag'] ?? null,
+            'title' => $data['title'],
+            'subtitle' => $data['subtitle'] ?? null,
+            'button_text' => $data['button_text'] ?? null,
+            'button_link' => $data['button_link'] ?? null,
+            'order' => ($key + 1),
+            'updated_by' => $user,
         ];
     }
 
