@@ -26,6 +26,10 @@ return [
         'setting-service' => [
             'name' => 'Setting Service',
             'description' => 'System settings',
+        ],
+        'project-service' => [
+            'name' => 'Project Service',
+            'description' => 'Project management',
         ]
     ],
 ];

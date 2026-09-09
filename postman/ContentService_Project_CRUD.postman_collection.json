@@ -1,0 +1,379 @@
+{
+  "info": {
+    "name": "Content Service - Project CRUD",
+    "description": "Sample requests/responses CRUD proyek (ContentDetailProject) pada content-service.\n\nSemua endpoint admin, dilindungi JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n\nBase URL local dev: http://localhost:4076/content-service/api\n\nEndpoints:\n1. GET    /project/side-menu            - daftar parent content tipe proyek\n2. GET    /project/list/{contentId}     - list proyek per content (paginated)\n3. POST   /project                      - buat proyek\n4. GET    /project/{id}                 - detail proyek\n5. PUT    /project/{id}                 - update proyek\n6. DELETE /project/{id}                 - hapus proyek",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/content-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_ADMIN"
+    },
+    {
+      "key": "content_id",
+      "value": "12"
+    },
+    {
+      "key": "project_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Side Menu (daftar parent content)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/project/side-menu",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project",
+            "side-menu"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Side menu berhasil",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil side menu untuk tipe proyek\",\n    \"data\": [\n        {\n            \"id\": 12,\n            \"parent_type\": \"App\\\\Models\\\\SubMenu\",\n            \"sub_type\": null,\n            \"parent\": {\n                \"id\": 7,\n                \"title\": \"Proyek Strategis\",\n                \"slug\": \"proyek\",\n                \"menu\": {\n                    \"id\": 2,\n                    \"title\": \"Profil\",\n                    \"slug\": \"profil\"\n                }\n            }\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. List proyek",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/project/list/{{content_id}}?page=1&limit=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project",
+            "list",
+            "{{content_id}}"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": "",
+              "description": "optional - cari berdasarkan title",
+              "disabled": true
+            },
+            {
+              "key": "sort_by",
+              "value": "publish_date",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "sort_order",
+              "value": "desc",
+              "description": "optional - asc | desc",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - List proyek berhasil",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data proyek\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"title\": \"Revitalisasi Taman Kota\",\n                \"is_publicated\": true,\n                \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n                \"publish_date\": \"2026-07-15\",\n                \"slug\": \"revitalisasi-taman-kota\",\n                \"duration\": \"12 bulan\",\n                \"location\": \"Jakarta Pusat\",\n                \"start_date\": \"2026-01-10\",\n                \"updated_at\": \"2026-08-01T09:30:00.000000Z\",\n                \"parent_url\": \"profil/proyek\"\n            }\n        ],\n        \"meta\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"total\": 1,\n            \"total_page\": 1\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "3. Buat proyek",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"content_id\": {{content_id}},\n    \"title\": \"Revitalisasi Taman Kota\",\n    \"slug\": \"revitalisasi-taman-kota\",\n    \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n    \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n    \"publish_date\": \"2026-07-15\",\n    \"is_publicated\": true,\n    \"tag_id\": [1, 2],\n    \"has_additional_image\": false,\n    \"has_additional_video\": false,\n    \"has_additional_file\": false,\n    \"has_additional_link\": false,\n    \"has_additional_text\": false,\n    \"duration\": \"12 bulan\",\n    \"location\": \"Jakarta Pusat\",\n    \"start_date\": \"2026-01-10\",\n    \"budget\": 25000000000,\n    \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n    \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/project",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201 - Proyek berhasil dibuat",
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil menambahkan data proyek\",\n    \"data\": {\n        \"id\": 1,\n        \"content_id\": 12,\n        \"title\": \"Revitalisasi Taman Kota\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"12 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"start_date\": \"2026-01-10\",\n        \"budget\": 25000000000,\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"has_additional_image\": false,\n        \"has_additional_video\": false,\n        \"has_additional_file\": false,\n        \"has_additional_link\": false,\n        \"has_additional_text\": false,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"created_at\": \"2026-08-01T09:30:00.000000Z\",\n        \"updated_at\": \"2026-08-01T09:30:00.000000Z\",\n        \"tag_id\": [1, 2]\n    }\n}"
+        },
+        {
+          "name": "422 - Validasi gagal",
+          "status": "Unprocessable Entity",
+          "code": 422,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"title\": [\n            \"The title field is required.\"\n        ],\n        \"is_publicated\": [\n            \"The is publicated field is required.\"\n        ]\n    }\n}"
+        },
+        {
+          "name": "401 - Token tidak valid / kadaluarsa",
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Unauthenticated\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Detail proyek",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/project/{{project_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project",
+            "{{project_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Detail proyek berhasil",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail proyek\",\n    \"data\": {\n        \"id\": 1,\n        \"content_id\": 12,\n        \"title\": \"Revitalisasi Taman Kota\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"12 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"start_date\": \"2026-01-10\",\n        \"budget\": 25000000000,\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"has_additional_image\": false,\n        \"has_additional_video\": false,\n        \"has_additional_file\": false,\n        \"has_additional_link\": false,\n        \"has_additional_text\": false,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"created_at\": \"2026-08-01T09:30:00.000000Z\",\n        \"updated_at\": \"2026-08-01T09:30:00.000000Z\",\n        \"tag_id\": [1, 2]\n    }\n}"
+        },
+        {
+          "name": "404 - Proyek tidak ditemukan",
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"No query results for model [App\\\\Models\\\\ContentDetailProject].\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Update proyek (dengan additional content)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Revitalisasi Taman Kota (Update)\",\n    \"slug\": \"revitalisasi-taman-kota\",\n    \"description\": \"Deskripsi terbaru revitalisasi taman kota.\",\n    \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n    \"publish_date\": \"2026-07-15\",\n    \"is_publicated\": true,\n    \"tag_id\": [1],\n    \"has_additional_image\": true,\n    \"has_additional_video\": false,\n    \"has_additional_file\": false,\n    \"has_additional_link\": false,\n    \"has_additional_text\": true,\n    \"content_additional_image\": [\n        {\n            \"id\": null,\n            \"image_path\": \"/storage/additionals/taman-foto-1.jpg\",\n            \"description\": \"Taman sebelum revitalisasi\"\n        },\n        {\n            \"id\": 5,\n            \"image_path\": \"/storage/additionals/taman-foto-2.jpg\",\n            \"description\": \"Taman sesudah revitalisasi\"\n        }\n    ],\n    \"content_additional_text\": [\n        {\n            \"id\": null,\n            \"title\": \"Capaian\",\n            \"description\": \"Penambahan 2.500 m2 area hijau produktif.\"\n        }\n    ],\n    \"deleted_content_additional_image_id\": [3],\n    \"deleted_content_additional_text_id\": [7],\n    \"duration\": \"14 bulan\",\n    \"location\": \"Jakarta Pusat\",\n    \"start_date\": \"2026-01-10\",\n    \"budget\": 27500000000,\n    \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n    \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/project/{{project_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project",
+            "{{project_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Proyek berhasil diperbarui",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil memperbarui data proyek\",\n    \"data\": {\n        \"id\": 1,\n        \"content_id\": 12,\n        \"title\": \"Revitalisasi Taman Kota (Update)\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"description\": \"Deskripsi terbaru revitalisasi taman kota.\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"14 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"start_date\": \"2026-01-10\",\n        \"budget\": 27500000000,\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"has_additional_image\": true,\n        \"has_additional_video\": false,\n        \"has_additional_file\": false,\n        \"has_additional_link\": false,\n        \"has_additional_text\": true,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"created_at\": \"2026-08-01T09:30:00.000000Z\",\n        \"updated_at\": \"2026-08-02T14:15:00.000000Z\",\n        \"tag_id\": [1],\n        \"contentAdditionalImage\": [\n            {\n                \"id\": 5,\n                \"image_path\": \"/storage/additionals/taman-foto-2.jpg\",\n                \"description\": \"Taman sesudah revitalisasi\"\n            }\n        ],\n        \"contentAdditionalVideo\": [],\n        \"contentAdditionalFile\": [],\n        \"contentAdditionalLink\": [],\n        \"contentAdditionalText\": [\n            {\n                \"id\": 8,\n                \"title\": \"Capaian\",\n                \"description\": \"Penambahan 2.500 m2 area hijau produktif.\"\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "6. Hapus proyek",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/project/{{project_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "project",
+            "{{project_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Proyek berhasil dihapus",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil menghapus proyek\",\n    \"data\": \"\"\n}"
+        },
+        {
+          "name": "404 - Proyek tidak ditemukan",
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"No query results for model [App\\\\Models\\\\ContentDetailProject].\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    }
+  ]
+}

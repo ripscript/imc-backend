@@ -1,5 +1,5 @@
 
-SERVICES := master-service user-service content-service public-content-service file-service setting-service
+SERVICES := master-service user-service content-service public-content-service file-service setting-service project-service
 COMPOSE  := docker compose -f docker-compose.local.yaml
 
 # Default target

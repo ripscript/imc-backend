@@ -1,0 +1,887 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4076/api",
+            "description": "Live"
+        },
+        {
+            "url": "http://localhost:4076/api",
+            "description": "API"
+        }
+    ],
+    "paths": {
+        "/health": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "const": "ok"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Project service berhasil diakses"
+                                        },
+                                        "time": {
+                                            "type": "string"
+                                        },
+                                        "dependencies": {
+                                            "type": "object",
+                                            "properties": {
+                                                "db": {
+                                                    "type": "string",
+                                                    "const": "error"
+                                                }
+                                            },
+                                            "required": [
+                                                "db"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "status",
+                                        "message",
+                                        "time",
+                                        "dependencies"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/projects": {
+            "get": {
+                "operationId": "project.index",
+                "tags": [
+                    "Project"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data proyek"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "const": 1
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ProjectListResource"
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "current_page",
+                                                "per_page",
+                                                "total",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "project.create",
+                "tags": [
+                    "Project"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Proyek dibuat (status draft)"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProjectResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
+            }
+        },
+        "/projects/{project_no}": {
+            "get": {
+                "operationId": "project.detail",
+                "tags": [
+                    "Project"
+                ],
+                "parameters": [
+                    {
+                        "name": "project_no",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Berhasil mengambil data detail proyek"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProjectResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
+            },
+            "put": {
+                "operationId": "project.update",
+                "tags": [
+                    "Project"
+                ],
+                "parameters": [
+                    {
+                        "name": "project_no",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Proyek diperbarui"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProjectResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "project.destroy",
+                "tags": [
+                    "Project"
+                ],
+                "parameters": [
+                    {
+                        "name": "project_no",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "const": "Proyek dihapus"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAdmin": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAdmin": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "bearerPemohon": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "schemas": {
+            "CreateProjectRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "client_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "partner_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "category_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "workflow_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "pic_user_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "start_date": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "target_end_date": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "attachments": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "format": "uri"
+                        },
+                        "maxItems": 3
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "title": "CreateProjectRequest"
+            },
+            "ProjectAttachmentResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "file_url": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "file_url",
+                    "created_by"
+                ],
+                "title": "ProjectAttachmentResource"
+            },
+            "ProjectListResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "project_no": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "client": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "partner": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "category": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code",
+                            "name"
+                        ]
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "progress": {
+                        "type": "string"
+                    },
+                    "current_stage": {
+                        "type": "null"
+                    },
+                    "pic": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "start_date": {
+                        "type": "string"
+                    },
+                    "target_end_date": {
+                        "type": "string"
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProjectAttachmentResource"
+                        }
+                    }
+                },
+                "required": [
+                    "id",
+                    "project_no",
+                    "name",
+                    "client",
+                    "partner",
+                    "category",
+                    "status",
+                    "progress",
+                    "current_stage",
+                    "pic",
+                    "start_date",
+                    "target_end_date"
+                ],
+                "title": "ProjectListResource"
+            },
+            "ProjectResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "project_no": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "client": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "partner": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "category": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code",
+                            "name"
+                        ]
+                    },
+                    "workflow": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "code": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "code",
+                            "name",
+                            "version"
+                        ]
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "progress": {
+                        "type": "string"
+                    },
+                    "current_stage": {
+                        "type": "null"
+                    },
+                    "pic": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ]
+                    },
+                    "start_date": {
+                        "type": "string"
+                    },
+                    "target_end_date": {
+                        "type": "string"
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProjectAttachmentResource"
+                        }
+                    },
+                    "stages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 0,
+                        "maxItems": 0,
+                        "additionalItems": false
+                    },
+                    "milestones": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 0,
+                        "maxItems": 0,
+                        "additionalItems": false
+                    },
+                    "open_change_requests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 0,
+                        "maxItems": 0,
+                        "additionalItems": false
+                    },
+                    "custom_fields": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 0,
+                        "maxItems": 0,
+                        "additionalItems": false
+                    }
+                },
+                "required": [
+                    "id",
+                    "project_no",
+                    "name",
+                    "description",
+                    "client",
+                    "partner",
+                    "category",
+                    "workflow",
+                    "status",
+                    "progress",
+                    "current_stage",
+                    "pic",
+                    "start_date",
+                    "target_end_date",
+                    "stages",
+                    "milestones",
+                    "open_change_requests",
+                    "custom_fields"
+                ],
+                "title": "ProjectResource"
+            },
+            "UpdateProjectRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "client_id": {
+                        "type": "integer"
+                    },
+                    "partner_id": {
+                        "type": "integer"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "workflow_id": {
+                        "type": "integer"
+                    },
+                    "pic_user_id": {
+                        "type": "integer"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "target_end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "draft",
+                            "pending_approval",
+                            "active",
+                            "on_hold",
+                            "completed",
+                            "cancelled"
+                        ]
+                    },
+                    "attachments": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "format": "uri"
+                        },
+                        "maxItems": 3
+                    },
+                    "deleted_attachment_ids": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "title": "UpdateProjectRequest"
+            }
+        },
+        "responses": {
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
