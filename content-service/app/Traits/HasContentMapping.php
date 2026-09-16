@@ -20,6 +20,6 @@ trait HasContentMapping
             $this->sub_type = $content->sub_type;
         }
 
-        $this->content = $content->getDetailBasedOnType();
+        $this->content_detail = $content->getDetailBasedOnType();
     }
 }

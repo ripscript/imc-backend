@@ -151,6 +151,7 @@ class SubMenuService
                 $content->parent_type = SubMenu::class;
                 $content->parent_id = $subMenu->id;
                 $content->layout_id = $dto->layout_id;
+                $content->type = $dto->type;
                 $content->updated_by = $dto->updated_by;
                 $content->is_accessible = $subMenu->is_active ? true : ($dto->is_accessible ?? false);
                 if (in_array($dto->type, ['publication', 'repository', 'gallery'])) {

@@ -15,7 +15,7 @@ class ContentAdditionalImageFactory extends Factory
         return [
             'content_type' => Content::class,
             'content_id' => Content::factory(),
-            'image_url' => fake()->imageUrl(),
+            'image_path' => 'uploads/'.fake()->uuid().'.jpg',
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

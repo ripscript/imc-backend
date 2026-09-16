@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +26,11 @@ class ContentDetailRepository extends Model
     ];
 
     protected $logName = 'repositori';
+
+    public function contentTag()
+    {
+        return $this->morphMany(ContentTag::class, 'content');
+    }
 
     protected static function booted()
     {

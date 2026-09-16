@@ -15,7 +15,9 @@ class ContentAdditionalVideoFactory extends Factory
         return [
             'content_type' => Content::class,
             'content_id' => Content::factory(),
-            'video_url' => fake()->url(),
+            'title' => fake()->sentence(4),
+            'type' => 'link',
+            'url' => fake()->url(),
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

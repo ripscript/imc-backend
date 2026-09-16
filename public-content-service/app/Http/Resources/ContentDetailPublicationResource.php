@@ -14,6 +14,8 @@ class ContentDetailPublicationResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'type' => $this->type,
+            'thumbnail_path' => $this->thumbnail_path,
+            'publish_date' => $this->publish_date,
             'kategori_title' => $this->kategori_title,
             'content_tag' => $this->whenLoaded('contentTag'),
             'layout' => $this->whenLoaded('layout'),

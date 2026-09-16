@@ -8,6 +8,10 @@ class GlobalSearchService
 {
     public function insertContent($contentId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             INSERT INTO global_search_index (
                 source_type,
@@ -285,6 +289,10 @@ class GlobalSearchService
 
     public function insertPublication($publicationId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             INSERT INTO global_search_index (
                 source_type,
@@ -442,6 +450,10 @@ class GlobalSearchService
 
     public function insertGallery($galleryId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             INSERT INTO global_search_index (
                 source_type,
@@ -547,6 +559,10 @@ class GlobalSearchService
 
     public function insertRepository($repositoryId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             INSERT INTO global_search_index (
                 source_type,
@@ -641,6 +657,10 @@ class GlobalSearchService
 
     public function insertProject($projectId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             INSERT INTO global_search_index (
                 source_type,
@@ -738,6 +758,10 @@ class GlobalSearchService
 
     public function delete($sourceType, $sourceId)
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::statement("
             DELETE from global_search_index WHERE source_type = '{$sourceType}' AND source_id = {$sourceId};
         ");

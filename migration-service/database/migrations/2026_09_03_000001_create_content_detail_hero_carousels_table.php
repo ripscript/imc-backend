@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('content_detail_hero_carousels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('content_id')->references('id')->on('contents')->onDelete('cascade');
-            $table->text('image_path');
-            $table->string('tag')->nullable();
-            $table->string('title');
-            $table->text('subtitle')->nullable();
+            $table->string('source_type')->nullable();
+            $table->unsignedBigInteger('source_id')->nullable();
             $table->string('button_text')->nullable();
-            $table->text('button_link')->nullable();
             $table->integer('order')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

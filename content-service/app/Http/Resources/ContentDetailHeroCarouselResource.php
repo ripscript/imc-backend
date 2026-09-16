@@ -10,8 +10,9 @@ class ContentDetailHeroCarouselResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'source_type' => $this->source_type,
+            'source_id' => $this->source_id,
             'image_path' => $this->image_path,
-            'tag' => $this->tag,
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'button_text' => $this->button_text,

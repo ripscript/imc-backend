@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use App\Traits\HasAdditionalContentMapping;
@@ -59,6 +58,21 @@ class ContentDetailPublication extends Model
     public function contentAdditionalText()
     {
         return $this->morphOne(ContentAdditionalText::class, 'content');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(MsKategoriContent::class, 'kategori_content_id', 'id');
+    }
+
+    public function contentTag()
+    {
+        return $this->morphMany(ContentTag::class, 'content');
+    }
+
+    public function getKategoriTitleAttribute()
+    {
+        return $this->kategori?->title;
     }
 
     protected static function booted()

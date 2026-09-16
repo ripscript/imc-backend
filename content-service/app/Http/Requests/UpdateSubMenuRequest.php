@@ -22,6 +22,7 @@ class UpdateSubMenuRequest extends FormRequest
                 $query->where('menu_id', $this->menu_id);
             })->ignore($id)],
             'title' => 'required|string|max:200',
+            'type' => 'nullable|string',
             'is_active' => 'required',
             'order' => 'required',
             'layout_id' => 'required_if:has_child,false',

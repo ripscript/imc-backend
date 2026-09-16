@@ -23,4 +23,9 @@ class ContentDetailOrganizationalStructureMember extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function group()
+    {
+        return $this->belongsTo(ContentDetailOrganizationalStructureGroup::class, 'content_detail_organizational_structure_group_id');
+    }
 }

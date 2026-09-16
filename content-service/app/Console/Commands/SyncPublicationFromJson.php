@@ -34,14 +34,16 @@ class SyncPublicationFromJson extends Command
         $dryRun = $this->option('dry-run');
         $limit = $this->option('limit') ? (int) $this->option('limit') : null;
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->error("File not found: {$path}");
+
             return self::FAILURE;
         }
 
         $json = json_decode(file_get_contents($path), true);
-        if (!$json || !isset($json['data'])) {
+        if (! $json || ! isset($json['data'])) {
             $this->error('Invalid JSON structure — missing data key');
+
             return self::FAILURE;
         }
 
@@ -53,7 +55,7 @@ class SyncPublicationFromJson extends Command
             $publications = array_slice($publications, 0, $limit);
         }
 
-        $this->info("Found " . count($publications) . " publications and " . count($tags) . " tags");
+        $this->info('Found '.count($publications).' publications and '.count($tags).' tags');
 
         if ($dryRun) {
             $this->warn('--- DRY RUN — no database changes ---');
@@ -61,7 +63,7 @@ class SyncPublicationFromJson extends Command
 
         // Resolve or create content_id
         $resolvedContentId = $this->resolveContentId($contentId, $menuId, $data, $dryRun);
-        if (!$resolvedContentId) {
+        if (! $resolvedContentId) {
             return self::FAILURE;
         }
 
@@ -96,52 +98,53 @@ class SyncPublicationFromJson extends Command
                 if ($existing) {
                     $skipped++;
                     $bar->advance();
+
                     continue;
                 }
 
-                if (!$dryRun) {
+                if (! $dryRun) {
                     DB::beginTransaction();
 
                     // 1. Create ContentDetailPublication
                     $publication = ContentDetailPublication::create([
-                        'content_id'       => $resolvedContentId,
-                        'title'            => $pub['title'] ?? '',
-                        'slug'             => $slug,
-                        'headline'         => $pub['headline'] ?? null,
-                        'description'      => $pub['content_detail'] ?? null,
-                        'is_publicated'    => $pub['is_publicated'] ?? false,
-                        'thumbnail_path'   => $pub['thumbnail_path'] ?? null,
-                        'publish_date'     => $pub['publish_date'] ?? now(),
-                        'layout_id'        => $layoutId,
-                        'is_slider'        => false,
-                        'has_additional_image' => !empty($pub['additional_image']),
-                        'has_additional_video' => !empty($pub['additional_video']),
-                        'has_additional_file'  => !empty($pub['additional_file']),
-                        'has_additional_link'  => !empty($pub['additional_link']),
+                        'content_id' => $resolvedContentId,
+                        'title' => $pub['title'] ?? '',
+                        'slug' => $slug,
+                        'headline' => $pub['headline'] ?? null,
+                        'description' => $pub['content_detail'] ?? null,
+                        'is_publicated' => $pub['is_publicated'] ?? false,
+                        'thumbnail_path' => $pub['thumbnail_path'] ?? null,
+                        'publish_date' => $pub['publish_date'] ?? now(),
+                        'layout_id' => $layoutId,
+                        'is_slider' => false,
+                        'has_additional_image' => ! empty($pub['additional_image']),
+                        'has_additional_video' => ! empty($pub['additional_video']),
+                        'has_additional_file' => ! empty($pub['additional_file']),
+                        'has_additional_link' => ! empty($pub['additional_link']),
                     ]);
 
                     // 2. Sync tags for this publication
-                    if (!empty($pub['tag'])) {
+                    if (! empty($pub['tag'])) {
                         $this->syncPublicationTags($publication, $pub['tag'], $tagMap);
                     }
 
                     // 3. Sync additional images
-                    if (!empty($pub['additional_image'])) {
+                    if (! empty($pub['additional_image'])) {
                         $this->syncAdditionalImages($publication, $pub['additional_image']);
                     }
 
                     // 4. Sync additional videos
-                    if (!empty($pub['additional_video'])) {
+                    if (! empty($pub['additional_video'])) {
                         $this->syncAdditionalVideos($publication, $pub['additional_video']);
                     }
 
                     // 5. Sync additional files
-                    if (!empty($pub['additional_file'])) {
+                    if (! empty($pub['additional_file'])) {
                         $this->syncAdditionalFiles($publication, $pub['additional_file']);
                     }
 
                     // 6. Sync additional links
-                    if (!empty($pub['additional_link'])) {
+                    if (! empty($pub['additional_link'])) {
                         $this->syncAdditionalLinks($publication, $pub['additional_link']);
                     }
 
@@ -150,7 +153,7 @@ class SyncPublicationFromJson extends Command
 
                 $created++;
             } catch (\Exception $e) {
-                if (!$dryRun) {
+                if (! $dryRun) {
                     DB::rollBack();
                 }
                 $this->newLine();
@@ -192,29 +195,31 @@ class SyncPublicationFromJson extends Command
         $existingContent = Content::where('type', 'publication')->first();
         if ($existingContent) {
             $this->info("Found existing publication content: {$existingContent->id}");
+
             return $existingContent->id;
         }
 
         // Create new Content record if menu_id provided
-        if ($menuId && !$dryRun) {
+        if ($menuId && ! $dryRun) {
             $contentData = $data['content'] ?? [];
             $content = Content::create([
-                'parent_type'      => 'App\Models\Menu',
-                'parent_id'        => $menuId,
-                'type'             => 'publication',
-                'section_title'    => $contentData['title'] ?? 'Publication',
-                'is_section'       => false,
-                'is_show_home'     => true,
-                'is_accessible'    => true,
-                'is_show_tag'      => true,
-                'sub_type'         => $contentData['sub_type'] ?? null,
-                'order'            => 0,
+                'parent_type' => 'App\Models\Menu',
+                'parent_id' => $menuId,
+                'type' => 'publication',
+                'section_title' => $contentData['title'] ?? 'Publication',
+                'is_section' => false,
+                'is_show_home' => true,
+                'is_accessible' => true,
+                'is_show_tag' => true,
+                'sub_type' => $contentData['sub_type'] ?? null,
+                'order' => 0,
             ]);
             $this->info("Created new Content record: {$content->id}");
+
             return $content->id;
         }
 
-        if (!$menuId) {
+        if (! $menuId) {
             $this->error('No existing publication content found. Provide --content-id or --menu-id');
         }
 
@@ -228,14 +233,16 @@ class SyncPublicationFromJson extends Command
             $name = $tag['title'];
             if ($dryRun) {
                 $map[$name] = 0;
+
                 continue;
             }
             $msTag = MsTag::firstOrCreate(
-                ['name' => $name],
+                ['title' => $name],
                 ['is_active' => true]
             );
             $map[$name] = $msTag->id;
         }
+
         return $map;
     }
 
@@ -243,15 +250,15 @@ class SyncPublicationFromJson extends Command
     {
         foreach ($tagNames as $tagName) {
             $tagId = $tagMap[$tagName] ?? null;
-            if (!$tagId) {
+            if (! $tagId) {
                 // Try to find or create on the fly
-                $msTag = MsTag::firstOrCreate(['name' => $tagName], ['is_active' => true]);
+                $msTag = MsTag::firstOrCreate(['title' => $tagName], ['is_active' => true]);
                 $tagId = $msTag->id;
             }
             ContentTag::firstOrCreate([
                 'content_type' => ContentDetailPublication::class,
-                'content_id'   => $pub->id,
-                'tag_id'       => $tagId,
+                'content_id' => $pub->id,
+                'tag_id' => $tagId,
             ]);
         }
     }
@@ -260,11 +267,11 @@ class SyncPublicationFromJson extends Command
     {
         foreach ($images as $i => $img) {
             ContentAdditionalImage::create([
-                'content_type'  => ContentDetailPublication::class,
-                'content_id'    => $pub->id,
-                'image_path'    => is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? ''),
-                'description'   => is_array($img) ? ($img['description'] ?? null) : null,
-                'order'         => $i + 1,
+                'content_type' => ContentDetailPublication::class,
+                'content_id' => $pub->id,
+                'image_path' => is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? ''),
+                'description' => is_array($img) ? ($img['description'] ?? null) : null,
+                'order' => $i + 1,
             ]);
         }
     }
@@ -273,13 +280,13 @@ class SyncPublicationFromJson extends Command
     {
         foreach ($videos as $i => $vid) {
             ContentAdditionalVideo::create([
-                'content_type'  => ContentDetailPublication::class,
-                'content_id'    => $pub->id,
-                'title'         => is_array($vid) ? ($vid['title'] ?? null) : null,
-                'type'          => is_array($vid) ? ($vid['type'] ?? 'external') : 'external',
-                'url'           => is_string($vid) ? $vid : ($vid['url'] ?? $vid['video_path'] ?? ''),
-                'video_path'    => is_array($vid) ? ($vid['video_path'] ?? null) : null,
-                'order'         => $i + 1,
+                'content_type' => ContentDetailPublication::class,
+                'content_id' => $pub->id,
+                'title' => is_array($vid) ? ($vid['title'] ?? null) : null,
+                'type' => is_array($vid) ? ($vid['type'] ?? 'external') : 'external',
+                'url' => is_string($vid) ? $vid : ($vid['url'] ?? $vid['video_path'] ?? ''),
+                'video_path' => is_array($vid) ? ($vid['video_path'] ?? null) : null,
+                'order' => $i + 1,
             ]);
         }
     }
@@ -288,12 +295,12 @@ class SyncPublicationFromJson extends Command
     {
         foreach ($files as $i => $file) {
             ContentAdditionalFile::create([
-                'content_type'  => ContentDetailPublication::class,
-                'content_id'    => $pub->id,
-                'title'         => is_array($file) ? ($file['title'] ?? null) : null,
-                'file_path'     => is_string($file) ? $file : ($file['file_path'] ?? $file['path'] ?? ''),
-                'description'   => is_array($file) ? ($file['description'] ?? null) : null,
-                'order'         => $i + 1,
+                'content_type' => ContentDetailPublication::class,
+                'content_id' => $pub->id,
+                'title' => is_array($file) ? ($file['title'] ?? null) : null,
+                'file_path' => is_string($file) ? $file : ($file['file_path'] ?? $file['path'] ?? ''),
+                'description' => is_array($file) ? ($file['description'] ?? null) : null,
+                'order' => $i + 1,
             ]);
         }
     }
@@ -302,11 +309,11 @@ class SyncPublicationFromJson extends Command
     {
         foreach ($links as $i => $link) {
             ContentAdditionalLink::create([
-                'content_type'  => ContentDetailPublication::class,
-                'content_id'    => $pub->id,
-                'title'         => is_array($link) ? ($link['title'] ?? null) : null,
-                'link'          => is_string($link) ? $link : ($link['link'] ?? $link['url'] ?? ''),
-                'order'         => $i + 1,
+                'content_type' => ContentDetailPublication::class,
+                'content_id' => $pub->id,
+                'title' => is_array($link) ? ($link['title'] ?? null) : null,
+                'link' => is_string($link) ? $link : ($link['link'] ?? $link['url'] ?? ''),
+                'order' => $i + 1,
             ]);
         }
     }

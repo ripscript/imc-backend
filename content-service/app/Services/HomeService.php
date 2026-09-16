@@ -76,6 +76,8 @@ class HomeService
 
             DB::commit();
 
+            $content->content = $content->getDetailBasedOnType();
+
             return $content;
         } catch (\Exception $e) {
             DB::rollBack();
@@ -98,6 +100,8 @@ class HomeService
             $this->saveContentService->store($content, $dto->toArray(), $dto->updated_by);
 
             DB::commit();
+
+            $content->content = $content->getDetailBasedOnType();
 
             return $content;
         } catch (\Exception $e) {

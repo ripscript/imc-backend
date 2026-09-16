@@ -14,6 +14,8 @@ use App\Models\ContentDetailConsume;
 use App\Models\ContentDetailHeroCarousel;
 use App\Models\ContentDetailImageCarousel;
 use App\Models\ContentDetailImageLink;
+use App\Models\ContentDetailOrganizationalStructureGroup;
+use App\Models\ContentDetailOrganizationalStructureMember;
 use App\Models\ContentDetailText;
 use App\Models\ContentDetailVideoCarousel;
 use App\Models\ContentTag;
@@ -43,14 +45,14 @@ class SaveContentsService
             case 'text':
                 $payload = $this->buildTextPayload($content, $dataContent, $user);
 
-                return $this->saveRecord(ContentDetailText::class, $dataContent['id'], $payload, $user);
+                return $this->saveRecord(ContentDetailText::class, $dataContent['id'] ?? null, $payload, $user);
                 break;
 
             case 'card_link':
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildCardLinkPayload($content, $value, $user, $key);
-                    $results[] = $this->saveRecord(ContentDetailCardLink::class, $value['id'], $payload, $user);
+                    $results[] = $this->saveRecord(ContentDetailCardLink::class, $value['id'] ?? null, $payload, $user);
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailCardLink::class, $data['deleted_content_detail_id']);
@@ -63,7 +65,7 @@ class SaveContentsService
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildImageLinkPayload($content, $value, $user, $key);
-                    $results[] = $this->saveRecord(ContentDetailImageLink::class, $value['id'], $payload, $user);
+                    $results[] = $this->saveRecord(ContentDetailImageLink::class, $value['id'] ?? null, $payload, $user);
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailImageLink::class, $data['deleted_content_detail_id']);
@@ -76,7 +78,7 @@ class SaveContentsService
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildImageCarouselPayload($content, $value, $user, $key);
-                    $results[] = $this->saveRecord(ContentDetailImageCarousel::class, $value['id'], $payload, $user);
+                    $results[] = $this->saveRecord(ContentDetailImageCarousel::class, $value['id'] ?? null, $payload, $user);
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailImageCarousel::class, $data['deleted_content_detail_id']);
@@ -89,7 +91,7 @@ class SaveContentsService
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildHeroCarouselPayload($content, $value, $user, $key);
-                    $results[] = $this->saveRecord(ContentDetailHeroCarousel::class, $value['id'], $payload, $user);
+                    $results[] = $this->saveRecord(ContentDetailHeroCarousel::class, $value['id'] ?? null, $payload, $user);
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailHeroCarousel::class, $data['deleted_content_detail_id']);
@@ -102,7 +104,7 @@ class SaveContentsService
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildVideoCarouselPayload($content, $value, $user, $key);
-                    $results[] = $this->saveRecord(ContentDetailVideoCarousel::class, $value['id'], $payload, $user);
+                    $results[] = $this->saveRecord(ContentDetailVideoCarousel::class, $value['id'] ?? null, $payload, $user);
                 }
                 if (! empty($data['deleted_content_detail_id'])) {
                     $this->deleteRecordByIds(ContentDetailVideoCarousel::class, $data['deleted_content_detail_id']);
@@ -115,12 +117,12 @@ class SaveContentsService
                 $results = [];
                 foreach ($dataContent as $key => $value) {
                     $payload = $this->buildAccordionGroupPayload($content, $value, $user, $key);
-                    $resultGroup = $this->saveRecord(ContentDetailAccordionGroup::class, $value['id'], $payload, $user);
+                    $resultGroup = $this->saveRecord(ContentDetailAccordionGroup::class, $value['id'] ?? null, $payload, $user);
                     $resultLists = [];
 
                     foreach ($value['list'] as $keyList => $valueList) {
                         $payloadList = $this->buildAccordionListPayload($resultGroup, $valueList, $user, $keyList);
-                        $resultList = $this->saveRecord(ContentDetailAccordionList::class, $valueList['id'], $payloadList, $user);
+                        $resultList = $this->saveRecord(ContentDetailAccordionList::class, $valueList['id'] ?? null, $payloadList, $user);
                         $resultLists[] = $resultList;
                     }
 
@@ -159,6 +161,60 @@ class SaveContentsService
                     $ids[] = $result->id;
                 }
                 ContentDetailConsume::where('content_id', $content->id)->whereNotIn('id', $ids)->delete();
+
+                return $results;
+                break;
+
+            case 'organizational_structure':
+                $results = [];
+                foreach ($dataContent['groups'] as $key => $group) {
+                    $payload = [
+                        'content_id' => $content->id,
+                        'name' => $group['name'],
+                        'order' => $group['order'] ?? ($key + 1),
+                        'updated_by' => $user,
+                    ];
+                    $resultGroup = $this->saveRecord(ContentDetailOrganizationalStructureGroup::class, $group['id'] ?? null, $payload, $user);
+
+                    $resultMembers = [];
+                    foreach ($group['members'] as $keyMember => $member) {
+                        $memberPayload = [
+                            'content_detail_organizational_structure_group_id' => $resultGroup->id,
+                            'name' => $member['name'],
+                            'level' => $member['level'] ?? 1,
+                            'position' => $member['position'] ?? '',
+                            'description' => $member['description'] ?? '',
+                            'image_path' => $member['image_path'] ?? '',
+                            'is_child' => $member['is_child'] ?? ($keyMember > 0),
+                            'have_child' => $member['have_child'] ?? ($keyMember === 0),
+                            'parent_id' => $member['parent_id'] ?? null,
+                            'order' => $member['order'] ?? ($keyMember + 1),
+                            'updated_by' => $user,
+                        ];
+                        $resultMember = $this->saveRecord(ContentDetailOrganizationalStructureMember::class, $member['id'] ?? null, $memberPayload, $user);
+                        $resultMembers[] = $resultMember;
+                    }
+
+                    if (count($resultMembers) > 1) {
+                        $parentId = $resultMembers[0]->id;
+                        for ($i = 1; $i < count($resultMembers); $i++) {
+                            if (! ($group['members'][$i]['is_child'] ?? true)) {
+                                continue;
+                            }
+                            $resultMembers[$i]->parent_id = $parentId;
+                            $resultMembers[$i]->save();
+                        }
+                    }
+
+                    $resultGroup->members = $resultMembers;
+                    $results[] = $resultGroup;
+                }
+                if (! empty($data['deleted_content_detail_id'])) {
+                    $this->deleteRecordByIds(ContentDetailOrganizationalStructureGroup::class, $data['deleted_content_detail_id']);
+                }
+                if (! empty($data['deleted_content_detail_list_id'])) {
+                    $this->deleteRecordByIds(ContentDetailOrganizationalStructureMember::class, $data['deleted_content_detail_list_id']);
+                }
 
                 return $results;
                 break;
@@ -245,12 +301,9 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'image_path' => $data['image_path'],
-            'tag' => $data['tag'] ?? null,
-            'title' => $data['title'],
-            'subtitle' => $data['subtitle'] ?? null,
+            'source_type' => $data['source_type'] ?? null,
+            'source_id' => $data['source_id'] ?? null,
             'button_text' => $data['button_text'] ?? null,
-            'button_link' => $data['button_link'] ?? null,
             'order' => ($key + 1),
             'updated_by' => $user,
         ];
@@ -444,7 +497,7 @@ class SaveContentsService
         if ($content->has_additional_image == true) {
             foreach ($data['content_additional_image'] as $key => $value) {
                 $payload = $this->buildAdditionalImagePayload($contentType, $contentId, $value, $user, $key);
-                $this->saveRecord(ContentAdditionalImage::class, $value['id'], $payload, $user);
+                $this->saveRecord(ContentAdditionalImage::class, $value['id'] ?? null, $payload, $user);
             }
             if (! empty($data['deleted_content_additional_image_id'])) {
                 $this->deleteRecordByIds(ContentAdditionalImage::class, $data['deleted_content_additional_image_id']);
@@ -459,7 +512,7 @@ class SaveContentsService
         if ($content->has_additional_video == true) {
             foreach ($data['content_additional_video'] as $key => $value) {
                 $payload = $this->buildAdditionalVideoPayload($contentType, $contentId, $value, $user, $key);
-                $this->saveRecord(ContentAdditionalVideo::class, $value['id'], $payload, $user);
+                $this->saveRecord(ContentAdditionalVideo::class, $value['id'] ?? null, $payload, $user);
             }
             if (! empty($data['deleted_content_additional_video_id'])) {
                 $this->deleteRecordByIds(ContentAdditionalVideo::class, $data['deleted_content_additional_video_id']);
@@ -474,7 +527,7 @@ class SaveContentsService
         if ($content->has_additional_file == true) {
             foreach ($data['content_additional_file'] as $key => $value) {
                 $payload = $this->buildAdditionalFilePayload($contentType, $contentId, $value, $user, $key);
-                $this->saveRecord(ContentAdditionalFile::class, $value['id'], $payload, $user);
+                $this->saveRecord(ContentAdditionalFile::class, $value['id'] ?? null, $payload, $user);
             }
             if (! empty($data['deleted_content_additional_file_id'])) {
                 $this->deleteRecordByIds(ContentAdditionalFile::class, $data['deleted_content_additional_file_id']);
@@ -489,7 +542,7 @@ class SaveContentsService
         if ($content->has_additional_link == true) {
             foreach ($data['content_additional_link'] as $key => $value) {
                 $payload = $this->buildAdditionalLinkPayload($contentType, $contentId, $value, $user, $key);
-                $this->saveRecord(ContentAdditionalLink::class, $value['id'], $payload, $user);
+                $this->saveRecord(ContentAdditionalLink::class, $value['id'] ?? null, $payload, $user);
             }
             if (! empty($data['deleted_content_additional_link_id'])) {
                 $this->deleteRecordByIds(ContentAdditionalLink::class, $data['deleted_content_additional_link_id']);
@@ -509,7 +562,7 @@ class SaveContentsService
             $results = [];
             foreach ($texts as $key => $value) {
                 $payload = $this->buildAdditionalTextPayload($contentType, $contentId, $value, $user, $key);
-                $results[] = $this->saveRecord(ContentAdditionalText::class, $value['id'], $payload, $user);
+                $results[] = $this->saveRecord(ContentAdditionalText::class, $value['id'] ?? null, $payload, $user);
             }
             if (! empty($data['deleted_content_additional_text_id'])) {
                 $this->deleteRecordByIds(ContentAdditionalText::class, $data['deleted_content_additional_text_id']);

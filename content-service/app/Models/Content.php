@@ -78,6 +78,11 @@ class Content extends Model
         return $this->hasMany(ContentDetailConsume::class)->orderBy('order', 'asc');
     }
 
+    public function contentDetailOrganizationalStructureGroup()
+    {
+        return $this->hasMany(ContentDetailOrganizationalStructureGroup::class)->orderBy('order', 'asc');
+    }
+
     public function contentAdditionalImage()
     {
         return $this->morphMany(ContentAdditionalImage::class, 'content')->orderBy('order', 'asc');
@@ -113,7 +118,7 @@ class Content extends Model
                 return $this->contentDetailImageCarousel;
                 break;
             case 'hero_carousel':
-                return $this->contentDetailHeroCarousel;
+                return $this->resolveHeroCarouselSlides();
                 break;
             case 'image_link':
                 return $this->contentDetailImageLink;
@@ -127,6 +132,9 @@ class Content extends Model
             case 'accordion':
                 return $this->contentDetailAccordionGroup()->with('list')->get();
                 break;
+            case 'organizational_structure':
+                return $this->contentDetailOrganizationalStructureGroup()->with('members')->get();
+                break;
             case 'consume':
                 return $this->contentDetailConsume;
                 break;
@@ -136,6 +144,97 @@ class Content extends Model
     public function contentDetailProject()
     {
         return $this->hasMany(ContentDetailProject::class)->orderBy('order', 'asc');
+    }
+
+    /**
+     * Resolve hero carousel slides. Each slide references an existing content
+     * item (source_type + source_id). Source fields (image_path, title,
+     * subtitle, tag, button_link) are resolved from the source at read time.
+     * button_text is the only inline override. Source items are batch-loaded
+     * per type with contentTag eager-loaded to avoid N+1.
+     */
+    private function resolveHeroCarouselSlides()
+    {
+        $slides = $this->contentDetailHeroCarousel;
+
+        $idsByType = [];
+        foreach ($slides as $slide) {
+            if ($slide->source_type && $slide->source_id) {
+                $idsByType[$slide->source_type][] = $slide->source_id;
+            }
+        }
+
+        $sources = [
+            'publication' => collect(),
+            'repository' => collect(),
+            'gallery' => collect(),
+        ];
+
+        foreach ($idsByType as $type => $ids) {
+            $uniqueIds = array_values(array_unique($ids));
+            if (empty($uniqueIds)) {
+                continue;
+            }
+
+            switch ($type) {
+                case 'publication':
+                    $rows = ContentDetailPublication::whereIn('id', $uniqueIds)
+                        ->with('contentTag.tag')
+                        ->get(['id', 'title', 'slug', 'headline as subtitle', 'thumbnail_path as image_path']);
+                    break;
+                case 'repository':
+                    $rows = ContentDetailRepository::whereIn('id', $uniqueIds)
+                        ->with('contentTag.tag')
+                        ->get(['id', 'title', 'slug', 'description as subtitle', 'thumbnail_path as image_path']);
+                    break;
+                case 'gallery':
+                    $rows = ContentDetailGallery::whereIn('id', $uniqueIds)
+                        ->with(['contentTag.tag', 'list'])
+                        ->get(['id', 'title', 'slug', 'description as subtitle']);
+                    foreach ($rows as $row) {
+                        $row->image_path = $row->list->sortBy('order')->first()?->image_path;
+                    }
+                    break;
+                default:
+                    $rows = collect();
+            }
+
+            $sources[$type] = $rows->keyBy('id');
+        }
+
+        $prefixes = [
+            'publication' => '/berita/',
+            'repository' => '/repository/',
+            'gallery' => '/galeri/',
+        ];
+
+        return $slides->map(function ($slide) use ($sources, $prefixes) {
+            $data = [
+                'id' => $slide->id,
+                'image_path' => null,
+                'tag' => null,
+                'title' => null,
+                'subtitle' => null,
+                'button_text' => $slide->button_text,
+                'button_link' => null,
+                'order' => $slide->order,
+                'source_type' => $slide->source_type,
+                'source_id' => $slide->source_id,
+            ];
+
+            if ($slide->source_type && $slide->source_id && isset($sources[$slide->source_type])) {
+                $source = $sources[$slide->source_type]->get($slide->source_id);
+                if ($source) {
+                    $data['image_path'] = $source->image_path;
+                    $data['title'] = $source->title;
+                    $data['subtitle'] = $source->subtitle;
+                    $data['tag'] = $source->contentTag->first()?->tag_title;
+                    $data['button_link'] = ($prefixes[$slide->source_type] ?? '/').$source->slug;
+                }
+            }
+
+            return $data;
+        })->values();
     }
 
     protected static function booted()

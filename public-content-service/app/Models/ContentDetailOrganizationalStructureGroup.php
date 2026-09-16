@@ -16,4 +16,9 @@ class ContentDetailOrganizationalStructureGroup extends Model
         'updated_by',
     ];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id'];
+
+    public function members()
+    {
+        return $this->hasMany(ContentDetailOrganizationalStructureMember::class, 'content_detail_organizational_structure_group_id')->orderBy('order', 'asc');
+    }
 }
