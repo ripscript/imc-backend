@@ -55,7 +55,7 @@ class PublicationService
 
     public function detail($id)
     {
-        $publication = ContentDetailPublication::findOrFail($id);
+        $publication = ContentDetailPublication::with(['kategori', 'contentTag.tag'])->findOrFail($id);
         $tagIds = ContentTag::where([
             'content_type' => ContentDetailPublication::class,
             'content_id' => $publication->id,

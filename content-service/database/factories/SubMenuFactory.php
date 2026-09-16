@@ -13,7 +13,10 @@ class SubMenuFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
+            'slug' => fake()->unique()->slug(),
+            'order' => fake()->numberBetween(1, 10),
             'menu_id' => \App\Models\Menu::factory(),
+            'has_child' => false,
             'is_active' => true,
             'created_by' => 'factory',
             'updated_by' => 'factory',

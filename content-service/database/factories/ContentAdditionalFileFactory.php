@@ -16,7 +16,7 @@ class ContentAdditionalFileFactory extends Factory
             'content_type' => Content::class,
             'content_id' => Content::factory(),
             'title' => fake()->sentence(4),
-            'file_url' => fake()->url(),
+            'file_path' => 'uploads/'.fake()->uuid().'.pdf',
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

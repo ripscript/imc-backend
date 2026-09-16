@@ -16,4 +16,9 @@ class ContentDetailOrganizationalStructureGroup extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function members()
+    {
+        return $this->hasMany(ContentDetailOrganizationalStructureMember::class, 'content_detail_organizational_structure_group_id')->orderBy('order', 'asc');
+    }
 }

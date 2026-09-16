@@ -133,7 +133,7 @@ class MenuSeeder extends Seeder
         ]);
     }
 
-    private function createSubMenuContentRecord(int $subMenuId, string $type): void
+    private function createSubMenuContentRecord(int $subMenuId, string $type, array $options = []): void
     {
         $layout = DB::table('ms_layout')->where('type', $type)->first();
 
@@ -146,6 +146,7 @@ class MenuSeeder extends Seeder
             'is_show_home' => false,
             'is_show_tag' => true,
             'is_accessible' => true,
+            'has_additional_text' => $options['has_additional_text'] ?? false,
             'created_at' => $this->datetime,
             'updated_at' => $this->datetime,
         ]);
@@ -154,12 +155,12 @@ class MenuSeeder extends Seeder
     private function createTentangImcSubMenus(int $tentangImcId): void
     {
         $subMenus = [
-            ['title' => 'Profil IMC', 'slug' => 'profil-imc', 'order' => 1, 'type' => 'text'],
-            ['title' => 'Tugas dan Fungsi', 'slug' => 'tugas-dan-fungsi', 'order' => 2, 'type' => 'text'],
-            ['title' => 'Visi dan Misi', 'slug' => 'visi-dan-misi', 'order' => 3, 'type' => 'text'],
-            ['title' => 'Sejarah IMC', 'slug' => 'sejarah-imc', 'order' => 4, 'type' => 'text'],
+            ['title' => 'Profil IMC', 'slug' => 'profil-imc', 'order' => 1, 'type' => 'image_carousel', 'has_additional_text' => true],
+            ['title' => 'Tugas dan Fungsi', 'slug' => 'tugas-dan-fungsi', 'order' => 2, 'type' => 'image_carousel', 'has_additional_text' => true],
+            ['title' => 'Visi dan Misi', 'slug' => 'visi-dan-misi', 'order' => 3, 'type' => 'image_carousel', 'has_additional_text' => true],
+            ['title' => 'Sejarah IMC', 'slug' => 'sejarah-imc', 'order' => 4, 'type' => 'image_carousel', 'has_additional_text' => true],
             ['title' => 'Struktur Organisasi', 'slug' => 'struktur-organisasi', 'order' => 5, 'type' => 'organizational_structure'],
-            ['title' => 'Layanan Kami', 'slug' => 'layanan-kami', 'order' => 6, 'type' => 'text'],
+            ['title' => 'Layanan Kami', 'slug' => 'layanan-kami', 'order' => 6, 'type' => 'image_carousel', 'has_additional_text' => true],
             ['title' => 'Kontak Kami', 'slug' => 'kontak-kami', 'order' => 7, 'type' => 'text'],
         ];
 
@@ -174,7 +175,7 @@ class MenuSeeder extends Seeder
                 'is_show_side_menu' => true,
             ]);
 
-            $this->createSubMenuContentRecord($subMenuId, $subMenuData['type']);
+            $this->createSubMenuContentRecord($subMenuId, $subMenuData['type'], $subMenuData);
         }
     }
 

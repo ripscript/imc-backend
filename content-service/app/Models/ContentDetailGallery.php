@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +33,11 @@ class ContentDetailGallery extends Model
     public function list()
     {
         return $this->hasMany(ContentDetailGalleryList::class)->orderBy('order', 'asc');
+    }
+
+    public function contentTag()
+    {
+        return $this->morphMany(ContentTag::class, 'content');
     }
 
     protected static function booted()

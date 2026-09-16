@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDetailCardLinkSeeder::class);
         $this->call(ContentDetailImageLinkSeeder::class);
         $this->call(ContentDetailImageCarouselSeeder::class);
+        $this->call(ContentAdditionalTextSeeder::class);
         $this->call(ContentDetailVideoCarouselSeeder::class);
         $this->call(ContentDetailAccordionSeeder::class);
         $this->call(ContentDetailRepositorySeeder::class);

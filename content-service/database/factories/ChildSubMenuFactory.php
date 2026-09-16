@@ -14,10 +14,12 @@ class ChildSubMenuFactory extends Factory
 
         return [
             'title' => fake()->sentence(3),
+            'slug' => fake()->unique()->slug(),
+            'order' => fake()->numberBetween(1, 10),
             'sub_menu_id' => \App\Models\SubMenu::factory(),
             'is_active' => true,
             'created_by' => 'factory',
-            'updated_by' => 'factory'
+            'updated_by' => 'factory',
         ];
     }
 }

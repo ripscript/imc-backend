@@ -16,7 +16,7 @@ class ContentAdditionalLinkFactory extends Factory
             'content_type' => Content::class,
             'content_id' => Content::factory(),
             'title' => fake()->sentence(4),
-            'url' => fake()->url(),
+            'link' => fake()->url(),
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

@@ -12,7 +12,7 @@ class MsTagFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->word(),
+            'title' => fake()->unique()->word(),
             'is_active' => true,
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

@@ -14,12 +14,9 @@ class ContentDetailHeroCarouselFactory extends Factory
     {
         return [
             'content_id' => Content::factory(),
-            'image_path' => fake()->imageUrl(),
-            'tag' => fake()->word(),
-            'title' => fake()->sentence(3),
-            'subtitle' => fake()->paragraph(1),
+            'source_type' => null,
+            'source_id' => null,
             'button_text' => fake()->word(),
-            'button_link' => fake()->url(),
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',
             'updated_by' => 'Admin',

@@ -25,7 +25,7 @@ class ContentService
     {
         switch ($type) {
             case 'menu':
-                $content = Menu::where('slug', $slug[0])
+                $parent = Menu::where('slug', $slug[0])
                     ->active()
                     ->whereHas('content', function ($query) {
                         $query->accessible();
@@ -34,11 +34,10 @@ class ContentService
                 break;
 
             case 'sub_menu':
-                $content = SubMenu::where('slug', $slug[1])
+                $parent = SubMenu::where('slug', $slug[1])
                     ->active()
                     ->whereHas('menu', function ($query) use ($slug) {
-                        $query->where('slug', $slug[0])
-                            ->active();
+                        $query->where('slug', $slug[0])->active();
                     })
                     ->whereHas('content', function ($query) {
                         $query->accessible();
@@ -47,14 +46,13 @@ class ContentService
                 break;
 
             case 'child_sub_menu':
-                $content = ChildSubMenu::where('slug', $slug[2])
+                $parent = ChildSubMenu::where('slug', $slug[2])
                     ->active()
                     ->whereHas('subMenu', function ($query) use ($slug) {
                         $query->where('slug', $slug[1])
                             ->active()
                             ->whereHas('menu', function ($qq) use ($slug) {
-                                $qq->where('slug', $slug[0])
-                                    ->active();
+                                $qq->where('slug', $slug[0])->active();
                             });
                     })
                     ->whereHas('content', function ($query) {
@@ -64,17 +62,26 @@ class ContentService
                 break;
         }
 
+        if (! $parent) {
+            throw new EntityNotFoundException("Content {$type}");
+        }
+
+        $content = Content::where([
+            'parent_type' => self::TYPE_CLASS[$type],
+            'parent_id' => $parent->id,
+        ])->first();
+
         if (! $content) {
             throw new EntityNotFoundException("Content {$type}");
         }
 
-        $detailContent = Content::where([
-            'parent_type' => self::TYPE_CLASS[$type],
-            'parent_id' => $content->id,
-        ])->first();
-        $content->applyContent($detailContent, $filter);
-        $content->applyAdditionalContent($detailContent);
-        $content->breadcrumb = $this->getBreadcrumb($type, $content);
+        $content->title = $parent->title;
+        $content->slug = $parent->slug;
+        $content->order = $parent->order;
+        $content->breadcrumb = $this->getBreadcrumb($type, $parent);
+
+        $content->applyContent($content, $filter);
+        $content->applyAdditionalContent($content);
 
         return $content;
     }
@@ -99,7 +106,7 @@ class ContentService
             'slug' => $slug,
             'is_publicated' => true,
         ])
-            ->with('contentTag', 'layout')
+            ->with('contentTag.tag', 'kategori', 'layout')
             ->first();
 
         if (! $publication) {

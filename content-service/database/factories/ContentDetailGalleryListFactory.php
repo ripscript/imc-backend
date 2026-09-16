@@ -13,9 +13,9 @@ class ContentDetailGalleryListFactory extends Factory
     public function definition(): array
     {
         return [
-            'gallery_id' => ContentDetailGallery::factory(),
+            'content_detail_gallery_id' => ContentDetailGallery::factory(),
             'title' => fake()->sentence(4),
-            'image_url' => fake()->imageUrl(),
+            'image_path' => 'uploads/'.fake()->uuid().'.jpg',
             'description' => fake()->paragraph(),
             'order' => fake()->numberBetween(1, 10),
             'created_by' => 'Admin',

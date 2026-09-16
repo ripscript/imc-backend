@@ -11,12 +11,9 @@ class ContentDetailHeroCarousel extends Model
 
     protected $fillable = [
         'content_id',
-        'image_path',
-        'tag',
-        'title',
-        'subtitle',
+        'source_type',
+        'source_id',
         'button_text',
-        'button_link',
         'order',
         'created_by',
         'updated_by',

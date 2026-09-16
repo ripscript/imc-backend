@@ -25,6 +25,8 @@ class UpdatePublicationRequest extends FormRequest
             'description' => 'required',
             'publish_date' => 'required',
             'is_publicated' => 'required|boolean',
+            'thumbnail_path' => 'nullable|string',
+            'is_slider' => 'nullable|boolean',
             'kategori_content_id' => 'nullable|exists:ms_kategori_contents,id',
             'tag_id' => 'nullable|array',
         ];

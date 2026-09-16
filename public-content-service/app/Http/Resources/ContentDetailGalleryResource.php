@@ -14,6 +14,8 @@ class ContentDetailGalleryResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'type' => $this->type,
+            'thumbnail_path' => $this->list->first()?->image_path,
+            'publish_date' => $this->publish_date,
             'list' => $this->whenLoaded('list'),
             'content_tag' => $this->whenLoaded('contentTag'),
             'layout' => $this->whenLoaded('layout'),

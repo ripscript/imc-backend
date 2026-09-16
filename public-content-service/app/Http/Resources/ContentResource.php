@@ -21,6 +21,7 @@ class ContentResource extends JsonResource
             'is_accessible' => $this->is_accessible,
             'sub_type' => $this->sub_type,
             'content' => $this->content,
+            'meta' => $this->meta ?? null,
             'breadcrumb' => $this->breadcrumb,
             'parent_menu' => $this->when(isset($this->parent_menu), $this->parent_menu),
             'image_link' => $this->whenLoaded('contentDetailImageLink'),
@@ -36,7 +37,7 @@ class ContentResource extends JsonResource
             'additional_video' => $this->whenLoaded('contentAdditionalVideo'),
             'additional_link' => $this->whenLoaded('contentAdditionalLink'),
             'additional_file' => $this->whenLoaded('contentAdditionalFile'),
-            'additional_text' => $this->whenLoaded('contentAdditionalText'),
+            'additional_text' => $this->content_additional_text ?? null,
         ];
     }
 }

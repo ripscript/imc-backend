@@ -11,7 +11,9 @@ class ContentAdditionalText extends Model
     protected $fillable = [
         'content_type',
         'content_id',
-        'text',
+        'title',
+        'description',
+        'order',
         'created_by',
         'updated_by',
     ];
