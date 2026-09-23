@@ -20,8 +20,6 @@ class SiteSettingDTO extends BaseDTO
 
     public ?string $twitter_url;
 
-    public ?int $permohonan_max_destination_institution;
-
     public ?int $menu_max_show_front;
 
     public ?int $max_file_size;
@@ -38,7 +36,6 @@ class SiteSettingDTO extends BaseDTO
         $this->youtube_url = $data['youtube_url'] ?? null;
         $this->instagram_url = $data['instagram_url'] ?? null;
         $this->twitter_url = $data['twitter_url'] ?? null;
-        $this->permohonan_max_destination_institution = $data['permohonan_max_destination_institution'] ?? null;
         $this->menu_max_show_front = $data['menu_max_show_front'] ?? null;
         $this->max_file_size = $data['max_file_size'] ?? null;
         $this->updated_by = $data['updated_by'] ?? null;

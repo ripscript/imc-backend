@@ -41,13 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDetailConsumeSeeder::class);
         $this->call(LatestInformationSeeder::class);
 
-        $this->call(ClassificationPemohonSeeder::class);
-        $this->call(PermohonanSeeder::class);
-        $this->call(KeberatanSeeder::class);
         $this->call(SiteSettingSeeder::class);
-        $this->call(ChatSettingSeeder::class);
-        $this->call(SkalaLikertSeeder::class);
-        $this->call(AlertSeeder::class);
         $this->call(GlobalSearchIndexSeeder::class);
     }
 }

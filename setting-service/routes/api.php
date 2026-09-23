@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChatSettingController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\TemplateEmailController;
 use Illuminate\Support\Facades\Route;
@@ -55,10 +54,5 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
     Route::prefix('site-setting')->group(function () {
         Route::get('/', [SiteSettingController::class, 'index']);
         Route::put('/', [SiteSettingController::class, 'update']);
-    });
-
-    Route::prefix('chat-setting')->group(function () {
-        Route::get('/', [ChatSettingController::class, 'index']);
-        Route::put('/', [ChatSettingController::class, 'update']);
     });
 });

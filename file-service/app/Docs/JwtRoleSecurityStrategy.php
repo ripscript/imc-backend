@@ -18,12 +18,10 @@ class JwtRoleSecurityStrategy implements SecurityDocumentationStrategy
     public function configure(SecurityDocumentationContext $context): GeneratorConfig
     {
         $adminScheme = SecurityScheme::http('bearer')->as('bearerAdmin');
-        $pemohonScheme = SecurityScheme::http('bearer')->as('bearerPemohon');
 
         return $context->config
-            ->withDocumentTransformers(function (OpenApi $openApi) use ($adminScheme, $pemohonScheme) {
+            ->withDocumentTransformers(function (OpenApi $openApi) use ($adminScheme) {
                 $openApi->components->addSecurityScheme('bearerAdmin', $adminScheme);
-                $openApi->components->addSecurityScheme('bearerPemohon', $pemohonScheme);
             })
             ->withOperationTransformers(function (OperationTransformers $transformers) {
                 $transformers->prepend(function (Operation $operation, RouteInfo $routeInfo): void {
@@ -31,28 +29,7 @@ class JwtRoleSecurityStrategy implements SecurityDocumentationStrategy
 
                     $hasJwt = $middleware->contains(fn ($m) => Str::startsWith($m, 'jwt.error'));
 
-                    $adminFound = $middleware->some(fn ($m) => Str::is('jwt.error:admin', $m));
-                    $pemohonFound = $middleware->some(fn ($m) => Str::is('jwt.error:pemohon', $m));
-
-                    $commaSeparated = $middleware->first(fn ($m) => Str::is('jwt.error:*,*', $m));
-                    if ($commaSeparated) {
-                        $guards = explode(',', Str::after($commaSeparated, 'jwt.error:'));
-                        if (in_array('admin', $guards)) {
-                            $adminFound = true;
-                        }
-                        if (in_array('pemohon', $guards)) {
-                            $pemohonFound = true;
-                        }
-                    }
-
-                    if ($adminFound && $pemohonFound) {
-                        $operation->addSecurity(new SecurityRequirement(['bearerAdmin' => []]));
-                        $operation->addSecurity(new SecurityRequirement(['bearerPemohon' => []]));
-                    } elseif ($adminFound) {
-                        $operation->addSecurity(new SecurityRequirement(['bearerAdmin' => []]));
-                    } elseif ($pemohonFound) {
-                        $operation->addSecurity(new SecurityRequirement(['bearerPemohon' => []]));
-                    } elseif ($hasJwt) {
+                    if ($hasJwt) {
                         $operation->addSecurity(new SecurityRequirement(['bearerAdmin' => []]));
                     } else {
                         $operation->security = [];
