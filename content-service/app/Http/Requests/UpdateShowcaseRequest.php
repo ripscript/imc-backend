@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateProjectRequest extends FormRequest
+class UpdateShowcaseRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,7 +18,7 @@ class UpdateProjectRequest extends FormRequest
 
         return [
             'title' => 'required|string|max:255',
-            'slug' => ['required', 'string', 'max:255', Rule::unique('content_detail_projects')->where(function ($query) {
+            'slug' => ['required', 'string', 'max:255', Rule::unique('content_detail_showcases')->where(function ($query) {
                 $query->where('content_id', $this->content_id);
             })->ignore($id)],
             'description' => 'nullable|string',

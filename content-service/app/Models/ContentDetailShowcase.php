@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\ContentTag;
 use App\Services\GlobalSearchService;
 use App\Traits\HasActivityLog;
 use App\Traits\HasAdditionalContentMapping;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContentDetailProject extends Model
+class ContentDetailShowcase extends Model
 {
     use HasActivityLog, HasAdditionalContentMapping, HasFactory;
 
@@ -38,7 +37,7 @@ class ContentDetailProject extends Model
         'updated_by',
     ];
 
-    protected $logName = 'proyek';
+    protected $logName = 'showcase';
 
     public function contentAdditionalImage()
     {
@@ -67,19 +66,19 @@ class ContentDetailProject extends Model
 
     protected static function booted()
     {
-        static::deleting(function ($project) {
-            $project->contentAdditionalImage()->delete();
-            $project->contentAdditionalVideo()->delete();
-            $project->contentAdditionalFile()->delete();
-            $project->contentAdditionalLink()->delete();
-            $project->contentAdditionalText()->delete();
+        static::deleting(function ($showcase) {
+            $showcase->contentAdditionalImage()->delete();
+            $showcase->contentAdditionalVideo()->delete();
+            $showcase->contentAdditionalFile()->delete();
+            $showcase->contentAdditionalLink()->delete();
+            $showcase->contentAdditionalText()->delete();
         });
 
         static::deleted(function ($content) {
-            ContentTag::where('content_type', ContentDetailProject::class)
+            ContentTag::where('content_type', ContentDetailShowcase::class)
                 ->where('content_id', $content->id)->delete();
             $service = new GlobalSearchService;
-            $service->delete(ContentDetailProject::class, $content->id);
+            $service->delete(ContentDetailShowcase::class, $content->id);
         });
     }
 }

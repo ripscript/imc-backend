@@ -18,6 +18,11 @@ class ProjectController extends Controller
         protected ProjectService $projectService
     ) {}
 
+    public function sideMenu()
+    {
+        return ApiResponse::success($this->projectService->sideMenu(), 'Berhasil mengambil side menu untuk tipe proyek');
+    }
+
     public function index(Request $request)
     {
         $result = $this->projectService->index(QueryFilterDTO::fromRequest($request));

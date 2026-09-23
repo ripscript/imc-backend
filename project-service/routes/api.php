@@ -35,6 +35,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
     ->prefix('projects')
     ->group(function () {
         Route::get('/', [ProjectController::class, 'index']);
+        Route::get('/side-menu', [ProjectController::class, 'sideMenu']);
         Route::post('/', [ProjectController::class, 'create']);
         Route::get('{project_no}', [ProjectController::class, 'detail']);
         Route::put('{project_no}', [ProjectController::class, 'update']);

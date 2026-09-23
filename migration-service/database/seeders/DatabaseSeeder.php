@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDetailRepositorySeeder::class);
         $this->call(ContentDetailOrganizationalStructureSeeder::class);
         $this->call(ContentDetailProjectSeeder::class);
+        $this->call(ContentDetailShowcaseSeeder::class);
         $this->call(ContentDetailGallerySeeder::class);
         $this->call(ContentDetailPublicationSeeder::class);
         $this->call(ContentTagSeeder::class);

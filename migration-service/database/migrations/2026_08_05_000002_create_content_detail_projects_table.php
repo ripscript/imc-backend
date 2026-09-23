@@ -33,9 +33,19 @@ return new class extends Migration
             $table->text('organization_address')->nullable();
             $table->string('organization_name')->nullable();
             $table->foreignId('kategori_content_id')->nullable()->references('id')->on('ms_kategori_contents')->onDelete('set null');
+            $table->string('project_no')->nullable()->unique();
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->unsignedBigInteger('partner_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('workflow_id')->nullable();
+            $table->unsignedBigInteger('pic_user_id')->nullable();
+            $table->string('status', 20)->default('draft');
+            $table->unsignedSmallInteger('progress')->default(0);
+            $table->date('target_end_date')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Beranda - Hero Carousel",
-    "description": "CRUD section hero carousel pada beranda.\n\nDua bagian:\n1. content-service (admin) - kelola section hero_carousel di menu beranda. JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n2. public-content-service (public) - baca section beranda untuk frontend.\n\nBase URL local dev:\n- Admin:   http://localhost:4076/content-service/api\n- Public:  http://localhost:4076/public-content-service/api\n\nField slide hero_carousel:\n- image_path   (wajib)  gambar latar\n- tag          (opsional) label kecil mis. BERITA / PROGRAM\n- title        (wajib)  headline\n- subtitle     (opsional) deskripsi\n- button_text  (opsional) teks tombol CTA\n- button_link  (opsional) tautan tombol CTA\n\nAutoplay interval ditangani frontend (tidak disimpan di backend).",
+    "description": "CRUD section hero carousel pada beranda.\n\nDua bagian:\n1. content-service (admin) - kelola section hero_carousel di menu beranda. JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n2. public-content-service (public) - baca section beranda untuk frontend.\n\nBase URL local dev:\n- Admin:   http://localhost:4076/content-service/api\n- Public:  http://localhost:4076/public-content-service/api\n\nPENTING: hero_carousel REFERENCE-ONLY. Setiap slide WAJIB merujuk item konten existing. Slide custom/inline TIDAK diperbolehkan.\n\nPayload per slide (admin):\n- source_type  (WAJIB) publication | repository | gallery\n- source_id    (WAJIB) ID baris di tabel detail sumber (content_detail_publications.id dst)\n- button_text  (opsional) override teks tombol CTA (satu-satunya field inline yang bisa di-override)\n\nSaat dibaca admin API (GET /section/{id}) maupun public API, backend RESOLVE dari sumber (Eloquent + eager-load, no N+1):\n- image_path, title, subtitle dari item sumber\n- tag dari first tag sumber (contentTag.tag.title)\n- button_link auto dari slug sumber (/berita/slug, /repository/slug, /galeri/slug)\n\nMapping: publication->thumbnail_path/title/headline(/berita/slug), repository->thumbnail_path/title/description(/repository/slug), gallery->gambar pertama list/title/description(/galeri/slug).\n\nAutoplay interval ditangani frontend (tidak disimpan di backend).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -104,7 +104,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"section_title\": \"Hero Banner\",\n    \"is_section\": true,\n    \"order\": 1,\n    \"type\": \"hero_carousel\",\n    \"content\": [\n        {\n            \"id\": null,\n            \"image_path\": \"/storage/hero/banner-1.jpg\",\n            \"tag\": \"BERITA\",\n            \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n            \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi untuk industri pertambangan berkelanjutan.\",\n            \"button_text\": \"Baca Selengkapnya\",\n            \"button_link\": \"/berita/ev-mining-outlook\"\n        },\n        {\n            \"id\": null,\n            \"image_path\": \"/storage/hero/banner-2.jpg\",\n            \"tag\": \"PROGRAM\",\n            \"title\": \"Kolaborasi Teknologi IMC 2026\",\n            \"subtitle\": \"Bergabunglah dalam ekosistem inovasi manufaktur Indonesia.\",\n            \"button_text\": \"Lihat Program\",\n            \"button_link\": \"/program/kolaborasi-2026\"\n        }\n    ],\n    \"deleted_content_detail_id\": []\n}",
+              "raw": "{\n    \"section_title\": \"Hero Banner\",\n    \"is_section\": true,\n    \"order\": 1,\n    \"type\": \"hero_carousel\",\n    \"content\": [\n        {\n            \"source_type\": \"publication\",\n            \"source_id\": 2,\n            \"button_text\": \"Baca Selengkapnya\"\n        },\n        {\n            \"source_type\": \"repository\",\n            \"source_id\": 5\n        }\n    ],\n    \"deleted_content_detail_id\": []\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -133,10 +133,10 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil menambahkan data section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"content\": [\n            {\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-1.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n                \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi untuk industri pertambangan berkelanjutan.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1,\n                \"updated_by\": \"admin_pusat\",\n                \"updated_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"created_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"id\": 1\n            },\n            {\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-2.jpg\",\n                \"tag\": \"PROGRAM\",\n                \"title\": \"Kolaborasi Teknologi IMC 2026\",\n                \"subtitle\": \"Bergabunglah dalam ekosistem inovasi manufaktur Indonesia.\",\n                \"button_text\": \"Lihat Program\",\n                \"button_link\": \"/program/kolaborasi-2026\",\n                \"order\": 2,\n                \"updated_by\": \"admin_pusat\",\n                \"updated_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"created_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"id\": 2\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil menambahkan data section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"content\": [\n            {\n                \"source_type\": \"publication\",\n                \"source_id\": 2,\n                \"button_text\": \"Baca Selengkapnya\",\n                \"order\": 1,\n                \"updated_by\": \"admin_pusat\",\n                \"updated_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"created_at\": \"2026-09-03T09:30:00.000000Z\"\n            },\n            {\n                \"source_type\": \"repository\",\n                \"source_id\": 5,\n                \"button_text\": null,\n                \"order\": 2,\n                \"updated_by\": \"admin_pusat\",\n                \"updated_at\": \"2026-09-03T09:30:00.000000Z\",\n                \"created_at\": \"2026-09-03T09:30:00.000000Z\"\n            }\n        ]\n    }\n}"
             },
             {
-              "name": "422 - Validasi gagal",
+              "name": "422 - Validasi gagal (hero_carousel wajib referensi)",
               "status": "Unprocessable Entity",
               "code": 422,
               "_postman_previewlanguage": "json",
@@ -146,7 +146,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"section_title\": [\n            \"The section title field is required.\"\n        ],\n        \"type\": [\n            \"The type field is required.\"\n        ]\n    }\n}"
+              "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"content.0.source_type\": [\n            \"The content.0.source_type field is required.\"\n        ],\n        \"content.0.source_id\": [\n            \"The content.0.source_id field is required.\"\n        ]\n    }\n}"
             },
             {
               "name": "401 - Token tidak valid / kadaluarsa",
@@ -160,6 +160,73 @@
                 }
               ],
               "body": "{\n    \"success\": false,\n    \"message\": \"Unauthenticated\",\n    \"errors\": null,\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "2b. Buat hero_carousel (publication + gallery + repository)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"section_title\": \"Hero Banner\",\n    \"is_section\": true,\n    \"order\": 1,\n    \"type\": \"hero_carousel\",\n    \"content\": [\n        {\n            \"source_type\": \"publication\",\n            \"source_id\": 42,\n            \"button_text\": \"Baca Selengkapnya\"\n        },\n        {\n            \"source_type\": \"gallery\",\n            \"source_id\": 12\n        },\n        {\n            \"source_type\": \"repository\",\n            \"source_id\": 3\n        }\n    ],\n    \"deleted_content_detail_id\": []\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{admin_base_url}}/section",
+              "host": [
+                "{{admin_base_url}}"
+              ],
+              "path": [
+                "section"
+              ]
+            },
+            "description": "hero_carousel reference-only: tiap slide WAJIB punya source_type (publication|repository|gallery) + source_id (ID baris di tabel detail sumber). Hanya button_text yang bisa di-override inline. button_link auto dari slug sumber. source_id wajib ada di tabel sumber, else 422."
+          },
+          "response": [
+            {
+              "name": "201 - Section dibuat (slide referensi tersimpan)",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil menambahkan data section\",\n    \"data\": {\n        \"id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"content\": [\n            {\n                \"source_type\": \"publication\",\n                \"source_id\": 42,\n                \"button_text\": \"Baca Selengkapnya\",\n                \"order\": 1\n            },\n            {\n                \"source_type\": \"gallery\",\n                \"source_id\": 12,\n                \"button_text\": null,\n                \"order\": 2\n            },\n            {\n                \"source_type\": \"repository\",\n                \"source_id\": 3,\n                \"button_text\": null,\n                \"order\": 3\n            }\n        ]\n    }\n}"
+            },
+            {
+              "name": "422 - source_id tidak ditemukan",
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"content.0.source_id\": [\n            \"The selected source item does not exist.\"\n        ]\n    }\n}"
             }
           ]
         },
@@ -200,7 +267,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"content\": [\n            {\n                \"id\": 1,\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-1.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n                \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi untuk industri pertambangan berkelanjutan.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1\n            },\n            {\n                \"id\": 2,\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-2.jpg\",\n                \"tag\": \"PROGRAM\",\n                \"title\": \"Kolaborasi Teknologi IMC 2026\",\n                \"subtitle\": \"Bergabunglah dalam ekosistem inovasi manufaktur Indonesia.\",\n                \"button_text\": \"Lihat Program\",\n                \"button_link\": \"/program/kolaborasi-2026\",\n                \"order\": 2\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"content\": [\n            {\n                \"image_path\": \"/storage/pub/ev-mining.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n                \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi industri pertambangan.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1,\n                \"source_type\": \"publication\",\n                \"source_id\": 2\n            },\n            {\n                \"image_path\": \"/storage/repository/data-mining.jpg\",\n                \"tag\": null,\n                \"title\": \"Data Mining Framework\",\n                \"subtitle\": \"Framework analisis data pertambangan.\",\n                \"button_text\": null,\n                \"button_link\": \"/repository/data-mining-framework\",\n                \"order\": 2,\n                \"source_type\": \"repository\",\n                \"source_id\": 5\n            }\n        ]\n    }\n}"
             },
             {
               "name": "404 - Section tidak ditemukan",
@@ -237,7 +304,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"section_title\": \"Hero Banner\",\n    \"is_section\": true,\n    \"order\": 1,\n    \"content\": [\n        {\n            \"id\": 1,\n            \"image_path\": \"/storage/hero/banner-1-updated.jpg\",\n            \"tag\": \"BERITA\",\n            \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan (Update)\",\n            \"subtitle\": \"Subtitle terbaru untuk slide pertama.\",\n            \"button_text\": \"Baca Selengkapnya\",\n            \"button_link\": \"/berita/ev-mining-outlook\"\n        },\n        {\n            \"id\": null,\n            \"image_path\": \"/storage/hero/banner-3.jpg\",\n            \"tag\": \"AGENDA\",\n            \"title\": \"IMC Annual Meeting 2026\",\n            \"subtitle\": \"Momentum kolaborasi pemangku kepentingan manufaktur nasional.\",\n            \"button_text\": \"Lihat Agenda\",\n            \"button_link\": \"/agenda/imc-annual-meeting-2026\"\n        }\n    ],\n    \"deleted_content_detail_id\": [2]\n}",
+              "raw": "{\n    \"section_title\": \"Hero Banner\",\n    \"is_section\": true,\n    \"order\": 1,\n    \"content\": [\n        {\n            \"id\": 1,\n            \"source_type\": \"publication\",\n            \"source_id\": 2,\n            \"button_text\": \"Baca Selengkapnya\"\n        },\n        {\n            \"source_type\": \"gallery\",\n            \"source_id\": 12\n        }\n    ],\n    \"deleted_content_detail_id\": [2]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -267,7 +334,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil memperbarui data section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"content\": [\n            {\n                \"id\": 1,\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-1-updated.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan (Update)\",\n                \"subtitle\": \"Subtitle terbaru untuk slide pertama.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1\n            },\n            {\n                \"id\": 3,\n                \"content_id\": 1,\n                \"image_path\": \"/storage/hero/banner-3.jpg\",\n                \"tag\": \"AGENDA\",\n                \"title\": \"IMC Annual Meeting 2026\",\n                \"subtitle\": \"Momentum kolaborasi pemangku kepentingan manufaktur nasional.\",\n                \"button_text\": \"Lihat Agenda\",\n                \"button_link\": \"/agenda/imc-annual-meeting-2026\",\n                \"order\": 2\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil memperbarui data section\",\n    \"data\": {\n        \"id\": 1,\n        \"parent_type\": \"App\\\\Models\\\\Menu\",\n        \"parent_id\": 1,\n        \"section_title\": \"Hero Banner\",\n        \"is_section\": true,\n        \"order\": 1,\n        \"type\": \"hero_carousel\",\n        \"layout_id\": 1,\n        \"content\": [\n            {\n                \"source_type\": \"publication\",\n                \"source_id\": 2,\n                \"button_text\": \"Baca Selengkapnya\",\n                \"order\": 1\n            },\n            {\n                \"source_type\": \"gallery\",\n                \"source_id\": 12,\n                \"button_text\": null,\n                \"order\": 2\n            }\n        ]\n    }\n}"
             },
             {
               "name": "404 - Section tidak ditemukan",
@@ -412,7 +479,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil detail section\",\n    \"data\": {\n        \"section_title\": \"Hero Banner\",\n        \"type\": \"hero_carousel\",\n        \"order\": 1,\n        \"content\": [\n            {\n                \"image_path\": \"/storage/hero/banner-1.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n                \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi untuk industri pertambangan berkelanjutan.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1\n            },\n            {\n                \"image_path\": \"/storage/hero/banner-2.jpg\",\n                \"tag\": \"PROGRAM\",\n                \"title\": \"Kolaborasi Teknologi IMC 2026\",\n                \"subtitle\": \"Bergabunglah dalam ekosistem inovasi manufaktur Indonesia.\",\n                \"button_text\": \"Lihat Program\",\n                \"button_link\": \"/program/kolaborasi-2026\",\n                \"order\": 2\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil detail section\",\n    \"data\": {\n        \"section_title\": \"Hero Banner\",\n        \"type\": \"hero_carousel\",\n        \"order\": 1,\n        \"content\": [\n            {\n                \"image_path\": \"/storage/pub/ev-mining.jpg\",\n                \"tag\": \"BERITA\",\n                \"title\": \"EV Mining Outlook: Elektrifikasi Pertambangan\",\n                \"subtitle\": \"Kemenperin ungkap strategi elektrifikasi industri pertambangan.\",\n                \"button_text\": \"Baca Selengkapnya\",\n                \"button_link\": \"/berita/ev-mining-outlook\",\n                \"order\": 1,\n                \"source_type\": \"publication\",\n                \"source_id\": 42\n            },\n            {\n                \"image_path\": \"/storage/gallery/imc-expo-1.jpg\",\n                \"tag\": null,\n                \"title\": \"IMC Expo 2026\",\n                \"subtitle\": \"Dokumentasi pameran inovasi manufaktur.\",\n                \"button_text\": null,\n                \"button_link\": \"/galeri/imc-expo-2026\",\n                \"order\": 2,\n                \"source_type\": \"gallery\",\n                \"source_id\": 12\n            }\n        ]\n    }\n}"
             },
             {
               "name": "404 - Section tidak ditemukan",

@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\ContentDetailProject;
+use App\Models\ContentDetailShowcase;
 use App\Models\User;
 
-class ContentDetailProjectPolicy
+class ContentDetailShowcasePolicy
 {
     protected const ALLOWED_ROLES = ['super_admin', 'admin_pusat', 'admin_pustik'];
 
@@ -19,7 +19,7 @@ class ContentDetailProjectPolicy
         return $this->isAllowed($user);
     }
 
-    public function view(User $user, ContentDetailProject $model): bool
+    public function view(User $user, ContentDetailShowcase $model): bool
     {
         return $this->isAllowed($user);
     }
@@ -29,12 +29,12 @@ class ContentDetailProjectPolicy
         return $this->isAllowed($user);
     }
 
-    public function update(User $user, ContentDetailProject $model): bool
+    public function update(User $user, ContentDetailShowcase $model): bool
     {
         return $this->isAllowed($user);
     }
 
-    public function delete(User $user, ContentDetailProject $model): bool
+    public function delete(User $user, ContentDetailShowcase $model): bool
     {
         return $this->isAllowed($user);
     }

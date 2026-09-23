@@ -1,0 +1,328 @@
+{
+  "info": {
+    "name": "Project Service - Project CRUD",
+    "description": "Sample requests/responses CRUD proyek pada project-service (satu-satunya owner tabel content_detail_projects).\n\nMembuat proyek di sini otomatis membuatnya tampil sebagai konten di public-content-service (listing type=project, is_publicated=true).\n\nSemua endpoint admin, dilindungi JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n\nBase URL local dev: http://localhost:4076/project-service/api\n\nEndpoints:\n1. GET    /projects                 - list proyek (paginated, cari via ?search=, filter kolom title & project_no)\n2. POST   /projects                 - buat proyek (content_id opsional, otomatis dari contents type=project bila kosong)\n3. GET    /projects/{project_no}    - detail proyek (relasi PM + additional content + tag)\n4. PUT    /projects/{project_no}    - update proyek (parsial, null dilewati)\n5. DELETE /projects/{project_no}    - hapus proyek (hanya status draft, soft delete)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/project-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_ADMIN"
+    },
+    {
+      "key": "content_id",
+      "value": "1",
+      "description": "opsional - id contents type=project; kosongkan untuk auto-detect"
+    },
+    {
+      "key": "project_no",
+      "value": "IMC.2026-011"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. List proyek",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/projects",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "projects"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": "taman",
+              "description": "optional - cari title / project_no"
+            },
+            {
+              "key": "sort_by",
+              "value": "updated_at",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "sort_order",
+              "value": "desc",
+              "description": "optional - asc | desc",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Daftar proyek (PM + CMS) dengan paginasi."
+      },
+      "response": [
+        {
+          "name": "200 - List proyek berhasil",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data proyek\",\n    \"data\": {\n        \"current_page\": 1,\n        \"per_page\": 10,\n        \"total\": 1,\n        \"items\": [\n            {\n                \"id\": 11,\n                \"project_no\": \"IMC.2026-011\",\n                \"name\": \"Revitalisasi Taman Kota\",\n                \"title\": \"Revitalisasi Taman Kota\",\n                \"slug\": \"revitalisasi-taman-kota\",\n                \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n                \"is_publicated\": true,\n                \"publish_date\": \"2026-07-15\",\n                \"client\": {\n                    \"id\": 1,\n                    \"name\": \"PT ABC\"\n                },\n                \"partner\": {\n                    \"id\": 2,\n                    \"name\": \"PT Sinar Teknik\"\n                },\n                \"category\": {\n                    \"code\": \"ETO\",\n                    \"name\": \"Engineering to Order\"\n                },\n                \"status\": \"draft\",\n                \"progress\": 0,\n                \"current_stage\": null,\n                \"pic\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"start_date\": \"2026-01-10\",\n                \"target_end_date\": \"2027-01-10\",\n                \"attachments\": []\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. Buat proyek",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Revitalisasi Taman Kota\",\n    \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n    \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n    \"publish_date\": \"2026-07-15\",\n    \"is_publicated\": true,\n    \"duration\": \"12 bulan\",\n    \"location\": \"Jakarta Pusat\",\n    \"start_date\": \"2026-01-10\",\n    \"budget\": 25000000000,\n    \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n    \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n    \"tag_id\": [\n        1,\n        2\n    ],\n    \"has_additional_image\": false,\n    \"has_additional_video\": false,\n    \"has_additional_file\": false,\n    \"has_additional_link\": false,\n    \"has_additional_text\": false,\n    \"client_id\": 1,\n    \"partner_id\": 2,\n    \"category_id\": 1,\n    \"workflow_id\": 1,\n    \"pic_user_id\": 10,\n    \"target_end_date\": \"2027-01-10\",\n    \"attachments\": [\n        \"https://files.example.com/tor-revitalisasi.pdf\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/projects",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "projects"
+          ]
+        },
+        "description": "Buat proyek PM + konten publik sekaligus. title/name salah satu wajib. slug & project_no otomatis bila kosong. is_publicated=true agar tampil di public-content-service."
+      },
+      "response": [
+        {
+          "name": "201 - Proyek dibuat (draft)",
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Proyek dibuat (status draft)\",\n    \"data\": {\n        \"id\": 11,\n        \"content_id\": 1,\n        \"project_no\": \"IMC.2026-011\",\n        \"name\": \"Revitalisasi Taman Kota\",\n        \"title\": \"Revitalisasi Taman Kota\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"12 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"budget\": 25000000000,\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"PT ABC\"\n        },\n        \"partner\": {\n            \"id\": 2,\n            \"name\": \"PT Sinar Teknik\"\n        },\n        \"category\": {\n            \"code\": \"ETO\",\n            \"name\": \"Engineering to Order\"\n        },\n        \"workflow\": {\n            \"id\": 1,\n            \"code\": \"ETO-MFG\",\n            \"name\": \"ETO Manufacturing\",\n            \"version\": 1\n        },\n        \"status\": \"draft\",\n        \"progress\": 0,\n        \"current_stage\": null,\n        \"pic\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"start_date\": \"2026-01-10\",\n        \"target_end_date\": \"2027-01-10\",\n        \"has_additional_image\": false,\n        \"has_additional_video\": false,\n        \"has_additional_file\": false,\n        \"has_additional_link\": false,\n        \"has_additional_text\": false,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"created_at\": \"2026-09-17T10:00:00.000000Z\",\n        \"updated_at\": \"2026-09-17T10:00:00.000000Z\",\n        \"tag_id\": [\n            1,\n            2\n        ],\n        \"attachments\": [\n            {\n                \"id\": 1,\n                \"file_url\": \"https://files.example.com/tor-revitalisasi.pdf\",\n                \"created_by\": \"admin_pusat\"\n            }\n        ],\n        \"stages\": [],\n        \"milestones\": [],\n        \"open_change_requests\": [],\n        \"custom_fields\": []\n    }\n}"
+        },
+        {
+          "name": "422 - Validasi gagal",
+          "status": "Unprocessable Entity",
+          "code": 422,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"client_id\": [\n            \"The selected client id is invalid.\"\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "3. Detail proyek",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/projects/{{project_no}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "projects",
+            "{{project_no}}"
+          ]
+        },
+        "description": "Detail proyek via project_no (bukan id)."
+      },
+      "response": [
+        {
+          "name": "200 - Detail proyek berhasil",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail proyek\",\n    \"data\": {\n        \"id\": 11,\n        \"content_id\": 1,\n        \"project_no\": \"IMC.2026-011\",\n        \"name\": \"Revitalisasi Taman Kota\",\n        \"title\": \"Revitalisasi Taman Kota\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"description\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga.\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"12 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"budget\": 25000000000,\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"PT ABC\"\n        },\n        \"partner\": {\n            \"id\": 2,\n            \"name\": \"PT Sinar Teknik\"\n        },\n        \"category\": {\n            \"code\": \"ETO\",\n            \"name\": \"Engineering to Order\"\n        },\n        \"workflow\": {\n            \"id\": 1,\n            \"code\": \"ETO-MFG\",\n            \"name\": \"ETO Manufacturing\",\n            \"version\": 1\n        },\n        \"status\": \"draft\",\n        \"progress\": 0,\n        \"current_stage\": null,\n        \"pic\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"start_date\": \"2026-01-10\",\n        \"target_end_date\": \"2027-01-10\",\n        \"has_additional_image\": false,\n        \"has_additional_video\": false,\n        \"has_additional_file\": false,\n        \"has_additional_link\": false,\n        \"has_additional_text\": false,\n        \"created_by\": \"admin_pusat\",\n        \"updated_by\": \"admin_pusat\",\n        \"created_at\": \"2026-09-17T10:00:00.000000Z\",\n        \"updated_at\": \"2026-09-17T10:00:00.000000Z\",\n        \"tag_id\": [\n            1,\n            2\n        ],\n        \"attachments\": [\n            {\n                \"id\": 1,\n                \"file_url\": \"https://files.example.com/tor-revitalisasi.pdf\",\n                \"created_by\": \"admin_pusat\"\n            }\n        ],\n        \"stages\": [],\n        \"milestones\": [],\n        \"open_change_requests\": [],\n        \"custom_fields\": []\n    }\n}"
+        },
+        {
+          "name": "404 - Proyek tidak ditemukan",
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"No query results for model [App\\\\Models\\\\Project].\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Update proyek",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Revitalisasi Taman Kota (Revisi)\",\n    \"target_end_date\": \"2027-03-31\",\n    \"description\": \"Perpanjangan waktu menunggu approval anggaran tahap 2.\",\n    \"status\": \"active\",\n    \"progress\": 20,\n    \"content_additional_text\": [\n        {\n            \"id\": null,\n            \"title\": \"Capaian\",\n            \"description\": \"Penambahan 2.500 m2 area hijau produktif.\"\n        }\n    ],\n    \"has_additional_text\": true,\n    \"deleted_attachment_ids\": [\n        1\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/projects/{{project_no}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "projects",
+            "{{project_no}}"
+          ]
+        },
+        "description": "Update parsial (field null dilewati). Sinkron tags, additional content, attachments, dan global search."
+      },
+      "response": [
+        {
+          "name": "200 - Proyek berhasil diperbarui",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Proyek diperbarui\",\n    \"data\": {\n        \"id\": 11,\n        \"project_no\": \"IMC.2026-011\",\n        \"name\": \"Revitalisasi Taman Kota (Revisi)\",\n        \"status\": \"active\",\n        \"progress\": 20,\n        \"target_end_date\": \"2027-03-31\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Hapus proyek",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/projects/{{project_no}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "projects",
+            "{{project_no}}"
+          ]
+        },
+        "description": "Hanya untuk proyek status draft (soft delete; membersihkan additional content, tag, global search)."
+      },
+      "response": [
+        {
+          "name": "200 - Proyek berhasil dihapus",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Proyek dihapus\",\n    \"data\": \"\"\n}"
+        },
+        {
+          "name": "422 - Status bukan draft",
+          "status": "Unprocessable Entity",
+          "code": 422,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Hanya proyek berstatus draft yang dapat dihapus.\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    }
+  ]
+}

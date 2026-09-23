@@ -3,14 +3,14 @@
 namespace App\Services;
 
 use App\Models\Content;
-use App\Models\ContentDetailProject;
+use App\Models\ContentDetailShowcase;
 use App\Models\ContentTag;
 use App\Models\MsLayout;
-use App\Services\DTOs\ProjectDTO;
 use App\Services\DTOs\QueryFilterDTO;
+use App\Services\DTOs\ShowcaseDTO;
 use Illuminate\Support\Facades\DB;
 
-class ProjectService
+class ShowcaseService
 {
     protected SaveContentsService $saveContentService;
 
@@ -28,7 +28,7 @@ class ProjectService
 
     public function sideMenu()
     {
-        return $this->parentContentService->getParentByType('project');
+        return $this->parentContentService->getParentByType('showcase');
     }
 
     public function index(QueryFilterDTO $filter, int $contentId)
@@ -36,7 +36,7 @@ class ProjectService
         $content = Content::findOrFail($contentId);
         $parentSlug = $content->parent->full_url ?? '';
 
-        $query = DB::table('content_detail_projects')
+        $query = DB::table('content_detail_showcases')
             ->where('content_id', $contentId)
             ->select(
                 'id',
@@ -57,24 +57,24 @@ class ProjectService
 
     public function detail($id)
     {
-        $project = ContentDetailProject::findOrFail($id);
+        $showcase = ContentDetailShowcase::findOrFail($id);
         $tagIds = ContentTag::where([
-            'content_type' => ContentDetailProject::class,
-            'content_id' => $project->id,
+            'content_type' => ContentDetailShowcase::class,
+            'content_id' => $showcase->id,
         ])->pluck('tag_id')->toArray();
-        $project->tag_id = $tagIds;
-        $project->applyAdditionalContent($project);
+        $showcase->tag_id = $tagIds;
+        $showcase->applyAdditionalContent($showcase);
 
-        return $project;
+        return $showcase;
     }
 
-    public function create(ProjectDTO $dto)
+    public function create(ShowcaseDTO $dto)
     {
         DB::beginTransaction();
         try {
-            $layoutId = MsLayout::findByType('project_detail')->id;
+            $layoutId = MsLayout::findByType('showcase_detail')->id;
 
-            $data = new ContentDetailProject;
+            $data = new ContentDetailShowcase;
             $data->content_id = $dto->content_id;
             $data->title = $dto->title;
             $data->slug = $dto->slug;
@@ -93,11 +93,11 @@ class ProjectService
             $data->updated_by = $dto->updated_by;
             $data->save();
 
-            $this->saveContentService->syncTags(ContentDetailProject::class, $data->id, $dto->tag_id ?? [], $dto->created_by);
-            $this->saveContentService->storeAdditionalContent(ContentDetailProject::class, $data, $dto->toArray(), $dto->created_by);
+            $this->saveContentService->syncTags(ContentDetailShowcase::class, $data->id, $dto->tag_id ?? [], $dto->created_by);
+            $this->saveContentService->storeAdditionalContent(ContentDetailShowcase::class, $data, $dto->toArray(), $dto->created_by);
 
             if ($data->is_publicated) {
-                $this->globalSearchService->insertProject($data->id);
+                $this->globalSearchService->insertShowcase($data->id);
             }
 
             DB::commit();
@@ -109,11 +109,11 @@ class ProjectService
         }
     }
 
-    public function update($id, ProjectDTO $dto)
+    public function update($id, ShowcaseDTO $dto)
     {
         DB::beginTransaction();
         try {
-            $data = ContentDetailProject::findOrFail($id);
+            $data = ContentDetailShowcase::findOrFail($id);
 
             $data->title = $dto->title;
             $data->slug = $dto->slug;
@@ -121,7 +121,7 @@ class ProjectService
             $data->thumbnail_path = $dto->thumbnail_path;
             $data->publish_date = $dto->publish_date;
             $data->is_publicated = $dto->is_publicated;
-            $data->layout_id = MsLayout::findByType('project_detail')->id;
+            $data->layout_id = MsLayout::findByType('showcase_detail')->id;
             $data->duration = $dto->duration;
             $data->location = $dto->location;
             $data->start_date = $dto->start_date;
@@ -131,13 +131,13 @@ class ProjectService
             $data->updated_by = $dto->updated_by;
             $data->save();
 
-            $this->saveContentService->syncTags(ContentDetailProject::class, $data->id, $dto->tag_id ?? [], $dto->updated_by);
-            $this->saveContentService->storeAdditionalContent(ContentDetailProject::class, $data, $dto->toArray(), $dto->updated_by);
+            $this->saveContentService->syncTags(ContentDetailShowcase::class, $data->id, $dto->tag_id ?? [], $dto->updated_by);
+            $this->saveContentService->storeAdditionalContent(ContentDetailShowcase::class, $data, $dto->toArray(), $dto->updated_by);
 
             if ($data->is_publicated) {
-                $this->globalSearchService->insertProject($data->id);
+                $this->globalSearchService->insertShowcase($data->id);
             } else {
-                $this->globalSearchService->delete(ContentDetailProject::class, $data->id);
+                $this->globalSearchService->delete(ContentDetailShowcase::class, $data->id);
             }
 
             DB::commit();
@@ -153,7 +153,7 @@ class ProjectService
     {
         DB::beginTransaction();
         try {
-            $data = ContentDetailProject::findOrFail($id);
+            $data = ContentDetailShowcase::findOrFail($id);
             $data->delete();
 
             DB::commit();

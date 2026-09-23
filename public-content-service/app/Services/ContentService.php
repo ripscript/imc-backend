@@ -9,9 +9,11 @@ use App\Models\ContentDetailGallery;
 use App\Models\ContentDetailProject;
 use App\Models\ContentDetailPublication;
 use App\Models\ContentDetailRepository;
+use App\Models\ContentDetailShowcase;
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Services\DTOs\QueryFilterDTO;
+use Illuminate\Support\Facades\DB;
 
 class ContentService
 {
@@ -213,12 +215,49 @@ class ContentService
         if (! $project) {
             throw new EntityNotFoundException('Proyek');
         }
+        $project->client_name = $project->client_id ? DB::table('pm_clients')->where('id', $project->client_id)->value('name') : null;
+        $project->partner_name = $project->partner_id ? DB::table('pm_partners')->where('id', $project->partner_id)->value('name') : null;
+        $project->category_name = $project->category_id ? DB::table('pm_project_categories')->where('id', $project->category_id)->value('name') : null;
         $breadcrumb[] = $project->title;
         $project->applyAdditionalContent($project);
         $project->parent_menu = $content->parent_slug;
         $project->breadcrumb = $breadcrumb;
 
         return $project;
+    }
+
+    public function detailShowcase(string $type, string $contentSlug, string $slug)
+    {
+        $content = Content::whereHas('parent', function ($query) use ($contentSlug) {
+            $query->where('slug', $contentSlug);
+        })
+            ->where('parent_type', self::TYPE_CLASS[$type])
+            ->accessible()
+            ->first();
+
+        if (! $content) {
+            throw new EntityNotFoundException('Parent content');
+        }
+
+        $breadcrumb = $this->getBreadcrumb($type, $content->parent);
+
+        $showcase = ContentDetailShowcase::where([
+            'content_id' => $content->id,
+            'slug' => $slug,
+            'is_publicated' => true,
+        ])
+            ->with(['layout', 'kategoriContent'])
+            ->first();
+
+        if (! $showcase) {
+            throw new EntityNotFoundException('Showcase');
+        }
+        $breadcrumb[] = $showcase->title;
+        $showcase->applyAdditionalContent($showcase);
+        $showcase->parent_menu = $content->parent_slug;
+        $showcase->breadcrumb = $breadcrumb;
+
+        return $showcase;
     }
 
     public function globalSearch(string $keyword, int $page, int $limit)

@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\ContentDetailProject;
+use App\Models\ContentDetailShowcase;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ContentDetailProjectFactory extends Factory
+class ContentDetailShowcaseFactory extends Factory
 {
-    protected $model = ContentDetailProject::class;
+    protected $model = ContentDetailShowcase::class;
 
     public function definition(): array
     {

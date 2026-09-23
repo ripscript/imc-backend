@@ -11,7 +11,12 @@ class ProjectListResource extends JsonResource
         return [
             'id' => $this->id,
             'project_no' => $this->project_no,
-            'name' => $this->name,
+            'name' => $this->title,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'thumbnail_path' => $this->thumbnail_path,
+            'is_publicated' => $this->is_publicated,
+            'publish_date' => $this->publish_date,
             'client' => $this->client ? ['id' => $this->client->id, 'name' => $this->client->name] : null,
             'partner' => $this->partner ? ['id' => $this->partner->id, 'name' => $this->partner->name] : null,
             'category' => $this->category ? ['code' => $this->category->code, 'name' => $this->category->name] : null,

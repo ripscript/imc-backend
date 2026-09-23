@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -32,11 +31,13 @@ class LayoutSeeder extends Seeder
             'P' => 'organizational_structure',
             'Q' => 'project',
             'R' => 'project_detail',
+            'S' => 'showcase',
+            'T' => 'showcase_detail',
         ];
 
         $custom = [];
         foreach ($data as $key => $value) {
-            $title = "Style " . $key;
+            $title = 'Style '.$key;
             $isCustom = in_array($key, $custom) ? true : false;
 
             $existingRecord = DB::table('ms_layout')->where('title', $title)->first();

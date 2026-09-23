@@ -10,6 +10,7 @@ use App\Http\Resources\ContentDetailGalleryResource;
 use App\Http\Resources\ContentDetailProjectResource;
 use App\Http\Resources\ContentDetailPublicationResource;
 use App\Http\Resources\ContentDetailRepositoryResource;
+use App\Http\Resources\ContentDetailShowcaseResource;
 use App\Http\Resources\ContentResource;
 use App\Services\ContentService;
 use App\Services\DTOs\QueryFilterDTO;
@@ -73,6 +74,17 @@ class ContentController extends Controller
         );
 
         return ApiResponse::success(new ContentDetailProjectResource($project), 'Berhasil mengambil detail proyek');
+    }
+
+    public function detailShowcase(ContentDetailRequest $request)
+    {
+        $showcase = $this->contentService->detailShowcase(
+            $request->type,
+            $request->content_slug,
+            $request->slug
+        );
+
+        return ApiResponse::success(new ContentDetailShowcaseResource($showcase), 'Berhasil mengambil detail showcase');
     }
 
     public function globalSearch(GlobalSearchRequest $request)

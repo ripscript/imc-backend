@@ -2,7 +2,7 @@
 
 namespace App\Services\DTOs;
 
-class ProjectDTO extends BaseDTO
+class ShowcaseDTO extends BaseDTO
 {
     public int $content_id;
 

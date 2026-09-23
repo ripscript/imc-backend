@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use App\Models\ContentDetailGallery;
 use App\Models\ContentDetailPublication;
+use App\Models\ContentDetailShowcase;
 use App\Services\QueryService;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +23,7 @@ trait HasContentMapping
             $this->sub_type = $content->sub_type;
         }
 
-        if (in_array($this->type, ['publication', 'repository', 'gallery', 'project'])) {
+        if (in_array($this->type, ['publication', 'repository', 'gallery', 'project', 'showcase'])) {
             switch ($this->type) {
                 case 'publication':
                     $query = DB::table('content_detail_publications')
@@ -80,7 +82,14 @@ trait HasContentMapping
                                 ->whereColumn('l.content_detail_gallery_id', 'g.id')
                                 ->orderBy('l.order', 'asc')
                                 ->limit(1);
-                        }, 'first_image_path');
+                        }, 'first_image_path')
+                        ->selectSub(function ($q) {
+                            $q->from('content_tags as ct')
+                                ->join('ms_tags as t', 't.id', '=', 'ct.tag_id')
+                                ->selectRaw('json_agg(t.title)')
+                                ->whereColumn('ct.content_id', 'g.id')
+                                ->where('ct.content_type', ContentDetailGallery::class);
+                        }, 'tags');
 
                     $listContent = (new QueryService)->applyFiltersAndPaginate($query, $request, ['g.title']);
                     break;
@@ -98,14 +107,68 @@ trait HasContentMapping
                             'location',
                             'start_date',
                             'budget',
-                            'organization_name'
+                            'organization_name',
+                            'project_no',
+                            'status',
+                            'progress',
+                            'target_end_date'
                         )
                         ->selectSub(function ($q) {
                             $q->from('ms_kategori_contents')
                                 ->select('ms_kategori_contents.title')
                                 ->whereColumn('ms_kategori_contents.id', 'content_detail_projects.kategori_content_id')
                                 ->limit(1);
-                        }, 'kategori_title');
+                        }, 'kategori_title')
+                        ->selectSub(function ($q) {
+                            $q->from('pm_clients')
+                                ->select('pm_clients.name')
+                                ->whereColumn('pm_clients.id', 'content_detail_projects.client_id')
+                                ->limit(1);
+                        }, 'client_name')
+                        ->selectSub(function ($q) {
+                            $q->from('pm_partners')
+                                ->select('pm_partners.name')
+                                ->whereColumn('pm_partners.id', 'content_detail_projects.partner_id')
+                                ->limit(1);
+                        }, 'partner_name')
+                        ->selectSub(function ($q) {
+                            $q->from('pm_project_categories')
+                                ->select('pm_project_categories.name')
+                                ->whereColumn('pm_project_categories.id', 'content_detail_projects.category_id')
+                                ->limit(1);
+                        }, 'category_name');
+
+                    $listContent = (new QueryService)->applyFiltersAndPaginate($query, $request, ['title']);
+                    break;
+                case 'showcase':
+                    $query = DB::table('content_detail_showcases')
+                        ->where('content_id', $content->id)
+                        ->where('is_publicated', true)
+                        ->select(
+                            'title',
+                            'slug',
+                            'description',
+                            'thumbnail_path',
+                            'publish_date',
+                            'duration',
+                            'location',
+                            'start_date',
+                            'budget',
+                            'organization_name'
+                        )
+                        ->selectSub(function ($q) {
+                            $q->from('ms_kategori_contents')
+                                ->select('ms_kategori_contents.title')
+                                ->whereColumn('ms_kategori_contents.id', 'content_detail_showcases.kategori_content_id')
+                                ->limit(1);
+                        }, 'kategori_title')
+                        ->selectSub(function ($q) {
+                            $q->from('content_tags as ct')
+                                ->join('ms_tags as t', 't.id', '=', 'ct.tag_id')
+                                ->selectRaw('json_agg(t.title)')
+                                ->whereColumn('ct.content_id', 'content_detail_showcases.id')
+                                ->where('ct.content_type', ContentDetailShowcase::class);
+                        }, 'tags');
 
                     $listContent = (new QueryService)->applyFiltersAndPaginate($query, $request, ['title']);
                     break;
