@@ -22,8 +22,6 @@ class AuthServiceProvider extends ServiceProvider
         \App\Models\MsTag::class => \App\Policies\MsTagPolicy::class,
         \App\Models\MsKategoriContent::class => \App\Policies\MsKategoriContentPolicy::class,
         \App\Models\MsHoliday::class => \App\Policies\MsHolidayPolicy::class,
-        \App\Models\MsSurveyQuestion::class => \App\Policies\MsSurveyQuestionPolicy::class,
-        \App\Models\MsAlasanKeberatan::class => \App\Policies\MsAlasanKeberatanPolicy::class,
     ];
 
     /**

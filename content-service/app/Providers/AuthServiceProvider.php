@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         \App\Models\ContentDetailGallery::class => \App\Policies\ContentDetailGalleryPolicy::class,
         \App\Models\ContentDetailRepository::class => \App\Policies\ContentDetailRepositoryPolicy::class,
         \App\Models\ContentDetailAgenda::class => \App\Policies\ContentDetailAgendaPolicy::class,
-        \App\Models\ContentDetailProject::class => \App\Policies\ContentDetailProjectPolicy::class,
+        \App\Models\ContentDetailShowcase::class => \App\Policies\ContentDetailShowcasePolicy::class,
     ];
 
     /**

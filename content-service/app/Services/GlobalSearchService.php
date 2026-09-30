@@ -655,7 +655,7 @@ class GlobalSearchService
         ");
     }
 
-    public function insertProject($projectId)
+    public function insertShowcase($showcaseId)
     {
         if (DB::getDriverName() === 'sqlite') {
             return;
@@ -673,7 +673,7 @@ class GlobalSearchService
                 updated_at
             )
             SELECT
-                'App\\Models\\ContentDetailProject' AS source_type,
+                'App\\Models\\ContentDetailShowcase' AS source_type,
                 p.id AS source_id,
                 p.title,
                 CASE
@@ -708,7 +708,7 @@ class GlobalSearchService
                 now(),
                 now()
 
-            FROM content_detail_projects p
+            FROM content_detail_showcases p
             JOIN contents c ON p.content_id = c.id
 
             LEFT JOIN menus m 
@@ -744,7 +744,7 @@ class GlobalSearchService
 
             WHERE c.is_accessible = TRUE AND p.is_publicated = TRUE AND
             (m.title IS NOT NULL OR sm.title IS NOT NULL OR csm.title IS NOT NULL) AND
-            p.id = {$projectId}
+            p.id = {$showcaseId}
 
             ON CONFLICT (source_type, source_id)
             DO UPDATE SET

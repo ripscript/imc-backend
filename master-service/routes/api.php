@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AlasanKeberatanController;
-use App\Http\Controllers\ClassificationPemohonController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CustomFieldController;
 use App\Http\Controllers\DocumentTypeController;
@@ -11,18 +9,15 @@ use App\Http\Controllers\KategoriContentController;
 use App\Http\Controllers\KategoriFaqController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\NegaraController;
-use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\PerwakilanController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SatuanKerjaController;
 use App\Http\Controllers\SifatInformasiController;
-use App\Http\Controllers\SurveyQuestionController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\VariableTemplateEmailController;
 use App\Http\Controllers\WorkflowController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,13 +122,6 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [TagController::class, 'destroy']);
     });
 
-    Route::prefix('alasan-keberatan')->group(function () {
-        Route::post('/', [AlasanKeberatanController::class, 'create']);
-        Route::put('{id}', [AlasanKeberatanController::class, 'update']);
-        Route::get('{id}', [AlasanKeberatanController::class, 'detail']);
-        // Route::delete('{id}', [AlasanKeberatanController::class, 'destroy']);
-    });
-
     Route::prefix('hari-libur')->group(function () {
         Route::get('/', [HolidayController::class, 'index']);
         Route::post('/', [HolidayController::class, 'create']);
@@ -144,13 +132,6 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [HolidayController::class, 'destroy']);
     });
 
-    Route::prefix('survey-question')->group(function () {
-        Route::get('/', [SurveyQuestionController::class, 'index']);
-        Route::post('/', [SurveyQuestionController::class, 'create']);
-        Route::put('{id}', [SurveyQuestionController::class, 'update']);
-        Route::get('{id}', [SurveyQuestionController::class, 'detail']);
-        Route::delete('{id}', [SurveyQuestionController::class, 'destroy']);
-    });
 
     Route::prefix('clients')->group(function () {
         Route::get('/', [ClientController::class, 'index']);
@@ -209,17 +190,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
     Route::get('layout', [LayoutController::class, 'index']);
 });
 
-Route::middleware(['jwt.error:admin,pemohon'])->group(function () {
-    Route::prefix('permohonan')->group(function () {
-        Route::get('akses-data', [PermohonanController::class, 'aksesData']);
-        Route::get('format-data', [PermohonanController::class, 'formatData']);
-        Route::get('salinan-informasi', [PermohonanController::class, 'salinanInformasi']);
-    });
-
+Route::middleware(['jwt.error:admin'])->group(function () {
     Route::get('satuan-kerja', [SatuanKerjaController::class, 'index']);
     Route::get('perwakilan', [PerwakilanController::class, 'index']);
-    Route::get('alasan-keberatan', [AlasanKeberatanController::class, 'index']);
-    Route::get('list-pertanyaan-survei', [SurveyQuestionController::class, 'listActive']);
 });
-
-Route::get('classification-pemohon', [ClassificationPemohonController::class, 'index']);

@@ -88,7 +88,7 @@ class MenuSeeder extends Seeder
         // --- Content records for non-Beranda, non-TentangIMC menus ---
         $this->createContentRecord($proyekId, 'project');
         $this->createContentRecord($hasilId, 'project');
-        $this->createContentRecord($showcaseId, 'gallery');
+        $this->createContentRecord($showcaseId, 'showcase');
         $this->createContentRecord($kegiatanId, 'agenda');
         $this->createContentRecord($beritaId, 'publication');
 

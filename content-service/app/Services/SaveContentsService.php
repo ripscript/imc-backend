@@ -33,7 +33,7 @@ class SaveContentsService
 
     public function store($content, array $data, $user)
     {
-        if (! isset($data['content']) && ! in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure', 'project'])) {
+        if (! isset($data['content']) && ! in_array($content->type, ['publication', 'repository', 'gallery', 'agenda', 'organizational_structure', 'showcase'])) {
             throw ValidationException::withMessages([
                 'error' => 'Content is missing.',
             ]);

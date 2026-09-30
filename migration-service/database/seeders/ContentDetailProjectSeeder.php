@@ -102,7 +102,7 @@ class ContentDetailProjectSeeder extends Seeder
                 $slug = Str::slug($project['title']);
                 $existing = DB::table('content_detail_projects')->where('slug', $slug)->where('content_id', $content->id)->first();
 
-                if (!$existing) {
+                if (! $existing) {
                     $projectId = DB::table('content_detail_projects')->insertGetId([
                         'content_id' => $content->id,
                         'title' => $project['title'],
@@ -111,6 +111,8 @@ class ContentDetailProjectSeeder extends Seeder
                         'thumbnail_path' => $project['thumbnail_path'],
                         'is_publicated' => true,
                         'publish_date' => date('Y-m-d', strtotime('-30 days')),
+                        'status' => 'completed',
+                        'progress' => 100,
                         'layout_id' => $layout?->id,
                         'has_additional_image' => true,
                         'has_additional_video' => false,
@@ -133,11 +135,15 @@ class ContentDetailProjectSeeder extends Seeder
                         DB::table('content_additional_images')->insert([
                             'content_type' => 'App\Models\ContentDetailProject',
                             'content_id' => $projectId,
-                            'image_path' => '/images/proyek-' . Str::slug($slug) . '-' . $i . '.jpg',
+                            'image_path' => '/images/proyek-'.Str::slug($slug).'-'.$i.'.jpg',
                             'description' => "Gambar {$i} dari proyek {$project['title']}",
                             'order' => $i,
                             'created_at' => $datetime,
                             'updated_at' => $datetime,
+                        ]);
+
+                        DB::table('content_detail_projects')->where('id', $projectId)->update([
+                            'project_no' => 'IMC.'.date('Y').'-'.str_pad((string) $projectId, 3, '0', STR_PAD_LEFT),
                         ]);
                     }
 

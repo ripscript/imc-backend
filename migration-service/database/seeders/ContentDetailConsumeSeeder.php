@@ -24,20 +24,20 @@ class ContentDetailConsumeSeeder extends Seeder
             ->first();
 
         $showcaseContent = DB::table('contents')
-            ->where('type', 'gallery')
+            ->where('type', 'showcase')
             ->where('is_section', false)
             ->first();
 
         foreach ($consumeSections as $section) {
             $consumeType = match ($section->section_title) {
                 'Proyek Kolaborasi' => 'project',
-                'Showcase' => 'gallery',
+                'Showcase' => 'showcase',
                 default => 'publication',
             };
 
             $targetContent = match ($consumeType) {
                 'project' => $proyekContent,
-                'gallery' => $showcaseContent,
+                'showcase' => $showcaseContent,
                 default => null,
             };
 

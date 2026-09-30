@@ -17,8 +17,25 @@ class PmWorkflowStage extends Model
 
     protected $logName = 'workflow_stage';
 
+    protected $casts = [
+        'is_required' => 'boolean',
+        'allow_skip' => 'boolean',
+        'allow_repeat' => 'boolean',
+        'requires_approval' => 'boolean',
+    ];
+
     public function workflow()
     {
         return $this->belongsTo(PmWorkflow::class, 'workflow_id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(PmWorkflowStageTask::class, 'workflow_stage_id')->orderBy('sequence');
+    }
+
+    public function deliverables()
+    {
+        return $this->hasMany(PmWorkflowStageDeliverable::class, 'workflow_stage_id')->orderBy('sequence');
     }
 }

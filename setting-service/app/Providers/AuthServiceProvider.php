@@ -15,7 +15,6 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         \App\Models\SiteSetting::class => \App\Policies\SiteSettingPolicy::class,
         \App\Models\TemplateEmail::class => \App\Policies\TemplateEmailPolicy::class,
-        \App\Models\ChatSetting::class => \App\Policies\ChatSettingPolicy::class,
     ];
 
     /**

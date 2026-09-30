@@ -25,6 +25,7 @@ abstract class TestCase extends BaseTestCase
             'publication', 'publication_detail', 'gallery', 'gallery_image_detail',
             'gallery_video_detail', 'repository', 'repository_detail', 'accordion',
             'landing_page', 'agenda', 'organizational_structure', 'project', 'project_detail',
+            'showcase', 'showcase_detail',
         ];
 
         foreach ($layouts as $type) {

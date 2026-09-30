@@ -13,4 +13,9 @@ class PmWorkflow extends Model
     protected $table = 'pm_workflows';
 
     protected $guarded = ['id'];
+
+    public function stages()
+    {
+        return $this->hasMany(PmWorkflowStage::class, 'workflow_id')->orderBy('sequence');
+    }
 }

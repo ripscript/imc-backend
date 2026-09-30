@@ -141,9 +141,9 @@ class Content extends Model
         }
     }
 
-    public function contentDetailProject()
+    public function contentDetailShowcase()
     {
-        return $this->hasMany(ContentDetailProject::class)->orderBy('order', 'asc');
+        return $this->hasMany(ContentDetailShowcase::class)->orderBy('order', 'asc');
     }
 
     /**

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
@@ -67,14 +66,6 @@ Route::prefix('content')->group(function () {
     Route::get('repository', [ContentController::class, 'detailRepository']);
     Route::get('gallery', [ContentController::class, 'detailGallery']);
     Route::get('project', [ContentController::class, 'detailProject']);
+    Route::get('showcase', [ContentController::class, 'detailShowcase']);
     Route::get('search', [ContentController::class, 'globalSearch']);
 });
-
-Route::prefix('chat')->group(function () {
-    Route::post('/', [ChatbotController::class, 'sendMessageV2']);
-    Route::post('start', [ChatbotController::class, 'startSession']);
-    Route::post('end', [ChatbotController::class, 'endSession']);
-    Route::get('history/{uuid}', [ChatbotController::class, 'history']);
-});
-
-Route::get('/test-websocket', [ChatbotController::class, 'test']);
