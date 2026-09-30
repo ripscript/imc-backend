@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\GlobalSearchService;
+use App\Traits\HasActivityLog;
 use App\Traits\HasAdditionalContentMapping;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,9 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasAdditionalContentMapping, HasFactory, SoftDeletes;
+    use HasActivityLog, HasAdditionalContentMapping, HasFactory, SoftDeletes;
 
     public const MORPH_TYPE = 'App\Models\ContentDetailProject';
+
+    protected $logName = 'Project';
 
     protected $table = 'content_detail_projects';
 
@@ -66,6 +69,76 @@ class Project extends Model
         return $this->hasMany(ProjectAttachment::class, 'project_id');
     }
 
+    public function stages()
+    {
+        return $this->hasMany(ProjectStage::class, 'project_id')->orderBy('sequence');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(PmDocument::class, 'project_id');
+    }
+
+    public function milestones()
+    {
+        return $this->hasMany(PmMilestone::class, 'project_id');
+    }
+
+    public function changeRequests()
+    {
+        return $this->hasMany(PmChangeRequest::class, 'project_id');
+    }
+
+    public function members()
+    {
+        return $this->hasMany(PmProjectMember::class, 'project_id');
+    }
+
+    /**
+     * First stage (by sequence) that is not completed yet.
+     * Returns null when the project has no stages or all are completed.
+     */
+    public function resolveCurrentStage(): ?ProjectStage
+    {
+        $stages = $this->relationLoaded('stages') ? $this->stages : $this->stages()->get();
+
+        return $stages->first(fn (ProjectStage $stage) => $stage->status !== 'completed');
+    }
+
+    /**
+     * Derived project progress: average of stage progress. Falls back to
+     * the stored column when the project has no stages yet.
+     */
+    public function computeProgress(): int
+    {
+        $stages = $this->relationLoaded('stages') ? $this->stages : $this->stages()->get();
+
+        if ($stages->isEmpty()) {
+            return (int) ($this->getAttributes()['progress'] ?? 0);
+        }
+
+        return (int) round($stages->avg(fn (ProjectStage $stage) => $stage->calculateProgress()));
+    }
+
+    /**
+     * Attach derived `current_stage` (+ `progress`) attributes so API
+     * resources can render them without extra queries.
+     */
+    public function applyDerivedAttributes(): static
+    {
+        $current = $this->resolveCurrentStage();
+
+        $this->setAttribute('current_stage', $current ? [
+            'id' => $current->id,
+            'name' => $current->name,
+            'sequence' => $current->sequence,
+            'status' => $current->status,
+        ] : null);
+        $this->setAttribute('progress', $this->computeProgress());
+
+        return $this;
+    }
+
     public function contentAdditionalImage()
     {
         return $this->morphMany(ContentAdditionalImage::class, 'content')->orderBy('order', 'asc');
@@ -104,6 +177,21 @@ class Project extends Model
             $project->contentAdditionalFile()->delete();
             $project->contentAdditionalLink()->delete();
             $project->contentAdditionalText()->delete();
+
+            // Cascade soft-deletes through the PM aggregate (draft-only
+            // deletion; DB-level cascades cover force deletes).
+            foreach ($project->stages()->get() as $stage) {
+                $stage->tasks()->get()->each(fn ($task) => $task->delete());
+                $stage->deliverables()->get()->each(fn ($deliverable) => $deliverable->delete());
+                $stage->documents()->get()->each(fn ($document) => $document->delete());
+                $stage->approvals()->get()->each(fn ($approval) => $approval->delete());
+                $stage->delete();
+            }
+
+            $project->documents()->get()->each(fn ($document) => $document->delete());
+            $project->milestones()->get()->each(fn ($milestone) => $milestone->delete());
+            $project->changeRequests()->get()->each(fn ($changeRequest) => $changeRequest->delete());
+            $project->members()->get()->each(fn ($member) => $member->delete());
         });
 
         static::deleted(function ($project) {

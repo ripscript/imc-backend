@@ -9,6 +9,8 @@ use App\Models\Project;
 use App\Models\ProjectAttachment;
 use App\Services\DTOs\ProjectDTO;
 use App\Services\DTOs\QueryFilterDTO;
+use App\Support\CustomFieldValues;
+use App\Support\ProjectAttachments;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -34,26 +36,84 @@ class ProjectService
         return $this->parentContentService->getParentByType('project');
     }
 
-    public function index(QueryFilterDTO $filter)
+    /**
+     * Sortable project columns. `client`, `stage`, and `progress` are
+     * derived values sorted in memory; the rest sort in SQL.
+     */
+    public const SORTABLE_COLUMNS = ['title', 'project_no', 'client', 'stage', 'progress', 'status', 'updated_at'];
+
+    public function index(QueryFilterDTO $filter, ?int $authUserId = null)
     {
         $query = Project::query()
-            ->with(['client', 'partner', 'category', 'pic', 'attachments']);
+            ->with(['client', 'partner', 'category', 'pic', 'attachments', 'stages.tasks']);
 
-        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['title', 'project_no'], 'updated_at');
+        if (! empty($filter->status)) {
+            $query->where('status', $filter->status);
+        }
+        if (! empty($filter->client_id)) {
+            $query->where('client_id', $filter->client_id);
+        }
+        if (! empty($filter->category_id)) {
+            $query->where('category_id', $filter->category_id);
+        }
+        if ($filter->my && $authUserId) {
+            $query->where(function ($q) use ($authUserId) {
+                $q->where('pic_user_id', $authUserId)
+                    ->orWhereHas('members', fn ($m) => $m->where('user_id', $authUserId)->where('status', 'active'));
+            });
+        }
+
+        $query = $this->queryService->search($query, $filter, ['title', 'project_no']);
+
+        if (in_array($filter->sort_by, ['client', 'stage', 'progress'], true)) {
+            $projects = $query->get()->each(fn (Project $project) => $project->applyDerivedAttributes());
+
+            return $this->queryService->paginateCollection(
+                $this->sortByDerived($projects, $filter->sort_by, $filter->sort_order),
+                $filter
+            );
+        }
+
+        $sortBy = in_array($filter->sort_by, self::SORTABLE_COLUMNS, true) ? $filter->sort_by : 'updated_at';
+        $sortOrder = strtolower($filter->sort_order ?? 'asc') === 'desc' ? 'desc' : 'asc';
+        if (! $filter->sort_by) {
+            $sortOrder = 'desc';
+        }
+        $query->orderBy($sortBy, $sortOrder);
+
+        $result = $this->queryService->paginate($query, $filter);
+        collect($result['data'])->each(fn (Project $project) => $project->applyDerivedAttributes());
+
+        return $result;
     }
 
-    public function detail(string $projectNo)
+    protected function sortByDerived($projects, string $sortBy, ?string $sortOrder)
+    {
+        $descending = strtolower($sortOrder ?? 'asc') === 'desc';
+
+        $sorted = match ($sortBy) {
+            'client' => $projects->sortBy(fn (Project $p) => strtolower($p->client?->name ?? "\u{FFFF}")),
+            'stage' => $projects->sortBy(fn (Project $p) => $p->getAttribute('current_stage')['sequence'] ?? PHP_INT_MAX),
+            default => $projects->sortBy(fn (Project $p) => $p->getAttribute('progress') ?? 0),
+        };
+
+        return $descending ? $sorted->reverse() : $sorted;
+    }
+
+    public function detail(int $projectId)
     {
         $project = Project::with(['client', 'partner', 'category', 'workflow', 'pic', 'attachments', 'layout'])
-            ->where('project_no', $projectNo)
-            ->firstOrFail();
+            ->findOrFail($projectId);
 
         $project->load(['contentAdditionalImage', 'contentAdditionalVideo', 'contentAdditionalFile', 'contentAdditionalLink', 'contentAdditionalText']);
+        $project->load(['stages.tasks', 'stages.pic']);
         $project->tag_id = ContentTag::where([
             'content_type' => Project::MORPH_TYPE,
             'content_id' => $project->id,
         ])->pluck('tag_id')->toArray();
         $project->applyAdditionalContent($project);
+        $project->applyDerivedAttributes();
+        $project->setAttribute('custom_fields', CustomFieldValues::forEntity('project', $project->id));
 
         return $project;
     }
@@ -154,14 +214,17 @@ class ProjectService
                 $this->globalSearchService->insertProject($project->id);
             }
 
-            return $project->load(['client', 'partner', 'category', 'workflow', 'pic', 'attachments']);
+            $project->load(['client', 'partner', 'category', 'workflow', 'pic', 'attachments', 'stages.tasks']);
+            $project->setAttribute('custom_fields', CustomFieldValues::forEntity('project', $project->id));
+
+            return $project->applyDerivedAttributes();
         });
     }
 
-    public function update(string $projectNo, ProjectDTO $dto)
+    public function update(int $projectId, ProjectDTO $dto)
     {
-        return DB::transaction(function () use ($projectNo, $dto) {
-            $project = Project::where('project_no', $projectNo)->firstOrFail();
+        return DB::transaction(function () use ($projectId, $dto) {
+            $project = Project::findOrFail($projectId);
 
             if ($dto->content_id !== null) {
                 $project->content_id = $dto->content_id;
@@ -233,7 +296,12 @@ class ProjectService
                 $project->target_end_date = $dto->target_end_date;
             }
             $project->updated_by = $dto->updated_by;
+            $picChanged = $project->isDirty('pic_user_id');
             $project->save();
+
+            if ($picChanged && $project->pic_user_id) {
+                (new PmProjectMemberService)->syncPic($project->id, (int) $project->pic_user_id, $dto->updated_by);
+            }
 
             if (! empty($dto->deleted_attachment_ids)) {
                 ProjectAttachment::where('project_id', $project->id)
@@ -254,13 +322,16 @@ class ProjectService
                 $this->globalSearchService->delete(Project::MORPH_TYPE, $project->id);
             }
 
-            return $project->load(['client', 'partner', 'category', 'workflow', 'pic', 'attachments']);
+            $project->load(['client', 'partner', 'category', 'workflow', 'pic', 'attachments', 'stages.tasks']);
+            $project->setAttribute('custom_fields', CustomFieldValues::forEntity('project', $project->id));
+
+            return $project->applyDerivedAttributes();
         });
     }
 
-    public function destroy(string $projectNo)
+    public function destroy(int $projectId)
     {
-        $project = Project::where('project_no', $projectNo)->firstOrFail();
+        $project = Project::findOrFail($projectId);
 
         if ($project->status !== 'draft') {
             throw new \App\Exceptions\Domain\ValidationException(
@@ -275,14 +346,18 @@ class ProjectService
         return true;
     }
 
-    protected function syncAttachments(Project $project, array $urls): void
+    protected function syncAttachments(Project $project, array $items): void
     {
-        $urls = array_values(array_filter($urls, fn ($url) => ! empty($url)));
+        foreach (ProjectAttachments::normalize($items) as $item) {
+            if (empty($item['file_url'])) {
+                continue;
+            }
 
-        foreach ($urls as $url) {
             $project->attachments()->create([
-                'file_url' => $url,
-                'created_by' => $project->created_by,
+                'file_url' => $item['file_url'],
+                'file_name' => $item['file_name'] ?? basename(parse_url($item['file_url'], PHP_URL_PATH) ?? $item['file_url']),
+                'file_size_kb' => isset($item['file_size_kb']) ? (int) $item['file_size_kb'] : null,
+                'created_by' => $project->created_by ?? $project->updated_by,
             ]);
         }
     }

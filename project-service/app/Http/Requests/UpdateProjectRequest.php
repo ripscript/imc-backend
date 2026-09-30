@@ -11,6 +11,24 @@ class UpdateProjectRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        if ($this->exists('attachments')) {
+            $this->merge([
+                'attachments' => \App\Support\ProjectAttachments::normalize($this->input('attachments')),
+            ]);
+        }
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            foreach (\App\Support\ProjectAttachments::validate($this->input('attachments', [])) as $key => $message) {
+                $validator->errors()->add($key, $message);
+            }
+        });
+    }
+
     public function rules()
     {
         return [
@@ -73,8 +91,10 @@ class UpdateProjectRequest extends FormRequest
             'target_end_date' => ['sometimes', 'date'],
             'status' => ['sometimes', 'string', 'in:draft,pending_approval,active,on_hold,completed,cancelled'],
             'progress' => ['sometimes', 'integer', 'min:0', 'max:100'],
-            'attachments' => ['nullable', 'array', 'max:3'],
-            'attachments.*' => ['nullable', 'string', 'url'],
+            'attachments' => ['nullable', 'array', 'max:5'],
+            'attachments.*.file_url' => ['required', 'string', 'url', 'max:2048'],
+            'attachments.*.file_name' => ['nullable', 'string', 'max:255'],
+            'attachments.*.file_size_kb' => ['nullable', 'integer', 'min:1'],
             'deleted_attachment_ids' => ['nullable', 'array'],
             'deleted_attachment_ids.*' => ['integer'],
         ];

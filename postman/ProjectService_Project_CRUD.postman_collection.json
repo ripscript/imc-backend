@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Project Service - Project CRUD",
-    "description": "Sample requests/responses CRUD proyek pada project-service (satu-satunya owner tabel content_detail_projects).\n\nMembuat proyek di sini otomatis membuatnya tampil sebagai konten di public-content-service (listing type=project, is_publicated=true).\n\nSemua endpoint admin, dilindungi JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n\nBase URL local dev: http://localhost:4076/project-service/api\n\nEndpoints:\n1. GET    /projects                 - list proyek (paginated, cari via ?search=, filter kolom title & project_no)\n2. POST   /projects                 - buat proyek (content_id opsional, otomatis dari contents type=project bila kosong)\n3. GET    /projects/{project_no}    - detail proyek (relasi PM + additional content + tag)\n4. PUT    /projects/{project_no}    - update proyek (parsial, null dilewati)\n5. DELETE /projects/{project_no}    - hapus proyek (hanya status draft, soft delete)",
+    "description": "Sample requests/responses CRUD proyek pada project-service (satu-satunya owner tabel content_detail_projects).\n\nMembuat proyek di sini otomatis membuatnya tampil sebagai konten di public-content-service (listing type=project, is_publicated=true).\n\nSemua endpoint admin, dilindungi JWT (Authorization: Bearer) + role super_admin/admin_pusat/admin_pustik.\n\nBase URL local dev: http://localhost:4076/project-service/api\n\nEndpoints:\n1. GET    /projects                 - list proyek (paginated, cari via ?search=, filter kolom title & project_no)\n2. POST   /projects                 - buat proyek (content_id opsional, otomatis dari contents type=project bila kosong)\n3. GET    /projects/{project_id}    - detail proyek (relasi PM + additional content + tag)\n4. PUT    /projects/{project_id}    - update proyek (parsial, null dilewati)\n5. DELETE /projects/{project_id}    - hapus proyek (hanya status draft, soft delete)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -19,8 +19,8 @@
       "description": "opsional - id contents type=project; kosongkan untuk auto-detect"
     },
     {
-      "key": "project_no",
-      "value": "IMC.2026-011"
+      "key": "project_id",
+      "value": "1"
     }
   ],
   "item": [
@@ -174,16 +174,16 @@
           }
         ],
         "url": {
-          "raw": "{{base_url}}/projects/{{project_no}}",
+          "raw": "{{base_url}}/projects/{{project_id}}",
           "host": [
             "{{base_url}}"
           ],
           "path": [
             "projects",
-            "{{project_no}}"
+            "{{project_id}}"
           ]
         },
-        "description": "Detail proyek via project_no (bukan id)."
+        "description": "Detail proyek via project_id."
       },
       "response": [
         {
@@ -242,13 +242,13 @@
           }
         },
         "url": {
-          "raw": "{{base_url}}/projects/{{project_no}}",
+          "raw": "{{base_url}}/projects/{{project_id}}",
           "host": [
             "{{base_url}}"
           ],
           "path": [
             "projects",
-            "{{project_no}}"
+            "{{project_id}}"
           ]
         },
         "description": "Update parsial (field null dilewati). Sinkron tags, additional content, attachments, dan global search."
@@ -284,13 +284,13 @@
           }
         ],
         "url": {
-          "raw": "{{base_url}}/projects/{{project_no}}",
+          "raw": "{{base_url}}/projects/{{project_id}}",
           "host": [
             "{{base_url}}"
           ],
           "path": [
             "projects",
-            "{{project_no}}"
+            "{{project_id}}"
           ]
         },
         "description": "Hanya untuk proyek status draft (soft delete; membersihkan additional content, tag, global search)."

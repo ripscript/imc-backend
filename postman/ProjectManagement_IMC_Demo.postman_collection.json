@@ -18,10 +18,6 @@
       "value": "1"
     },
     {
-      "key": "project_no",
-      "value": "IMC.2026-001"
-    },
-    {
       "key": "stage_id",
       "value": "5"
     },
@@ -267,13 +263,13 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/projects/{{project_no}}",
+              "raw": "{{base_url}}/projects/{{project_id}}",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "projects",
-                "{{project_no}}"
+                "{{project_id}}"
               ]
             },
             "description": "Project Detail Overview (DRD langkah 8). Contoh payload lengkap = DRD Bab 4.3."
@@ -313,13 +309,13 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/projects/{{project_no}}",
+              "raw": "{{base_url}}/projects/{{project_id}}",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "projects",
-                "{{project_no}}"
+                "{{project_id}}"
               ]
             },
             "description": "Update info dasar proyek.",
@@ -364,13 +360,13 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/projects/{{project_no}}",
+              "raw": "{{base_url}}/projects/{{project_id}}",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "projects",
-                "{{project_no}}"
+                "{{project_id}}"
               ]
             },
             "description": "Hanya untuk proyek status draft (belum aktif)."

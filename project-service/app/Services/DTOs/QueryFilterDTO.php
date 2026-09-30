@@ -12,6 +12,10 @@ class QueryFilterDTO
         public int $page = 1,
         public ?bool $is_active = null,
         public bool $without_pagination = false,
+        public ?string $status = null,
+        public ?int $client_id = null,
+        public ?int $category_id = null,
+        public bool $my = false,
     ) {}
 
     public static function fromRequest(\Illuminate\Http\Request $request): self
@@ -24,6 +28,10 @@ class QueryFilterDTO
             page: max((int) $request->input('page', 1), 1),
             is_active: $request->has('is_active') ? filter_var($request->input('is_active'), FILTER_VALIDATE_BOOLEAN) : null,
             without_pagination: $request->boolean('without_pagination'),
+            status: $request->input('status'),
+            client_id: $request->input('client_id') ? (int) $request->input('client_id') : null,
+            category_id: $request->input('category_id') ? (int) $request->input('category_id') : null,
+            my: $request->boolean('my'),
         );
     }
 }

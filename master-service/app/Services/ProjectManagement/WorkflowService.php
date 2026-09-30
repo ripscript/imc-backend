@@ -5,6 +5,8 @@ namespace App\Services\ProjectManagement;
 use App\Exceptions\Domain\ValidationException;
 use App\Models\PmWorkflow;
 use App\Models\PmWorkflowStage;
+use App\Models\PmWorkflowStageDeliverable;
+use App\Models\PmWorkflowStageTask;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\DTOs\WorkflowDTO;
 use App\Services\QueryService;
@@ -25,14 +27,15 @@ class WorkflowService
 
     public function detail($id)
     {
-        return PmWorkflow::with('stages')->findOrFail($id);
+        return PmWorkflow::with(['stages.tasks', 'stages.deliverables'])->findOrFail($id);
     }
 
     public function stages($id)
     {
         PmWorkflow::findOrFail($id);
 
-        return PmWorkflowStage::where('workflow_id', $id)
+        return PmWorkflowStage::with(['tasks', 'deliverables'])
+            ->where('workflow_id', $id)
             ->orderBy('sequence')
             ->get();
     }
@@ -125,6 +128,10 @@ class WorkflowService
             $seenCodes[$code] = true;
         }
 
+        $oldStageIds = PmWorkflowStage::where('workflow_id', $workflow->id)->pluck('id');
+
+        PmWorkflowStageTask::whereIn('workflow_stage_id', $oldStageIds)->delete();
+        PmWorkflowStageDeliverable::whereIn('workflow_stage_id', $oldStageIds)->delete();
         PmWorkflowStage::where('workflow_id', $workflow->id)->delete();
 
         foreach ($stages as $stage) {
@@ -132,10 +139,12 @@ class WorkflowService
             $newStage->workflow_id = $workflow->id;
             $newStage->name = $stage['name'];
             $newStage->code = $stage['code'] ?? null;
+            $newStage->description = $stage['description'] ?? null;
             $newStage->sequence = (int) $stage['sequence'];
             $newStage->is_required = $stage['is_required'] ?? true;
             $newStage->allow_skip = $stage['allow_skip'] ?? false;
             $newStage->allow_repeat = $stage['allow_repeat'] ?? false;
+            $newStage->requires_approval = $stage['requires_approval'] ?? false;
             $newStage->created_by = $workflow->created_by;
             $newStage->updated_by = $workflow->updated_by;
             $newStage->save();
@@ -143,6 +152,32 @@ class WorkflowService
             if (empty($newStage->code)) {
                 $newStage->code = ProjectCodeGenerator::workflowStage($workflow->id, $newStage->sequence);
                 $newStage->save();
+            }
+
+            $taskSequence = 1;
+            foreach ($stage['tasks'] ?? [] as $task) {
+                PmWorkflowStageTask::create([
+                    'workflow_stage_id' => $newStage->id,
+                    'title' => $task['title'],
+                    'description' => $task['description'] ?? null,
+                    'priority' => $task['priority'] ?? 'medium',
+                    'sequence' => $taskSequence++,
+                    'created_by' => $workflow->created_by,
+                    'updated_by' => $workflow->updated_by,
+                ]);
+            }
+
+            $deliverableSequence = 1;
+            foreach ($stage['deliverables'] ?? [] as $deliverable) {
+                PmWorkflowStageDeliverable::create([
+                    'workflow_stage_id' => $newStage->id,
+                    'document_type_id' => $deliverable['document_type_id'] ?? null,
+                    'name' => $deliverable['name'],
+                    'is_required' => $deliverable['is_required'] ?? true,
+                    'sequence' => $deliverableSequence++,
+                    'created_by' => $workflow->created_by,
+                    'updated_by' => $workflow->updated_by,
+                ]);
             }
         }
     }

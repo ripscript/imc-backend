@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+
+        // Project-management master data (clients, partners, categories,
+        // document types, default workflow + stages)
+        $this->call(PmProjectManagementSeeder::class);
         $this->call(TemplateEmailSeeder::class);
         $this->call(LayoutSeeder::class);
         $this->call(MenuSeeder::class);

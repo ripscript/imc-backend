@@ -32,8 +32,8 @@ class ProjectResource extends JsonResource
                 : null,
             'status' => $this->status,
             'progress' => $this->progress,
-            'current_stage' => null,
-            'pic' => $this->pic ? ['id' => $this->pic->id, 'name' => $this->pic->name] : null,
+            'current_stage' => $this->getAttribute('current_stage'),
+            'pic' => $this->pic ? ['id' => $this->pic->id, 'name' => $this->pic->name, 'email' => $this->pic->email] : null,
             'start_date' => $this->start_date,
             'target_end_date' => $this->target_end_date,
             'has_additional_image' => $this->has_additional_image,
@@ -52,10 +52,10 @@ class ProjectResource extends JsonResource
             'contentAdditionalFile' => $this->whenLoaded('contentAdditionalFile'),
             'contentAdditionalLink' => $this->whenLoaded('contentAdditionalLink'),
             'contentAdditionalText' => $this->whenLoaded('contentAdditionalText'),
-            'stages' => [],
+            'stages' => ProjectStageResource::collection($this->whenLoaded('stages')),
             'milestones' => [],
             'open_change_requests' => [],
-            'custom_fields' => [],
+            'custom_fields' => $this->getAttribute('custom_fields') ?? [],
         ];
     }
 }
