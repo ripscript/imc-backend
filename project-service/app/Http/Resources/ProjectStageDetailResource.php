@@ -12,7 +12,6 @@ class ProjectStageDetailResource extends JsonResource
             'tasks' => PmTaskResource::collection($this->whenLoaded('tasks')),
             'deliverables' => PmDeliverableResource::collection($this->whenLoaded('deliverables')),
             'documents' => PmDocumentResource::collection($this->whenLoaded('documents')),
-            'approvers' => PmApprovalResource::collection($this->whenLoaded('approvals')),
         ]);
     }
 }

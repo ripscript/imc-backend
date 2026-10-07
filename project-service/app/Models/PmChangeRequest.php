@@ -17,6 +17,12 @@ class PmChangeRequest extends Model
 
     protected $logName = 'Change Request';
 
+    protected $casts = [
+        'proposed_changes' => 'array',
+        'approved_at' => 'datetime',
+        'applied_at' => 'datetime',
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');
@@ -30,6 +36,14 @@ class PmChangeRequest extends Model
     public function requester()
     {
         return $this->belongsTo(User::class, 'requested_by');
+    }
+
+    /**
+     * Suggesting client (recorded by an admin; client login is a future epic).
+     */
+    public function client()
+    {
+        return $this->belongsTo(PmClient::class, 'client_id');
     }
 
     public function decider()

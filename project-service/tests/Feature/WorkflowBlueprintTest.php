@@ -219,22 +219,22 @@ class WorkflowBlueprintTest extends TestProjectCase
         ])->assertStatus(422);
     }
 
-    public function test_activation_gate_requires_approvers_where_flagged(): void
+    public function test_activation_is_always_two_step_regardless_of_stage_flags(): void
     {
         [$project, $stages] = $this->seedCompleteProject();
 
         $this->putJson("/api/projects/{$project['id']}/stages/{$stages[0]['id']}", ['requires_approval' => true])
             ->assertStatus(200);
 
-        $response = $this->postJson("/api/projects/{$project['id']}/activate");
-        $response->assertStatus(422);
-        $this->assertContains("step_4.stage_{$stages[0]['id']}.approvers_missing", $response->json('errors'));
+        // The exit-gate flag no longer blocks activation; activation always
+        // routes through approval.
+        $this->postJson("/api/projects/{$project['id']}/activate")
+            ->assertStatus(200)
+            ->assertJsonPath('data.status', 'pending_approval');
 
-        // After assigning an approver the gate passes.
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stages[0]['id']}/approvers", [
-            'approvers' => [['approver_id' => $this->admin->id]],
-        ])->assertStatus(200);
-        $this->postJson("/api/projects/{$project['id']}/activate")->assertStatus(200);
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")
+            ->assertStatus(200)
+            ->assertJsonPath('data.status', 'active');
     }
 
     public function test_manual_stages_stay_blank(): void

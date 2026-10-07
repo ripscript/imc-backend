@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Project Management E2E - Guided Walkthrough",
-    "description": "Panduan langkah-demi-langkah untuk junior front-end: dari MEMBUAT BLUEPRINT di halaman Master, masuk wizard Usulan Proyek, sampai project aktif.\n\nMODEL DATA (penting): template hanya REFERENSI baca. FE mengambil blueprint (Step 1.4), menggabungkannya di state FE sendiri, dan mengirim pohon yang sudah dikonfigurasi — API menyimpan persis apa yang dikirim, tidak pernah menyalin diam-diam. Tidak ada baris yang lahir sebelum FE menekan simpan.\n\nCARA PAKAI:\n1. Jalankan folder berurutan: Step 0 (persiapan) -> Step 1 (blueprint di Master) -> Step 2-6 (wizard) -> Lampiran.\n2. Setiap response berisi id yang dibutuhkan request berikutnya — copy nilainya ke variable collection (klik kanan collection > Edit > Variables): workflow_id, workflow_stage_id, project_id, stage_id, task_id, deliverable_id, document_id, member_id.\n3. Step 3 (Tentukan Stage) punya 2 cabang (A = kirim template yang sudah dikonfigurasi, B = manual) — pilih SALAH SATU.\n4. Semua request sudah diberi nomor; jalankan berurutan. Request bertanda (opsional) boleh dilewati.\n\nVariabel base URL (local dev via nginx gateway):\n- master_base_url = master-service (halaman Master: workflow blueprint, client, kategori, document type)\n- base_url = project-service (wizard: project, stage, task, dokumen, approval)\n- user_base_url = user-service (login + daftar user/PIC)\n- file_base_url = file-service (upload file lampiran/dokumen)",
+    "description": "Panduan langkah-demi-langkah untuk junior front-end: dari MEMBUAT BLUEPRINT di halaman Master, masuk wizard Usulan Proyek, lalu approval aktivasi, eksekusi stage, dan change request setelah project aktif.\n\nMODEL DATA (penting): template hanya REFERENSI baca. FE mengambil blueprint (Step 1.4), menggabungkannya di state FE sendiri, dan mengirim pohon yang sudah dikonfigurasi — API menyimpan persis apa yang dikirim, tidak pernah menyalin diam-diam. Tidak ada baris yang lahir sebelum FE menekan simpan.\n\nCARA PAKAI:\n1. Jalankan folder berurutan: Step 0 (persiapan) -> Step 1 (blueprint di Master) -> Step 2-6 (wizard) -> Step 7 (eksekusi tiga gerbang) -> Lampiran.\n2. Setiap response berisi id yang dibutuhkan request berikutnya — copy nilainya ke variable collection (klik kanan collection > Edit > Variables): workflow_id, workflow_stage_id, project_id, stage_id, task_id, deliverable_id, document_id, member_id, change_request_id.\n3. Step 3 (Tentukan Stage) punya 2 cabang (A = kirim template yang sudah dikonfigurasi, B = manual) — pilih SALAH SATU.\n4. Semua request sudah diberi nomor; jalankan berurutan. Request bertanda (opsional) boleh dilewati.\n\nVariabel base URL (local dev via nginx gateway):\n- master_base_url = master-service (halaman Master: workflow blueprint, client, kategori, document type)\n- base_url = project-service (wizard dan eksekusi: project, stage, task, dokumen, tiga gerbang approval)\n- user_base_url = user-service (login + daftar user/PIC)\n- file_base_url = file-service (upload file lampiran/dokumen)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -78,7 +78,12 @@
     {
       "key": "member_id",
       "value": "1",
-      "description": "copy dari response 7.3 Tambah anggota"
+      "description": "copy dari response A.3 Tambah anggota"
+    },
+    {
+      "key": "change_request_id",
+      "value": "1",
+      "description": "copy id dari response 7.6/7.7"
     }
   ],
   "item": [
@@ -825,10 +830,10 @@
                     "configuration"
                   ]
                 },
-                "description": "Simpan konfigurasi BANYAK stage dalam SATU request (atomik: gagal satu = gagal semua, error terindeks stages.{i}.... Hanya stage yang dikirim yang kontennya diubah (info + tasks[] + deliverables[] + approvers[], aturan replace sama seperti 5.2); is_configured disapu true untuk SEMUA stage proyek sehingga satu panggilan ini menyatakan step 4 selesai. approvers[] mengikuti aturan 5.15 (wajib requires_approval=true). Respons berisi stages + setup_state sekaligus. Untuk 30+ stage, kirim seluruh form dalam satu request ini.",
+                "description": "Simpan konfigurasi BANYAK stage dalam SATU request (atomik: gagal satu = gagal semua, error terindeks stages.{i}.... Hanya stage yang dikirim yang kontennya diubah (info + tasks[] + deliverables[], aturan replace sama seperti 5.2); is_configured disapu true untuk SEMUA stage proyek sehingga satu panggilan ini menyatakan step 4 selesai. requires_approval hanya menandai perlunya clearance saat complete; tidak ada daftar approver. Respons berisi stages + setup_state sekaligus. Untuk 30+ stage, kirim seluruh form dalam satu request ini.",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"description\": \"Tahap requirement\",\n            \"allow_skip\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"priority\": \"high\",\n                    \"due_date\": \"2026-06-05\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"description\": \"Tahap feasibility\",\n            \"requires_approval\": true,\n            \"approvers\": [\n                {\n                    \"approver_id\": 1\n                },\n                {\n                    \"approver_id\": 2\n                }\n            ]\n        }\n    ]\n}",
+                  "raw": "{\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"description\": \"Tahap requirement\",\n            \"allow_skip\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"priority\": \"high\",\n                    \"due_date\": \"2026-06-05\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"description\": \"Tahap feasibility\",\n            \"requires_approval\": true\n        }\n    ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -869,7 +874,7 @@
                     "{{stage_id}}"
                   ]
                 },
-                "description": "Buka konfigurasi satu stage: info + tasks + deliverables + documents + approvers yang TERSIMPAN. Tidak ada prefill server-side — yang kosong berarti memang belum disimpan."
+                "description": "Buka konfigurasi satu stage: info + tasks + deliverables + documents + field clearance (requires_approval, approved_by, approved_at, approver) yang TERSIMPAN. Tidak ada prefill server-side — yang kosong berarti memang belum disimpan."
               }
             },
             {
@@ -902,7 +907,7 @@
                     "{{stage_id}}"
                   ]
                 },
-                "description": "Simpan SELURUH form stage sekaligus: info + tasks[] + deliverables[] (aturan replace sama seperti 3.1: ber-id = update, tanpa id = buat, hilang = hapus, [] = kosongkan). Otomatis menandai stage 'configured'. requires_approval=false MENGHAPUS daftar approver.",
+                "description": "Simpan SELURUH form stage sekaligus: info + tasks[] + deliverables[] (aturan replace sama seperti 3.1: ber-id = update, tanpa id = buat, hilang = hapus, [] = kosongkan). Otomatis menandai stage 'configured'. requires_approval hanya menandai perlunya clearance saat complete; tidak ada daftar approver.",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n    \"description\": \"Tahap requirement\",\n    \"start_date\": \"2026-06-03\",\n    \"end_date\": \"2026-06-09\",\n    \"requires_approval\": true,\n    \"tasks\": [\n        {\n            \"title\": \"Persiapan produksi\",\n            \"priority\": \"high\",\n            \"due_date\": \"2026-06-05\"\n        }\n    ],\n    \"deliverables\": [\n        {\n            \"name\": \"Production Plan\",\n            \"document_type_id\": 1,\n            \"is_required\": true\n        }\n    ]\n}",
@@ -1376,85 +1381,6 @@
           ]
         },
         {
-          "name": "5E - Kartu Approval",
-          "description": "Kartu Approval: sync daftar approver, list. Wajib requires_approval=true via 5.2. Bila memakai bulk 5.0, approvers[] bisa disertakan langsung per stage.",
-          "item": [
-            {
-              "name": "5.15 Sync approver",
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{token}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "url": {
-                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/approvers",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{project_id}}",
-                    "stages",
-                    "{{stage_id}}",
-                    "approvers"
-                  ]
-                },
-                "description": "WAJIB didahului 5.2 dengan requires_approval=true (jika tidak: 422). Kirim daftar approver berurutan — tiap approver menjadi satu approval row 'pending'. 422 bila duplikat approver. Catatan: template TIDAK pernah mengisi orang — daftar ini selalu diisi per project.",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"approvers\": [\n        {\n            \"approver_id\": 1\n        },\n        {\n            \"approver_id\": 2\n        }\n    ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              }
-            },
-            {
-              "name": "5.16 List approver",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{token}}"
-                  }
-                ],
-                "url": {
-                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/approvers",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{project_id}}",
-                    "stages",
-                    "{{stage_id}}",
-                    "approvers"
-                  ]
-                },
-                "description": "Cek daftar approver + statusnya."
-              }
-            }
-          ]
-        },
-        {
           "name": "5.17 Cek setup-state",
           "request": {
             "method": "GET",
@@ -1479,7 +1405,7 @@
                 "setup-state"
               ]
             },
-            "description": "Ulangi 5.1-5.16 untuk SEMUA stage. Bila setiap stage configured (dan stage ber-flag approval sudah punya approver), steps.4 = true dan siap ke Review."
+            "description": "Ulangi 5.1-5.14 untuk SEMUA stage. Bila setiap stage configured, steps.4 = true dan siap ke Review."
           }
         }
       ]
@@ -1513,7 +1439,7 @@
                 "review"
               ]
             },
-            "description": "Ringkasan + Preview Timeline (Gantt). Selalu 200: bila belum lengkap, lihat object 'setup' (ready_to_activate=false + missing[]) untuk tahu step mana yang kurang."
+            "description": "Ringkasan + Preview Timeline (Gantt). Selalu 200: bila belum lengkap, lihat object 'setup' (ready_to_activate=false + missing[]) untuk tahu step mana yang kurang. summary.total_approval menghitung stage ber-flag requires_approval (bukan antrean keputusan)."
           }
         },
         {
@@ -1541,7 +1467,7 @@
                 "activate"
               ]
             },
-            "description": "Tombol oranye 'Activate Project'. 422 bila setup belum lengkap (termasuk stage ber-flag approval tanpa approver), 409 bila sudah aktif. Efek: status -> active, stage pertama -> in_progress, approval stage pertama di-request, PIC masuk members."
+            "description": "Tombol oranye 'Activate Project'. 422 bila setup belum lengkap, 409 bila sudah tidak draft. SELALU dua langkah: status -> pending_approval (lanjut ke Step 7.1 untuk disetujui super_admin/admin_pusat -> active)."
           }
         },
         {
@@ -1587,11 +1513,378 @@
       ]
     },
     {
+      "name": "Step 7 - Eksekusi: Approval Aktivasi, Clearance Stage & Change Request",
+      "description": "Setelah wizard selesai (Step 6). TOKEN: gunakan token super_admin/admin_pusat untuk semua keputusan (7.1, 7.2, clearance pada 7.3, dan 7.8-7.10); token admin_pustik cukup untuk pengisian, 7.6, dan 7.7.\n\nGATE 1 — AKTIVASI: 6.2 selalu mengirim proyek ke pending_approval. Pilih satu cabang per proyek: 7.1 menyetujui (status -> active, stage pertama -> in_progress, activated_by/at tercatat) ATAU 7.2 menolak (status -> draft). Untuk menguji cabang lainnya, ulangi wizard dengan proyek lain.\n\nGATE 2 — CLEARANCE STAGE: 7.3 hanya untuk stage in_progress pada proyek active. Untuk satu stage, pilih complete (7.3) ATAU skip (7.4, bila allow_skip). Setelah 7.3/7.4, copy data.next_stage.id ke {{stage_id}} untuk melanjutkan. Setelah complete, 7.5 dapat membuka kembali stage tersebut bila allow_repeat; reopen mengosongkan completed_at serta approved_by/at sehingga pengulangan butuh clearance baru.\n\nGATE 3 — CHANGE REQUEST: 7.6 mencatat usulan -> pending_approval; copy id ke {{change_request_id}}. Pilih satu cabang per CR: 7.8 menyetujui lalu 7.9 menerapkan (approved -> applied) ATAU 7.10 menolak (notes wajib, proyek tidak berubah). Untuk menguji cabang lainnya, buat CR baru lewat 7.6.",
+      "item": [
+        {
+          "name": "7.1 Approve aktivasi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate",
+                "approve"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat (403 untuk role lain). Efek: status -> active, stage pertama -> in_progress, activated_by/at tercatat. 409 bila bukan pending_approval."
+          }
+        },
+        {
+          "name": "7.2 Reject aktivasi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate",
+                "reject"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Efek: status -> draft (revisi + aktivasi ulang). 409 bila bukan pending_approval."
+          }
+        },
+        {
+          "name": "7.3 Complete stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "complete"
+              ]
+            },
+            "description": "Hanya stage in_progress pada proyek active. Digebangi: dependency selesai, semua task done/cancelled, deliverable wajib completed. Bila requires_approval=true: hanya super_admin/admin_pusat (403 untuk peran lain); approved_by/at tercatat. Sukses: stage completed, next_stage in_progress, atau proyek completed. 422 memuat missing[] (mis. stage_{id}.open_tasks)."
+          }
+        },
+        {
+          "name": "7.4 Skip stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/skip",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "skip"
+              ]
+            },
+            "description": "Lewati stage bila allow_skip=true (tanpa gerbang). 422 bila tidak mengizinkan."
+          }
+        },
+        {
+          "name": "7.5 Reopen stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/reopen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "reopen"
+              ]
+            },
+            "description": "Buka kembali stage completed bila allow_repeat=true (stage -> in_progress, completed_at + approved_by/at dikosongkan). 422 bila tidak mengizinkan."
+          }
+        },
+        {
+          "name": "7.6 Buat change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ]
+            },
+            "description": "Admin mencatat usulan (dari client bila ada: client_id; requested_by = admin pencatat). proposed_changes hanya menerima field whitelist: title, description, start_date, target_end_date, budget, location, duration, organization_name, organization_address, client_id, partner_id, category_id, pic_user_id, ditambah stages:[{id,start_date?,end_date?}]. Field lain -> 422; tanggal memakai YYYY-MM-DD. Hasil: pending_approval + change_no otomatis.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Perpanjang target akhir\",\n  \"reason\": \"Client meminta penambahan scope.\",\n  \"client_id\": 1,\n  \"proposed_changes\": {\n    \"target_end_date\": \"2026-11-30\",\n    \"budget\": 750000000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.7 List change request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests?status=pending_approval&page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending_approval"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Contoh menampilkan halaman pertama CR pending_approval. Ubah status menjadi approved/rejected/applied, ubah page/limit, atau hapus query untuk semua CR. Copy id ke {{change_request_id}}."
+          }
+        },
+        {
+          "name": "7.8 Approve change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "approve"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Efek: pending_approval -> approved. 409 bila status lain."
+          }
+        },
+        {
+          "name": "7.9 Apply change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/apply",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "apply"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Menulis proposed_changes ke proyek (+ tanggal stage), lalu approved -> applied. 409 bila belum approved, 422 bila stage asing."
+          }
+        },
+        {
+          "name": "7.10 Reject change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "reject"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. notes WAJIB. Efek: -> rejected, proyek tidak berubah.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Dampak biaya belum jelas.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.11 Detail proyek (verifikasi)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Cek status proyek (pending_approval/active/completed), activated_by/at, progress, dan current_stage."
+          }
+        }
+      ]
+    },
+    {
       "name": "Lampiran - Activities & Members",
       "description": "Di luar wizard: jejak audit dan keanggotaan (dipakai layar monitoring / setelah aktif).",
       "item": [
         {
-          "name": "7.1 List aktivitas",
+          "name": "A.1 List aktivitas",
           "request": {
             "method": "GET",
             "header": [
@@ -1630,7 +1923,7 @@
           }
         },
         {
-          "name": "7.2 List anggota",
+          "name": "A.2 List anggota",
           "request": {
             "method": "GET",
             "header": [
@@ -1658,7 +1951,7 @@
           }
         },
         {
-          "name": "7.3 Tambah anggota",
+          "name": "A.3 Tambah anggota",
           "request": {
             "method": "POST",
             "header": [
@@ -1699,7 +1992,7 @@
           }
         },
         {
-          "name": "7.4 Hapus anggota",
+          "name": "A.4 Hapus anggota",
           "request": {
             "method": "DELETE",
             "header": [

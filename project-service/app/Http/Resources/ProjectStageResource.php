@@ -26,6 +26,9 @@ class ProjectStageResource extends JsonResource
             'allow_skip' => $this->allow_skip,
             'allow_repeat' => $this->allow_repeat,
             'requires_approval' => $this->requires_approval,
+            'approved_by' => $this->approved_by,
+            'approved_at' => $this->approved_at,
+            'approver' => $this->approver ? ['id' => $this->approver->id, 'name' => $this->approver->name] : null,
             'is_configured' => $this->is_configured,
         ];
     }

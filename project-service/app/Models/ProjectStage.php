@@ -21,6 +21,7 @@ class ProjectStage extends Model
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
         'completed_at' => 'datetime',
+        'approved_at' => 'datetime',
         'progress' => 'integer',
         'is_required' => 'boolean',
         'allow_skip' => 'boolean',
@@ -59,9 +60,13 @@ class ProjectStage extends Model
         return $this->hasMany(PmDocument::class, 'project_stage_id');
     }
 
-    public function approvals()
+    /**
+     * Admin that cleared this stage (exit-gate approval, specs/005).
+     * Set only when `requires_approval` is true.
+     */
+    public function approver()
     {
-        return $this->hasMany(PmApproval::class, 'project_stage_id')->orderBy('sequence');
+        return $this->belongsTo(User::class, 'approved_by');
     }
 
     public function dependsOn()

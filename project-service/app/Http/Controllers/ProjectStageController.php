@@ -10,14 +10,16 @@ use App\Http\Resources\ProjectStageDetailResource;
 use App\Http\Resources\ProjectStageResource;
 use App\Services\DTOs\ProjectStageDTO;
 use App\Services\DTOs\StageUpdateDTO;
-use App\Services\ProjectStageService;
 use App\Services\ProjectSetupStateService;
+use App\Services\ProjectStageService;
+use App\Services\StageLifecycleService;
 
 class ProjectStageController extends Controller
 {
     public function __construct(
         protected ProjectStageService $stageService,
-        protected ProjectSetupStateService $setupStateService
+        protected ProjectSetupStateService $setupStateService,
+        protected StageLifecycleService $lifecycleService
     ) {}
 
     public function index($project_id)
@@ -70,8 +72,8 @@ class ProjectStageController extends Controller
     }
 
     /**
-     * Bulk save of wizard step 4: many stages (with nested tasks,
-     * deliverables, and approvers) in one atomic request. Only the listed
+     * Bulk save of wizard step 4: many stages (with nested tasks and
+     * deliverables) in one atomic request. Only the listed
      * stages get their content updated; `is_configured` is marked for all
      * of the project's stages. Returns the fresh stage list plus the
      * wizard setup-state so FE updates completion in one round trip.
@@ -90,5 +92,50 @@ class ProjectStageController extends Controller
             'stages' => ProjectStageResource::collection($stages),
             'setup_state' => $this->setupStateService->state($projectId),
         ], 'Konfigurasi stage disimpan');
+    }
+
+    /**
+     * Gated completion of an in-progress stage (execution, post-activation).
+     */
+    public function complete($project_id, $stage_id)
+    {
+        $result = $this->lifecycleService->complete(
+            (int) $project_id,
+            (int) $stage_id,
+            auth('admin')->user()
+        );
+
+        return ApiResponse::success($this->lifecyclePayload($result), 'Stage diselesaikan');
+    }
+
+    public function skip($project_id, $stage_id)
+    {
+        $result = $this->lifecycleService->skip(
+            (int) $project_id,
+            (int) $stage_id,
+            auth('admin')->user()
+        );
+
+        return ApiResponse::success($this->lifecyclePayload($result), 'Stage dilewati');
+    }
+
+    public function reopen($project_id, $stage_id)
+    {
+        $result = $this->lifecycleService->reopen(
+            (int) $project_id,
+            (int) $stage_id,
+            auth('admin')->user()
+        );
+
+        return ApiResponse::success($this->lifecyclePayload($result), 'Stage dibuka kembali');
+    }
+
+    private function lifecyclePayload(array $result): array
+    {
+        return [
+            'stage' => new ProjectStageResource($result['stage']),
+            'project_status' => $result['project_status'],
+            'next_stage' => $result['next_stage'] ? new ProjectStageResource($result['next_stage']) : null,
+        ];
     }
 }

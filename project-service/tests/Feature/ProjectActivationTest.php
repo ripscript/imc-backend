@@ -49,37 +49,25 @@ class ProjectActivationTest extends TestProjectCase
         $this->assertContains('step_2.stages', $response->json('errors'));
     }
 
-    public function test_activate_transitions_and_side_effects(): void
+    public function test_activate_submits_for_approval_then_approves(): void
     {
         [$project, $stages] = $this->seedCompleteProject();
-
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stages[0]['id']}", ['requires_approval' => true])
-            ->assertStatus(200);
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stages[0]['id']}/approvers", [
-            'approvers' => [['approver_id' => $this->admin->id]],
-        ])->assertStatus(200);
 
         $response = $this->postJson("/api/projects/{$project['id']}/activate");
 
         $response->assertStatus(200)
             ->assertJsonPath('success', true)
-            ->assertJsonPath('data.status', 'active');
+            ->assertJsonPath('data.status', 'pending_approval');
 
         $this->assertDatabaseHas('content_detail_projects', [
             'project_no' => $project['project_no'],
-            'status' => 'active',
+            'status' => 'pending_approval',
         ]);
 
-        // First stage in progress.
-        $this->assertSame('in_progress', DB::table('pm_project_stages')->where('id', $stages[0]['id'])->value('status'));
-        $this->assertSame('pending', DB::table('pm_project_stages')->where('id', $stages[1]['id'])->value('status'));
+        // Stages wait; nothing starts before approval.
+        $this->assertSame('pending', DB::table('pm_project_stages')->where('id', $stages[0]['id'])->value('status'));
 
-        // First-stage approvals stamped as requested.
-        $approval = DB::table('pm_approvals')->where('project_stage_id', $stages[0]['id'])->first();
-        $this->assertNotNull($approval->requested_at);
-        $this->assertSame($this->admin->id, (int) $approval->requested_by);
-
-        // PIC synced into members.
+        // PIC synced into members at submission.
         $this->assertDatabaseHas('pm_project_members', [
             'project_id' => $project['id'],
             'user_id' => $this->admin->id,
@@ -87,9 +75,55 @@ class ProjectActivationTest extends TestProjectCase
             'status' => 'active',
         ]);
 
-        // Review now reports the approval.
-        $this->getJson("/api/projects/{$project['id']}/review")
-            ->assertJsonPath('data.summary.total_approval', 1);
+        // Approval goes live: first stage starts, decision recorded.
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")
+            ->assertStatus(200)
+            ->assertJsonPath('data.status', 'active');
+
+        $this->assertSame('active', DB::table('content_detail_projects')->where('id', $project['id'])->value('status'));
+        $this->assertSame('in_progress', DB::table('pm_project_stages')->where('id', $stages[0]['id'])->value('status'));
+        $this->assertSame('pending', DB::table('pm_project_stages')->where('id', $stages[1]['id'])->value('status'));
+        $this->assertSame($this->admin->id, (int) DB::table('content_detail_projects')->where('id', $project['id'])->value('activated_by'));
+        $this->assertNotNull(DB::table('content_detail_projects')->where('id', $project['id'])->value('activated_at'));
+    }
+
+    public function test_reject_activation_reverts_to_draft(): void
+    {
+        [$project] = $this->seedPendingProject();
+
+        $this->postJson("/api/projects/{$project['id']}/activate/reject")
+            ->assertStatus(200)
+            ->assertJsonPath('data.status', 'draft');
+
+        $this->assertSame('draft', DB::table('content_detail_projects')->where('id', $project['id'])->value('status'));
+    }
+
+    public function test_activation_decision_requires_approver_role(): void
+    {
+        [$project] = $this->seedPendingProject();
+
+        $this->loginAs($this->makeUser('admin_pustik'));
+
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(403);
+        $this->postJson("/api/projects/{$project['id']}/activate/reject")->assertStatus(403);
+
+        // Still pending — the decisions were refused.
+        $this->assertSame('pending_approval', DB::table('content_detail_projects')->where('id', $project['id'])->value('status'));
+    }
+
+    public function test_activation_decision_on_wrong_status_returns_409(): void
+    {
+        [$project] = $this->seedCompleteProject();
+
+        // Still draft — nothing to decide yet.
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(409);
+        $this->postJson("/api/projects/{$project['id']}/activate/reject")->assertStatus(409);
+
+        $this->postJson("/api/projects/{$project['id']}/activate")->assertStatus(200);
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(200);
+
+        // Already active — deciding again is a conflict.
+        $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(409);
     }
 
     public function test_activate_twice_returns_409(): void

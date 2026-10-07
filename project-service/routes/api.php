@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\ProjectActivationController;
 use App\Http\Controllers\ProjectActivityController;
+use App\Http\Controllers\ProjectChangeRequestController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectMemberController;
 use App\Http\Controllers\ProjectStageController;
 use App\Http\Controllers\ProjectTimelineController;
-use App\Http\Controllers\StageApproverController;
 use App\Http\Controllers\StageDeliverableController;
 use App\Http\Controllers\StageDocumentController;
 use App\Http\Controllers\StageTaskController;
@@ -41,6 +41,7 @@ Route::get('/health', function () {
 });
 
 Route::pattern('project_id', '[0-9]+');
+Route::pattern('change_request_id', '[0-9]+');
 
 Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik'])
     ->prefix('projects')
@@ -67,14 +68,26 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::get('{project_id}/stages/{stage_id}/documents', [StageDocumentController::class, 'index']);
         Route::post('{project_id}/stages/{stage_id}/documents', [StageDocumentController::class, 'store']);
         Route::delete('{project_id}/stages/{stage_id}/documents/{document_id}', [StageDocumentController::class, 'destroy']);
-        Route::get('{project_id}/stages/{stage_id}/approvers', [StageApproverController::class, 'index']);
         Route::get('{project_id}/review', [ProjectActivationController::class, 'review']);
         Route::post('{project_id}/activate', [ProjectActivationController::class, 'activate']);
+        Route::get('{project_id}/change-requests', [ProjectChangeRequestController::class, 'index']);
+        Route::post('{project_id}/change-requests', [ProjectChangeRequestController::class, 'store']);
+        Route::post('{project_id}/stages/{stage_id}/complete', [ProjectStageController::class, 'complete']);
+        Route::post('{project_id}/stages/{stage_id}/skip', [ProjectStageController::class, 'skip']);
+        Route::post('{project_id}/stages/{stage_id}/reopen', [ProjectStageController::class, 'reopen']);
+
+        // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
+        Route::middleware(['check.role:super_admin,admin_pusat'])->group(function () {
+            Route::post('{project_id}/activate/approve', [ProjectActivationController::class, 'approveActivation']);
+            Route::post('{project_id}/activate/reject', [ProjectActivationController::class, 'rejectActivation']);
+            Route::post('{project_id}/change-requests/{change_request_id}/approve', [ProjectChangeRequestController::class, 'approve']);
+            Route::post('{project_id}/change-requests/{change_request_id}/reject', [ProjectChangeRequestController::class, 'reject']);
+            Route::post('{project_id}/change-requests/{change_request_id}/apply', [ProjectChangeRequestController::class, 'apply']);
+        });
         Route::get('{project_id}/activities', [ProjectActivityController::class, 'index']);
         Route::get('{project_id}/members', [ProjectMemberController::class, 'index']);
         Route::post('{project_id}/members', [ProjectMemberController::class, 'store']);
         Route::delete('{project_id}/members/{member_id}', [ProjectMemberController::class, 'destroy']);
-        Route::put('{project_id}/stages/{stage_id}/approvers', [StageApproverController::class, 'sync']);
         Route::get('{project_id}', [ProjectController::class, 'detail']);
         Route::put('{project_id}', [ProjectController::class, 'update']);
         Route::delete('{project_id}', [ProjectController::class, 'destroy']);
