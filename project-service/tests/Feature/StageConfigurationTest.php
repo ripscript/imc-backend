@@ -41,8 +41,7 @@ class StageConfigurationTest extends TestProjectCase
             ->assertJsonPath('data.name', 'Requirement')
             ->assertJsonPath('data.tasks', [])
             ->assertJsonPath('data.deliverables', [])
-            ->assertJsonPath('data.documents', [])
-            ->assertJsonPath('data.approvers', []);
+            ->assertJsonPath('data.documents', []);
 
         $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}", [
             'description' => 'Tahap requirement',
@@ -54,15 +53,7 @@ class StageConfigurationTest extends TestProjectCase
             ->assertJsonPath('data.description', 'Tahap requirement')
             ->assertJsonPath('data.allow_skip', true);
 
-        // Flagged for approval but no approvers yet → step 4 incomplete (Phase 8 gate).
-        $state = $this->getJson("/api/projects/{$project['id']}/setup-state")
-            ->assertJsonPath('data.steps.4', false);
-        $this->assertContains("step_4.stage_{$stageId}.approvers_missing", $state->json('data.missing'));
-
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}/approvers", [
-            'approvers' => [['approver_id' => $this->admin->id]],
-        ])->assertStatus(200);
-
+        // The exit-gate flag needs no approver list — step 4 is complete.
         $this->getJson("/api/projects/{$project['id']}/setup-state")
             ->assertJsonPath('data.steps.4', true);
     }
@@ -171,49 +162,10 @@ class StageConfigurationTest extends TestProjectCase
         $this->deleteJson("{$base}/{$second['id']}")->assertStatus(200);
     }
 
-    public function test_approver_sync_requires_flag_and_replaces_list(): void
-    {
-        $project = $this->createProject();
-        $stageId = $this->seedStage($project['id']);
-        $base = "/api/projects/{$project['id']}/stages/{$stageId}/approvers";
-
-        // Flag off → 422.
-        $this->putJson($base, ['approvers' => [['approver_id' => $this->admin->id]]])
-            ->assertStatus(422);
-
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}", ['requires_approval' => true])
-            ->assertStatus(200);
-
-        $other = \App\Models\User::factory()->create();
-
-        $synced = $this->putJson($base, ['approvers' => [
-            ['approver_id' => $this->admin->id],
-            ['approver_id' => $other->id],
-        ]])
-            ->assertStatus(200)
-            ->json('data');
-
-        $this->assertCount(2, $synced);
-        $this->assertSame([1, 2], array_column($synced, 'sequence'));
-        $this->assertSame('pending', $synced[0]['status']);
-        $this->assertSame($this->admin->email, $synced[0]['approver']['email']);
-
-        // Replace with a single approver → other row removed.
-        $this->putJson($base, ['approvers' => [['approver_id' => $other->id]]])
-            ->assertStatus(200)
-            ->assertJsonCount(1, 'data');
-
-        // Switching the flag off clears approval rows.
-        $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}", ['requires_approval' => false])
-            ->assertStatus(200)
-            ->assertJsonPath('data.approvers', []);
-    }
-
     public function test_bulk_configuration_saves_many_stages_in_one_request(): void
     {
         $project = $this->createProject();
         $stages = $this->seedStages($project['id'], ['Requirement', 'Feasibility', 'Production']);
-        $other = \App\Models\User::factory()->create();
 
         $response = $this->putJson("/api/projects/{$project['id']}/stages/configuration", [
             'stages' => [
@@ -228,7 +180,6 @@ class StageConfigurationTest extends TestProjectCase
                     'id' => $stages[1]['id'],
                     'description' => 'Tahap feasibility',
                     'requires_approval' => true,
-                    'approvers' => [['approver_id' => $this->admin->id], ['approver_id' => $other->id]],
                 ],
                 ['id' => $stages[2]['id'], 'description' => 'Tahap produksi'],
             ],
@@ -248,9 +199,9 @@ class StageConfigurationTest extends TestProjectCase
         $this->assertSame(1, (int) $rows[$stages[0]['id']]->allow_skip);
         $this->assertSame(1, DB::table('pm_tasks')->where('project_stage_id', $stages[0]['id'])->count());
         $this->assertSame(1, DB::table('pm_deliverables')->where('project_stage_id', $stages[0]['id'])->count());
-        $this->assertSame(2, DB::table('pm_approvals')->where('project_stage_id', $stages[1]['id'])->count());
+        $this->assertSame(1, (int) $rows[$stages[1]['id']]->requires_approval);
 
-        // Requires-approval stage now has approvers → step 4 complete.
+        // The exit-gate flag needs no approver list → step 4 complete.
         $this->getJson("/api/projects/{$project['id']}/setup-state")
             ->assertJsonPath('data.steps.4', true);
     }

@@ -25,6 +25,7 @@ class Project extends Model
         'start_date' => 'date:Y-m-d',
         'target_end_date' => 'date:Y-m-d',
         'publish_date' => 'date:Y-m-d',
+        'activated_at' => 'datetime',
         'progress' => 'integer',
         'is_publicated' => 'boolean',
     ];
@@ -57,6 +58,14 @@ class Project extends Model
     public function pic()
     {
         return $this->belongsTo(User::class, 'pic_user_id');
+    }
+
+    /**
+     * Admin that approved the activation (gate 1, specs/005).
+     */
+    public function activator()
+    {
+        return $this->belongsTo(User::class, 'activated_by');
     }
 
     public function layout()
@@ -184,7 +193,6 @@ class Project extends Model
                 $stage->tasks()->get()->each(fn ($task) => $task->delete());
                 $stage->deliverables()->get()->each(fn ($deliverable) => $deliverable->delete());
                 $stage->documents()->get()->each(fn ($document) => $document->delete());
-                $stage->approvals()->get()->each(fn ($approval) => $approval->delete());
                 $stage->delete();
             }
 

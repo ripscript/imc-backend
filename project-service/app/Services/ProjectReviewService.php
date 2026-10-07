@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\PmApproval;
 use App\Models\PmDeliverable;
 use App\Models\Project;
 
@@ -55,7 +54,8 @@ class ProjectReviewService
                     ->where('is_required', true)
                     ->count(),
                 'total_pic' => $picIds->count(),
-                'total_approval' => $stageIds->isEmpty() ? 0 : PmApproval::whereIn('project_stage_id', $stageIds)->count(),
+                // Stages that will need clearance (exit-gate) before completion.
+                'total_approval' => $stages->where('requires_approval', true)->count(),
             ],
             'timeline_preview' => $stages->map(fn ($stage) => [
                 'no' => $stage->sequence,

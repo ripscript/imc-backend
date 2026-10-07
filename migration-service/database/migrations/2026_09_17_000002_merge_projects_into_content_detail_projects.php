@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        foreach (['project_no', 'client_id', 'partner_id', 'category_id', 'workflow_id', 'pic_user_id', 'status', 'progress', 'target_end_date'] as $column) {
+        foreach (['project_no', 'client_id', 'partner_id', 'category_id', 'workflow_id', 'pic_user_id', 'status', 'progress', 'target_end_date', 'activated_by', 'activated_at'] as $column) {
             if (! Schema::hasColumn('content_detail_projects', $column)) {
                 Schema::table('content_detail_projects', function (Blueprint $table) use ($column) {
                     match ($column) {
@@ -23,6 +23,8 @@ return new class extends Migration
                         'status' => $table->string('status', 20)->default('draft'),
                         'progress' => $table->unsignedSmallInteger('progress')->default(0),
                         'target_end_date' => $table->date('target_end_date')->nullable(),
+                        'activated_by' => $table->unsignedBigInteger('activated_by')->nullable(),
+                        'activated_at' => $table->timestamp('activated_at')->nullable(),
                     };
                 });
             }
@@ -40,6 +42,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('pm_project_categories')->nullOnDelete();
             $table->foreign('workflow_id')->references('id')->on('pm_workflows')->nullOnDelete();
             $table->foreign('pic_user_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('activated_by')->references('id')->on('users')->nullOnDelete();
         });
 
         if (! Schema::hasTable('projects')) {

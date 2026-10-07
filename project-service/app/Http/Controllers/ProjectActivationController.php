@@ -30,6 +30,20 @@ class ProjectActivationController extends Controller
 
         $project = $this->activationService->activate((int) $project_id, $user?->id, $user?->name);
 
-        return ApiResponse::success(new ProjectResource($project), 'Proyek diaktivasi');
+        return ApiResponse::success(new ProjectResource($project), 'Proyek dikirim untuk approval aktivasi');
+    }
+
+    public function approveActivation($project_id)
+    {
+        $project = $this->activationService->approveActivation((int) $project_id, auth('admin')->user());
+
+        return ApiResponse::success(new ProjectResource($project), 'Aktivasi proyek disetujui');
+    }
+
+    public function rejectActivation($project_id)
+    {
+        $project = $this->activationService->rejectActivation((int) $project_id, auth('admin')->user());
+
+        return ApiResponse::success(new ProjectResource($project), 'Aktivasi proyek ditolak, kembali ke draft');
     }
 }

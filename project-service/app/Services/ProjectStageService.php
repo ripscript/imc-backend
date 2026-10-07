@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Exceptions\Domain\ValidationException;
-use App\Models\PmApproval;
 use App\Models\PmDeliverable;
 use App\Models\PmTask;
 use App\Models\PmWorkflowStage;
@@ -22,7 +21,7 @@ class ProjectStageService
     {
         $project = Project::findOrFail($projectId);
 
-        return $project->stages()->with(['pic', 'workflowStage'])->orderBy('sequence')->get();
+        return $project->stages()->with(['pic', 'workflowStage', 'approver'])->orderBy('sequence')->get();
     }
 
     public function detail(int $projectId, int $stageId): ProjectStage
@@ -30,16 +29,16 @@ class ProjectStageService
         return $this->resolveStage($projectId, $stageId)->load([
             'pic',
             'workflowStage',
+            'approver',
             'tasks.assignee',
             'deliverables',
             'documents.uploader',
-            'approvals.approver',
         ]);
     }
 
     /**
-     * Partial stage update (S5). Marks the stage configured; switching
-     * `requires_approval` off removes the stage's approval rows.
+     * Partial stage update (S5). `requires_approval` is an exit-gate flag
+     * (specs/005): it only controls whether completion needs clearance.
      */
     public function updateStage(int $projectId, int $stageId, StageUpdateDTO $dto): ProjectStage
     {
@@ -53,6 +52,13 @@ class ProjectStageService
             }
 
             if ($dto->isProvided('status') && $dto->status !== null) {
+                if (Project::findOrFail($projectId)->status !== 'draft') {
+                    throw new ValidationException(
+                        'Status stage tidak dapat diubah setelah proyek diaktivasi.',
+                        ['status' => ['Gunakan endpoint complete/skip/reopen untuk mengubah status stage.']]
+                    );
+                }
+
                 $stage->status = $dto->status;
 
                 if ($dto->status === 'completed' && empty($stage->completed_at)) {
@@ -85,12 +91,6 @@ class ProjectStageService
                 (new PmProjectMemberService)->syncPic($stage->project_id, (int) $dto->pic_user_id, $dto->updated_by);
             }
 
-            if ($dto->isProvided('requires_approval') && ! $stage->requires_approval) {
-                PmApproval::where('project_stage_id', $stage->id)
-                    ->get()
-                    ->each(fn (PmApproval $approval) => $approval->delete());
-            }
-
             return $this->detail($projectId, $stage->id);
         });
     }
@@ -98,7 +98,7 @@ class ProjectStageService
     /**
      * Bulk save of wizard step 4 (S5) for many stages in one call.
      *
-     * Split semantics: content (fields, tasks, deliverables, approvers) is
+     * Split semantics: content (fields, tasks, deliverables) is
      * applied only to the listed stages (partial top level — unlisted stages
      * keep their content), while `is_configured` is swept to true for every
      * stage of the project. A single call therefore declares step 4 done.
@@ -133,37 +133,21 @@ class ProjectStageService
                 }
             }
 
-            $approvalService = new PmApprovalService();
-
             foreach ($entries as $index => $entry) {
                 $stageId = (int) $entry['id'];
                 $payload = $entry;
                 unset($payload['id']);
 
-                $approvers = $payload['approvers'] ?? null;
-                unset($payload['approvers']);
-
                 $dto = new StageUpdateDTO($payload);
                 $dto->updated_by = $actor;
 
                 try {
-                    $stage = $this->updateStage($projectId, $stageId, $dto);
+                    $this->updateStage($projectId, $stageId, $dto);
                 } catch (ValidationException $e) {
                     throw new ValidationException(
                         $e->getMessage(),
                         $this->prefixErrors("stages.{$index}", $e->getErrors())
                     );
-                }
-
-                if (is_array($approvers)) {
-                    try {
-                        $approvalService->sync($projectId, $stageId, $approvers, $actor);
-                    } catch (ValidationException $e) {
-                        throw new ValidationException(
-                            $e->getMessage(),
-                            $this->prefixErrors("stages.{$index}", $e->getErrors())
-                        );
-                    }
                 }
             }
 
@@ -173,7 +157,7 @@ class ProjectStageService
                 ->where('is_configured', false)
                 ->update(['is_configured' => true]);
 
-            return $project->stages()->with(['pic', 'workflowStage'])->orderBy('sequence')->get();
+            return $project->stages()->with(['pic', 'workflowStage', 'approver'])->orderBy('sequence')->get();
         });
     }
 
@@ -319,7 +303,7 @@ class ProjectStageService
                 $this->replaceChildren($stage, $entry, $dto->updated_by);
             }
 
-            return $project->stages()->with(['pic', 'workflowStage'])->orderBy('sequence')->get();
+            return $project->stages()->with(['pic', 'workflowStage', 'approver'])->orderBy('sequence')->get();
         });
     }
 

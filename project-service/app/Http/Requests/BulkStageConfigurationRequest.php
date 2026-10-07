@@ -41,9 +41,6 @@ class BulkStageConfigurationRequest extends FormRequest
             'stages.*.deliverables.*.is_required' => ['nullable', 'boolean'],
             'stages.*.deliverables.*.status' => ['sometimes', 'string', 'in:pending,wip,completed'],
             'stages.*.deliverables.*.due_date' => ['nullable', 'date'],
-            'stages.*.approvers' => ['nullable', 'array'],
-            'stages.*.approvers.*.approver_id' => ['required', 'integer', 'exists:users,id', 'distinct'],
-            'stages.*.approvers.*.sequence' => ['nullable', 'integer', 'min:1'],
         ];
     }
 }

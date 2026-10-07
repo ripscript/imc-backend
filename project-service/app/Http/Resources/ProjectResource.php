@@ -31,6 +31,8 @@ class ProjectResource extends JsonResource
                 ? ['id' => $this->workflow->id, 'code' => $this->workflow->code, 'name' => $this->workflow->name, 'version' => $this->workflow->version]
                 : null,
             'status' => $this->status,
+            'activated_by' => $this->activated_by,
+            'activated_at' => $this->activated_at,
             'progress' => $this->progress,
             'current_stage' => $this->getAttribute('current_stage'),
             'pic' => $this->pic ? ['id' => $this->pic->id, 'name' => $this->pic->name, 'email' => $this->pic->email] : null,

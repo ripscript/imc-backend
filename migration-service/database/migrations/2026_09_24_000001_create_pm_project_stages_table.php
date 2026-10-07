@@ -26,6 +26,8 @@ return new class extends Migration
             $table->boolean('allow_skip')->default(false);
             $table->boolean('allow_repeat')->default(false);
             $table->boolean('requires_approval')->default(false);
+            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->timestamp('approved_at')->nullable();
             $table->boolean('is_configured')->default(false);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

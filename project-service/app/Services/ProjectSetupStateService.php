@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\PmApproval;
 use App\Models\Project;
 
 /**
@@ -89,19 +88,9 @@ class ProjectSetupStateService
 
         $complete = true;
 
-        $approvalCounts = PmApproval::whereIn('project_stage_id', $project->stages->pluck('id'))
-            ->selectRaw('project_stage_id, count(*) as aggregate')
-            ->groupBy('project_stage_id')
-            ->pluck('aggregate', 'project_stage_id');
-
         foreach ($project->stages as $stage) {
             if (! $stage->is_configured) {
                 $missing[] = "step_4.stage_{$stage->id}.not_configured";
-                $complete = false;
-            }
-
-            if ($stage->requires_approval && (int) ($approvalCounts[$stage->id] ?? 0) === 0) {
-                $missing[] = "step_4.stage_{$stage->id}.approvers_missing";
                 $complete = false;
             }
         }

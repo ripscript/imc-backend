@@ -16,9 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->text('reason')->nullable();
             $table->text('impact_scope')->nullable();
+            $table->json('proposed_changes')->nullable();
+            $table->foreignId('client_id')->nullable()->constrained('pm_clients')->nullOnDelete();
+            $table->text('notes')->nullable();
             $table->string('status', 20)->default('draft');
             $table->foreignId('requested_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('applied_at')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->softDeletes();
