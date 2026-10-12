@@ -22,6 +22,7 @@ class ProjectStage extends Model
         'end_date' => 'date:Y-m-d',
         'completed_at' => 'datetime',
         'approved_at' => 'datetime',
+        'clearance_requested_at' => 'datetime',
         'progress' => 'integer',
         'is_required' => 'boolean',
         'allow_skip' => 'boolean',
@@ -69,6 +70,30 @@ class ProjectStage extends Model
         return $this->belongsTo(User::class, 'approved_by');
     }
 
+    /**
+     * Approver assignments for multi-approver stage clearance (specs/006).
+     */
+    public function approvers()
+    {
+        return $this->hasMany(PmStageApprover::class, 'project_stage_id');
+    }
+
+    public function approverUsers()
+    {
+        return $this->belongsToMany(User::class, 'pm_stage_approvers', 'project_stage_id', 'user_id')->withTimestamps();
+    }
+
+    public function clearanceRequester()
+    {
+        return $this->belongsTo(User::class, 'clearance_requested_by');
+    }
+
+    public function approvalRequests()
+    {
+        return $this->hasMany(PmApprovalRequest::class, 'approvable_id')
+            ->where('approvable_type', 'stage_clearance');
+    }
+
     public function dependsOn()
     {
         return $this->belongsTo(self::class, 'depends_on_project_stage_id');
@@ -98,5 +123,13 @@ class ProjectStage extends Model
         $done = $tasks->where('status', 'done')->count();
 
         return (int) round($done / $tasks->count() * 100);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($stage) {
+            $stage->approvers()->get()->each(fn ($approver) => $approver->delete());
+            $stage->approvalRequests()->get()->each(fn ($approvalRequest) => $approvalRequest->delete());
+        });
     }
 }

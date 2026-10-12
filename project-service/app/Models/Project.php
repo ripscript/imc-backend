@@ -26,6 +26,7 @@ class Project extends Model
         'target_end_date' => 'date:Y-m-d',
         'publish_date' => 'date:Y-m-d',
         'activated_at' => 'datetime',
+        'activation_requested_at' => 'datetime',
         'progress' => 'integer',
         'is_publicated' => 'boolean',
     ];
@@ -68,6 +69,14 @@ class Project extends Model
         return $this->belongsTo(User::class, 'activated_by');
     }
 
+    /**
+     * User that requested the activation.
+     */
+    public function activationRequester()
+    {
+        return $this->belongsTo(User::class, 'activation_requested_by');
+    }
+
     public function layout()
     {
         return $this->belongsTo(MsLayout::class, 'layout_id');
@@ -101,6 +110,11 @@ class Project extends Model
     public function members()
     {
         return $this->hasMany(PmProjectMember::class, 'project_id');
+    }
+
+    public function approvalRequests()
+    {
+        return $this->hasMany(PmApprovalRequest::class, 'project_id');
     }
 
     /**
@@ -200,6 +214,7 @@ class Project extends Model
             $project->milestones()->get()->each(fn ($milestone) => $milestone->delete());
             $project->changeRequests()->get()->each(fn ($changeRequest) => $changeRequest->delete());
             $project->members()->get()->each(fn ($member) => $member->delete());
+            $project->approvalRequests()->get()->each(fn ($approvalRequest) => $approvalRequest->delete());
         });
 
         static::deleted(function ($project) {
