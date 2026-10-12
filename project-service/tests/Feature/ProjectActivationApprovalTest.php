@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\PmApprovalRequest;
 use App\Models\Project;
 use App\Models\ProjectStage;
-use Illuminate\Support\Facades\DB;
 use Tests\TestProjectCase;
 
 class ProjectActivationApprovalTest extends TestProjectCase
@@ -158,7 +157,7 @@ class ProjectActivationApprovalTest extends TestProjectCase
             'approvable_id' => $crId,
             'type' => 'change_request',
             'status' => 'pending',
-            'title' => $project->title . ' - Perpanjang deadline',
+            'title' => $project->title.' - Perpanjang deadline',
             'description' => 'Permintaan penambahan waktu dari client.',
             'requested_by' => $this->admin->id,
         ]);

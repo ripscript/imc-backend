@@ -184,4 +184,37 @@ class StageLifecycleTest extends TestProjectCase
             ->assertStatus(422)
             ->assertJsonPath('errors.status.0', 'Gunakan endpoint complete/skip/reopen untuk mengubah status stage.');
     }
+
+    public function test_complete_clears_pending_clearance_approval_request(): void
+    {
+        [$project, $stages] = $this->seedActiveProject();
+        $stageId = $stages[0]['id'];
+
+        $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}", ['requires_approval' => true])
+            ->assertStatus(200);
+
+        $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/request-clearance")
+            ->assertStatus(200);
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stageId,
+            'type' => 'stage_clearance',
+            'status' => 'pending',
+        ]);
+
+        $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/complete")
+            ->assertStatus(200)
+            ->assertJsonPath('data.stage.status', 'completed');
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stageId,
+            'type' => 'stage_clearance',
+            'status' => 'approved',
+            'approved_by' => $this->admin->id,
+        ]);
+    }
 }

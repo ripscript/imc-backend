@@ -32,6 +32,15 @@ class ChangeRequestTest extends TestProjectCase
         $this->assertSame($clientId, $cr['client']['id']);
         $this->assertSame($this->admin->id, $cr['requester']['id']);
         $this->assertSame('2026-11-30', $cr['proposed_changes']['target_end_date']);
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'change_request',
+            'approvable_id' => $cr['id'],
+            'type' => 'change_request',
+            'status' => 'pending',
+            'requested_by' => $this->admin->id,
+        ]);
     }
 
     public function test_create_rejects_empty_or_unknown_changes(): void
@@ -66,6 +75,15 @@ class ChangeRequestTest extends TestProjectCase
             ->assertStatus(200)
             ->assertJsonPath('data.status', 'approved');
 
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'change_request',
+            'approvable_id' => $cr['id'],
+            'type' => 'change_request',
+            'status' => 'approved',
+            'approved_by' => $this->admin->id,
+        ]);
+
         // Applying twice is a conflict; applying a pending CR is too.
         $pending = $this->createChangeRequest($project['id']);
         $this->postJson("/api/projects/{$project['id']}/change-requests/{$pending['id']}/apply")
@@ -99,6 +117,16 @@ class ChangeRequestTest extends TestProjectCase
         $this->postJson("/api/projects/{$project['id']}/change-requests/{$cr['id']}/reject", [
             'notes' => 'Dampak biaya belum jelas.',
         ])->assertStatus(200)->assertJsonPath('data.status', 'rejected');
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'change_request',
+            'approvable_id' => $cr['id'],
+            'type' => 'change_request',
+            'status' => 'rejected',
+            'rejection_notes' => 'Dampak biaya belum jelas.',
+            'approved_by' => $this->admin->id,
+        ]);
 
         $row = DB::table('pm_change_requests')->where('id', $cr['id'])->first();
         $this->assertSame('Dampak biaya belum jelas.', $row->notes);

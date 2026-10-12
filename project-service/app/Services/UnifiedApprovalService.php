@@ -53,6 +53,8 @@ class UnifiedApprovalService
             $assignedStageIds = PmStageApprover::where('user_id', $caller->id)
                 ->pluck('project_stage_id');
 
+            $caller->assigned_stage_ids = $assignedStageIds->map(fn ($id) => (int) $id)->all();
+
             $query->where('pm_approval_requests.type', 'stage_clearance')
                 ->whereIn('pm_approval_requests.approvable_id', $assignedStageIds);
         }
@@ -146,7 +148,7 @@ class UnifiedApprovalService
             ->exists();
 
         if (! $isAssigned) {
-            throw new AccessDeniedHttpException("Anda tidak terdaftar sebagai approver untuk stage ini.");
+            throw new AccessDeniedHttpException('Anda tidak terdaftar sebagai approver untuk stage ini.');
         }
     }
 }
