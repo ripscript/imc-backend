@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectTimelineController;
 use App\Http\Controllers\StageDeliverableController;
 use App\Http\Controllers\StageDocumentController;
 use App\Http\Controllers\StageTaskController;
+use App\Http\Controllers\UnifiedApprovalController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,14 @@ Route::get('/health', function () {
 
 Route::pattern('project_id', '[0-9]+');
 Route::pattern('change_request_id', '[0-9]+');
+
+Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik,admin_satker,pimpinan'])
+    ->prefix('approvals')
+    ->group(function () {
+        Route::get('/', [UnifiedApprovalController::class, 'index']);
+        Route::post('{id}/approve', [UnifiedApprovalController::class, 'approve'])->whereNumber('id');
+        Route::post('{id}/reject', [UnifiedApprovalController::class, 'reject'])->whereNumber('id');
+    });
 
 Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik'])
     ->prefix('projects')

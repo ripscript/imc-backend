@@ -60,6 +60,75 @@ abstract class TestProjectCase extends TestCase
     /**
      * Authenticate subsequent requests as the given user (admin guard).
      */
+    public function actingAs($user, $driver = null)
+    {
+        $guard = $driver ?? 'admin';
+        if ($user instanceof User) {
+            $token = auth($guard)->login($user);
+            $this->withHeader('Authorization', 'Bearer '.$token);
+        }
+
+        return parent::actingAs($user, $driver);
+    }
+
+    protected function createUser(string $roleCode = 'admin_pustik'): User
+    {
+        return $this->makeUser($roleCode);
+    }
+
+    protected function createAdminPusatUser(): User
+    {
+        return $this->makeUser('admin_pusat');
+    }
+
+    protected function createPendingApprovalProject(array $overrides = []): \App\Models\Project
+    {
+        $this->loginAs($this->admin);
+        [$projectData] = $this->seedPendingProject($overrides);
+
+        return \App\Models\Project::findOrFail($projectData['id']);
+    }
+
+    protected function createStageWithApprover(User $approver, ?\App\Models\Project $project = null): \App\Models\ProjectStage
+    {
+        if (! $project) {
+            $this->loginAs($this->admin);
+            [$projectData] = $this->seedActiveProject();
+            $project = \App\Models\Project::findOrFail($projectData['id']);
+        }
+
+        $stage = $project->stages()->first();
+
+        $stage->update([
+            'requires_approval' => true,
+            'status' => 'pending_clearance',
+            'clearance_requested_by' => $this->admin->id,
+            'clearance_requested_at' => now(),
+        ]);
+
+        \App\Models\PmStageApprover::firstOrCreate([
+            'project_stage_id' => $stage->id,
+            'user_id' => $approver->id,
+        ]);
+
+        \App\Models\PmApprovalRequest::create([
+            'project_id' => $project->id,
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stage->id,
+            'type' => 'stage_clearance',
+            'title' => "Stage Clearance: {$stage->name}",
+            'description' => 'Stage clearance request',
+            'status' => 'pending',
+            'requested_by' => $this->admin->id,
+            'requested_at' => now(),
+        ]);
+
+        return $stage->fresh();
+    }
+
+    /**
+     * Authenticate subsequent requests as the given user (admin guard).
+     */
     protected function loginAs(User $user): void
     {
         $token = auth('admin')->login($user);
@@ -73,6 +142,7 @@ abstract class TestProjectCase extends TestCase
      */
     protected function seedPendingProject(array $overrides = []): array
     {
+        $this->loginAs($this->admin);
         [$project, $stages] = $this->seedCompleteProject($overrides);
 
         $this->postJson("/api/projects/{$project['id']}/activate")
@@ -89,6 +159,7 @@ abstract class TestProjectCase extends TestCase
      */
     protected function seedActiveProject(array $overrides = []): array
     {
+        $this->loginAs($this->admin);
         [$project, $stages] = $this->seedPendingProject($overrides);
 
         $this->postJson("/api/projects/{$project['id']}/activate/approve")

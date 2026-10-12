@@ -115,4 +115,267 @@ class UnifiedApprovalInboxTest extends TestProjectCase
             'user_id' => $this->admin->id,
         ]);
     }
+
+    public function test_approver_can_view_inbox_and_approve_directly(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $project = $this->createPendingApprovalProject();
+        $approval = PmApprovalRequest::where('project_id', $project->id)->first();
+
+        $this->actingAs($admin, 'admin')
+            ->getJson('/approvals')
+            ->assertStatus(200)
+            ->assertJsonPath('data.0.id', $approval->id)
+            ->assertJsonPath('data.0.project_name', $project->title);
+
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/approve")
+            ->assertStatus(200);
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'id' => $approval->id,
+            'status' => 'approved',
+        ]);
+        $this->assertEquals('active', $project->fresh()->status);
+    }
+
+    public function test_stage_approver_only_sees_assigned_stages_if_not_admin_pusat(): void
+    {
+        $userA = $this->createUser();
+        $userB = $this->createUser();
+        $stageA = $this->createStageWithApprover($userA);
+        $stageB = $this->createStageWithApprover($userB);
+
+        $this->actingAs($userA, 'admin')
+            ->getJson('/approvals')
+            ->assertStatus(200)
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.approvable_id', $stageA->id);
+    }
+
+    public function test_approver_can_filter_by_status_and_type_and_search(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $project = $this->createPendingApprovalProject(['title' => 'Alpha Special Project']);
+        $approvalActivation = PmApprovalRequest::where('project_id', $project->id)->first();
+
+        $user = $this->createUser();
+        $stage = $this->createStageWithApprover($user);
+        $approvalStage = PmApprovalRequest::where('approvable_id', $stage->id)->first();
+
+        // 1. Filter type=activation
+        $response = $this->actingAs($admin, 'admin')
+            ->getJson('/approvals?type=activation')
+            ->assertStatus(200);
+        $items = $response->json('data');
+        $this->assertNotEmpty($items);
+        foreach ($items as $item) {
+            $this->assertEquals('activation', $item['request_type']);
+        }
+
+        // 2. Filter type=stage_clearance
+        $response = $this->actingAs($admin, 'admin')
+            ->getJson('/approvals?type=stage_clearance')
+            ->assertStatus(200);
+        $items = $response->json('data');
+        $this->assertNotEmpty($items);
+        foreach ($items as $item) {
+            $this->assertEquals('stage_clearance', $item['request_type']);
+        }
+
+        // 3. Search by project title
+        $response = $this->actingAs($admin, 'admin')
+            ->getJson('/approvals?search=Alpha Special')
+            ->assertStatus(200)
+            ->assertJsonPath('data.0.project_name', 'Alpha Special Project');
+
+        // 4. Status filter: approve one, check filter status=approved vs status=pending
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approvalActivation->id}/approve")
+            ->assertStatus(200);
+
+        $approvedResponse = $this->actingAs($admin, 'admin')
+            ->getJson('/approvals?status=approved')
+            ->assertStatus(200);
+        $approvedIds = collect($approvedResponse->json('data'))->pluck('id')->all();
+        $this->assertContains($approvalActivation->id, $approvedIds);
+
+        $pendingResponse = $this->actingAs($admin, 'admin')
+            ->getJson('/approvals?status=pending')
+            ->assertStatus(200);
+        $pendingIds = collect($pendingResponse->json('data'))->pluck('id')->all();
+        $this->assertNotContains($approvalActivation->id, $pendingIds);
+        $this->assertContains($approvalStage->id, $pendingIds);
+    }
+
+    public function test_direct_reject_from_inbox_with_notes(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $project = $this->createPendingApprovalProject();
+        $approval = PmApprovalRequest::where('project_id', $project->id)->first();
+
+        // 1. Missing notes -> 422
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/reject", [])
+            ->assertStatus(422);
+
+        // 2. Reject with valid notes
+        $notes = 'Dokumen TOR belum lengkap dan budget belum disetujui.';
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/reject", ['notes' => $notes])
+            ->assertStatus(200);
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'id' => $approval->id,
+            'status' => 'rejected',
+            'rejection_notes' => $notes,
+        ]);
+
+        $this->assertEquals('draft', $project->fresh()->status);
+        $this->assertEquals($notes, $project->fresh()->rejection_notes);
+    }
+
+    public function test_direct_approve_and_reject_stage_clearance_and_change_request(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $user = $this->createUser();
+
+        // Stage clearance approve
+        $stage = $this->createStageWithApprover($user);
+        $stageApproval = PmApprovalRequest::where('approvable_type', 'stage_clearance')
+            ->where('approvable_id', $stage->id)
+            ->first();
+
+        $this->actingAs($user, 'admin')
+            ->postJson("/approvals/{$stageApproval->id}/approve")
+            ->assertStatus(200);
+
+        $this->assertEquals('completed', $stage->fresh()->status);
+        $this->assertEquals('approved', $stageApproval->fresh()->status);
+
+        // Stage clearance reject
+        $stage2 = $this->createStageWithApprover($user);
+        $stageApproval2 = PmApprovalRequest::where('approvable_type', 'stage_clearance')
+            ->where('approvable_id', $stage2->id)
+            ->first();
+
+        $this->actingAs($user, 'admin')
+            ->postJson("/approvals/{$stageApproval2->id}/reject", ['notes' => 'Tasks still incomplete'])
+            ->assertStatus(200);
+
+        $this->assertEquals('in_progress', $stage2->fresh()->status);
+        $this->assertEquals('Tasks still incomplete', $stage2->fresh()->rejection_notes);
+        $this->assertEquals('rejected', $stageApproval2->fresh()->status);
+
+        // Change request approve and reject
+        [$activeProjData] = $this->seedActiveProject();
+        $activeProject = Project::findOrFail($activeProjData['id']);
+
+        $cr1 = \App\Models\PmChangeRequest::create([
+            'project_id' => $activeProject->id,
+            'change_no' => 'CR-2026-TEST-0001',
+            'title' => 'Timeline Extension',
+            'proposed_changes' => ['duration' => '6 months'],
+            'status' => 'pending_approval',
+            'requested_by' => $admin->id,
+        ]);
+        $crApproval1 = PmApprovalRequest::create([
+            'project_id' => $activeProject->id,
+            'approvable_type' => 'change_request',
+            'approvable_id' => $cr1->id,
+            'type' => 'change_request',
+            'title' => $activeProject->title.' - '.$cr1->title,
+            'status' => 'pending',
+            'requested_by' => $admin->id,
+            'requested_at' => now(),
+        ]);
+
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$crApproval1->id}/approve")
+            ->assertStatus(200);
+
+        $this->assertEquals('approved', $cr1->fresh()->status);
+        $this->assertEquals('approved', $crApproval1->fresh()->status);
+
+        $cr2 = \App\Models\PmChangeRequest::create([
+            'project_id' => $activeProject->id,
+            'change_no' => 'CR-2026-TEST-0002',
+            'title' => 'Budget Increase',
+            'proposed_changes' => ['budget' => 50000000],
+            'status' => 'pending_approval',
+            'requested_by' => $admin->id,
+        ]);
+        $crApproval2 = PmApprovalRequest::create([
+            'project_id' => $activeProject->id,
+            'approvable_type' => 'change_request',
+            'approvable_id' => $cr2->id,
+            'type' => 'change_request',
+            'title' => $activeProject->title.' - '.$cr2->title,
+            'status' => 'pending',
+            'requested_by' => $admin->id,
+            'requested_at' => now(),
+        ]);
+
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$crApproval2->id}/reject", ['notes' => 'Budget exceeds limit'])
+            ->assertStatus(200);
+
+        $this->assertEquals('rejected', $cr2->fresh()->status);
+        $this->assertEquals('Budget exceeds limit', $cr2->fresh()->notes);
+        $this->assertEquals('rejected', $crApproval2->fresh()->status);
+    }
+
+    public function test_conflict_409_when_already_decided(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $project = $this->createPendingApprovalProject();
+        $approval = PmApprovalRequest::where('project_id', $project->id)->first();
+
+        // First approve succeeds
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/approve")
+            ->assertStatus(200);
+
+        // Second approve fails with 409 Conflict
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/approve")
+            ->assertStatus(409);
+
+        // Reject also fails with 409 Conflict
+        $this->actingAs($admin, 'admin')
+            ->postJson("/approvals/{$approval->id}/reject", ['notes' => 'Cannot reject approved'])
+            ->assertStatus(409);
+    }
+
+    public function test_forbidden_403_when_unauthorized_user_tries_to_approve_or_reject(): void
+    {
+        $userA = $this->createUser();
+        $userB = $this->createUser();
+
+        // 1. Activation cannot be approved/rejected by non-central admin
+        $project = $this->createPendingApprovalProject();
+        $activationApproval = PmApprovalRequest::where('project_id', $project->id)->first();
+
+        $this->actingAs($userA, 'admin')
+            ->postJson("/approvals/{$activationApproval->id}/approve")
+            ->assertStatus(403);
+
+        $this->actingAs($userA, 'admin')
+            ->postJson("/approvals/{$activationApproval->id}/reject", ['notes' => 'Not authorized'])
+            ->assertStatus(403);
+
+        // 2. Stage clearance cannot be approved/rejected by unassigned user
+        $stageA = $this->createStageWithApprover($userA);
+        $stageApprovalA = PmApprovalRequest::where('approvable_type', 'stage_clearance')
+            ->where('approvable_id', $stageA->id)
+            ->first();
+
+        $this->actingAs($userB, 'admin')
+            ->postJson("/approvals/{$stageApprovalA->id}/approve")
+            ->assertStatus(403);
+
+        $this->actingAs($userB, 'admin')
+            ->postJson("/approvals/{$stageApprovalA->id}/reject", ['notes' => 'Not my stage'])
+            ->assertStatus(403);
+    }
 }
