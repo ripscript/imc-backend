@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\Domain\ValidationException;
+use App\Models\PmApprovalRequest;
 use App\Models\Project;
 use App\Models\ProjectStage;
 use App\Models\User;
@@ -29,8 +30,8 @@ class StageLifecycleService
     public const APPROVER_ROLES = ['super_admin', 'admin_pusat'];
 
     /**
-     * Mark an in-progress stage completed once every gate is satisfied, then
-     * advance to the next stage (or complete the project).
+     * Mark an in-progress or pending_clearance stage completed once every gate is satisfied,
+     * then advance to the next stage (or complete the project).
      */
     public function complete(int $projectId, int $stageId, User $actor): array
     {
@@ -39,10 +40,16 @@ class StageLifecycleService
             $stage = $this->resolveStage($projectId, $stageId);
 
             $this->assertActive($project);
-            $this->assertInProgress($stage);
+
+            if (! in_array($stage->status, ['in_progress', 'pending_clearance'], true)) {
+                throw new ValidationException(
+                    'Hanya stage yang sedang berjalan atau menunggu clearance yang dapat diselesaikan.',
+                    ['stage' => ["Status stage saat ini: {$stage->status}."]]
+                );
+            }
 
             if ($stage->requires_approval) {
-                $this->assertApprover($actor);
+                $this->assertApprover($stage, $actor);
             }
 
             $missing = $this->completionBlockers($stage);
@@ -53,6 +60,7 @@ class StageLifecycleService
 
             $stage->status = 'completed';
             $stage->completed_at = now();
+            $stage->rejection_notes = null;
 
             if ($stage->requires_approval) {
                 $stage->approved_by = $actor->id;
@@ -62,9 +70,114 @@ class StageLifecycleService
             $stage->updated_by = $actor->name;
             $stage->save();
 
+            PmApprovalRequest::where('approvable_type', 'stage_clearance')
+                ->where('approvable_id', $stage->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'approved',
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
+
             $next = $this->advance($project, $actor);
 
             return $this->payload($stage, $project, $next);
+        });
+    }
+
+    /**
+     * Submit an in-progress stage for clearance approval (specs/006).
+     */
+    public function requestClearance(int $projectId, int $stageId, User $actor, ?string $notes = null): array
+    {
+        return DB::transaction(function () use ($projectId, $stageId, $actor, $notes) {
+            $project = Project::findOrFail($projectId);
+            $stage = $this->resolveStage($projectId, $stageId);
+
+            $this->assertActive($project);
+            $this->assertInProgress($stage);
+
+            if (! $stage->requires_approval) {
+                throw new ValidationException(
+                    'Stage ini tidak memerlukan approval clearance.',
+                    ['stage' => ['Stage ini tidak dikonfigurasi untuk clearance approval. Selesaikan stage secara langsung.']]
+                );
+            }
+
+            $missing = $this->completionBlockers($stage);
+
+            if (! empty($missing)) {
+                throw new ValidationException('Stage belum dapat diajukan clearance.', $missing);
+            }
+
+            $stage->status = 'pending_clearance';
+            $stage->clearance_requested_by = $actor->id;
+            $stage->clearance_requested_at = now();
+            $stage->rejection_notes = null;
+            $stage->updated_by = $actor->name;
+            $stage->save();
+
+            PmApprovalRequest::create([
+                'project_id' => $project->id,
+                'approvable_type' => 'stage_clearance',
+                'approvable_id' => $stage->id,
+                'type' => 'stage_clearance',
+                'title' => "Stage Clearance: {$stage->name}",
+                'description' => $notes,
+                'status' => 'pending',
+                'requested_by' => $actor->id,
+                'requested_at' => now(),
+            ]);
+
+            return $this->payload($stage, $project, null);
+        });
+    }
+
+    /**
+     * Reject a clearance request, reverting the stage to in_progress with notes (specs/006).
+     */
+    public function rejectClearance(int $projectId, int $stageId, User $actor, string $notes): array
+    {
+        return DB::transaction(function () use ($projectId, $stageId, $actor, $notes) {
+            $project = Project::findOrFail($projectId);
+            $stage = $this->resolveStage($projectId, $stageId);
+
+            $this->assertActive($project);
+
+            if (! $this->canApproveStage($stage, $actor)) {
+                throw new AccessDeniedHttpException('Anda tidak memiliki kewenangan untuk menolak clearance stage ini.');
+            }
+
+            if ($stage->status !== 'pending_clearance') {
+                throw new ValidationException(
+                    'Hanya stage dengan status pending clearance yang dapat ditolak.',
+                    ['stage' => ["Status stage saat ini: {$stage->status}."]]
+                );
+            }
+
+            if (empty(trim($notes))) {
+                throw new ValidationException(
+                    'Alasan penolakan wajib diisi.',
+                    ['notes' => ['Alasan penolakan clearance wajib diisi.']]
+                );
+            }
+
+            $stage->status = 'in_progress';
+            $stage->rejection_notes = $notes;
+            $stage->updated_by = $actor->name;
+            $stage->save();
+
+            PmApprovalRequest::where('approvable_type', 'stage_clearance')
+                ->where('approvable_id', $stage->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'rejected',
+                    'rejection_notes' => $notes,
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
+
+            return $this->payload($stage, $project, null);
         });
     }
 
@@ -128,6 +241,9 @@ class StageLifecycleService
             $stage->completed_at = null;
             $stage->approved_by = null;
             $stage->approved_at = null;
+            $stage->clearance_requested_by = null;
+            $stage->clearance_requested_at = null;
+            $stage->rejection_notes = null;
             $stage->updated_by = $actor->name;
             $stage->save();
 
@@ -238,10 +354,19 @@ class StageLifecycleService
         }
     }
 
-    private function assertApprover(User $actor): void
+    public function canApproveStage(ProjectStage $stage, User $actor): bool
     {
-        if (! self::isApprover($actor)) {
-            throw new AccessDeniedHttpException('Stage ini membutuhkan clearance dari admin pusat untuk diselesaikan.');
+        if (self::isApprover($actor)) {
+            return true;
+        }
+
+        return $stage->approvers()->where('user_id', $actor->id)->exists();
+    }
+
+    private function assertApprover(ProjectStage $stage, User $actor): void
+    {
+        if (! $this->canApproveStage($stage, $actor)) {
+            throw new AccessDeniedHttpException('Stage ini membutuhkan clearance dari approver yang ditugaskan atau admin pusat untuk diselesaikan.');
         }
     }
 
@@ -251,9 +376,9 @@ class StageLifecycleService
     private function payload(ProjectStage $stage, Project $project, ?ProjectStage $next): array
     {
         return [
-            'stage' => $stage->fresh()->load('pic'),
+            'stage' => $stage->fresh()->load(['pic', 'approver', 'approvers.user']),
             'project_status' => $project->fresh()->status,
-            'next_stage' => $next ? $next->fresh()->load('pic') : null,
+            'next_stage' => $next ? $next->fresh()->load(['pic', 'approver', 'approvers.user']) : null,
         ];
     }
 }

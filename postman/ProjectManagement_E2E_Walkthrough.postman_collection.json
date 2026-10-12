@@ -84,6 +84,11 @@
       "key": "change_request_id",
       "value": "1",
       "description": "copy id dari response 7.6/7.7"
+    },
+    {
+      "key": "approval_id",
+      "value": "1",
+      "description": "copy id dari response 8.1 List approval inbox"
     }
   ],
   "item": [
@@ -1575,7 +1580,93 @@
           }
         },
         {
-          "name": "7.3 Complete stage",
+          "name": "7.3 Request clearance stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/request-clearance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "request-clearance"
+              ]
+            },
+            "description": "PIC/Admin mengajukan clearance stage yang butuh approval (requires_approval=true) setelah checklist task dan deliverable wajib beres. Stage status -> pending_clearance.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Pekerjaan stage selesai, mohon review clearance.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.4 Reject clearance stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/reject-clearance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "reject-clearance"
+              ]
+            },
+            "description": "Approver menolak clearance stage disertai alasan revisi. Stage kembali ke in_progress.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Dokumen uji belum ditandatangani QA lead.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.5 Complete stage",
           "request": {
             "method": "POST",
             "header": [
@@ -1605,7 +1696,7 @@
           }
         },
         {
-          "name": "7.4 Skip stage",
+          "name": "7.6 Skip stage",
           "request": {
             "method": "POST",
             "header": [
@@ -1635,7 +1726,7 @@
           }
         },
         {
-          "name": "7.5 Reopen stage",
+          "name": "7.7 Reopen stage",
           "request": {
             "method": "POST",
             "header": [
@@ -1665,7 +1756,7 @@
           }
         },
         {
-          "name": "7.6 Buat change request",
+          "name": "7.8 Buat change request",
           "request": {
             "method": "POST",
             "header": [
@@ -1706,7 +1797,7 @@
           }
         },
         {
-          "name": "7.7 List change request",
+          "name": "7.9 List change request",
           "request": {
             "method": "GET",
             "header": [
@@ -1748,7 +1839,7 @@
           }
         },
         {
-          "name": "7.8 Approve change request",
+          "name": "7.10 Approve change request",
           "request": {
             "method": "POST",
             "header": [
@@ -1778,7 +1869,7 @@
           }
         },
         {
-          "name": "7.9 Apply change request",
+          "name": "7.11 Apply change request",
           "request": {
             "method": "POST",
             "header": [
@@ -1808,7 +1899,7 @@
           }
         },
         {
-          "name": "7.10 Reject change request",
+          "name": "7.12 Reject change request",
           "request": {
             "method": "POST",
             "header": [
@@ -1851,7 +1942,7 @@
           }
         },
         {
-          "name": "7.11 Detail proyek (verifikasi)",
+          "name": "7.13 Detail proyek (verifikasi)",
           "request": {
             "method": "GET",
             "header": [
@@ -1875,6 +1966,179 @@
               ]
             },
             "description": "Cek status proyek (pending_approval/active/completed), activated_by/at, progress, dan current_stage."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 8 - Layar Approval Proyek (Global Inbox Home / My Account / Approval)",
+      "description": "Sesuai desain Spec 006: Layar antarmuka terpusat bagi approver untuk melihat seluruh pengajuan approval lintas proyek (Aktivasi Proyek, Stage Clearance, dan Change Request).",
+      "item": [
+        {
+          "name": "8.1 List approval inbox (semua pending)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals?status=pending&page=1&per_page=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "pending | approved | rejected | all"
+                },
+                {
+                  "key": "type",
+                  "value": "all",
+                  "description": "activation | stage_clearance | change_request | all",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "kata kunci pencarian",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Menampilkan daftar seluruh approval menunggu tindakan. Salin id approval ke variable {{approval_id}} untuk request selanjutnya."
+          }
+        },
+        {
+          "name": "8.2 Filter approval per jenis request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals?status=pending&type=stage_clearance&page=1&per_page=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "type",
+                  "value": "stage_clearance",
+                  "description": "activation | stage_clearance | change_request"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Filter hanya menampilkan jenis Stage Clearance."
+          }
+        },
+        {
+          "name": "8.3 Direct approve dari tabel inbox",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals/{{approval_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals",
+                "{{approval_id}}",
+                "approve"
+              ]
+            },
+            "description": "Tombol Centang Hijau pada tabel Approval Proyek. Langsung menyetujui request (aktivasi proyek, stage clearance, atau change request)."
+          }
+        },
+        {
+          "name": "8.4 Direct reject dari tabel inbox",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals/{{approval_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals",
+                "{{approval_id}}",
+                "reject"
+              ]
+            },
+            "description": "Tombol Silang Merah pada tabel Approval Proyek. Menolak request disertai catatan revisi wajib.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Perlu perbaikan kelistrikan sebelum disetujui.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           }
         }
       ]

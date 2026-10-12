@@ -176,6 +176,36 @@ class StageLifecycleTest extends TestProjectCase
         $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/reopen")->assertStatus(422);
     }
 
+    public function test_reopen_resets_clearance_metadata_and_rejection_notes(): void
+    {
+        [$project, $stages] = $this->seedActiveProject();
+        $stageId = $stages[0]['id'];
+
+        $stage = \App\Models\ProjectStage::findOrFail($stageId);
+        $stage->update([
+            'status' => 'completed',
+            'allow_repeat' => true,
+            'completed_at' => now(),
+            'approved_by' => $this->admin->id,
+            'approved_at' => now(),
+            'clearance_requested_by' => $this->admin->id,
+            'clearance_requested_at' => now(),
+            'rejection_notes' => 'Old rejection notes',
+        ]);
+
+        $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/reopen")
+            ->assertStatus(200);
+
+        $freshStage = $stage->fresh();
+        $this->assertSame('in_progress', $freshStage->status);
+        $this->assertNull($freshStage->completed_at);
+        $this->assertNull($freshStage->approved_by);
+        $this->assertNull($freshStage->approved_at);
+        $this->assertNull($freshStage->clearance_requested_by);
+        $this->assertNull($freshStage->clearance_requested_at);
+        $this->assertNull($freshStage->rejection_notes);
+    }
+
     public function test_stage_status_cannot_be_set_via_update_after_activation(): void
     {
         [$project, $stages] = $this->seedActiveProject();
@@ -183,5 +213,38 @@ class StageLifecycleTest extends TestProjectCase
         $this->putJson("/api/projects/{$project['id']}/stages/{$stages[0]['id']}", ['status' => 'completed'])
             ->assertStatus(422)
             ->assertJsonPath('errors.status.0', 'Gunakan endpoint complete/skip/reopen untuk mengubah status stage.');
+    }
+
+    public function test_complete_clears_pending_clearance_approval_request(): void
+    {
+        [$project, $stages] = $this->seedActiveProject();
+        $stageId = $stages[0]['id'];
+
+        $this->putJson("/api/projects/{$project['id']}/stages/{$stageId}", ['requires_approval' => true])
+            ->assertStatus(200);
+
+        $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/request-clearance")
+            ->assertStatus(200);
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stageId,
+            'type' => 'stage_clearance',
+            'status' => 'pending',
+        ]);
+
+        $this->postJson("/api/projects/{$project['id']}/stages/{$stageId}/complete")
+            ->assertStatus(200)
+            ->assertJsonPath('data.stage.status', 'completed');
+
+        $this->assertDatabaseHas('pm_approval_requests', [
+            'project_id' => $project['id'],
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stageId,
+            'type' => 'stage_clearance',
+            'status' => 'approved',
+            'approved_by' => $this->admin->id,
+        ]);
     }
 }

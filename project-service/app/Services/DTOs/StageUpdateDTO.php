@@ -22,6 +22,8 @@ class StageUpdateDTO extends PartialDTO
 
     public ?bool $requires_approval = null;
 
+    public ?array $approver_user_ids = null;
+
     public $depends_on_project_stage_id = null;
 
     public ?array $tasks = null;

@@ -60,6 +60,75 @@ abstract class TestProjectCase extends TestCase
     /**
      * Authenticate subsequent requests as the given user (admin guard).
      */
+    public function actingAs($user, $driver = null)
+    {
+        $guard = $driver ?? 'admin';
+        if ($user instanceof User) {
+            $token = auth($guard)->login($user);
+            $this->withHeader('Authorization', 'Bearer '.$token);
+        }
+
+        return parent::actingAs($user, $driver);
+    }
+
+    protected function createUser(string $roleCode = 'admin_pustik'): User
+    {
+        return $this->makeUser($roleCode);
+    }
+
+    protected function createAdminPusatUser(): User
+    {
+        return $this->makeUser('admin_pusat');
+    }
+
+    protected function createPendingApprovalProject(array $overrides = []): \App\Models\Project
+    {
+        $this->loginAs($this->admin);
+        [$projectData] = $this->seedPendingProject($overrides);
+
+        return \App\Models\Project::findOrFail($projectData['id']);
+    }
+
+    protected function createStageWithApprover(User $approver, ?\App\Models\Project $project = null): \App\Models\ProjectStage
+    {
+        if (! $project) {
+            $this->loginAs($this->admin);
+            [$projectData] = $this->seedActiveProject();
+            $project = \App\Models\Project::findOrFail($projectData['id']);
+        }
+
+        $stage = $project->stages()->first();
+
+        $stage->update([
+            'requires_approval' => true,
+            'status' => 'pending_clearance',
+            'clearance_requested_by' => $this->admin->id,
+            'clearance_requested_at' => now(),
+        ]);
+
+        \App\Models\PmStageApprover::firstOrCreate([
+            'project_stage_id' => $stage->id,
+            'user_id' => $approver->id,
+        ]);
+
+        \App\Models\PmApprovalRequest::create([
+            'project_id' => $project->id,
+            'approvable_type' => 'stage_clearance',
+            'approvable_id' => $stage->id,
+            'type' => 'stage_clearance',
+            'title' => "Stage Clearance: {$stage->name}",
+            'description' => 'Stage clearance request',
+            'status' => 'pending',
+            'requested_by' => $this->admin->id,
+            'requested_at' => now(),
+        ]);
+
+        return $stage->fresh();
+    }
+
+    /**
+     * Authenticate subsequent requests as the given user (admin guard).
+     */
     protected function loginAs(User $user): void
     {
         $token = auth('admin')->login($user);
@@ -73,6 +142,7 @@ abstract class TestProjectCase extends TestCase
      */
     protected function seedPendingProject(array $overrides = []): array
     {
+        $this->loginAs($this->admin);
         [$project, $stages] = $this->seedCompleteProject($overrides);
 
         $this->postJson("/api/projects/{$project['id']}/activate")
@@ -89,6 +159,7 @@ abstract class TestProjectCase extends TestCase
      */
     protected function seedActiveProject(array $overrides = []): array
     {
+        $this->loginAs($this->admin);
         [$project, $stages] = $this->seedPendingProject($overrides);
 
         $this->postJson("/api/projects/{$project['id']}/activate/approve")
@@ -173,7 +244,7 @@ abstract class TestProjectCase extends TestCase
             'CREATE TABLE IF NOT EXISTS ms_roles (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, code TEXT, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS contents (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT)',
             'CREATE TABLE IF NOT EXISTS ms_layout (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, type TEXT)',
-            'CREATE TABLE IF NOT EXISTS content_detail_projects (id INTEGER PRIMARY KEY AUTOINCREMENT, content_id INTEGER, title TEXT, slug TEXT, description TEXT, thumbnail_path TEXT, is_publicated INTEGER DEFAULT 1, publish_date DATE, layout_id INTEGER, kategori_content_id INTEGER, duration TEXT, location TEXT, start_date DATE, budget INTEGER, organization_address TEXT, organization_name TEXT, project_no TEXT, client_id INTEGER, partner_id INTEGER, category_id INTEGER, workflow_id INTEGER, pic_user_id INTEGER, status TEXT DEFAULT \'draft\', progress INTEGER DEFAULT 0, target_end_date DATE, activated_by INTEGER, activated_at DATETIME, has_additional_image INTEGER DEFAULT 0, has_additional_video INTEGER DEFAULT 0, has_additional_file INTEGER DEFAULT 0, has_additional_link INTEGER DEFAULT 0, has_additional_text INTEGER DEFAULT 0, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
+            'CREATE TABLE IF NOT EXISTS content_detail_projects (id INTEGER PRIMARY KEY AUTOINCREMENT, content_id INTEGER, title TEXT, slug TEXT, description TEXT, thumbnail_path TEXT, is_publicated INTEGER DEFAULT 1, publish_date DATE, layout_id INTEGER, kategori_content_id INTEGER, duration TEXT, location TEXT, start_date DATE, budget INTEGER, organization_address TEXT, organization_name TEXT, project_no TEXT, client_id INTEGER, partner_id INTEGER, category_id INTEGER, workflow_id INTEGER, pic_user_id INTEGER, status TEXT DEFAULT \'draft\', progress INTEGER DEFAULT 0, target_end_date DATE, activated_by INTEGER, activated_at DATETIME, activation_requested_by INTEGER, activation_requested_at DATETIME, rejection_notes TEXT, has_additional_image INTEGER DEFAULT 0, has_additional_video INTEGER DEFAULT 0, has_additional_file INTEGER DEFAULT 0, has_additional_link INTEGER DEFAULT 0, has_additional_text INTEGER DEFAULT 0, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS content_tags (id INTEGER PRIMARY KEY AUTOINCREMENT, content_type TEXT, content_id INTEGER, tag_id INTEGER, created_by TEXT, updated_by TEXT, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS content_additional_images (id INTEGER PRIMARY KEY AUTOINCREMENT, content_type TEXT, content_id INTEGER)',
             'CREATE TABLE IF NOT EXISTS content_additional_videos (id INTEGER PRIMARY KEY AUTOINCREMENT, content_type TEXT, content_id INTEGER)',
@@ -189,7 +260,8 @@ abstract class TestProjectCase extends TestCase
             'CREATE TABLE IF NOT EXISTS pm_document_types (id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT, name TEXT, allowed_extension TEXT, max_size_mb INTEGER DEFAULT 10, status TEXT DEFAULT \'active\', created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_workflow_stage_tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, workflow_stage_id INTEGER, title TEXT, description TEXT, priority TEXT DEFAULT \'medium\', sequence INTEGER DEFAULT 1, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_workflow_stage_deliverables (id INTEGER PRIMARY KEY AUTOINCREMENT, workflow_stage_id INTEGER, document_type_id INTEGER, name TEXT, is_required INTEGER DEFAULT 1, sequence INTEGER DEFAULT 1, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
-            'CREATE TABLE IF NOT EXISTS pm_project_stages (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, workflow_stage_id INTEGER, name TEXT, description TEXT, sequence INTEGER, status TEXT DEFAULT \'pending\', progress INTEGER DEFAULT 0, pic_user_id INTEGER, start_date DATE, end_date DATE, completed_at DATETIME, depends_on_project_stage_id INTEGER, is_required INTEGER DEFAULT 1, allow_skip INTEGER DEFAULT 0, allow_repeat INTEGER DEFAULT 0, requires_approval INTEGER DEFAULT 0, approved_by INTEGER, approved_at DATETIME, is_configured INTEGER DEFAULT 0, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
+            'CREATE TABLE IF NOT EXISTS pm_project_stages (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, workflow_stage_id INTEGER, name TEXT, description TEXT, sequence INTEGER, status TEXT DEFAULT \'pending\', progress INTEGER DEFAULT 0, pic_user_id INTEGER, start_date DATE, end_date DATE, completed_at DATETIME, depends_on_project_stage_id INTEGER, is_required INTEGER DEFAULT 1, allow_skip INTEGER DEFAULT 0, allow_repeat INTEGER DEFAULT 0, requires_approval INTEGER DEFAULT 0, approved_by INTEGER, approved_at DATETIME, clearance_requested_by INTEGER, clearance_requested_at DATETIME, rejection_notes TEXT, is_configured INTEGER DEFAULT 0, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
+            'CREATE UNIQUE INDEX IF NOT EXISTS pm_project_stages_project_id_sequence_unique ON pm_project_stages (project_id, sequence) WHERE deleted_at IS NULL',
             'CREATE TABLE IF NOT EXISTS pm_tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, project_stage_id INTEGER, title TEXT, description TEXT, status TEXT DEFAULT \'pending\', priority TEXT DEFAULT \'medium\', assignee_id INTEGER, due_date DATE, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_deliverables (id INTEGER PRIMARY KEY AUTOINCREMENT, project_stage_id INTEGER, document_type_id INTEGER, name TEXT, is_required INTEGER DEFAULT 1, status TEXT DEFAULT \'pending\', due_date DATE, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_documents (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, project_stage_id INTEGER, document_type_id INTEGER, file_name TEXT, file_path TEXT, file_size_kb INTEGER, version INTEGER DEFAULT 1, status TEXT DEFAULT \'active\', uploaded_by INTEGER, uploaded_at DATETIME, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
@@ -198,6 +270,8 @@ abstract class TestProjectCase extends TestCase
             'CREATE TABLE IF NOT EXISTS pm_project_members (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, user_id INTEGER, role TEXT DEFAULT \'member\', status TEXT DEFAULT \'active\', created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_custom_fields (id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT, name TEXT, entity_type TEXT, field_type TEXT, is_required INTEGER DEFAULT 0, status TEXT DEFAULT \'active\', created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
             'CREATE TABLE IF NOT EXISTS pm_custom_field_values (id INTEGER PRIMARY KEY AUTOINCREMENT, custom_field_id INTEGER, entity_type TEXT, entity_id INTEGER, value TEXT, created_by TEXT, updated_by TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
+            'CREATE TABLE IF NOT EXISTS pm_approval_requests (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, approvable_type TEXT, approvable_id INTEGER, type TEXT, title TEXT, description TEXT, status TEXT DEFAULT \'pending\', requested_by INTEGER, requested_at DATETIME, approved_by INTEGER, approved_at DATETIME, rejection_notes TEXT, deleted_at DATETIME, created_at DATETIME, updated_at DATETIME)',
+            'CREATE TABLE IF NOT EXISTS pm_stage_approvers (id INTEGER PRIMARY KEY AUTOINCREMENT, project_stage_id INTEGER, user_id INTEGER, created_at DATETIME, updated_at DATETIME, UNIQUE(project_stage_id, user_id))',
             'CREATE TABLE IF NOT EXISTS activity_log (id INTEGER PRIMARY KEY AUTOINCREMENT, log_name TEXT, description TEXT, subject_type TEXT, subject_id INTEGER, causer_type TEXT, causer_id INTEGER, properties TEXT, event TEXT, batch_uuid TEXT, created_at DATETIME, updated_at DATETIME)',
         ];
 

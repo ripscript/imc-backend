@@ -23,6 +23,14 @@ class JwtErrorHandlerMiddleware
         foreach ($guards as $guard) {
             try {
                 $auth = auth($guard);
+                if ($auth->check()) {
+                    Auth::shouldUse($guard);
+
+                    $request->attributes->set('guard', $guard);
+
+                    return $next($request);
+                }
+
                 $token = JWTAuth::parseToken()->getToken();
                 $user = $auth->setToken($token)->authenticate();
 

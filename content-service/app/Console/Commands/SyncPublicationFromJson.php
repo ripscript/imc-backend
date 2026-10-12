@@ -13,63 +13,94 @@ use App\Models\MsLayout;
 use App\Models\MsTag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class SyncPublicationFromJson extends Command
 {
     protected $signature = 'sync:publication-from-json
-        {--path= : Path to the JSON file}
+        {--path= : Path to the local JSON file (optional fallback)}
+        {--page=1 : Start page number to crawl from API}
+        {--limit=8 : Number of publications per page for API pagination}
+        {--max-pages= : Maximum number of pages to crawl}
+        {--max= : Maximum total number of publications to crawl/sync}
+        {--all-pages : Crawl all pages from API (default behavior)}
         {--content-id= : Existing content_id to attach publications to}
         {--menu-id= : Menu ID for creating new Content parent (parent_type=Menu)}
         {--dry-run : Preview what would be inserted without writing}
-        {--limit= : Limit number of publications to sync}';
+        {--output-sql= : Output SQL inserts to specified file instead of injecting to DB}
+        {--dialect= : SQL dialect (pgsql or mysql, defaults to DB_CONNECTION or pgsql)}';
 
-    protected $description = 'Sync publication data from external JSON response into content-service tables';
+    protected $description = 'Sync publication data from external API (or JSON file) into content-service tables or SQL file';
 
     public function handle(): int
     {
-        $path = $this->option('path') ?? base_path('contentMenu.json');
+        $path = $this->option('path');
         $contentId = $this->option('content-id');
         $menuId = $this->option('menu-id');
-        $dryRun = $this->option('dry-run');
-        $limit = $this->option('limit') ? (int) $this->option('limit') : null;
+        $dryRun = (bool) $this->option('dry-run');
+        $limit = (int) ($this->option('limit') ?? 8);
+        $page = (int) ($this->option('page') ?? 1);
+        $maxPages = $this->option('max-pages') ? (int) $this->option('max-pages') : null;
+        $maxTotal = $this->option('max') ? (int) $this->option('max') : null;
+        $outputSql = $this->option('output-sql');
+        $dialect = strtolower($this->option('dialect') ?? config('database.default', 'pgsql'));
 
-        if (! file_exists($path)) {
-            $this->error("File not found: {$path}");
+        $publications = [];
+        $tags = [];
+        $data = [];
 
-            return self::FAILURE;
+        // 1. Load data from local JSON or API
+        if ($path) {
+            if (! file_exists($path)) {
+                $this->error("File not found: {$path}");
+
+                return self::FAILURE;
+            }
+
+            $json = json_decode(file_get_contents($path), true);
+            if (! $json || ! isset($json['data'])) {
+                $this->error('Invalid JSON structure — missing data key');
+
+                return self::FAILURE;
+            }
+
+            $data = $json['data'];
+            $publications = $data['publication'] ?? [];
+            $tags = $data['list_tag'] ?? [];
+
+            if ($maxTotal) {
+                $publications = array_slice($publications, 0, $maxTotal);
+            }
+        } else {
+            $crawlResult = $this->crawlApi($page, $limit, $maxPages, $maxTotal);
+            if ($crawlResult === null) {
+                return self::FAILURE;
+            }
+
+            $data = $crawlResult['data'];
+            $publications = $crawlResult['publications'];
+            $tags = $crawlResult['tags'];
         }
 
-        $json = json_decode(file_get_contents($path), true);
-        if (! $json || ! isset($json['data'])) {
-            $this->error('Invalid JSON structure — missing data key');
-
-            return self::FAILURE;
-        }
-
-        $data = $json['data'];
-        $publications = $data['publication'] ?? [];
-        $tags = $data['list_tag'] ?? [];
-
-        if ($limit) {
-            $publications = array_slice($publications, 0, $limit);
-        }
-
-        $this->info('Found '.count($publications).' publications and '.count($tags).' tags');
+        $this->info('Found '.count($publications).' publications and '.count($tags).' unique tags');
 
         if ($dryRun) {
             $this->warn('--- DRY RUN — no database changes ---');
         }
 
-        // Resolve or create content_id
-        $resolvedContentId = $this->resolveContentId($contentId, $menuId, $data, $dryRun);
-        if (! $resolvedContentId) {
+        // 2. Resolve content_id and layout_id
+        $resolvedContentId = $this->resolveContentId($contentId, $menuId, $data, $dryRun || ! empty($outputSql));
+        if (! $resolvedContentId && empty($outputSql)) {
+            $this->error('Failed to resolve content_id. Provide --content-id or --menu-id.');
+
             return self::FAILURE;
         }
 
-        $this->info("Using content_id: {$resolvedContentId}");
+        if ($resolvedContentId) {
+            $this->info("Using content_id: {$resolvedContentId}");
+        }
 
-        // Resolve layout_id for publication_detail
         $layoutId = null;
         try {
             $layout = MsLayout::findByType('publication_detail');
@@ -78,10 +109,22 @@ class SyncPublicationFromJson extends Command
             $this->warn('Could not find layout for publication_detail — layout_id will be null');
         }
 
-        // Sync tags first
+        // 3. SQL output mode
+        if ($outputSql) {
+            return $this->handleSqlOutput(
+                $publications,
+                $tags,
+                $resolvedContentId,
+                $layoutId,
+                $outputSql,
+                $path ? false : true,
+                $dialect
+            );
+        }
+
+        // 4. DB Sync mode
         $tagMap = $this->syncTags($tags, $dryRun);
 
-        // Sync publications
         $created = 0;
         $skipped = 0;
         $errors = 0;
@@ -91,7 +134,7 @@ class SyncPublicationFromJson extends Command
 
         foreach ($publications as $pub) {
             try {
-                $slug = $pub['slug'] ?? Str::slug($pub['title']);
+                $slug = $pub['slug'] ?? Str::slug($pub['title'] ?? '');
 
                 // Check if publication with this slug already exists
                 $existing = ContentDetailPublication::where('slug', $slug)->first();
@@ -102,10 +145,17 @@ class SyncPublicationFromJson extends Command
                     continue;
                 }
 
+                // If crawled from API without detail, fetch detail endpoint
+                if (! $path) {
+                    $detailData = $this->fetchPublicationDetail($slug);
+                    if ($detailData) {
+                        $pub = $this->mergePublicationDetail($pub, $detailData);
+                    }
+                }
+
                 if (! $dryRun) {
                     DB::beginTransaction();
 
-                    // 1. Create ContentDetailPublication
                     $publication = ContentDetailPublication::create([
                         'content_id' => $resolvedContentId,
                         'title' => $pub['title'] ?? '',
@@ -116,34 +166,29 @@ class SyncPublicationFromJson extends Command
                         'thumbnail_path' => $pub['thumbnail_path'] ?? null,
                         'publish_date' => $pub['publish_date'] ?? now(),
                         'layout_id' => $layoutId,
-                        'is_slider' => false,
+                        'is_slider' => $pub['is_slider'] ?? false,
                         'has_additional_image' => ! empty($pub['additional_image']),
                         'has_additional_video' => ! empty($pub['additional_video']),
                         'has_additional_file' => ! empty($pub['additional_file']),
                         'has_additional_link' => ! empty($pub['additional_link']),
                     ]);
 
-                    // 2. Sync tags for this publication
                     if (! empty($pub['tag'])) {
                         $this->syncPublicationTags($publication, $pub['tag'], $tagMap);
                     }
 
-                    // 3. Sync additional images
                     if (! empty($pub['additional_image'])) {
                         $this->syncAdditionalImages($publication, $pub['additional_image']);
                     }
 
-                    // 4. Sync additional videos
                     if (! empty($pub['additional_video'])) {
                         $this->syncAdditionalVideos($publication, $pub['additional_video']);
                     }
 
-                    // 5. Sync additional files
                     if (! empty($pub['additional_file'])) {
                         $this->syncAdditionalFiles($publication, $pub['additional_file']);
                     }
 
-                    // 6. Sync additional links
                     if (! empty($pub['additional_link'])) {
                         $this->syncAdditionalLinks($publication, $pub['additional_link']);
                     }
@@ -180,23 +225,616 @@ class SyncPublicationFromJson extends Command
         return $errors > 0 ? self::FAILURE : self::SUCCESS;
     }
 
+    private function crawlApi(int $startPage, int $perPage, ?int $maxPages = null, ?int $maxTotal = null): ?array
+    {
+        $baseUrl = 'https://ilmate.kemenperin.go.id/back/public-content-service/api/contentMenu';
+        $currentPage = $startPage;
+        $allPublications = [];
+        $allTags = [];
+        $dataMeta = [];
+        $pageCount = 0;
+
+        do {
+            $this->info("Fetching list from API (page {$currentPage}, limit {$perPage})...");
+            try {
+                $response = Http::timeout(60)->retry(2, 1000)->get($baseUrl, [
+                    'type' => 'sub-menu',
+                    'slug' => ['publikasi', 'informasi-industri'],
+                    'portal' => 'pusat',
+                    'page' => $currentPage,
+                    'limit' => $perPage,
+                    'tag' => '',
+                    'order_dir' => 'desc',
+                    'order_by' => 'publish_date',
+                    'lang' => 'id',
+                ]);
+            } catch (\Exception $e) {
+                $this->error("Failed to connect to API: {$e->getMessage()}");
+
+                return null;
+            }
+
+            if (! $response->successful()) {
+                $this->error("API returned error status {$response->status()} on page {$currentPage}");
+
+                return null;
+            }
+
+            $json = $response->json();
+            $data = $json['data'] ?? [];
+            $publications = $data['publication'] ?? [];
+            $tags = $data['list_tag'] ?? [];
+
+            foreach ($tags as $tag) {
+                $allTags[] = $tag;
+            }
+
+            foreach ($publications as $pub) {
+                $allPublications[] = $pub;
+                if ($maxTotal && count($allPublications) >= $maxTotal) {
+                    break 2;
+                }
+            }
+
+            $dataMeta = $data;
+            $pageCount++;
+
+            $total = (int) ($data['meta']['total'] ?? 0);
+            $totalPages = $perPage > 0 ? (int) ceil($total / $perPage) : 1;
+
+            $this->info("Fetched page {$currentPage} of {$totalPages} (Gathered: ".count($allPublications)." of {$total} total items)");
+
+            if ($maxPages && $pageCount >= $maxPages) {
+                $this->info("Reached max pages limit ({$maxPages})");
+                break;
+            }
+
+            $currentPage++;
+            if ($currentPage > $totalPages || empty($publications)) {
+                break;
+            }
+        } while (true);
+
+        // Deduplicate tags by title
+        $tagNamesSeen = [];
+        $uniqueTags = [];
+        foreach ($allTags as $tag) {
+            $tName = is_array($tag) ? ($tag['title'] ?? '') : $tag;
+            if ($tName && ! isset($tagNamesSeen[$tName])) {
+                $tagNamesSeen[$tName] = true;
+                $uniqueTags[] = $tag;
+            }
+        }
+
+        return [
+            'data' => $dataMeta,
+            'publications' => $allPublications,
+            'tags' => $uniqueTags,
+        ];
+    }
+
+    private function fetchPublicationDetail(string $slug): ?array
+    {
+        $detailUrl = 'https://ilmate.kemenperin.go.id/back/public-content-service/api/content/publication';
+        try {
+            $response = Http::timeout(60)->retry(2, 500)->get($detailUrl, [
+                'type' => 'sub-menu',
+                'slug' => $slug,
+                'portal' => 'pusat',
+            ]);
+
+            if ($response->successful()) {
+                return $response->json('data') ?? [];
+            }
+        } catch (\Exception $e) {
+            $this->warn("Detail API request exception for slug '{$slug}': {$e->getMessage()}");
+        }
+
+        return null;
+    }
+
+    private function mergePublicationDetail(array $pub, array $detail): array
+    {
+        $pub['content_detail'] = $detail['content_detail'] ?? ($pub['content_detail'] ?? null);
+        $pub['headline'] = $detail['headline'] ?? ($pub['headline'] ?? null);
+        $pub['thumbnail_path'] = $detail['thumbnail_path'] ?? ($pub['thumbnail_path'] ?? null);
+        $pub['publish_date'] = $detail['publish_date'] ?? ($pub['publish_date'] ?? null);
+        $pub['is_slider'] = $detail['is_slider'] ?? ($pub['is_slider'] ?? false);
+        $pub['tag'] = ! empty($detail['tag']) ? $detail['tag'] : ($pub['tag'] ?? []);
+        $pub['additional_image'] = $detail['content_additional_photo'] ?? ($pub['additional_image'] ?? []);
+        $pub['additional_video'] = $detail['content_additional_video'] ?? ($pub['additional_video'] ?? []);
+        $pub['additional_file'] = $detail['content_additional_file'] ?? ($pub['additional_file'] ?? []);
+        $pub['additional_link'] = $detail['content_additional_link'] ?? ($pub['additional_link'] ?? []);
+
+        return $pub;
+    }
+
+    private function handleSqlOutput(
+        array $publications,
+        array $tags,
+        ?string $resolvedContentId,
+        ?int $layoutId,
+        string $outputSql,
+        bool $fetchDetailFromApi,
+        string $dialect
+    ): int {
+        $this->info("Generating SQL file ({$dialect}) at {$outputSql}...");
+
+        if ($fetchDetailFromApi) {
+            $this->info('Fetching publication details from API...');
+            $bar = $this->output->createProgressBar(count($publications));
+            $bar->start();
+
+            foreach ($publications as $i => $pub) {
+                $slug = $pub['slug'] ?? Str::slug($pub['title'] ?? '');
+                $detailData = $this->fetchPublicationDetail($slug);
+                if ($detailData) {
+                    $publications[$i] = $this->mergePublicationDetail($pub, $detailData);
+                }
+                $bar->advance();
+            }
+            $bar->finish();
+            $this->newLine();
+        }
+
+        if (in_array(strtolower($dialect), ['mysql', 'mariadb'])) {
+            $this->generateMysqlOutput($publications, $tags, $resolvedContentId, $layoutId, $outputSql);
+        } else {
+            $this->generatePgsqlOutput($publications, $tags, $resolvedContentId, $layoutId, $outputSql);
+        }
+
+        $this->info("SQL output written successfully to {$outputSql} (".count($publications).' publications)');
+
+        return self::SUCCESS;
+    }
+
+    private function generatePgsqlOutput(
+        array $publications,
+        array $tags,
+        ?string $resolvedContentId,
+        ?int $layoutId,
+        string $outputPath
+    ): void {
+        $dir = dirname($outputPath);
+        if ($dir && ! is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        $handle = fopen($outputPath, 'w');
+        if (! $handle) {
+            throw new \RuntimeException("Could not open file for writing: {$outputPath}");
+        }
+
+        fwrite($handle, "-- ========================================================\n");
+        fwrite($handle, "-- Publication SQL Dump (PostgreSQL)\n");
+        fwrite($handle, "-- Generated: ".date('Y-m-d H:i:s')."\n");
+        fwrite($handle, "-- Source: ILMATE Public Content Service API\n");
+        fwrite($handle, "-- ========================================================\n\n");
+        fwrite($handle, "BEGIN;\n\n");
+
+        // Master Tags
+        if (! empty($tags)) {
+            fwrite($handle, "-- Master Tags\n");
+            foreach ($tags as $tag) {
+                $tagName = is_array($tag) ? ($tag['title'] ?? '') : $tag;
+                if (empty($tagName)) {
+                    continue;
+                }
+                $escapedTag = $this->escapePgsql($tagName);
+                fwrite($handle, "INSERT INTO ms_tags (title, is_active, created_at, updated_at)\n");
+                fwrite($handle, "SELECT {$escapedTag}, true, NOW(), NOW()\n");
+                fwrite($handle, "WHERE NOT EXISTS (SELECT 1 FROM ms_tags WHERE title = {$escapedTag});\n\n");
+            }
+        }
+
+        // Publications
+        foreach ($publications as $pub) {
+            $slug = $pub['slug'] ?? Str::slug($pub['title'] ?? '');
+            $title = $pub['title'] ?? '';
+            $headline = $pub['headline'] ?? null;
+            $description = $pub['content_detail'] ?? null;
+            $isPublicated = ! empty($pub['is_publicated']) ? 'true' : 'false';
+            $thumbnail = $pub['thumbnail_path'] ?? null;
+            $publishDate = $pub['publish_date'] ?? date('Y-m-d H:i:s');
+            $isSlider = ! empty($pub['is_slider']) ? 'true' : 'false';
+
+            $images = $pub['additional_image'] ?? [];
+            $videos = $pub['additional_video'] ?? [];
+            $files = $pub['additional_file'] ?? [];
+            $links = $pub['additional_link'] ?? [];
+            $pubTags = $pub['tag'] ?? [];
+
+            $hasImage = ! empty($images) ? 'true' : 'false';
+            $hasVideo = ! empty($videos) ? 'true' : 'false';
+            $hasFile = ! empty($files) ? 'true' : 'false';
+            $hasLink = ! empty($links) ? 'true' : 'false';
+
+            $escapedSlug = $this->escapePgsql($slug);
+            $escapedTitle = $this->escapePgsql($title);
+            $escapedHeadline = $this->escapePgsql($headline);
+            $escapedDescription = $this->escapePgsql($description);
+            $escapedThumbnail = $this->escapePgsql($thumbnail);
+            $escapedPublishDate = $this->escapePgsql($publishDate);
+
+            fwrite($handle, "-- --------------------------------------------------------\n");
+            fwrite($handle, "-- Publication: {$title}\n");
+            fwrite($handle, "-- --------------------------------------------------------\n");
+            fwrite($handle, "DO \$BODY\$\n");
+            fwrite($handle, "DECLARE\n");
+            fwrite($handle, "    v_content_id bigint;\n");
+            fwrite($handle, "    v_layout_id bigint;\n");
+            fwrite($handle, "    v_pub_id bigint;\n");
+            fwrite($handle, "    v_tag_id bigint;\n");
+            fwrite($handle, "BEGIN\n");
+
+            if ($resolvedContentId) {
+                fwrite($handle, "    v_content_id := {$resolvedContentId};\n");
+            } else {
+                fwrite($handle, "    SELECT id INTO v_content_id FROM contents WHERE type = 'publication' LIMIT 1;\n");
+            }
+
+            if ($layoutId) {
+                fwrite($handle, "    v_layout_id := {$layoutId};\n");
+            } else {
+                fwrite($handle, "    SELECT id INTO v_layout_id FROM ms_layout WHERE type = 'publication_detail' LIMIT 1;\n");
+            }
+
+            fwrite($handle, "\n    IF NOT EXISTS (SELECT 1 FROM content_detail_publications WHERE slug = {$escapedSlug}) THEN\n");
+            fwrite($handle, "        INSERT INTO content_detail_publications (\n");
+            fwrite($handle, "            content_id, title, slug, headline, description,\n");
+            fwrite($handle, "            is_publicated, thumbnail_path, publish_date, layout_id,\n");
+            fwrite($handle, "            is_slider, has_additional_image, has_additional_video,\n");
+            fwrite($handle, "            has_additional_file, has_additional_link, has_additional_text,\n");
+            fwrite($handle, "            created_at, updated_at\n");
+            fwrite($handle, "        ) VALUES (\n");
+            fwrite($handle, "            v_content_id,\n");
+            fwrite($handle, "            {$escapedTitle},\n");
+            fwrite($handle, "            {$escapedSlug},\n");
+            fwrite($handle, "            {$escapedHeadline},\n");
+            fwrite($handle, "            {$escapedDescription},\n");
+            fwrite($handle, "            {$isPublicated},\n");
+            fwrite($handle, "            {$escapedThumbnail},\n");
+            fwrite($handle, "            {$escapedPublishDate},\n");
+            fwrite($handle, "            v_layout_id,\n");
+            fwrite($handle, "            {$isSlider},\n");
+            fwrite($handle, "            {$hasImage},\n");
+            fwrite($handle, "            {$hasVideo},\n");
+            fwrite($handle, "            {$hasFile},\n");
+            fwrite($handle, "            {$hasLink},\n");
+            fwrite($handle, "            false,\n");
+            fwrite($handle, "            NOW(),\n");
+            fwrite($handle, "            NOW()\n");
+            fwrite($handle, "        ) RETURNING id INTO v_pub_id;\n");
+            fwrite($handle, "    ELSE\n");
+            fwrite($handle, "        SELECT id INTO v_pub_id FROM content_detail_publications WHERE slug = {$escapedSlug} LIMIT 1;\n");
+            fwrite($handle, "    END IF;\n\n");
+
+            fwrite($handle, "    IF v_pub_id IS NOT NULL THEN\n");
+
+            // Publication tags
+            foreach ($pubTags as $pt) {
+                $ptName = is_array($pt) ? ($pt['title'] ?? '') : $pt;
+                if (empty($ptName)) {
+                    continue;
+                }
+                $escapedPt = $this->escapePgsql($ptName);
+                fwrite($handle, "        INSERT INTO ms_tags (title, is_active, created_at, updated_at)\n");
+                fwrite($handle, "        SELECT {$escapedPt}, true, NOW(), NOW()\n");
+                fwrite($handle, "        WHERE NOT EXISTS (SELECT 1 FROM ms_tags WHERE title = {$escapedPt});\n\n");
+
+                fwrite($handle, "        SELECT id INTO v_tag_id FROM ms_tags WHERE title = {$escapedPt} LIMIT 1;\n");
+                fwrite($handle, "        IF v_tag_id IS NOT NULL AND NOT EXISTS (\n");
+                fwrite($handle, "            SELECT 1 FROM content_tags\n");
+                fwrite($handle, "            WHERE content_type = 'App\\\\Models\\\\ContentDetailPublication'\n");
+                fwrite($handle, "              AND content_id = v_pub_id\n");
+                fwrite($handle, "              AND tag_id = v_tag_id\n");
+                fwrite($handle, "        ) THEN\n");
+                fwrite($handle, "            INSERT INTO content_tags (content_type, content_id, tag_id, created_at, updated_at)\n");
+                fwrite($handle, "            VALUES ('App\\\\Models\\\\ContentDetailPublication', v_pub_id, v_tag_id, NOW(), NOW());\n");
+                fwrite($handle, "        END IF;\n\n");
+            }
+
+            // Additional images
+            foreach ($images as $i => $img) {
+                $imgPath = is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? $img['file_path'] ?? '');
+                $imgDesc = is_array($img) ? ($img['description'] ?? null) : null;
+                $imgOrder = is_array($img) && isset($img['order']) ? (int) $img['order'] : ($i + 1);
+
+                $escImgPath = $this->escapePgsql($imgPath);
+                $escImgDesc = $this->escapePgsql($imgDesc);
+
+                fwrite($handle, "        INSERT INTO content_additional_images (content_type, content_id, image_path, description, \"order\", created_at, updated_at)\n");
+                fwrite($handle, "        VALUES ('App\\\\Models\\\\ContentDetailPublication', v_pub_id, {$escImgPath}, {$escImgDesc}, {$imgOrder}, NOW(), NOW());\n\n");
+            }
+
+            // Additional videos
+            foreach ($videos as $i => $vid) {
+                $vidTitle = is_array($vid) ? ($vid['title'] ?? null) : null;
+                $vidType = is_array($vid) ? ($vid['type'] ?? 'external') : 'external';
+                $vidUrl = is_string($vid) ? $vid : ($vid['url'] ?? $vid['video_path'] ?? '');
+                $vidPath = is_array($vid) ? ($vid['video_path'] ?? null) : null;
+                $vidOrder = is_array($vid) && isset($vid['order']) ? (int) $vid['order'] : ($i + 1);
+
+                $escVidTitle = $this->escapePgsql($vidTitle);
+                $escVidType = $this->escapePgsql($vidType);
+                $escVidUrl = $this->escapePgsql($vidUrl);
+                $escVidPath = $this->escapePgsql($vidPath);
+
+                fwrite($handle, "        INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, \"order\", created_at, updated_at)\n");
+                fwrite($handle, "        VALUES ('App\\\\Models\\\\ContentDetailPublication', v_pub_id, {$escVidTitle}, {$escVidType}, {$escVidUrl}, {$escVidPath}, {$vidOrder}, NOW(), NOW());\n\n");
+            }
+
+            // Additional files
+            foreach ($files as $i => $file) {
+                $fileTitle = is_array($file) ? ($file['title'] ?? null) : null;
+                $filePath = is_string($file) ? $file : ($file['file_path'] ?? $file['path'] ?? '');
+                $fileDesc = is_array($file) ? ($file['description'] ?? null) : null;
+                $fileOrder = is_array($file) && isset($file['order']) ? (int) $file['order'] : ($i + 1);
+
+                $escFileTitle = $this->escapePgsql($fileTitle);
+                $escFilePath = $this->escapePgsql($filePath);
+                $escFileDesc = $this->escapePgsql($fileDesc);
+
+                fwrite($handle, "        INSERT INTO content_additional_files (content_type, content_id, title, file_path, description, \"order\", created_at, updated_at)\n");
+                fwrite($handle, "        VALUES ('App\\\\Models\\\\ContentDetailPublication', v_pub_id, {$escFileTitle}, {$escFilePath}, {$escFileDesc}, {$fileOrder}, NOW(), NOW());\n\n");
+            }
+
+            // Additional links
+            foreach ($links as $i => $link) {
+                $linkTitle = is_array($link) ? ($link['title'] ?? null) : null;
+                $linkUrl = is_string($link) ? $link : ($link['link'] ?? $link['url'] ?? '');
+                $linkOrder = is_array($link) && isset($link['order']) ? (int) $link['order'] : ($i + 1);
+
+                $escLinkTitle = $this->escapePgsql($linkTitle);
+                $escLinkUrl = $this->escapePgsql($linkUrl);
+
+                fwrite($handle, "        INSERT INTO content_additional_links (content_type, content_id, title, link, \"order\", created_at, updated_at)\n");
+                fwrite($handle, "        VALUES ('App\\\\Models\\\\ContentDetailPublication', v_pub_id, {$escLinkTitle}, {$escLinkUrl}, {$linkOrder}, NOW(), NOW());\n\n");
+            }
+
+            fwrite($handle, "    END IF;\n");
+            fwrite($handle, "END \$BODY\$;\n\n");
+        }
+
+        fwrite($handle, "COMMIT;\n");
+        fclose($handle);
+    }
+
+    private function generateMysqlOutput(
+        array $publications,
+        array $tags,
+        ?string $resolvedContentId,
+        ?int $layoutId,
+        string $outputPath
+    ): void {
+        $dir = dirname($outputPath);
+        if ($dir && ! is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        $handle = fopen($outputPath, 'w');
+        if (! $handle) {
+            throw new \RuntimeException("Could not open file for writing: {$outputPath}");
+        }
+
+        fwrite($handle, "-- ========================================================\n");
+        fwrite($handle, "-- Publication SQL Dump (MySQL)\n");
+        fwrite($handle, "-- Generated: ".date('Y-m-d H:i:s')."\n");
+        fwrite($handle, "-- Source: ILMATE Public Content Service API\n");
+        fwrite($handle, "-- ========================================================\n\n");
+        fwrite($handle, "SET FOREIGN_KEY_CHECKS = 0;\n");
+        fwrite($handle, "START TRANSACTION;\n\n");
+
+        if ($resolvedContentId) {
+            fwrite($handle, "SET @target_content_id = {$resolvedContentId};\n");
+        } else {
+            fwrite($handle, "SET @target_content_id = (SELECT id FROM contents WHERE type = 'publication' LIMIT 1);\n");
+        }
+
+        if ($layoutId) {
+            fwrite($handle, "SET @target_layout_id = {$layoutId};\n");
+        } else {
+            fwrite($handle, "SET @target_layout_id = (SELECT id FROM ms_layout WHERE type = 'publication_detail' LIMIT 1);\n");
+        }
+        fwrite($handle, "\n");
+
+        // Master Tags
+        if (! empty($tags)) {
+            fwrite($handle, "-- Master Tags\n");
+            foreach ($tags as $tag) {
+                $tagName = is_array($tag) ? ($tag['title'] ?? '') : $tag;
+                if (empty($tagName)) {
+                    continue;
+                }
+                $escapedTag = $this->escapeMysql($tagName);
+                fwrite($handle, "INSERT INTO ms_tags (`title`, `is_active`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT {$escapedTag}, 1, NOW(), NOW()\n");
+                fwrite($handle, "WHERE NOT EXISTS (SELECT 1 FROM ms_tags WHERE `title` = {$escapedTag});\n\n");
+            }
+        }
+
+        // Publications
+        foreach ($publications as $pub) {
+            $slug = $pub['slug'] ?? Str::slug($pub['title'] ?? '');
+            $title = $pub['title'] ?? '';
+            $headline = $pub['headline'] ?? null;
+            $description = $pub['content_detail'] ?? null;
+            $isPublicated = ! empty($pub['is_publicated']) ? 1 : 0;
+            $thumbnail = $pub['thumbnail_path'] ?? null;
+            $publishDate = $pub['publish_date'] ?? date('Y-m-d H:i:s');
+            $isSlider = ! empty($pub['is_slider']) ? 1 : 0;
+
+            $images = $pub['additional_image'] ?? [];
+            $videos = $pub['additional_video'] ?? [];
+            $files = $pub['additional_file'] ?? [];
+            $links = $pub['additional_link'] ?? [];
+            $pubTags = $pub['tag'] ?? [];
+
+            $hasImage = ! empty($images) ? 1 : 0;
+            $hasVideo = ! empty($videos) ? 1 : 0;
+            $hasFile = ! empty($files) ? 1 : 0;
+            $hasLink = ! empty($links) ? 1 : 0;
+
+            fwrite($handle, "-- --------------------------------------------------------\n");
+            fwrite($handle, "-- Publication: {$title}\n");
+            fwrite($handle, "-- --------------------------------------------------------\n");
+            fwrite($handle, "INSERT INTO content_detail_publications (\n");
+            fwrite($handle, "    `content_id`, `title`, `slug`, `headline`, `description`,\n");
+            fwrite($handle, "    `is_publicated`, `thumbnail_path`, `publish_date`, `layout_id`,\n");
+            fwrite($handle, "    `is_slider`, `has_additional_image`, `has_additional_video`,\n");
+            fwrite($handle, "    `has_additional_file`, `has_additional_link`, `has_additional_text`,\n");
+            fwrite($handle, "    `created_at`, `updated_at`\n");
+            fwrite($handle, ") SELECT\n");
+            fwrite($handle, "    @target_content_id,\n");
+            fwrite($handle, "    {$this->escapeMysql($title)},\n");
+            fwrite($handle, "    {$this->escapeMysql($slug)},\n");
+            fwrite($handle, "    {$this->escapeMysql($headline)},\n");
+            fwrite($handle, "    {$this->escapeMysql($description)},\n");
+            fwrite($handle, "    {$isPublicated},\n");
+            fwrite($handle, "    {$this->escapeMysql($thumbnail)},\n");
+            fwrite($handle, "    {$this->escapeMysql($publishDate)},\n");
+            fwrite($handle, "    @target_layout_id,\n");
+            fwrite($handle, "    {$isSlider},\n");
+            fwrite($handle, "    {$hasImage},\n");
+            fwrite($handle, "    {$hasVideo},\n");
+            fwrite($handle, "    {$hasFile},\n");
+            fwrite($handle, "    {$hasLink},\n");
+            fwrite($handle, "    0,\n");
+            fwrite($handle, "    NOW(),\n");
+            fwrite($handle, "    NOW()\n");
+            fwrite($handle, "WHERE NOT EXISTS (SELECT 1 FROM content_detail_publications WHERE `slug` = {$this->escapeMysql($slug)});\n\n");
+
+            fwrite($handle, "SET @pub_id = (SELECT id FROM content_detail_publications WHERE `slug` = {$this->escapeMysql($slug)} LIMIT 1);\n\n");
+
+            // Publication tags
+            foreach ($pubTags as $pt) {
+                $ptName = is_array($pt) ? ($pt['title'] ?? '') : $pt;
+                if (empty($ptName)) {
+                    continue;
+                }
+                $escapedPt = $this->escapeMysql($ptName);
+                fwrite($handle, "INSERT INTO ms_tags (`title`, `is_active`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT {$escapedPt}, 1, NOW(), NOW()\n");
+                fwrite($handle, "WHERE NOT EXISTS (SELECT 1 FROM ms_tags WHERE `title` = {$escapedPt});\n");
+
+                fwrite($handle, "INSERT INTO content_tags (`content_type`, `content_id`, `tag_id`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT 'App\\\\Models\\\\ContentDetailPublication', @pub_id, (SELECT id FROM ms_tags WHERE `title` = {$escapedPt} LIMIT 1), NOW(), NOW()\n");
+                fwrite($handle, "WHERE @pub_id IS NOT NULL\n");
+                fwrite($handle, "  AND NOT EXISTS (\n");
+                fwrite($handle, "      SELECT 1 FROM content_tags\n");
+                fwrite($handle, "      WHERE `content_type` = 'App\\\\Models\\\\ContentDetailPublication'\n");
+                fwrite($handle, "        AND `content_id` = @pub_id\n");
+                fwrite($handle, "        AND `tag_id` = (SELECT id FROM ms_tags WHERE `title` = {$escapedPt} LIMIT 1)\n");
+                fwrite($handle, "  );\n\n");
+            }
+
+            // Additional images
+            foreach ($images as $i => $img) {
+                $imgPath = is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? $img['file_path'] ?? '');
+                $imgDesc = is_array($img) ? ($img['description'] ?? null) : null;
+                $imgOrder = is_array($img) && isset($img['order']) ? (int) $img['order'] : ($i + 1);
+
+                fwrite($handle, "INSERT INTO content_additional_images (`content_type`, `content_id`, `image_path`, `description`, `order`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT 'App\\\\Models\\\\ContentDetailPublication', @pub_id, {$this->escapeMysql($imgPath)}, {$this->escapeMysql($imgDesc)}, {$imgOrder}, NOW(), NOW()\n");
+                fwrite($handle, "WHERE @pub_id IS NOT NULL;\n\n");
+            }
+
+            // Additional videos
+            foreach ($videos as $i => $vid) {
+                $vidTitle = is_array($vid) ? ($vid['title'] ?? null) : null;
+                $vidType = is_array($vid) ? ($vid['type'] ?? 'external') : 'external';
+                $vidUrl = is_string($vid) ? $vid : ($vid['url'] ?? $vid['video_path'] ?? '');
+                $vidPath = is_array($vid) ? ($vid['video_path'] ?? null) : null;
+                $vidOrder = is_array($vid) && isset($vid['order']) ? (int) $vid['order'] : ($i + 1);
+
+                fwrite($handle, "INSERT INTO content_additional_videos (`content_type`, `content_id`, `title`, `type`, `url`, `video_path`, `order`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT 'App\\\\Models\\\\ContentDetailPublication', @pub_id, {$this->escapeMysql($vidTitle)}, {$this->escapeMysql($vidType)}, {$this->escapeMysql($vidUrl)}, {$this->escapeMysql($vidPath)}, {$vidOrder}, NOW(), NOW()\n");
+                fwrite($handle, "WHERE @pub_id IS NOT NULL;\n\n");
+            }
+
+            // Additional files
+            foreach ($files as $i => $file) {
+                $fileTitle = is_array($file) ? ($file['title'] ?? null) : null;
+                $filePath = is_string($file) ? $file : ($file['file_path'] ?? $file['path'] ?? '');
+                $fileDesc = is_array($file) ? ($file['description'] ?? null) : null;
+                $fileOrder = is_array($file) && isset($file['order']) ? (int) $file['order'] : ($i + 1);
+
+                fwrite($handle, "INSERT INTO content_additional_files (`content_type`, `content_id`, `title`, `file_path`, `description`, `order`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT 'App\\\\Models\\\\ContentDetailPublication', @pub_id, {$this->escapeMysql($fileTitle)}, {$this->escapeMysql($filePath)}, {$this->escapeMysql($fileDesc)}, {$fileOrder}, NOW(), NOW()\n");
+                fwrite($handle, "WHERE @pub_id IS NOT NULL;\n\n");
+            }
+
+            // Additional links
+            foreach ($links as $i => $link) {
+                $linkTitle = is_array($link) ? ($link['title'] ?? null) : null;
+                $linkUrl = is_string($link) ? $link : ($link['link'] ?? $link['url'] ?? '');
+                $linkOrder = is_array($link) && isset($link['order']) ? (int) $link['order'] : ($i + 1);
+
+                fwrite($handle, "INSERT INTO content_additional_links (`content_type`, `content_id`, `title`, `link`, `order`, `created_at`, `updated_at`)\n");
+                fwrite($handle, "SELECT 'App\\\\Models\\\\ContentDetailPublication', @pub_id, {$this->escapeMysql($linkTitle)}, {$this->escapeMysql($linkUrl)}, {$linkOrder}, NOW(), NOW()\n");
+                fwrite($handle, "WHERE @pub_id IS NOT NULL;\n\n");
+            }
+        }
+
+        fwrite($handle, "COMMIT;\n");
+        fwrite($handle, "SET FOREIGN_KEY_CHECKS = 1;\n");
+        fclose($handle);
+    }
+
+    private function escapePgsql(?string $value): string
+    {
+        if ($value === null) {
+            return 'NULL';
+        }
+
+        $sanitized = str_replace(["\0", "'"], ['', "''"], $value);
+
+        return "'{$sanitized}'";
+    }
+
+    private function escapeMysql(?string $value): string
+    {
+        if ($value === null) {
+            return 'NULL';
+        }
+
+        $escaped = str_replace(
+            ['\\', "\0", "\n", "\r", "'", '"', "\x1a"],
+            ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'],
+            $value
+        );
+
+        return "'{$escaped}'";
+    }
+
     private function resolveContentId(?string $contentId, ?int $menuId, array $data, bool $dryRun): ?string
     {
         // If content_id provided directly, verify it exists
         if ($contentId) {
-            $content = Content::find($contentId);
-            if ($content) {
-                return $contentId;
+            try {
+                $content = Content::find($contentId);
+                if ($content) {
+                    return (string) $contentId;
+                }
+            } catch (\Exception $e) {
+                // Ignore DB query errors in case DB is unconfigured
             }
-            $this->warn("Content ID {$contentId} not found — will try other methods");
+
+            $this->warn("Content ID {$contentId} not found in database — will use directly if in SQL mode");
+
+            return (string) $contentId;
         }
 
         // Try to find existing publication content
-        $existingContent = Content::where('type', 'publication')->first();
-        if ($existingContent) {
-            $this->info("Found existing publication content: {$existingContent->id}");
+        try {
+            $existingContent = Content::where('type', 'publication')->first();
+            if ($existingContent) {
+                $this->info("Found existing publication content: {$existingContent->id}");
 
-            return $existingContent->id;
+                return (string) $existingContent->id;
+            }
+        } catch (\Exception $e) {
+            $this->warn("Could not query Content table: {$e->getMessage()}");
         }
 
         // Create new Content record if menu_id provided
@@ -216,11 +854,11 @@ class SyncPublicationFromJson extends Command
             ]);
             $this->info("Created new Content record: {$content->id}");
 
-            return $content->id;
+            return (string) $content->id;
         }
 
-        if (! $menuId) {
-            $this->error('No existing publication content found. Provide --content-id or --menu-id');
+        if (! $menuId && ! $contentId) {
+            $this->warn('No existing publication content found. Provide --content-id or --menu-id');
         }
 
         return null;
@@ -230,7 +868,11 @@ class SyncPublicationFromJson extends Command
     {
         $map = [];
         foreach ($tags as $tag) {
-            $name = $tag['title'];
+            $name = is_array($tag) ? ($tag['title'] ?? '') : $tag;
+            if (empty($name)) {
+                continue;
+            }
+
             if ($dryRun) {
                 $map[$name] = 0;
 
@@ -246,9 +888,14 @@ class SyncPublicationFromJson extends Command
         return $map;
     }
 
-    private function syncPublicationTags(ContentDetailPublication $pub, array $tagNames, array $tagMap): void
+    private function syncPublicationTags(ContentDetailPublication $pub, array $tags, array $tagMap): void
     {
-        foreach ($tagNames as $tagName) {
+        foreach ($tags as $tag) {
+            $tagName = is_array($tag) ? ($tag['title'] ?? '') : $tag;
+            if (empty($tagName)) {
+                continue;
+            }
+
             $tagId = $tagMap[$tagName] ?? null;
             if (! $tagId) {
                 // Try to find or create on the fly
@@ -269,7 +916,7 @@ class SyncPublicationFromJson extends Command
             ContentAdditionalImage::create([
                 'content_type' => ContentDetailPublication::class,
                 'content_id' => $pub->id,
-                'image_path' => is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? ''),
+                'image_path' => is_string($img) ? $img : ($img['image_path'] ?? $img['path'] ?? $img['file_path'] ?? ''),
                 'description' => is_array($img) ? ($img['description'] ?? null) : null,
                 'order' => $i + 1,
             ]);

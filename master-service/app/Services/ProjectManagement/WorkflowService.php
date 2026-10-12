@@ -138,7 +138,7 @@ class WorkflowService
             $newStage = new PmWorkflowStage;
             $newStage->workflow_id = $workflow->id;
             $newStage->name = $stage['name'];
-            $newStage->code = $stage['code'] ?? null;
+            $newStage->code = $stage['code'] ?? ProjectCodeGenerator::workflowStage($workflow->id, (int) $stage['sequence']);
             $newStage->description = $stage['description'] ?? null;
             $newStage->sequence = (int) $stage['sequence'];
             $newStage->is_required = $stage['is_required'] ?? true;
@@ -148,11 +148,6 @@ class WorkflowService
             $newStage->created_by = $workflow->created_by;
             $newStage->updated_by = $workflow->updated_by;
             $newStage->save();
-
-            if (empty($newStage->code)) {
-                $newStage->code = ProjectCodeGenerator::workflowStage($workflow->id, $newStage->sequence);
-                $newStage->save();
-            }
 
             $taskSequence = 1;
             foreach ($stage['tasks'] ?? [] as $task) {

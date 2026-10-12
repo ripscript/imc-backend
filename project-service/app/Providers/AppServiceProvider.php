@@ -17,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             Project::MORPH_TYPE => Project::class,
+            'project_activation' => Project::class,
+            'stage_clearance' => \App\Models\ProjectStage::class,
+            'change_request' => \App\Models\PmChangeRequest::class,
         ]);
     }
 }

@@ -21,7 +21,7 @@ class ProjectStageService
     {
         $project = Project::findOrFail($projectId);
 
-        return $project->stages()->with(['pic', 'workflowStage', 'approver'])->orderBy('sequence')->get();
+        return $project->stages()->with(['pic', 'workflowStage', 'approver', 'approvers.user'])->orderBy('sequence')->get();
     }
 
     public function detail(int $projectId, int $stageId): ProjectStage
@@ -30,6 +30,7 @@ class ProjectStageService
             'pic',
             'workflowStage',
             'approver',
+            'approvers.user',
             'tasks.assignee',
             'deliverables',
             'documents.uploader',
@@ -89,6 +90,10 @@ class ProjectStageService
 
             if ($dto->isProvided('pic_user_id') && $dto->pic_user_id) {
                 (new PmProjectMemberService)->syncPic($stage->project_id, (int) $dto->pic_user_id, $dto->updated_by);
+            }
+
+            if ($dto->isProvided('approver_user_ids')) {
+                $stage->approverUsers()->sync($dto->approver_user_ids ?? []);
             }
 
             return $this->detail($projectId, $stage->id);
@@ -157,7 +162,7 @@ class ProjectStageService
                 ->where('is_configured', false)
                 ->update(['is_configured' => true]);
 
-            return $project->stages()->with(['pic', 'workflowStage', 'approver'])->orderBy('sequence')->get();
+            return $project->stages()->with(['pic', 'workflowStage', 'approver', 'approvers.user'])->orderBy('sequence')->get();
         });
     }
 
@@ -265,6 +270,19 @@ class ProjectStageService
 
             foreach ($deletedIds as $deletedId) {
                 $existing[$deletedId]->delete();
+            }
+
+            if (! empty($keptIds)) {
+                ProjectStage::where('project_id', $project->id)
+                    ->whereIn('id', $keptIds)
+                    ->update(['sequence' => DB::raw('sequence + 100000')]);
+
+                foreach ($keptIds as $keptId) {
+                    if (isset($existing[$keptId])) {
+                        $existing[$keptId]->sequence += 100000;
+                        $existing[$keptId]->syncOriginalAttribute('sequence');
+                    }
+                }
             }
 
             $sequence = 1;

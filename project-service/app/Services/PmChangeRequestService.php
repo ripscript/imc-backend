@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\Domain\ValidationException;
+use App\Models\PmApprovalRequest;
 use App\Models\PmChangeRequest;
 use App\Models\Project;
 use App\Models\User;
@@ -73,7 +74,7 @@ class PmChangeRequestService
         return DB::transaction(function () use ($project, $data, $changes, $recorder) {
             $sequence = PmChangeRequest::withTrashed()->where('project_id', $project->id)->count() + 1;
 
-            return PmChangeRequest::create([
+            $cr = PmChangeRequest::create([
                 'project_id' => $project->id,
                 'project_stage_id' => $data['project_stage_id'] ?? null,
                 'change_no' => 'CR-'.date('Y').'-'.$project->id.'-'.str_pad((string) $sequence, 4, '0', STR_PAD_LEFT),
@@ -87,6 +88,20 @@ class PmChangeRequestService
                 'created_by' => $recorder->name,
                 'updated_by' => $recorder->name,
             ]);
+
+            PmApprovalRequest::create([
+                'project_id' => $project->id,
+                'approvable_type' => 'change_request',
+                'approvable_id' => $cr->id,
+                'type' => 'change_request',
+                'title' => $project->title.' - '.$cr->title,
+                'description' => $cr->reason ?? $cr->title,
+                'status' => 'pending',
+                'requested_by' => $recorder->id,
+                'requested_at' => now(),
+            ]);
+
+            return $cr;
         });
     }
 
@@ -101,6 +116,15 @@ class PmChangeRequestService
             $cr->approved_at = now();
             $cr->updated_by = $actor->name;
             $cr->save();
+
+            PmApprovalRequest::where('approvable_type', 'change_request')
+                ->where('approvable_id', $cr->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'approved',
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
 
             return $cr->fresh()->load(['client', 'stage', 'requester', 'decider']);
         });
@@ -118,6 +142,16 @@ class PmChangeRequestService
             $cr->notes = $notes;
             $cr->updated_by = $actor->name;
             $cr->save();
+
+            PmApprovalRequest::where('approvable_type', 'change_request')
+                ->where('approvable_id', $cr->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'rejected',
+                    'rejection_notes' => $notes,
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
 
             return $cr->fresh()->load(['client', 'stage', 'requester', 'decider']);
         });

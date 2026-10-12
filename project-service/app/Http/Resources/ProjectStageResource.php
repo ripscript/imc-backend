@@ -29,6 +29,21 @@ class ProjectStageResource extends JsonResource
             'approved_by' => $this->approved_by,
             'approved_at' => $this->approved_at,
             'approver' => $this->approver ? ['id' => $this->approver->id, 'name' => $this->approver->name] : null,
+            'clearance_requested_by' => $this->clearance_requested_by,
+            'clearance_requested_at' => $this->clearance_requested_at,
+            'rejection_notes' => $this->rejection_notes,
+            'approvers' => $this->whenLoaded('approvers', function () {
+                return $this->approvers->map(function ($a) {
+                    return [
+                        'id' => $a->id,
+                        'user_id' => $a->user_id,
+                        'user' => $a->user ? ['id' => $a->user->id, 'name' => $a->user->name, 'email' => $a->user->email] : null,
+                    ];
+                });
+            }),
+            'approver_user_ids' => $this->relationLoaded('approvers')
+                ? $this->approvers->pluck('user_id')->values()->all()
+                : null,
             'is_configured' => $this->is_configured,
         ];
     }
