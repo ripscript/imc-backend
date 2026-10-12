@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectMemberController;
 use App\Http\Controllers\ProjectStageController;
 use App\Http\Controllers\ProjectTimelineController;
+use App\Http\Controllers\StageApproverController;
 use App\Http\Controllers\StageDeliverableController;
 use App\Http\Controllers\StageDocumentController;
 use App\Http\Controllers\StageTaskController;
@@ -123,6 +124,10 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
                     Route::post('reject-clearance', [ProjectStageController::class, 'rejectClearance']);
                     Route::post('skip', [ProjectStageController::class, 'skip']);
                     Route::post('reopen', [ProjectStageController::class, 'reopen']);
+
+                    // Stage Approvers
+                    Route::get('approvers', [StageApproverController::class, 'index']);
+                    Route::put('approvers', [StageApproverController::class, 'sync']);
 
                     // Stage Tasks
                     Route::prefix('tasks')->group(function () {
