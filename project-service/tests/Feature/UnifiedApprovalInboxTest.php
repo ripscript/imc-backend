@@ -123,13 +123,13 @@ class UnifiedApprovalInboxTest extends TestProjectCase
         $approval = PmApprovalRequest::where('project_id', $project->id)->first();
 
         $this->actingAs($admin, 'admin')
-            ->getJson('/approvals')
+            ->getJson('/api/approvals')
             ->assertStatus(200)
             ->assertJsonPath('data.0.id', $approval->id)
             ->assertJsonPath('data.0.project_name', $project->title);
 
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/approve")
+            ->postJson("/api/approvals/{$approval->id}/approve")
             ->assertStatus(200);
 
         $this->assertDatabaseHas('pm_approval_requests', [
@@ -147,7 +147,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
         $stageB = $this->createStageWithApprover($userB);
 
         $this->actingAs($userA, 'admin')
-            ->getJson('/approvals')
+            ->getJson('/api/approvals')
             ->assertStatus(200)
             ->assertJsonCount(1, 'data')
             ->assertJsonPath('data.0.approvable_id', $stageA->id);
@@ -165,7 +165,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
 
         // 1. Filter type=activation
         $response = $this->actingAs($admin, 'admin')
-            ->getJson('/approvals?type=activation')
+            ->getJson('/api/approvals?type=activation')
             ->assertStatus(200);
         $items = $response->json('data');
         $this->assertNotEmpty($items);
@@ -175,7 +175,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
 
         // 2. Filter type=stage_clearance
         $response = $this->actingAs($admin, 'admin')
-            ->getJson('/approvals?type=stage_clearance')
+            ->getJson('/api/approvals?type=stage_clearance')
             ->assertStatus(200);
         $items = $response->json('data');
         $this->assertNotEmpty($items);
@@ -185,23 +185,23 @@ class UnifiedApprovalInboxTest extends TestProjectCase
 
         // 3. Search by project title
         $response = $this->actingAs($admin, 'admin')
-            ->getJson('/approvals?search=Alpha Special')
+            ->getJson('/api/approvals?search=Alpha Special')
             ->assertStatus(200)
             ->assertJsonPath('data.0.project_name', 'Alpha Special Project');
 
         // 4. Status filter: approve one, check filter status=approved vs status=pending
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approvalActivation->id}/approve")
+            ->postJson("/api/approvals/{$approvalActivation->id}/approve")
             ->assertStatus(200);
 
         $approvedResponse = $this->actingAs($admin, 'admin')
-            ->getJson('/approvals?status=approved')
+            ->getJson('/api/approvals?status=approved')
             ->assertStatus(200);
         $approvedIds = collect($approvedResponse->json('data'))->pluck('id')->all();
         $this->assertContains($approvalActivation->id, $approvedIds);
 
         $pendingResponse = $this->actingAs($admin, 'admin')
-            ->getJson('/approvals?status=pending')
+            ->getJson('/api/approvals?status=pending')
             ->assertStatus(200);
         $pendingIds = collect($pendingResponse->json('data'))->pluck('id')->all();
         $this->assertNotContains($approvalActivation->id, $pendingIds);
@@ -216,13 +216,13 @@ class UnifiedApprovalInboxTest extends TestProjectCase
 
         // 1. Missing notes -> 422
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/reject", [])
+            ->postJson("/api/approvals/{$approval->id}/reject", [])
             ->assertStatus(422);
 
         // 2. Reject with valid notes
         $notes = 'Dokumen TOR belum lengkap dan budget belum disetujui.';
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/reject", ['notes' => $notes])
+            ->postJson("/api/approvals/{$approval->id}/reject", ['notes' => $notes])
             ->assertStatus(200);
 
         $this->assertDatabaseHas('pm_approval_requests', [
@@ -247,7 +247,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
             ->first();
 
         $this->actingAs($user, 'admin')
-            ->postJson("/approvals/{$stageApproval->id}/approve")
+            ->postJson("/api/approvals/{$stageApproval->id}/approve")
             ->assertStatus(200);
 
         $this->assertEquals('completed', $stage->fresh()->status);
@@ -260,7 +260,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
             ->first();
 
         $this->actingAs($user, 'admin')
-            ->postJson("/approvals/{$stageApproval2->id}/reject", ['notes' => 'Tasks still incomplete'])
+            ->postJson("/api/approvals/{$stageApproval2->id}/reject", ['notes' => 'Tasks still incomplete'])
             ->assertStatus(200);
 
         $this->assertEquals('in_progress', $stage2->fresh()->status);
@@ -291,7 +291,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
         ]);
 
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$crApproval1->id}/approve")
+            ->postJson("/api/approvals/{$crApproval1->id}/approve")
             ->assertStatus(200);
 
         $this->assertEquals('approved', $cr1->fresh()->status);
@@ -317,7 +317,7 @@ class UnifiedApprovalInboxTest extends TestProjectCase
         ]);
 
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$crApproval2->id}/reject", ['notes' => 'Budget exceeds limit'])
+            ->postJson("/api/approvals/{$crApproval2->id}/reject", ['notes' => 'Budget exceeds limit'])
             ->assertStatus(200);
 
         $this->assertEquals('rejected', $cr2->fresh()->status);
@@ -333,17 +333,17 @@ class UnifiedApprovalInboxTest extends TestProjectCase
 
         // First approve succeeds
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/approve")
+            ->postJson("/api/approvals/{$approval->id}/approve")
             ->assertStatus(200);
 
         // Second approve fails with 409 Conflict
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/approve")
+            ->postJson("/api/approvals/{$approval->id}/approve")
             ->assertStatus(409);
 
         // Reject also fails with 409 Conflict
         $this->actingAs($admin, 'admin')
-            ->postJson("/approvals/{$approval->id}/reject", ['notes' => 'Cannot reject approved'])
+            ->postJson("/api/approvals/{$approval->id}/reject", ['notes' => 'Cannot reject approved'])
             ->assertStatus(409);
     }
 
@@ -357,11 +357,11 @@ class UnifiedApprovalInboxTest extends TestProjectCase
         $activationApproval = PmApprovalRequest::where('project_id', $project->id)->first();
 
         $this->actingAs($userA, 'admin')
-            ->postJson("/approvals/{$activationApproval->id}/approve")
+            ->postJson("/api/approvals/{$activationApproval->id}/approve")
             ->assertStatus(403);
 
         $this->actingAs($userA, 'admin')
-            ->postJson("/approvals/{$activationApproval->id}/reject", ['notes' => 'Not authorized'])
+            ->postJson("/api/approvals/{$activationApproval->id}/reject", ['notes' => 'Not authorized'])
             ->assertStatus(403);
 
         // 2. Stage clearance cannot be approved/rejected by unassigned user
@@ -371,11 +371,83 @@ class UnifiedApprovalInboxTest extends TestProjectCase
             ->first();
 
         $this->actingAs($userB, 'admin')
-            ->postJson("/approvals/{$stageApprovalA->id}/approve")
+            ->postJson("/api/approvals/{$stageApprovalA->id}/approve")
             ->assertStatus(403);
 
         $this->actingAs($userB, 'admin')
-            ->postJson("/approvals/{$stageApprovalA->id}/reject", ['notes' => 'Not my stage'])
+            ->postJson("/api/approvals/{$stageApprovalA->id}/reject", ['notes' => 'Not my stage'])
             ->assertStatus(403);
+    }
+
+    public function test_type_all_query_parameter_returns_all_types(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $this->createPendingApprovalProject(['title' => 'Project Alpha']);
+        $user = $this->createUser();
+        $this->createStageWithApprover($user);
+
+        $response = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?type=all')
+            ->assertStatus(200);
+
+        $types = collect($response->json('data'))->pluck('request_type')->unique()->values()->all();
+        $this->assertContains('activation', $types);
+        $this->assertContains('stage_clearance', $types);
+    }
+
+    public function test_per_page_parameter_is_clamped_between_1_and_100(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $this->createPendingApprovalProject(['title' => 'Project Alpha']);
+
+        // Test over limit: 500 should be capped to 100
+        $responseMax = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?per_page=500')
+            ->assertStatus(200);
+        $this->assertEquals(100, $responseMax->json('meta.per_page'));
+
+        // Test below limit: 0 should be floored to 1
+        $responseMin = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?per_page=0')
+            ->assertStatus(200);
+        $this->assertEquals(1, $responseMin->json('meta.per_page'));
+    }
+
+    public function test_search_wildcards_are_sanitized(): void
+    {
+        $admin = $this->createAdminPusatUser();
+        $this->createPendingApprovalProject(['title' => 'Alpha Normal Project']);
+
+        // Normal search matches
+        $responseNormal = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?search=Alpha')
+            ->assertStatus(200);
+        $this->assertCount(1, $responseNormal->json('data'));
+
+        // Wildcard '%' search is sanitized so it does not match as wildcard
+        $responsePercent = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?search=%')
+            ->assertStatus(200);
+        $this->assertCount(0, $responsePercent->json('data'));
+
+        // Wildcard '_' search is sanitized so it does not match as wildcard
+        $responseUnderscore = $this->actingAs($admin, 'admin')
+            ->getJson('/api/approvals?search=_____')
+            ->assertStatus(200);
+        $this->assertCount(0, $responseUnderscore->json('data'));
+    }
+
+    public function test_caller_model_is_not_mutated_with_dynamic_assigned_stage_ids(): void
+    {
+        $userA = $this->createUser();
+        $this->createStageWithApprover($userA);
+
+        $this->actingAs($userA, 'admin')
+            ->getJson('/api/approvals')
+            ->assertStatus(200);
+
+        // Verify that Eloquent attributes or properties on userA were not mutated
+        $this->assertFalse(array_key_exists('assigned_stage_ids', $userA->getAttributes()));
+        $this->assertFalse(isset($userA->assigned_stage_ids));
     }
 }

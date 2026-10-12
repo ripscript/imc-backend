@@ -98,6 +98,28 @@ class ProjectStageTest extends TestProjectCase
         $this->assertSoftDeleted('pm_project_stages', ['id' => $first[0]['id']]);
     }
 
+    public function test_sync_reorders_existing_stages_without_unique_collision(): void
+    {
+        $project = $this->createProject();
+
+        $first = $this->putJson("/api/projects/{$project['id']}/stages", [
+            'stages' => [
+                ['name' => 'Stage 1', 'sequence' => 1],
+                ['name' => 'Stage 2', 'sequence' => 2],
+            ],
+        ])->assertStatus(200)->json('data');
+
+        // Swap their order
+        $second = $this->putJson("/api/projects/{$project['id']}/stages", [
+            'stages' => [
+                ['id' => $first[1]['id'], 'name' => 'Stage 2 now first', 'sequence' => 1],
+                ['id' => $first[0]['id'], 'name' => 'Stage 1 now second', 'sequence' => 2],
+            ],
+        ]);
+
+        $second->assertStatus(200);
+    }
+
     public function test_sync_rejects_duplicate_sequence_and_foreign_ids(): void
     {
         $project = $this->createProject();

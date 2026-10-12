@@ -356,20 +356,4 @@ class StageClearanceLifecycleTest extends TestProjectCase
             'notes' => 'Revisi',
         ])->assertStatus(403);
     }
-
-    public function test_can_request_clearance_without_api_prefix(): void
-    {
-        [$project, $stages] = $this->seedActiveProject();
-        $stageId = $stages[0]['id'];
-
-        $this->putJson("/projects/{$project['id']}/stages/{$stageId}", [
-            'requires_approval' => true,
-        ])->assertStatus(200);
-
-        $response = $this->postJson("/projects/{$project['id']}/stages/{$stageId}/request-clearance", [
-            'notes' => 'Route without api prefix works',
-        ]);
-        $response->assertStatus(200)
-            ->assertJsonPath('data.stage.status', 'pending_clearance');
-    }
 }

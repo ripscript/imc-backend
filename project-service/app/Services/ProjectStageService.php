@@ -272,6 +272,19 @@ class ProjectStageService
                 $existing[$deletedId]->delete();
             }
 
+            if (! empty($keptIds)) {
+                ProjectStage::where('project_id', $project->id)
+                    ->whereIn('id', $keptIds)
+                    ->update(['sequence' => DB::raw('sequence + 100000')]);
+
+                foreach ($keptIds as $keptId) {
+                    if (isset($existing[$keptId])) {
+                        $existing[$keptId]->sequence += 100000;
+                        $existing[$keptId]->syncOriginalAttribute('sequence');
+                    }
+                }
+            }
+
             $sequence = 1;
             foreach ($entries as $entry) {
                 $attributes = [

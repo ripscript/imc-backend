@@ -19,17 +19,20 @@ class UnifiedApprovalResource extends JsonResource
             if ($isCentral) {
                 $canApprove = true;
             } elseif ($this->type === 'stage_clearance') {
-                if (isset($caller->assigned_stage_ids) && is_array($caller->assigned_stage_ids)) {
-                    $canApprove = in_array((int) $this->approvable_id, $caller->assigned_stage_ids, true);
+                $assignedStageIds = $request?->attributes?->get('assigned_stage_ids');
+                if (is_array($assignedStageIds)) {
+                    $canApprove = in_array((int) $this->approvable_id, $assignedStageIds, true);
                 } elseif ($this->relationLoaded('approvable') && $this->approvable && $this->approvable->relationLoaded('approvers')) {
                     $canApprove = $this->approvable->approvers->contains('user_id', $caller->id);
                 } else {
-                    $caller->assigned_stage_ids = PmStageApprover::where('user_id', $caller->id)
+                    $assignedStageIds = PmStageApprover::where('user_id', $caller->id)
                         ->pluck('project_stage_id')
                         ->map(fn ($id) => (int) $id)
                         ->all();
 
-                    $canApprove = in_array((int) $this->approvable_id, $caller->assigned_stage_ids, true);
+                    $request?->attributes?->set('assigned_stage_ids', $assignedStageIds);
+
+                    $canApprove = in_array((int) $this->approvable_id, $assignedStageIds, true);
                 }
             }
         }

@@ -241,6 +241,9 @@ class StageLifecycleService
             $stage->completed_at = null;
             $stage->approved_by = null;
             $stage->approved_at = null;
+            $stage->clearance_requested_by = null;
+            $stage->clearance_requested_at = null;
+            $stage->rejection_notes = null;
             $stage->updated_by = $actor->name;
             $stage->save();
 

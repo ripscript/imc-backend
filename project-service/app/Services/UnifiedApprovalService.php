@@ -40,8 +40,8 @@ class UnifiedApprovalService
             $status = 'pending';
         }
 
-        $perPage = $perPage > 0 ? $perPage : 10;
-        $page = max($page, 1);
+        $perPage = min(max((int) $perPage, 1), 100);
+        $page = max((int) $page, 1);
 
         $query = PmApprovalRequest::with(['project', 'requester', 'decider']);
 
@@ -51,9 +51,13 @@ class UnifiedApprovalService
 
         if (! $isCentralAdmin) {
             $assignedStageIds = PmStageApprover::where('user_id', $caller->id)
-                ->pluck('project_stage_id');
+                ->pluck('project_stage_id')
+                ->map(fn ($id) => (int) $id)
+                ->all();
 
-            $caller->assigned_stage_ids = $assignedStageIds->map(fn ($id) => (int) $id)->all();
+            if (function_exists('request') && request()) {
+                request()->attributes->set('assigned_stage_ids', $assignedStageIds);
+            }
 
             $query->where('pm_approval_requests.type', 'stage_clearance')
                 ->whereIn('pm_approval_requests.approvable_id', $assignedStageIds);
@@ -65,18 +69,19 @@ class UnifiedApprovalService
         }
 
         // Type Filter
-        if ($type) {
+        if ($type && $type !== 'all') {
             $query->where('pm_approval_requests.type', $type);
         }
 
         // Search Filter
         if ($search) {
             $operator = DB::getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE';
-            $query->where(function ($q) use ($search, $operator) {
-                $q->where('pm_approval_requests.title', $operator, "%{$search}%")
-                    ->orWhere('pm_approval_requests.description', $operator, "%{$search}%")
-                    ->orWhereHas('project', function ($pq) use ($search, $operator) {
-                        $pq->where('title', $operator, "%{$search}%");
+            $escapedSearch = addcslashes($search, '%_');
+            $query->where(function ($q) use ($escapedSearch, $operator) {
+                $q->where('pm_approval_requests.title', $operator, "%{$escapedSearch}%")
+                    ->orWhere('pm_approval_requests.description', $operator, "%{$escapedSearch}%")
+                    ->orWhereHas('project', function ($pq) use ($escapedSearch, $operator) {
+                        $pq->where('title', $operator, "%{$escapedSearch}%");
                     });
             });
         }
