@@ -10,6 +10,7 @@ use App\Exceptions\Domain\OtpException;
 use App\Exceptions\Domain\RateLimitException;
 use App\Exceptions\Domain\ValidationException as DomainValidationException;
 use App\Helpers\ApiResponse;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -70,6 +71,10 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof ModelNotFoundException) {
             return ApiResponse::error('Resource not found', null, 404);
+        }
+
+        if ($e instanceof AuthorizationException) {
+            return ApiResponse::error('This action is unauthorized.', null, 403);
         }
 
         $status = $e instanceof HttpExceptionInterface
