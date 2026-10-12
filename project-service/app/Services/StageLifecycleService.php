@@ -60,6 +60,7 @@ class StageLifecycleService
 
             $stage->status = 'completed';
             $stage->completed_at = now();
+            $stage->rejection_notes = null;
 
             if ($stage->requires_approval) {
                 $stage->approved_by = $actor->id;
@@ -112,27 +113,21 @@ class StageLifecycleService
             $stage->status = 'pending_clearance';
             $stage->clearance_requested_by = $actor->id;
             $stage->clearance_requested_at = now();
+            $stage->rejection_notes = null;
             $stage->updated_by = $actor->name;
             $stage->save();
 
-            PmApprovalRequest::updateOrCreate(
-                [
-                    'approvable_type' => 'stage_clearance',
-                    'approvable_id' => $stage->id,
-                    'type' => 'stage_clearance',
-                ],
-                [
-                    'project_id' => $project->id,
-                    'title' => "Stage Clearance: {$stage->name}",
-                    'description' => $notes,
-                    'status' => 'pending',
-                    'requested_by' => $actor->id,
-                    'requested_at' => now(),
-                    'approved_by' => null,
-                    'approved_at' => null,
-                    'rejection_notes' => null,
-                ]
-            );
+            PmApprovalRequest::create([
+                'project_id' => $project->id,
+                'approvable_type' => 'stage_clearance',
+                'approvable_id' => $stage->id,
+                'type' => 'stage_clearance',
+                'title' => "Stage Clearance: {$stage->name}",
+                'description' => $notes,
+                'status' => 'pending',
+                'requested_by' => $actor->id,
+                'requested_at' => now(),
+            ]);
 
             return $this->payload($stage, $project, null);
         });

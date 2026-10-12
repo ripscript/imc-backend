@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
 use App\Http\Requests\ActivateProjectRequest;
+use App\Http\Requests\RejectActivationRequest;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ReviewResource;
 use App\Services\ProjectActivationService;
@@ -40,9 +41,13 @@ class ProjectActivationController extends Controller
         return ApiResponse::success(new ProjectResource($project), 'Aktivasi proyek disetujui');
     }
 
-    public function rejectActivation($project_id)
+    public function rejectActivation(RejectActivationRequest $request, $project_id)
     {
-        $project = $this->activationService->rejectActivation((int) $project_id, auth('admin')->user());
+        $project = $this->activationService->rejectActivation(
+            (int) $project_id,
+            auth('admin')->user(),
+            $request->validated()['notes']
+        );
 
         return ApiResponse::success(new ProjectResource($project), 'Aktivasi proyek ditolak, kembali ke draft');
     }

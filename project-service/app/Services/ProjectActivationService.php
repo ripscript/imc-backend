@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\Domain\ValidationException;
+use App\Models\PmApprovalRequest;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -40,14 +41,29 @@ class ProjectActivationService
             throw new ValidationException('Proyek belum lengkap dan tidak dapat diaktivasi.', $state['missing']);
         }
 
-        DB::transaction(function () use ($project, $userName) {
+        DB::transaction(function () use ($project, $userId, $userName) {
             $project->status = 'pending_approval';
+            $project->activation_requested_by = $userId;
+            $project->activation_requested_at = now();
+            $project->rejection_notes = null;
 
             if (empty($project->start_date)) {
                 $project->start_date = $project->stages()->min('start_date') ?? now()->toDateString();
             }
             $project->updated_by = $userName;
             $project->save();
+
+            PmApprovalRequest::create([
+                'project_id' => $project->id,
+                'approvable_type' => 'project_activation',
+                'approvable_id' => $project->id,
+                'type' => 'activation',
+                'title' => $project->title,
+                'description' => null,
+                'status' => 'pending',
+                'requested_by' => $userId,
+                'requested_at' => now(),
+            ]);
 
             $picIds = collect([$project->pic_user_id])
                 ->merge($project->stages()->pluck('pic_user_id'))
@@ -76,10 +92,20 @@ class ProjectActivationService
 
         DB::transaction(function () use ($project, $actor) {
             $project->status = 'active';
+            $project->rejection_notes = null;
             $project->activated_by = $actor->id;
             $project->activated_at = now();
             $project->updated_by = $actor->name;
             $project->save();
+
+            PmApprovalRequest::where('approvable_type', 'project_activation')
+                ->where('approvable_id', $project->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'approved',
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
 
             $first = $project->stages()->orderBy('sequence')->first();
 
@@ -96,7 +122,7 @@ class ProjectActivationService
     /**
      * Reject a pending activation: back to draft for rework + re-activation.
      */
-    public function rejectActivation(int $projectId, User $actor): Project
+    public function rejectActivation(int $projectId, User $actor, string $notes): Project
     {
         $project = Project::findOrFail($projectId);
 
@@ -104,9 +130,29 @@ class ProjectActivationService
             throw new ConflictHttpException('Aktivasi tidak dapat ditolak pada status '.$project->status.'.');
         }
 
-        $project->status = 'draft';
-        $project->updated_by = $actor->name;
-        $project->save();
+        if (empty(trim($notes))) {
+            throw new ValidationException(
+                'Alasan penolakan wajib diisi.',
+                ['notes' => ['Alasan penolakan aktivasi wajib diisi.']]
+            );
+        }
+
+        DB::transaction(function () use ($project, $actor, $notes) {
+            $project->status = 'draft';
+            $project->rejection_notes = $notes;
+            $project->updated_by = $actor->name;
+            $project->save();
+
+            PmApprovalRequest::where('approvable_type', 'project_activation')
+                ->where('approvable_id', $project->id)
+                ->where('status', 'pending')
+                ->update([
+                    'status' => 'rejected',
+                    'rejection_notes' => $notes,
+                    'approved_by' => $actor->id,
+                    'approved_at' => now(),
+                ]);
+        });
 
         return $this->projectService->detail($project->id);
     }

@@ -91,7 +91,9 @@ class ProjectActivationTest extends TestProjectCase
     {
         [$project] = $this->seedPendingProject();
 
-        $this->postJson("/api/projects/{$project['id']}/activate/reject")
+        $this->postJson("/api/projects/{$project['id']}/activate/reject", [
+            'notes' => 'Perlu revisi anggaran',
+        ])
             ->assertStatus(200)
             ->assertJsonPath('data.status', 'draft');
 
@@ -105,7 +107,7 @@ class ProjectActivationTest extends TestProjectCase
         $this->loginAs($this->makeUser('admin_pustik'));
 
         $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(403);
-        $this->postJson("/api/projects/{$project['id']}/activate/reject")->assertStatus(403);
+        $this->postJson("/api/projects/{$project['id']}/activate/reject", ['notes' => 'Tolak'])->assertStatus(403);
 
         // Still pending — the decisions were refused.
         $this->assertSame('pending_approval', DB::table('content_detail_projects')->where('id', $project['id'])->value('status'));
@@ -117,7 +119,7 @@ class ProjectActivationTest extends TestProjectCase
 
         // Still draft — nothing to decide yet.
         $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(409);
-        $this->postJson("/api/projects/{$project['id']}/activate/reject")->assertStatus(409);
+        $this->postJson("/api/projects/{$project['id']}/activate/reject", ['notes' => 'Tolak draft'])->assertStatus(409);
 
         $this->postJson("/api/projects/{$project['id']}/activate")->assertStatus(200);
         $this->postJson("/api/projects/{$project['id']}/activate/approve")->assertStatus(200);
