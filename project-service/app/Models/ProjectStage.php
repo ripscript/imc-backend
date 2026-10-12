@@ -90,8 +90,7 @@ class ProjectStage extends Model
 
     public function approvalRequests()
     {
-        return $this->hasMany(PmApprovalRequest::class, 'approvable_id')
-            ->where('approvable_type', 'stage_clearance');
+        return $this->morphMany(PmApprovalRequest::class, 'approvable');
     }
 
     public function dependsOn()

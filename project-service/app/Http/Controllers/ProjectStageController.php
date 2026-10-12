@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
 use App\Http\Requests\BulkStageConfigurationRequest;
+use App\Http\Requests\RejectStageClearanceRequest;
+use App\Http\Requests\RequestStageClearanceRequest;
 use App\Http\Requests\SyncStagesRequest;
 use App\Http\Requests\UpdateStageRequest;
 use App\Http\Resources\ProjectStageDetailResource;
@@ -106,6 +108,30 @@ class ProjectStageController extends Controller
         );
 
         return ApiResponse::success($this->lifecyclePayload($result), 'Stage diselesaikan');
+    }
+
+    public function requestClearance(RequestStageClearanceRequest $request, $project_id, $stage_id)
+    {
+        $result = $this->lifecycleService->requestClearance(
+            (int) $project_id,
+            (int) $stage_id,
+            auth('admin')->user(),
+            $request->validated('notes')
+        );
+
+        return ApiResponse::success($this->lifecyclePayload($result), 'Clearance stage berhasil diajukan');
+    }
+
+    public function rejectClearance(RejectStageClearanceRequest $request, $project_id, $stage_id)
+    {
+        $result = $this->lifecycleService->rejectClearance(
+            (int) $project_id,
+            (int) $stage_id,
+            auth('admin')->user(),
+            $request->validated('notes')
+        );
+
+        return ApiResponse::success($this->lifecyclePayload($result), 'Clearance stage ditolak');
     }
 
     public function skip($project_id, $stage_id)

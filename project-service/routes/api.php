@@ -46,49 +46,98 @@ Route::pattern('change_request_id', '[0-9]+');
 Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik'])
     ->prefix('projects')
     ->group(function () {
+        // Project collection
         Route::get('/', [ProjectController::class, 'index']);
         Route::get('/side-menu', [ProjectController::class, 'sideMenu']);
         Route::post('/', [ProjectController::class, 'create']);
-        Route::get('{project_id}/setup-state', [ProjectController::class, 'setupState']);
-        Route::get('{project_id}/stages', [ProjectStageController::class, 'index']);
-        Route::put('{project_id}/stages', [ProjectStageController::class, 'sync']);
-        Route::put('{project_id}/stages/configuration', [ProjectStageController::class, 'configureAll']);
-        Route::put('{project_id}/timeline', [ProjectTimelineController::class, 'save']);
-        Route::get('{project_id}/stages/{stage_id}', [ProjectStageController::class, 'show']);
-        Route::put('{project_id}/stages/{stage_id}', [ProjectStageController::class, 'update']);
-        Route::get('{project_id}/stages/{stage_id}/tasks', [StageTaskController::class, 'index']);
-        Route::post('{project_id}/stages/{stage_id}/tasks', [StageTaskController::class, 'store']);
-        Route::put('{project_id}/stages/{stage_id}/tasks/{task_id}', [StageTaskController::class, 'update']);
-        Route::delete('{project_id}/stages/{stage_id}/tasks/{task_id}', [StageTaskController::class, 'destroy']);
-        Route::patch('{project_id}/tasks/{task_id}/toggle', [StageTaskController::class, 'toggle']);
-        Route::get('{project_id}/stages/{stage_id}/deliverables', [StageDeliverableController::class, 'index']);
-        Route::post('{project_id}/stages/{stage_id}/deliverables', [StageDeliverableController::class, 'store']);
-        Route::put('{project_id}/stages/{stage_id}/deliverables/{deliverable_id}', [StageDeliverableController::class, 'update']);
-        Route::delete('{project_id}/stages/{stage_id}/deliverables/{deliverable_id}', [StageDeliverableController::class, 'destroy']);
-        Route::get('{project_id}/stages/{stage_id}/documents', [StageDocumentController::class, 'index']);
-        Route::post('{project_id}/stages/{stage_id}/documents', [StageDocumentController::class, 'store']);
-        Route::delete('{project_id}/stages/{stage_id}/documents/{document_id}', [StageDocumentController::class, 'destroy']);
-        Route::get('{project_id}/review', [ProjectActivationController::class, 'review']);
-        Route::post('{project_id}/activate', [ProjectActivationController::class, 'activate']);
-        Route::get('{project_id}/change-requests', [ProjectChangeRequestController::class, 'index']);
-        Route::post('{project_id}/change-requests', [ProjectChangeRequestController::class, 'store']);
-        Route::post('{project_id}/stages/{stage_id}/complete', [ProjectStageController::class, 'complete']);
-        Route::post('{project_id}/stages/{stage_id}/skip', [ProjectStageController::class, 'skip']);
-        Route::post('{project_id}/stages/{stage_id}/reopen', [ProjectStageController::class, 'reopen']);
 
-        // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
-        Route::middleware(['check.role:super_admin,admin_pusat'])->group(function () {
-            Route::post('{project_id}/activate/approve', [ProjectActivationController::class, 'approveActivation']);
-            Route::post('{project_id}/activate/reject', [ProjectActivationController::class, 'rejectActivation']);
-            Route::post('{project_id}/change-requests/{change_request_id}/approve', [ProjectChangeRequestController::class, 'approve']);
-            Route::post('{project_id}/change-requests/{change_request_id}/reject', [ProjectChangeRequestController::class, 'reject']);
-            Route::post('{project_id}/change-requests/{change_request_id}/apply', [ProjectChangeRequestController::class, 'apply']);
+        // Project instance scope
+        Route::prefix('{project_id}')->group(function () {
+            // Direct project endpoints
+            Route::get('/', [ProjectController::class, 'detail']);
+            Route::put('/', [ProjectController::class, 'update']);
+            Route::delete('/', [ProjectController::class, 'destroy']);
+            Route::get('setup-state', [ProjectController::class, 'setupState']);
+            Route::put('timeline', [ProjectTimelineController::class, 'save']);
+            Route::get('activities', [ProjectActivityController::class, 'index']);
+            Route::get('review', [ProjectActivationController::class, 'review']);
+
+            // Activation
+            Route::prefix('activate')->group(function () {
+                Route::post('/', [ProjectActivationController::class, 'activate']);
+
+                // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
+                Route::middleware(['check.role:super_admin,admin_pusat'])->group(function () {
+                    Route::post('approve', [ProjectActivationController::class, 'approveActivation']);
+                    Route::post('reject', [ProjectActivationController::class, 'rejectActivation']);
+                });
+            });
+
+            // Members
+            Route::prefix('members')->group(function () {
+                Route::get('/', [ProjectMemberController::class, 'index']);
+                Route::post('/', [ProjectMemberController::class, 'store']);
+                Route::delete('{member_id}', [ProjectMemberController::class, 'destroy']);
+            });
+
+            // Change Requests
+            Route::prefix('change-requests')->group(function () {
+                Route::get('/', [ProjectChangeRequestController::class, 'index']);
+                Route::post('/', [ProjectChangeRequestController::class, 'store']);
+
+                // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
+                Route::middleware(['check.role:super_admin,admin_pusat'])
+                    ->prefix('{change_request_id}')
+                    ->group(function () {
+                        Route::post('approve', [ProjectChangeRequestController::class, 'approve']);
+                        Route::post('reject', [ProjectChangeRequestController::class, 'reject']);
+                        Route::post('apply', [ProjectChangeRequestController::class, 'apply']);
+                    });
+            });
+
+            // Standalone task toggle
+            Route::patch('tasks/{task_id}/toggle', [StageTaskController::class, 'toggle']);
+
+            // Stages
+            Route::prefix('stages')->group(function () {
+                Route::get('/', [ProjectStageController::class, 'index']);
+                Route::put('/', [ProjectStageController::class, 'sync']);
+                Route::put('configuration', [ProjectStageController::class, 'configureAll']);
+
+                // Stage instance
+                Route::prefix('{stage_id}')->group(function () {
+                    Route::get('/', [ProjectStageController::class, 'show']);
+                    Route::put('/', [ProjectStageController::class, 'update']);
+                    Route::post('complete', [ProjectStageController::class, 'complete']);
+                    Route::post('approve-clearance', [ProjectStageController::class, 'complete']);
+                    Route::post('request-clearance', [ProjectStageController::class, 'requestClearance']);
+                    Route::post('reject-clearance', [ProjectStageController::class, 'rejectClearance']);
+                    Route::post('skip', [ProjectStageController::class, 'skip']);
+                    Route::post('reopen', [ProjectStageController::class, 'reopen']);
+
+                    // Stage Tasks
+                    Route::prefix('tasks')->group(function () {
+                        Route::get('/', [StageTaskController::class, 'index']);
+                        Route::post('/', [StageTaskController::class, 'store']);
+                        Route::put('{task_id}', [StageTaskController::class, 'update']);
+                        Route::delete('{task_id}', [StageTaskController::class, 'destroy']);
+                    });
+
+                    // Stage Deliverables
+                    Route::prefix('deliverables')->group(function () {
+                        Route::get('/', [StageDeliverableController::class, 'index']);
+                        Route::post('/', [StageDeliverableController::class, 'store']);
+                        Route::put('{deliverable_id}', [StageDeliverableController::class, 'update']);
+                        Route::delete('{deliverable_id}', [StageDeliverableController::class, 'destroy']);
+                    });
+
+                    // Stage Documents
+                    Route::prefix('documents')->group(function () {
+                        Route::get('/', [StageDocumentController::class, 'index']);
+                        Route::post('/', [StageDocumentController::class, 'store']);
+                        Route::delete('{document_id}', [StageDocumentController::class, 'destroy']);
+                    });
+                });
+            });
         });
-        Route::get('{project_id}/activities', [ProjectActivityController::class, 'index']);
-        Route::get('{project_id}/members', [ProjectMemberController::class, 'index']);
-        Route::post('{project_id}/members', [ProjectMemberController::class, 'store']);
-        Route::delete('{project_id}/members/{member_id}', [ProjectMemberController::class, 'destroy']);
-        Route::get('{project_id}', [ProjectController::class, 'detail']);
-        Route::put('{project_id}', [ProjectController::class, 'update']);
-        Route::delete('{project_id}', [ProjectController::class, 'destroy']);
     });
