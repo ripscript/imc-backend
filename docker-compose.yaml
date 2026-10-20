@@ -107,8 +107,9 @@ services:
 
 networks:
   server_database-postgres-network:
-    external:
-      name: server_database-postgres-network
+    name: server_database-postgres-network
+    external: true
+
   imc-new-network:
-    external:
-      name: imc-new-network
+    name: imc-new-network
+    external: true
