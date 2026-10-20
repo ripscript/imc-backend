@@ -1,20 +1,21 @@
 version: "3"
 
 services:
-  eppid-nginx-service:
-    container_name: eppid-nginx-service
+  imc-new-engine-nginx-service:
+    container_name: imc-new-engine-nginx-service
     image: nginx:stable-alpine
     depends_on:
-      - eppid-master-service
+      - imc-new-engine-master-service
     ports:
-      - '4076:1869'
+      - '4121:1869'
     volumes:
       - './nginx/app.config.dev:/etc/nginx/conf.d/default.conf'
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-master-service:
-    container_name: eppid-master-service
+  imc-new-engine-master-service:
+    container_name: imc-new-engine-master-service
     build: 
       context: ./master-service
       dockerfile: Dockerfile.dev
@@ -23,10 +24,11 @@ services:
       - ./master-service/storage:/var/www/html/storage
       - ./master-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-user-service:
-    container_name: eppid-user-service
+  imc-new-engine-user-service:
+    container_name: imc-new-engine-user-service
     build: 
       context: ./user-service
       dockerfile: Dockerfile.dev
@@ -35,10 +37,11 @@ services:
       - ./user-service/storage:/var/www/html/storage
       - ./user-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-migration-service:
-    container_name: eppid-migration-service
+  imc-new-engine-migration-service:
+    container_name: imc-new-engine-migration-service
     build: 
       context: ./migration-service
       dockerfile: Dockerfile.dev
@@ -47,10 +50,11 @@ services:
       - ./migration-service/storage:/var/www/html/storage
       - ./migration-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
   
-  eppid-file-service:
-    container_name: eppid-file-service
+  imc-new-engine-file-service:
+    container_name: imc-new-engine-file-service
     build: 
       context: ./file-service
       dockerfile: Dockerfile.dev
@@ -59,10 +63,11 @@ services:
       - ./file-service/storage:/var/www/html/storage
       - ./file-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-content-service:
-    container_name: eppid-content-service
+  imc-new-engine-content-service:
+    container_name: imc-new-engine-content-service
     build: 
       context: ./content-service
       dockerfile: Dockerfile.dev
@@ -71,10 +76,11 @@ services:
       - ./content-service/storage:/var/www/html/storage
       - ./content-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-public-content-service:
-    container_name: eppid-public-content-service
+  imc-new-engine-public-content-service:
+    container_name: imc-new-engine-public-content-service
     build: 
       context: ./public-content-service
       dockerfile: Dockerfile.dev
@@ -83,10 +89,11 @@ services:
       - ./public-content-service/storage:/var/www/html/storage
       - ./public-content-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
+      - imc-new-network
       - server_database-postgres-network
 
-  eppid-setting-service:
-    container_name: eppid-setting-service
+  imc-new-engine-setting-service:
+    container_name: imc-new-engine-setting-service
     build: 
       context: ./setting-service
       dockerfile: Dockerfile.dev
@@ -95,21 +102,13 @@ services:
       - ./setting-service/storage:/var/www/html/storage
       - ./setting-service/docker/php/php.ini:/etc/local/etc/php/php.ini
     networks:
-      - server_database-postgres-network
-
-  eppid-docs-service:
-    container_name: eppid-docs-service
-    build: 
-      context: ./docs-service
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./docs-service:/var/www/html
-      - ./docs-service/storage:/var/www/html/storage
-      - ./docs-service/docker/php/php.ini:/etc/local/etc/php/php.ini
-    networks:
+      - imc-new-network
       - server_database-postgres-network
 
 networks:
-    server_database-postgres-network:
-      external:
-        name: server_database-postgres-network
+  server_database-postgres-network:
+    external:
+      name: server_database-postgres-network
+  imc-new-network:
+    external:
+      name: imc-new-network
