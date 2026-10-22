@@ -1,19 +1,46 @@
-FROM php:8.1-cli
+FROM php:8.2.35-fpm-alpine
 
-WORKDIR /var/www/html
+ENV APP=/var/www/html
+WORKDIR ${APP}
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-RUN apt-get update && apt-get install -y \
+# * Install system dependencies
+RUN apk upgrade --update && apk add --no-cache \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    libmcrypt-dev \
+    libxml2-dev \
     libzip-dev \
-    unzip \
-    && docker-php-ext-install zip \
-    && rm -rf /var/lib/apt/lists/*
+    libxslt-dev \
+    curl \
+    vim \
+    libtool \
+    libmemcached-dev \
+    openssl-dev \
+    icu-dev \
+    libevent-dev \
+    imagemagick \
+    imagemagick-dev \
+    postgresql-dev \
+    libpq \
+    git \
+    openldap-dev \
+    oniguruma-dev \
+    autoconf \
+    g++ \
+    make
 
+# * Install PHP extensions
+RUN pecl install imagick \ 
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo pgsql pdo_pgsql mbstring exif pcntl intl bcmath gd zip \
+    && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini
+
+# * Setup Projects
 COPY . .
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 
-RUN composer install --no-interaction --no-dev --optimize-autoloader
+# * Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-EXPOSE 8000
-
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+ENTRYPOINT [ "sh", "./docker/scripts/start.sh" ]
