@@ -20,6 +20,7 @@ class MsKategoriContentSeeder extends Seeder
             ['title' => 'Tekstil, Garmen & Alas Kaki', 'is_active' => true],
             ['title' => 'Elektronik dan Komunikasi', 'is_active' => true],
             ['title' => 'Alat Kesehatan dan Farmasi', 'is_active' => true],
+            ['title' => 'Makanan', 'is_active' => true],
         ];
 
         foreach ($categories as $category) {

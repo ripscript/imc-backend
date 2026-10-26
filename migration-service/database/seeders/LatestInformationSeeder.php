@@ -13,33 +13,27 @@ class LatestInformationSeeder extends Seeder
 
         $items = [
             [
-                'title' => 'EV Mining Outlook: Elektrifikasi Pertambangan Bisa Sukses, Kemenperin Ungkap Syaratnya',
-                'url' => '/berita-dan-artikel/ev-mining-outlook-elektrifikasi-pertambangan',
-                'publish_date' => date('Y-m-d', strtotime('-3 days')),
+                'title' => 'Kementerian Perindustrian Perkuat Identifikasi Kebutuhan dan Perkembangan Pasar Alsintan',
+                'url' => '/berita-dan-artikel/kementerian-perindustrian-perkuat-identifikasi-kebutuhan-dan-perkembangan-pasar-alsintan',
+                'publish_date' =>  '2026-05-06',
                 'is_active' => true,
             ],
             [
-                'title' => '7 Ways You Can Reduce Climate Change',
-                'url' => '/berita-dan-artikel/7-ways-reduce-climate-change',
-                'publish_date' => date('Y-m-d', strtotime('-7 days')),
+                'title' => 'EV Mining Outlook : Elektrifikasi Pertambangan Bisa Sukses, Kemenperin Ungkap Syaratnya',
+                'url' => '/berita-dan-artikel/ev-mining-outlook-elektrifikasi-pertambangan-bisa-sukses-kemenperin-ungkap-syaratnya  ',
+                'publish_date' => '2026-05-05',
                 'is_active' => true,
             ],
             [
-                'title' => '7 Ways You Can Reduce Climate Change',
-                'url' => '/berita-dan-artikel/7-ways-reduce-climate-change-2',
-                'publish_date' => date('Y-m-d', strtotime('-14 days')),
+                'title' => 'FGD Strategi Akselerasi Adopsi Robotika: IMC Dorong Kemandirian Permesinan Nasional',
+                'url' => '/berita-dan-artikel/fgd-strategi-akselerasi-adopsi-robotika-imc-dorong-kemandirian-permesinan-nasional',
+                'publish_date' => '2026-05-06',
                 'is_active' => true,
             ],
             [
-                'title' => '7 Ways You Can Reduce Climate Change',
-                'url' => '/berita-dan-artikel/7-ways-reduce-climate-change-3',
-                'publish_date' => date('Y-m-d', strtotime('-21 days')),
-                'is_active' => true,
-            ],
-            [
-                'title' => '7 Ways You Can Reduce Climate Change',
-                'url' => '/berita-dan-artikel/7-ways-reduce-climate-change-4',
-                'publish_date' => date('Y-m-d', strtotime('-28 days')),
+                'title' => 'Tugas dan Fungsi Balai Teknologi Industri Manufaktur (BTIM) / IMC',
+                'url' => '/berita-dan-artikel/tugas-dan-fungsi-balai-teknologi-industri-manufaktur-btim-imc',
+                'publish_date' => '2026-01-18',
                 'is_active' => true,
             ],
         ];

@@ -158,7 +158,7 @@ BEGIN
           5, r.title, r.slug, r.content, r.content,
           upper(r.status_content) = 'PUBLISH', r.thumbnail, r.publish_date::date, NULL,
           false, false, false, false, false, false, v_kategori_id,
-          'legacy-import', 'legacy-import', now(), now()
+          'legacy-import', 'legacy-import', COALESCE(r.publish_date::timestamp, now()), COALESCE(r.publish_date::timestamp, now())
         ) RETURNING id INTO v_detail_id;
 
       WHEN 'infographic' THEN

@@ -182,12 +182,12 @@ class MenuSeeder extends Seeder
     private function createBerandaSections(int $berandaId): void
     {
         $sections = [
-            ['title' => 'Slider', 'type' => 'image_carousel'],
-            ['title' => 'Proyek Kolaborasi', 'type' => 'consume'],
-            ['title' => 'Showcase', 'type' => 'consume'],
-            ['title' => 'Ekosistem', 'type' => 'image_link'],
+            ['title' => 'Hero', 'type' => 'hero_carousel'],
+            ['title' => 'Proyek Kolaborasi & Manufaktur', 'type' => 'consume'],
+            ['title' => 'Showcase Teknologi & Hasil Karya Manufaktur', 'type' => 'consume'],
+            ['title' => 'Bagaimana Ekosistem IMC Bekerja untuk Industri?', 'type' => 'image_link'],
             ['title' => 'Video', 'type' => 'video_carousel'],
-            ['title' => 'Card Link', 'type' => 'card_link'],
+            ['title' => 'Layanan Unggulan', 'type' => 'card_link'],
             ['title' => 'Accordion', 'type' => 'accordion'],
             ['title' => 'Repository', 'type' => 'repository'],
             ['title' => 'Organizational Structure', 'type' => 'organizational_structure'],

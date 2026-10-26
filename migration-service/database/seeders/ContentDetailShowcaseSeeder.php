@@ -26,75 +26,17 @@ class ContentDetailShowcaseSeeder extends Seeder
 
         $showcases = [
             [
-                'title' => 'Pembuatan Peralatan Mesin Produksi Bahan Baku Logam & Baja',
-                'description' => '<p>Showcase ini menampilkan peralatan mesin produksi bahan baku logam dan baja yang mampu memenuhi kebutuhan industri nasional. Dengan mengadopsi teknologi manufaktur modern, showcase ini diharapkan dapat mengurangi ketergantungan pada impor mesin industri.</p>',
-                'duration' => '12 Bulan',
+                'title' => 'INDORAY Radiographic X-ray Mobile High Frequency 100  IRM',
+                'description' => '<p>INDORAY Radiographic X-ray Mobile High Frequency 100 / IRM (IR100HF)</p><p>UNIT<br>Power Input : Single Phase 220 VAC ± 10%<br>Power Consumption : 3500 Watt / 3,5 kW<br>Frequency Range Input : 50/60 Hz<br>Movement : Manual</p><p>GENERATOR<br>Max. Power : 5,6 kW, high Frequency<br>Tube Voltage : 40-125 kV<br>mA Range : 5-100 mA<br>Exposure Time : 0,001-10 sec<br>mAs Range : 0,1-320 mAs<br>Min. Working Frequency : 80 kHz-200 kHz</p><p>X-RAY MONOBLOK<br>Anoda Heat Contact : 30 kJ<br>Focal Spot (focus size) : 0.6 / 1.8<br>Target Angle : 15°<br>Weight : 13± 0.5 kg</p><p>USER INTERFACE<br>Controller : Laptop Touchscreen<br>APR : More Than 650 Pre-Programable Setting (APRs)<br>Switch Expose : Handswitch / Wireless Remote</p>',
+                'duration' => '-',
                 'location' => 'Purwakarta, Jawa Barat',
                 'start_date' => date('Y-m-d', strtotime('-6 months')),
-                'budget' => 850000000,
-                'organization_name' => 'Balai Besar Standardisasi dan Pelayanan Jasa Industri Logam dan Mesin',
-                'organization_address' => 'Jl. Pajajaran No. 154, Bandung, Jawa Barat',
+                'budget' => 363370000,
+                'organization_name' => 'PT. Poly Jaya Medikal',
+                'organization_address' => 'Kp. Kebon Duren, Jl. Ciliwung No. 61 RT 01 RW 01, Kel. Kalimulya, Kec. Cilodong Kota Depok 16413 Jawa Barat - Indonesia',
                 'thumbnail_path' => '/images/showcase-peralatan-mesin.jpg',
-                'kategori_content_id' => $categoryMap['Alat Berat'] ?? null,
-                'scope' => '<ul><li>Perancangan dan desain struktur peralatan mesin produksi</li><li>Pengembangan sistem otomatisasi lini produksi</li><li>Integrasi kontrol kualitas berbasis sensor</li><li>Pengujian komprehensif dan sertifikasi standar nasional</li><li>Pelatihan operator dan teknisi internal</li></ul>',
-                'qualification' => '<ul><li>Memiliki pengalaman minimal 5 tahun di bidang manufaktur logam dan baja</li><li>Memiliki fasilitas workshop dan laboratorium uji yang memadai</li><li>Didukung oleh tim engineer bersertifikasi</li><li>Berpengalaman dalam kerja sama riset teknologi dengan instansi pemerintah</li></ul>',
-            ],
-            [
-                'title' => 'Pengembangan Drone Kustom Berdaya Dorong Tinggi Untuk Pemantauan dan Pengangkutan Beban',
-                'description' => '<p>Showcase ini menampilkan drone kustom berdaya dorong tinggi untuk pemantauan dan pengangkutan beban. Drone dirancang untuk operasi di lingkungan industri, pertambangan, dan perkebunan guna memperkuat efisiensi logistik serta monitoring spasial secara presisi.</p>',
-                'duration' => '12 Bulan',
-                'location' => 'Purwakarta, Jawa Barat',
-                'start_date' => date('Y-m-d', strtotime('-3 months')),
-                'budget' => 850000000,
-                'organization_name' => 'Balai Besar Standardisasi dan Pelayanan Jasa Industri Logam dan Mesin',
-                'organization_address' => 'Jl. Pajajaran No. 154, Bandung, Jawa Barat',
-                'thumbnail_path' => '/images/showcase-drone.jpg',
-                'kategori_content_id' => $categoryMap['Pertahanan dan Keamanan'] ?? null,
-                'scope' => '<ul><li>Perancangan dan desain struktur drone kustom berdaya dorong tinggi</li><li>Pengembangan sistem propulsi dan manajemen daya baterai yang optimal</li><li>Integrasi sistem navigasi otonom dan kontrol kendali presisi tinggi</li><li>Pengujian komprehensif serta sertifikasi kelaikan terbang regulatori</li><li>Penyelenggaraan pelatihan intensif untuk operator dan teknisi internal</li></ul>',
-                'qualification' => '<ul><li>Memiliki pengalaman minimal 3 tahun di bidang pengembangan drone/UAV komersial</li><li>Memiliki fasilitas workshop perakitan dan laboratorium uji propulsi yang memadai</li><li>Didukung oleh tim engineer bersertifikasi kelaikan kedirgantaraan</li><li>Berpengalaman dalam kerja sama riset teknologi dengan instansi pemerintah</li></ul>',
-            ],
-            [
-                'title' => 'Sistem Informasi Kesehatan Masyarakat Berbasis IoT',
-                'description' => '<p>Showcase ini menampilkan sistem informasi kesehatan masyarakat yang terintegrasi dengan sensor IoT untuk pemantauan kualitas udara, air, dan lingkungan di kawasan industri. Sistem ini mendukung operasional industri yang ramah lingkungan dan berkelanjutan.</p>',
-                'duration' => '18 Bulan',
-                'location' => 'Jakarta Selatan, DKI Jakarta',
-                'start_date' => date('Y-m-d', strtotime('-1 months')),
-                'budget' => 1200000000,
-                'organization_name' => 'Kementerian Perindustrian RI',
-                'organization_address' => 'Jl. Gatot Subroto No.Kav. 52-53, Jakarta Selatan',
-                'thumbnail_path' => '/images/showcase-kesehatan-masyarakat.jpg',
                 'kategori_content_id' => $categoryMap['Alat Kesehatan dan Farmasi'] ?? null,
-                'scope' => '<ul><li>Desain arsitektur sistem pemantauan kesehatan berbasis IoT</li><li>Pengembangan sensor kualitas udara dan air</li><li>Integrasi dashboard monitoring real-time</li><li>Implementasi di 3 kawasan percontohan</li><li>Pelatihan pengelolaan sistem untuk petugas kesehatan</li></ul>',
-                'qualification' => '<ul><li>Memiliki pengalaman di bidang pengembangan sistem informasi kesehatan</li><li>Memiliki kemampuan integrasi sensor IoT</li><li>Berpengalaman dalam proyek pemerintah di sektor kesehatan</li></ul>',
-            ],
-            [
-                'title' => 'Portal E-Gov Provinsi untuk Digitalisasi Layanan Publik',
-                'description' => '<p>Showcase ini menampilkan portal layanan pemerintah digital yang terintegrasi untuk memudahkan akses masyarakat terhadap berbagai layanan publik. Portal ini menjadi bagian dari transformasi digital pemerintahan di era industri 4.0.</p>',
-                'duration' => '9 Bulan',
-                'location' => 'Bandung, Jawa Barat',
-                'start_date' => date('Y-m-d', strtotime('+1 months')),
-                'budget' => 750000000,
-                'organization_name' => 'Dinas Komunikasi dan Informatika Provinsi Jawa Barat',
-                'organization_address' => 'Jl. Taman Sari No. 55, Bandung, Jawa Barat',
-                'thumbnail_path' => '/images/showcase-egov.jpg',
-                'kategori_content_id' => $categoryMap['Elektronik dan Komunikasi'] ?? null,
-                'scope' => '<ul><li>Analisis kebutuhan dan perancangan sistem</li><li>Pengembangan frontend dan backend portal</li><li>Integrasi dengan sistem pemerintahan yang ada</li><li>Uji fungsional dan keamanan siber</li><li>Deployment dan pelatihan pengguna</li></ul>',
-                'qualification' => '<ul><li>Memiliki pengalaman pengembangan portal e-gov</li><li>Memiliki sertifikasi keamanan siber</li><li>Berpengalaman dengan standar pemerintahan digital</li></ul>',
-            ],
-            [
-                'title' => 'Dashboard Monitoring UMKM Nasional',
-                'description' => '<p>Showcase ini menampilkan dashboard monitoring untuk UMKM nasional yang menyediakan data real-time tentang kinerja UMKM, termasuk produksi, penjualan, dan ekspor. Dashboard ini menjadi alat bantu pengambilan kebijakan pemerintah dalam pemberdayaan UMKM.</p>',
-                'duration' => '6 Bulan',
-                'location' => 'Jakarta Pusat, DKI Jakarta',
-                'start_date' => date('Y-m-d', strtotime('+2 months')),
-                'budget' => 500000000,
-                'organization_name' => 'Kementerian Koperasi dan UMKM RI',
-                'organization_address' => 'Jl. H.R. Rasuna Said Kav. 3-4, Jakarta Selatan',
-                'thumbnail_path' => '/images/showcase-umkm.jpg',
-                'kategori_content_id' => $categoryMap['Permesinan Perkakas'] ?? null,
-                'scope' => '<ul><li>Perancangan UI/UX dashboard monitoring</li><li>Pengembangan backend API dan database</li><li>Integrasi data dari berbagai sumber K/L</li><li>Implementasi visualisasi data interaktif</li><li>Training dan handing over</li></ul>',
-                'qualification' => '<ul><li>Memiliki pengalaman pengembangan dashboard analitik</li><li>Memahami ekosistem UMKM nasional</li><li>Berpengalaman dalam integrasi data multi-sumber</li></ul>',
-            ],
+            ]
         ];
 
         foreach ($contents as $content) {
@@ -140,28 +82,6 @@ class ContentDetailShowcaseSeeder extends Seeder
                             'updated_at' => $datetime,
                         ]);
                     }
-
-                    // Add scope text (Lingkup Pekerjaan)
-                    DB::table('content_additional_texts')->insert([
-                        'content_type' => 'App\Models\ContentDetailShowcase',
-                        'content_id' => $showcaseId,
-                        'title' => 'Lingkup Pekerjaan',
-                        'description' => $showcase['scope'],
-                        'order' => 1,
-                        'created_at' => $datetime,
-                        'updated_at' => $datetime,
-                    ]);
-
-                    // Add qualification text (Kualifikasi Kolaborasi)
-                    DB::table('content_additional_texts')->insert([
-                        'content_type' => 'App\Models\ContentDetailShowcase',
-                        'content_id' => $showcaseId,
-                        'title' => 'Kualifikasi Kolaborasi',
-                        'description' => $showcase['qualification'],
-                        'order' => 2,
-                        'created_at' => $datetime,
-                        'updated_at' => $datetime,
-                    ]);
                 }
             }
         }
