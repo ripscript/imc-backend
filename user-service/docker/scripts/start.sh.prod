@@ -7,4 +7,8 @@ if [ ! -L public/storage ] && [ ! -e public/storage ]; then
     php artisan storage:link
 fi
 
+# Jalankan Nginx sebagai proses background
+nginx
+
+# Jalankan PHP-FPM di foreground
 exec php-fpm -F
