@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDetailShowcaseSeeder::class);
         $this->call(ContentDetailGallerySeeder::class);
         $this->call(ContentDetailPublicationSeeder::class);
+        $this->call(ContentDetailHeroCarouselSeeder::class);
         $this->call(ContentTagSeeder::class);
         $this->call(ContentDetailAgendaSeeder::class);
         $this->call(ContentDetailConsumeSeeder::class);

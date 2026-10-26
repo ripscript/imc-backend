@@ -72,6 +72,8 @@ class ContentDetailPublicationSeeder extends Seeder
             ],
         ];
 
+        $publications = [];
+
         foreach ($publications as $pub) {
             $existing = DB::table('content_detail_publications')->where('slug', $pub['slug'])->first();
 

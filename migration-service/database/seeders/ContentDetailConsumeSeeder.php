@@ -30,8 +30,8 @@ class ContentDetailConsumeSeeder extends Seeder
 
         foreach ($consumeSections as $section) {
             $consumeType = match ($section->section_title) {
-                'Proyek Kolaborasi' => 'project',
-                'Showcase' => 'showcase',
+                'Proyek Kolaborasi & Manufaktur' => 'project',
+                'Showcase Teknologi & Hasil Karya Manufaktur' => 'showcase',
                 default => 'publication',
             };
 
