@@ -14,10 +14,11 @@ class ContentDetailGalleryFactory extends Factory
         return [
             'content_id' => \App\Models\Content::factory(),
             'title' => fake()->sentence(3),
-            'type' => fake()->randomElement(['image', 'video']),
+            'slug' => fake()->unique()->slug(),
             'description' => fake()->paragraph(),
-            'date' => fake()->date(),
-            'is_active' => true,
+            'is_publicated' => true,
+            'publish_date' => fake()->dateTime(),
+            'layout_id' => null,
             'created_by' => 'factory',
             'updated_by' => 'factory',
         ];

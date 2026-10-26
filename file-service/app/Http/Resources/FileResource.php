@@ -8,6 +8,12 @@ class FileResource extends JsonResource
 {
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'url' => $this->url,
+            'path' => $this->path,
+            'mime_type' => $this->mime_type,
+            'filename' => $this->filename,
+            'size' => $this->size,
+        ];
     }
 }

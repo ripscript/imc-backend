@@ -55,8 +55,15 @@ class LatestInformationService
 
     public function destroy($id)
     {
-        LatestInformation::findOrFail($id)->delete();
+        DB::beginTransaction();
+        try {
+            LatestInformation::findOrFail($id)->delete();
+            DB::commit();
 
-        return true;
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }

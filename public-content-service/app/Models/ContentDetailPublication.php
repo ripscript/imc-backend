@@ -8,7 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentDetailPublication extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'slug',
+        'description',
+        'type',
+        'is_publicated',
+        'layout_id',
+        'kategori_content_id',
+        'publish_date',
+        'thumbnail_path',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
     use HasAdditionalContentMapping, HasFactory;
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'is_publicated', 'layout_id', 'kategori_content_id', 'kategori'];

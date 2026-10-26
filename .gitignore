@@ -1,4 +1,10 @@
-docker-compose-local.yaml
+# Docker local overrides
+docker-compose.local.yaml
+**/Dockerfile.local
+**/php.ini.local
+**/xdebug.ini.local
+**/start.sh.local
+nginx/app.config.local
 
 # code agent whitelist
 .clinerules
@@ -9,7 +15,6 @@ vendor/
 *.log
 *.cache
 .env
-.env.*
 dist/
 build/
 *.tmp
@@ -23,9 +28,6 @@ build/
 # OS
 .DS_Store
 Thumbs.db
-
-# Docker
-docker-compose-local.yaml
 
 # Node
 node_modules/

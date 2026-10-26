@@ -9,7 +9,16 @@ class ContentAdditionalFile extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_type',
+        'content_id',
+        'title',
+        'file_path',
+        'description',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     public function content()
     {

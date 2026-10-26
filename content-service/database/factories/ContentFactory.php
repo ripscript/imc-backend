@@ -14,7 +14,7 @@ class ContentFactory extends Factory
         return [
             'parent_type' => \App\Models\Menu::class,
             'parent_id' => \App\Models\Menu::factory(),
-            'type' => fake()->randomElement(['text', 'image_carousel', 'card_link', 'video_carousel']),
+            'type' => fake()->randomElement(['text', 'image_carousel', 'card_link', 'video_carousel', 'hero_carousel']),
             'section_title' => fake()->sentence(2),
             'is_section' => false,
             'order' => fake()->numberBetween(1, 10),

@@ -11,7 +11,17 @@ class ContentDetailGallery extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'description',
+        'slug',
+        'is_publicated',
+        'publish_date',
+        'layout_id',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'galeri';
 
@@ -25,9 +35,16 @@ class ContentDetailGallery extends Model
         return $this->hasMany(ContentDetailGalleryList::class)->orderBy('order', 'asc');
     }
 
+    public function contentTag()
+    {
+        return $this->morphMany(ContentTag::class, 'content');
+    }
+
     protected static function booted()
     {
         static::deleted(function ($content) {
+            ContentTag::where('content_type', ContentDetailGallery::class)
+                ->where('content_id', $content->id)->delete();
             $service = new GlobalSearchService;
             $service->delete(ContentDetailGallery::class, $content->id);
         });

@@ -21,16 +21,6 @@ class JwtErrorHandlerMiddleware
             if (! $user) {
                 return ApiResponse::error('User not found', null, 404);
             }
-            if ($guard === 'pemohon') {
-                $payload = JWTAuth::getPayload($token);
-
-                if (
-                    ! isset($payload['token_version']) ||
-                    (int) $payload['token_version'] !== (int) $user->token_version
-                ) {
-                    return ApiResponse::error('Sesi telah berakhir. Silakan login kembali.', null, 401);
-                }
-            }
             $request->attributes->set('guard', $guard);
         } catch (TokenExpiredException $e) {
             return ApiResponse::error('Token has expired', null, 401);

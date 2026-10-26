@@ -9,6 +9,7 @@ use App\Http\Resources\LatestInformationResource;
 use App\Services\DTOs\LatestInformationDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\LatestInformationService;
+use App\Models\LatestInformation;
 use Illuminate\Http\Request;
 
 class LatestInformationController extends Controller
@@ -19,63 +20,49 @@ class LatestInformationController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->latestInformationService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', LatestInformation::class);
+        $data = $this->latestInformationService->index(QueryFilterDTO::fromRequest($request));
 
-            return ApiResponse::success($data, 'Berhasil mengambil data informasi terkini');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data informasi terkini');
     }
 
     public function detail($id)
     {
-        try {
-            $informasi = $this->latestInformationService->detail($id);
+        $result = $this->latestInformationService->detail($id);
+        $this->authorize('view', $result);
 
-            return ApiResponse::success(new LatestInformationResource($informasi), 'Berhasil mengambil data informasi terkini');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new LatestInformationResource($result), 'Berhasil mengambil data informasi terkini');
     }
 
     public function create(CreateLatestInformationRequest $request)
     {
-        try {
-            $dto = new LatestInformationDTO($request->validated());
-            $dto->created_by = auth()->user()->name;
-            $dto->updated_by = auth()->user()->name;
+        $dto = new LatestInformationDTO($request->validated());
+        $dto->created_by = auth()->user()->name;
+        $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', LatestInformation::class);
 
-            $result = $this->latestInformationService->create($dto);
+        $result = $this->latestInformationService->create($dto);
 
-            return ApiResponse::success(new LatestInformationResource($result), 'Berhasil menambahkan data informasi terkini', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new LatestInformationResource($result), 'Berhasil menambahkan data informasi terkini', 201);
     }
 
     public function update(UpdateLatestInformationRequest $request, $id)
     {
-        try {
-            $dto = new LatestInformationDTO($request->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new LatestInformationDTO($request->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            $result = $this->latestInformationService->update($id, $dto);
+        $result = $this->latestInformationService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new LatestInformationResource($result), 'Berhasil memperbarui data informasi terkini');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new LatestInformationResource($result), 'Berhasil memperbarui data informasi terkini');
     }
 
     public function delete($id)
     {
-        try {
-            $this->latestInformationService->destroy($id);
+        $model = LatestInformation::findOrFail($id);
+        $this->authorize('delete', $model);
+        $this->latestInformationService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus data informasi terkini');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus data informasi terkini');
     }
 }

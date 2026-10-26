@@ -45,11 +45,6 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'pemohon' => [
-            'driver' => 'jwt',
-            'provider' => 'pemohon',
-            'hash' => false,
-        ],
     ],
 
     /*
@@ -73,11 +68,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-
-        'pemohon' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Pemohon::class,
         ],
 
         // 'users' => [

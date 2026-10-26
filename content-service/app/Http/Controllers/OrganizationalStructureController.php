@@ -17,12 +17,8 @@ class OrganizationalStructureController extends Controller
 
     public function sideMenu()
     {
-        try {
-            $data = $this->parentContentService->getParentByType('organizational_structure');
+        $data = $this->parentContentService->getParentByType('organizational_structure');
 
-            return ApiResponse::success($data, 'Berhasil mengambil side menu untuk tipe struktur organisasi');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil side menu untuk tipe struktur organisasi');
     }
 }

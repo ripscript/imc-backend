@@ -41,4 +41,15 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function superAdmin(): static
+    {
+        return $this->state(function (array $attributes) {
+            $role = \App\Models\MsRole::firstOrCreate(['code' => 'super_admin'], ['name' => 'Super Admin']);
+
+            return [
+                'role_id' => $role->id,
+            ];
+        });
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Resources\ChildSubMenuResource;
 use App\Services\ChildSubMenuService;
 use App\Services\DTOs\ChildSubMenuDTO;
 use App\Services\DTOs\QueryFilterDTO;
+use App\Models\ChildSubMenu;
 use Illuminate\Http\Request;
 
 class ChildSubMenuController extends Controller
@@ -19,63 +20,49 @@ class ChildSubMenuController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->childSubMenuService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', ChildSubMenu::class);
+        $data = $this->childSubMenuService->index(QueryFilterDTO::fromRequest($request));
 
-            return ApiResponse::success($data, 'Berhasil mengambil data child sub menu');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data child sub menu');
     }
 
     public function detail($id)
     {
-        try {
-            $childSubMenu = $this->childSubMenuService->detail($id);
+        $result = $this->childSubMenuService->detail($id);
+        $this->authorize('view', $result);
 
-            return ApiResponse::success(new ChildSubMenuResource($childSubMenu), 'Berhasil mengambil data detail child sub menu');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new ChildSubMenuResource($result), 'Berhasil mengambil data detail child sub menu');
     }
 
     public function create(CreateChildSubMenuRequest $request)
     {
-        try {
-            $dto = new ChildSubMenuDTO($request->validated());
-            $dto->created_by = auth()->user()->name;
-            $dto->updated_by = auth()->user()->name;
+        $dto = new ChildSubMenuDTO($request->validated());
+        $dto->created_by = auth()->user()->name;
+        $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', ChildSubMenu::class);
 
-            $result = $this->childSubMenuService->create($dto);
+        $result = $this->childSubMenuService->create($dto);
 
-            return ApiResponse::success(new ChildSubMenuResource($result), 'Berhasil menambahkan data child sub menu', 201);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return ApiResponse::success(new ChildSubMenuResource($result), 'Berhasil menambahkan data child sub menu', 201);
     }
 
     public function update(UpdateChildSubMenuRequest $request, $id)
     {
-        try {
-            $dto = new ChildSubMenuDTO($request->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new ChildSubMenuDTO($request->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            $result = $this->childSubMenuService->update($id, $dto);
+        $result = $this->childSubMenuService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new ChildSubMenuResource($result), 'Berhasil memperbarui data child sub menu', 200);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return ApiResponse::success(new ChildSubMenuResource($result), 'Berhasil memperbarui data child sub menu', 200);
     }
 
     public function delete($id)
     {
-        try {
-            $this->childSubMenuService->destroy($id);
+        $model = ChildSubMenu::findOrFail($id);
+        $this->authorize('delete', $model);
+        $this->childSubMenuService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus child sub menu');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus child sub menu');
     }
 }

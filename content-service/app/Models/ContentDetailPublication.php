@@ -12,7 +12,26 @@ class ContentDetailPublication extends Model
 {
     use HasActivityLog, HasAdditionalContentMapping, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'slug',
+        'headline',
+        'description',
+        'is_publicated',
+        'thumbnail_path',
+        'publish_date',
+        'has_additional_image',
+        'has_additional_video',
+        'has_additional_file',
+        'has_additional_link',
+        'has_additional_text',
+        'layout_id',
+        'is_slider',
+        'kategori_content_id',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'publikasi';
 
@@ -41,6 +60,21 @@ class ContentDetailPublication extends Model
         return $this->morphOne(ContentAdditionalText::class, 'content');
     }
 
+    public function kategori()
+    {
+        return $this->belongsTo(MsKategoriContent::class, 'kategori_content_id', 'id');
+    }
+
+    public function contentTag()
+    {
+        return $this->morphMany(ContentTag::class, 'content');
+    }
+
+    public function getKategoriTitleAttribute()
+    {
+        return $this->kategori?->title;
+    }
+
     protected static function booted()
     {
         static::deleting(function ($publication) {
@@ -52,6 +86,8 @@ class ContentDetailPublication extends Model
         });
 
         static::deleted(function ($content) {
+            ContentTag::where('content_type', ContentDetailPublication::class)
+                ->where('content_id', $content->id)->delete();
             $service = new GlobalSearchService;
             $service->delete(ContentDetailPublication::class, $content->id);
         });

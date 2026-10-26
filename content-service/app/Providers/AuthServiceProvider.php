@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,6 +19,11 @@ class AuthServiceProvider extends ServiceProvider
         \App\Models\Content::class => \App\Policies\ContentPolicy::class,
         \App\Models\LatestInformation::class => \App\Policies\LatestInformationPolicy::class,
         \App\Models\QuickLink::class => \App\Policies\QuickLinkPolicy::class,
+        \App\Models\ContentDetailPublication::class => \App\Policies\ContentDetailPublicationPolicy::class,
+        \App\Models\ContentDetailGallery::class => \App\Policies\ContentDetailGalleryPolicy::class,
+        \App\Models\ContentDetailRepository::class => \App\Policies\ContentDetailRepositoryPolicy::class,
+        \App\Models\ContentDetailAgenda::class => \App\Policies\ContentDetailAgendaPolicy::class,
+        \App\Models\ContentDetailShowcase::class => \App\Policies\ContentDetailShowcasePolicy::class,
     ];
 
     /**
@@ -26,6 +31,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('viewApiDocs', function ($user = null) {
+            $docsUser = env('DOCS_USER');
+            $docsPass = env('DOCS_PASS');
+
+            if (empty($docsUser) || empty($docsPass)) {
+                return true;
+            }
+
+            return request()->getUser() === $docsUser
+                && request()->getPassword() === $docsPass;
+        });
     }
 }

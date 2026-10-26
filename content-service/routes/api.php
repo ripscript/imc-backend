@@ -11,6 +11,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\ShowcaseController;
 use App\Http\Controllers\SubMenuController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,12 +115,21 @@ Route::middleware(['jwt.error', 'api', 'check.role:super_admin,admin_pusat,admin
         Route::delete('/{id}', [AgendaController::class, 'delete']);
     });
 
+    Route::prefix('showcase')->group(function () {
+        Route::get('/side-menu', [ShowcaseController::class, 'sideMenu']);
+        Route::get('/list/{contentId}', [ShowcaseController::class, 'index']);
+        Route::post('/', [ShowcaseController::class, 'create']);
+        Route::get('/{id}', [ShowcaseController::class, 'detail']);
+        Route::put('/{id}', [ShowcaseController::class, 'update']);
+        Route::delete('/{id}', [ShowcaseController::class, 'delete']);
+    });
+
     Route::prefix('section')->group(function () {
         Route::get('/', [HomeController::class, 'index']);
         Route::post('/', [HomeController::class, 'create']);
         Route::get('/{id}', [HomeController::class, 'detail']);
         Route::put('/{id}', [HomeController::class, 'update']);
-        // Route::delete('/{id}', [HomeController::class, 'delete']);
+        Route::delete('/{id}', [HomeController::class, 'delete']);
     });
 
     Route::prefix('latest-information')->group(function () {

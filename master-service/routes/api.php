@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\AlasanKeberatanController;
-use App\Http\Controllers\ClassificationPemohonController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CustomFieldController;
+use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\KategoriContentController;
 use App\Http\Controllers\KategoriFaqController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\NegaraController;
-use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\PerwakilanController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SatuanKerjaController;
 use App\Http\Controllers\SifatInformasiController;
-use App\Http\Controllers\SurveyQuestionController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\VariableTemplateEmailController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WorkflowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,13 +122,6 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [TagController::class, 'destroy']);
     });
 
-    Route::prefix('alasan-keberatan')->group(function () {
-        Route::post('/', [AlasanKeberatanController::class, 'create']);
-        Route::put('{id}', [AlasanKeberatanController::class, 'update']);
-        Route::get('{id}', [AlasanKeberatanController::class, 'detail']);
-        // Route::delete('{id}', [AlasanKeberatanController::class, 'destroy']);
-    });
-
     Route::prefix('hari-libur')->group(function () {
         Route::get('/', [HolidayController::class, 'index']);
         Route::post('/', [HolidayController::class, 'create']);
@@ -138,30 +132,65 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::delete('{id}', [HolidayController::class, 'destroy']);
     });
 
-    Route::prefix('survey-question')->group(function () {
-        Route::get('/', [SurveyQuestionController::class, 'index']);
-        Route::post('/', [SurveyQuestionController::class, 'create']);
-        Route::put('{id}', [SurveyQuestionController::class, 'update']);
-        Route::get('{id}', [SurveyQuestionController::class, 'detail']);
-        Route::delete('{id}', [SurveyQuestionController::class, 'destroy']);
+
+    Route::prefix('clients')->group(function () {
+        Route::get('/', [ClientController::class, 'index']);
+        Route::post('/', [ClientController::class, 'create']);
+        Route::put('{id}', [ClientController::class, 'update']);
+        Route::get('{id}', [ClientController::class, 'detail']);
+        Route::delete('{id}', [ClientController::class, 'destroy']);
     });
+
+    Route::prefix('partners')->group(function () {
+        Route::get('/', [PartnerController::class, 'index']);
+        Route::post('/', [PartnerController::class, 'create']);
+        Route::put('{id}', [PartnerController::class, 'update']);
+        Route::get('{id}', [PartnerController::class, 'detail']);
+        Route::delete('{id}', [PartnerController::class, 'destroy']);
+    });
+
+    Route::prefix('project-categories')->group(function () {
+        Route::get('/', [ProjectCategoryController::class, 'index']);
+        Route::post('/', [ProjectCategoryController::class, 'create']);
+        Route::put('{id}', [ProjectCategoryController::class, 'update']);
+        Route::get('{id}', [ProjectCategoryController::class, 'detail']);
+        Route::delete('{id}', [ProjectCategoryController::class, 'destroy']);
+    });
+
+    Route::prefix('document-types')->group(function () {
+        Route::get('/', [DocumentTypeController::class, 'index']);
+        Route::post('/', [DocumentTypeController::class, 'create']);
+        Route::put('{id}', [DocumentTypeController::class, 'update']);
+        Route::get('{id}', [DocumentTypeController::class, 'detail']);
+        Route::delete('{id}', [DocumentTypeController::class, 'destroy']);
+    });
+
+    Route::prefix('workflows')->group(function () {
+        Route::get('/', [WorkflowController::class, 'index']);
+        Route::post('/', [WorkflowController::class, 'create']);
+        Route::put('{id}', [WorkflowController::class, 'update']);
+        Route::get('{id}', [WorkflowController::class, 'detail']);
+        Route::delete('{id}', [WorkflowController::class, 'destroy']);
+        Route::get('{id}/stages', [WorkflowController::class, 'stages']);
+    });
+
+    Route::prefix('custom-fields')->group(function () {
+        Route::get('/', [CustomFieldController::class, 'index']);
+        Route::post('/', [CustomFieldController::class, 'create']);
+        Route::put('{id}', [CustomFieldController::class, 'update']);
+        Route::get('{id}', [CustomFieldController::class, 'detail']);
+        Route::delete('{id}', [CustomFieldController::class, 'destroy']);
+    });
+
+    Route::get('custom-field-values', [CustomFieldController::class, 'values']);
+    Route::put('custom-field-values', [CustomFieldController::class, 'upsertValues']);
 
     Route::get('role', [RoleController::class, 'index']);
     Route::get('variable-template-email', [VariableTemplateEmailController::class, 'index']);
     Route::get('layout', [LayoutController::class, 'index']);
 });
 
-Route::middleware(['jwt.error:admin,pemohon'])->group(function () {
-    Route::prefix('permohonan')->group(function () {
-        Route::get('akses-data', [PermohonanController::class, 'aksesData']);
-        Route::get('format-data', [PermohonanController::class, 'formatData']);
-        Route::get('salinan-informasi', [PermohonanController::class, 'salinanInformasi']);
-    });
-
+Route::middleware(['jwt.error:admin'])->group(function () {
     Route::get('satuan-kerja', [SatuanKerjaController::class, 'index']);
     Route::get('perwakilan', [PerwakilanController::class, 'index']);
-    Route::get('alasan-keberatan', [AlasanKeberatanController::class, 'index']);
-    Route::get('list-pertanyaan-survei', [SurveyQuestionController::class, 'listActive']);
 });
-
-Route::get('classification-pemohon', [ClassificationPemohonController::class, 'index']);

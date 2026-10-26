@@ -29,37 +29,23 @@ class JwtErrorHandlerMiddleware
                 if ($user) {
                     Auth::shouldUse($guard);
 
-                    if ($guard === 'pemohon') {
-                        $payload = JWTAuth::getPayload($token);
-
-                        if (
-                            ! isset($payload['token_version']) ||
-                            (int) $payload['token_version'] !== (int) $user->token_version
-                        ) {
-                            return response()->json([
-                                'status' => false,
-                                'message' => 'Sesi telah berakhir. Silakan login kembali.',
-                            ], 401);
-                        }
-                    }
-
                     $request->attributes->set('guard', $guard);
 
                     return $next($request);
                 }
             } catch (TokenExpiredException $e) {
-                $lastError = ApiResponse::error('Token has expired', 401);
+                $lastError = ApiResponse::error('Token has expired', null, 401);
             } catch (TokenInvalidException $e) {
-                $lastError = ApiResponse::error('Token is invalid', 401);
+                $lastError = ApiResponse::error('Token is invalid', null, 401);
             } catch (TokenBlacklistedException $e) {
-                $lastError = ApiResponse::error('Token is blacklisted', 401);
+                $lastError = ApiResponse::error('Token is blacklisted', null, 401);
             } catch (JWTException $e) {
-                $lastError = ApiResponse::error('Token is missing', 401);
+                $lastError = ApiResponse::error('Token is missing', null, 401);
             } catch (Exception $e) {
                 $lastError = ApiResponse::error('JWT Auth failed', $e->getMessage(), 401);
             }
         }
 
-        return $lastError ?? ApiResponse::error('Unauthorized', 401);
+        return $lastError ?? ApiResponse::error('Unauthorized', null, 401);
     }
 }

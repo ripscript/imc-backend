@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use App\Http\Requests\MenuIndexRequest;
+use App\Services\DTOs\MenuFilterDTO;
 use App\Services\MenuService;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -12,14 +13,11 @@ class MenuController extends Controller
         protected MenuService $menuService
     ) {}
 
-    public function index(Request $request)
+    public function index(MenuIndexRequest $request)
     {
-        try {
-            $data = $this->menuService->index($request);
+        $dto = new MenuFilterDTO($request->validated());
+        $data = $this->menuService->index($dto);
 
-            return ApiResponse::success($data, 'Berhasil mengambil list menu');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil list menu');
     }
 }

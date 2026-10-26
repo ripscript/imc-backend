@@ -10,7 +10,16 @@ class ContentDetailAgenda extends Model
 {
     use HasActivityLog, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'is_range',
+        'datetime_start',
+        'datetime_end',
+        'event_name',
+        'is_active',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $logName = 'agenda';
 }

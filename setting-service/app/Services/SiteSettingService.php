@@ -29,9 +29,6 @@ class SiteSettingService
         $data->youtube_url = $dto->youtube_url;
         $data->instagram_url = $dto->instagram_url;
         $data->twitter_url = $dto->twitter_url;
-        if ($dto->permohonan_max_destination_institution !== null) {
-            $data->permohonan_max_destination_institution = $dto->permohonan_max_destination_institution;
-        }
         if ($dto->menu_max_show_front !== null) {
             $data->menu_max_show_front = $dto->menu_max_show_front;
         }

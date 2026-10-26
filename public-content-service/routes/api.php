@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
@@ -56,7 +55,7 @@ Route::post('visitor', [VisitorController::class, 'create']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('latest-information', [HomeController::class, 'latestInformation']);
-    Route::get('summary-permohonan', [HomeController::class, 'summaryPermohonan']);
+    Route::get('statistics', [HomeController::class, 'summaryStatistic']);
     Route::get('sifat-informasi', [HomeController::class, 'sifatInformasi']);
     Route::get('{id}', [HomeController::class, 'detail']);
 });
@@ -66,14 +65,7 @@ Route::prefix('content')->group(function () {
     Route::get('publication', [ContentController::class, 'detailPublication']);
     Route::get('repository', [ContentController::class, 'detailRepository']);
     Route::get('gallery', [ContentController::class, 'detailGallery']);
+    Route::get('project', [ContentController::class, 'detailProject']);
+    Route::get('showcase', [ContentController::class, 'detailShowcase']);
     Route::get('search', [ContentController::class, 'globalSearch']);
 });
-
-Route::prefix('chat')->group(function () {
-    Route::post('/', [ChatbotController::class, 'sendMessageV2']);
-    Route::post('start', [ChatbotController::class, 'startSession']);
-    Route::post('end', [ChatbotController::class, 'endSession']);
-    Route::get('history/{uuid}', [ChatbotController::class, 'history']);
-});
-
-Route::get('/test-websocket', [ChatbotController::class, 'test']);

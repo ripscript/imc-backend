@@ -9,5 +9,23 @@ class ContentDetailOrganizationalStructureMember extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_detail_organizational_structure_group_id',
+        'name',
+        'level',
+        'position',
+        'description',
+        'image_path',
+        'is_child',
+        'have_child',
+        'parent_id',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
+
+    public function group()
+    {
+        return $this->belongsTo(ContentDetailOrganizationalStructureGroup::class, 'content_detail_organizational_structure_group_id');
+    }
 }

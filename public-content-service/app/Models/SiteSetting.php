@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SiteSetting extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];}
+    protected $fillable = [
+        'address',
+        'phone',
+        'email',
+        'facebook_url',
+        'instagram_url',
+        'youtube_url',
+        'twitter_url',
+        'wa_number',
+    ];
+}

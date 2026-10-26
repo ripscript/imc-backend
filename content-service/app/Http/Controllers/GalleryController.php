@@ -9,6 +9,7 @@ use App\Http\Resources\GalleryResource;
 use App\Services\DTOs\GalleryDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\GalleryService;
+use App\Models\ContentDetailGallery;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -19,69 +20,55 @@ class GalleryController extends Controller
 
     public function sideMenu()
     {
-        try {
-            $data = $this->galleryService->sideMenu();
+        $this->authorize('viewAny', ContentDetailGallery::class);
+        $data = $this->galleryService->sideMenu();
 
-            return ApiResponse::success($data, 'Berhasil mengambil side menu untuk tipe galeri');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil side menu untuk tipe galeri');
     }
 
     public function index(Request $request, $contentId)
     {
-        try {
-            $data = $this->galleryService->index(QueryFilterDTO::fromRequest($request), $contentId);
+        $this->authorize('viewAny', ContentDetailGallery::class);
+        $data = $this->galleryService->index(QueryFilterDTO::fromRequest($request), $contentId);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data galeri');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data galeri');
     }
 
     public function create(CreateGalleryRequest $request)
     {
-        try {
-            $dto = new GalleryDTO($request->validated());
-            $dto->created_by = auth()->user()->name;
-            $dto->updated_by = auth()->user()->name;
-            $result = $this->galleryService->create($dto);
+        $dto = new GalleryDTO($request->validated());
+        $dto->created_by = auth()->user()->name;
+        $dto->updated_by = auth()->user()->name;
+        $this->authorize('create', ContentDetailGallery::class);
 
-            return ApiResponse::success(new GalleryResource($result), 'Berhasil menambahkan data galeri', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->galleryService->create($dto);
+
+        return ApiResponse::success(new GalleryResource($result), 'Berhasil menambahkan data galeri', 201);
     }
 
     public function detail($id)
     {
-        try {
-            return ApiResponse::success(new GalleryResource($this->galleryService->detail($id)), 'Berhasil mengambil data detail galeri');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        $result = $this->galleryService->detail($id);
+        $this->authorize('view', $result);
+        return ApiResponse::success(new GalleryResource($result), 'Berhasil mengambil data detail galeri');
     }
 
     public function update(UpdateGalleryRequest $request, $id)
     {
-        try {
-            $dto = new GalleryDTO($request->validated());
-            $dto->updated_by = auth()->user()->name;
+        $dto = new GalleryDTO($request->validated());
+        $dto->updated_by = auth()->user()->name;
 
-            return ApiResponse::success(new GalleryResource($this->galleryService->update($id, $dto)), 'Berhasil memperbarui data galeri');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->galleryService->update($id, $dto);
+        $this->authorize('update', $result);
+        return ApiResponse::success(new GalleryResource($result), 'Berhasil memperbarui data galeri');
     }
 
     public function delete($id)
     {
-        try {
-            $this->galleryService->destroy($id);
+        $model = ContentDetailGallery::findOrFail($id);
+        $this->authorize('delete', $model);
+        $this->galleryService->destroy($id);
 
-            return ApiResponse::success('', 'Berhasil menghapus galeri');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success('', 'Berhasil menghapus galeri');
     }
 }

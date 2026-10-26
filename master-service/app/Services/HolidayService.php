@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\LogActivity;
 use App\Models\MsHoliday;
 use App\Services\DTOs\HolidayDTO;
 use App\Services\DTOs\QueryFilterDTO;
@@ -60,6 +59,5 @@ class HolidayService
     public function importBulk(array $parsedRows): void
     {
         MsHoliday::insert($parsedRows);
-        LogActivity::createCustom('hari libur', 'Melakukan penginputan hari libur secara massal melalui unggahan excel', null, auth('admin')->user());
     }
 }

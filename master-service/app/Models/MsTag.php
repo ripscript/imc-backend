@@ -12,7 +12,7 @@ class MsTag extends Model
 
     protected $table = 'ms_tags';
 
-    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'is_active', 'created_by', 'updated_by'];
 
     protected $logName = 'tag';
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('content_detail_gallery_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('content_detail_gallery_id')->references('id')->on('content_detail_galleries')->onDelete('cascade');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->text('image_path')->nullable();
             $table->string('video_type', 20)->nullable();

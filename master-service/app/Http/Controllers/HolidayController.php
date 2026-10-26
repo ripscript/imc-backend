@@ -9,6 +9,7 @@ use App\Http\Requests\HolidayImportRequest;
 use App\Http\Requests\UpdateHolidayRequest;
 use App\Http\Resources\HolidayResource;
 use App\Imports\HolidayImport;
+use App\Models\MsHoliday;
 use App\Services\DTOs\HolidayDTO;
 use App\Services\DTOs\QueryFilterDTO;
 use App\Services\HolidayService;
@@ -24,64 +25,52 @@ class HolidayController extends Controller
 
     public function index(Request $request)
     {
-        try {
-            $data = $this->holidayService->index(QueryFilterDTO::fromRequest($request));
+        $this->authorize('viewAny', MsHoliday::class);
 
-            return ApiResponse::success($data, 'Berhasil mengambil data hari libur');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $data = $this->holidayService->index(QueryFilterDTO::fromRequest($request));
+
+        return ApiResponse::success($data, 'Berhasil mengambil data hari libur');
     }
 
     public function detail($id)
     {
-        try {
-            $hariLibur = $this->holidayService->detail($id);
+        $hariLibur = $this->holidayService->detail($id);
+        $this->authorize('view', $hariLibur);
 
-            return ApiResponse::success(new HolidayResource($hariLibur), 'Berhasil mengambil data detail hari libur');
-        } catch (\Exception $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new HolidayResource($hariLibur), 'Berhasil mengambil data detail hari libur');
     }
 
     public function create(CreateHolidayRequest $request)
     {
-        try {
-            $dto = new HolidayDTO($request->validated());
-            $dto->created_by = auth('admin')->user()->name;
-            $dto->updated_by = auth('admin')->user()->name;
+        $this->authorize('create', MsHoliday::class);
 
-            $result = $this->holidayService->create($dto);
+        $dto = new HolidayDTO($request->validated());
+        $dto->created_by = auth('admin')->user()->name;
+        $dto->updated_by = auth('admin')->user()->name;
 
-            return ApiResponse::success(new HolidayResource($result), 'Berhasil menambahkan data hari libur', 201);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $result = $this->holidayService->create($dto);
+
+        return ApiResponse::success(new HolidayResource($result), 'Berhasil menambahkan data hari libur', 201);
     }
 
     public function update(UpdateHolidayRequest $request, $id)
     {
-        try {
-            $dto = new HolidayDTO($request->validated());
-            $dto->updated_by = auth('admin')->user()->name;
+        $dto = new HolidayDTO($request->validated());
+        $dto->updated_by = auth('admin')->user()->name;
 
-            $result = $this->holidayService->update($id, $dto);
+        $result = $this->holidayService->update($id, $dto);
+        $this->authorize('update', $result);
 
-            return ApiResponse::success(new HolidayResource($result), 'Berhasil memperbarui data hari libur');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success(new HolidayResource($result), 'Berhasil memperbarui data hari libur');
     }
 
     public function destroy($id)
     {
-        try {
-            $this->holidayService->destroy($id);
+        $this->authorize('delete', MsHoliday::class);
 
-            return ApiResponse::success('', 'Berhasil menghapus data hari libur');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->holidayService->destroy($id);
+
+        return ApiResponse::success('', 'Berhasil menghapus data hari libur');
     }
 
     public function templateImport()

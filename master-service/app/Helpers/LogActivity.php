@@ -24,9 +24,7 @@ class LogActivity
 
     public static function createCustom($logName, $description, $model = null, $user = null)
     {
-        if (! $user && auth('pemohon')->check()) {
-            $user = auth('pemohon')->user();
-        } elseif (! $user && auth('admin')->check()) {
+        if (! $user && auth('admin')->check()) {
             $user = auth('admin')->user();
         }
 

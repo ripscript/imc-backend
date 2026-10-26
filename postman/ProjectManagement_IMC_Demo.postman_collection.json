@@ -1,0 +1,3224 @@
+{
+  "info": {
+    "name": "IMC Project Management - Demo (DRD)",
+    "description": "Sample requests/responses modul IMC Project Management berdasarkan DRD_IMC_Project_Management.docx (flexible project + stage workflow).\n\nSemua endpoint dilindungi JWT (Authorization: Bearer). Folder Master Data & Custom Field khusus admin.\n\nBase URL sementara (DRD Gap #12: modul diusulkan menjadi project-service):\nhttp://localhost:4076/project-service/api\n\nAlur demo (13 langkah DRD):\n2. Daftar/Buat Proyek -> 3. Wizard (pilih workflow, timeline, review, activate) -> 4-7. Stage/Task/Dokumen/Deliverable -> 8. Approval -> 9. Change Request -> 10. Milestone -> 11. Activity Log\n\nContoh data: proyek IMC.2026-001 'Development Mesin A' (PT ABC, ETO Manufacturing v1, 8 stage).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/project-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_ADMIN"
+    },
+    {
+      "key": "project_id",
+      "value": "1"
+    },
+    {
+      "key": "stage_id",
+      "value": "5"
+    },
+    {
+      "key": "task_id",
+      "value": "16"
+    },
+    {
+      "key": "document_id",
+      "value": "3"
+    },
+    {
+      "key": "deliverable_id",
+      "value": "6"
+    },
+    {
+      "key": "approval_id",
+      "value": "7"
+    },
+    {
+      "key": "cr_id",
+      "value": "1"
+    },
+    {
+      "key": "milestone_id",
+      "value": "3"
+    },
+    {
+      "key": "workflow_id",
+      "value": "1"
+    },
+    {
+      "key": "client_id",
+      "value": "1"
+    },
+    {
+      "key": "partner_id",
+      "value": "2"
+    },
+    {
+      "key": "category_id",
+      "value": "1"
+    },
+    {
+      "key": "document_type_id",
+      "value": "1"
+    },
+    {
+      "key": "custom_field_id",
+      "value": "1"
+    },
+    {
+      "key": "master_base_url",
+      "value": "http://localhost:4076/master-service/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Dashboard",
+      "item": [
+        {
+          "name": "Dashboard summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard",
+                "summary"
+              ]
+            },
+            "description": "KPI dashboard (DRD Bab 2.6): total proyek, proyek aktif, milestone, approval menunggu + kartu proyek."
+          },
+          "response": [
+            {
+              "name": "200 - Statistik dashboard",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"total_projects\": 24,\n        \"active_projects\": 12,\n        \"total_milestones\": 8,\n        \"pending_approvals\": 3,\n        \"overdue_milestones\": 2,\n        \"projects\": [\n            {\n                \"id\": 1,\n                \"project_no\": \"IMC.2026-001\",\n                \"name\": \"Development Mesin A\",\n                \"client\": {\n                    \"id\": 1,\n                    \"name\": \"PT ABC\"\n                },\n                \"status\": \"active\",\n                \"progress\": 80,\n                \"current_stage\": {\n                    \"code\": \"MANUFACTURING\",\n                    \"name\": \"Manufacturing\"\n                },\n                \"pic\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                }\n            }\n        ]\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "2. Projects (CRUD)",
+      "item": [
+        {
+          "name": "List proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "mesin"
+                }
+              ]
+            },
+            "description": "Daftar proyek + filter (DRD langkah 2)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"current_page\": 1,\n        \"per_page\": 10,\n        \"total\": 24,\n        \"items\": [\n            {\n                \"id\": 1,\n                \"project_no\": \"IMC.2026-001\",\n                \"name\": \"Development Mesin A\",\n                \"client\": {\n                    \"id\": 1,\n                    \"name\": \"PT ABC\"\n                },\n                \"partner\": {\n                    \"id\": 2,\n                    \"name\": \"PT Sinar Teknik\"\n                },\n                \"category\": {\n                    \"code\": \"ETO\",\n                    \"name\": \"Engineering to Order\"\n                },\n                \"status\": \"active\",\n                \"progress\": 80,\n                \"current_stage\": {\n                    \"code\": \"MANUFACTURING\",\n                    \"name\": \"Manufacturing\"\n                },\n                \"pic\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"start_date\": \"2026-06-01\",\n                \"target_end_date\": \"2026-09-30\",\n                \"title\": \"Development Mesin A\",\n                \"slug\": \"development-mesin-a\",\n                \"thumbnail_path\": \"/storage/projects/development-mesin-a.jpg\",\n                \"is_publicated\": false,\n                \"publish_date\": null\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Buat Proyek simple form (DRD langkah 3). Status awal draft. title/name salah satu wajib; slug & project_no otomatis. Set is_publicated=true agar tampil di public-content-service.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Development Mesin A\",\n    \"description\": \"Pengembangan mesin custom untuk line produksi baru.\",\n    \"thumbnail_path\": \"/storage/projects/development-mesin-a.jpg\",\n    \"publish_date\": \"2026-09-30\",\n    \"is_publicated\": false,\n    \"duration\": \"4 bulan\",\n    \"location\": \"Purwakarta, Jawa Barat\",\n    \"client_id\": 1,\n    \"partner_id\": 2,\n    \"category_id\": 1,\n    \"pic_user_id\": 10,\n    \"start_date\": \"2026-06-01\",\n    \"target_end_date\": \"2026-09-30\",\n    \"attachments\": [\n        \"https://files.example.com/tor-mesin-a.pdf\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Proyek dibuat (draft)",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek dibuat (status draft)\",\n    \"data\": {\n        \"id\": 1,\n        \"content_id\": 1,\n        \"project_no\": \"IMC.2026-001\",\n        \"name\": \"Development Mesin A\",\n        \"title\": \"Development Mesin A\",\n        \"slug\": \"development-mesin-a\",\n        \"thumbnail_path\": \"/storage/projects/development-mesin-a.jpg\",\n        \"is_publicated\": false,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"PT ABC\"\n        },\n        \"partner\": {\n            \"id\": 2,\n            \"name\": \"PT Sinar Teknik\"\n        },\n        \"category\": {\n            \"code\": \"ETO\",\n            \"name\": \"Engineering to Order\"\n        },\n        \"workflow\": null,\n        \"status\": \"draft\",\n        \"progress\": 0,\n        \"pic\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"start_date\": \"2026-06-01\",\n        \"target_end_date\": \"2026-09-30\"\n    }\n}"
+            },
+            {
+              "name": "422 - Validasi gagal",
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Validasi gagal\",\n    \"errors\": {\n        \"title\": [\n            \"Judul proyek wajib diisi.\"\n        ],\n        \"client_id\": [\n            \"The selected client id is invalid.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Project Detail Overview (DRD langkah 8). Contoh payload lengkap = DRD Bab 4.3."
+          },
+          "response": [
+            {
+              "name": "200 - Detail proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"project_no\": \"IMC.2026-001\",\n        \"name\": \"Development Mesin A\",\n        \"status\": \"active\",\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"PT ABC\"\n        },\n        \"partner\": {\n            \"id\": 2,\n            \"name\": \"PT Sinar Teknik\"\n        },\n        \"category\": {\n            \"code\": \"ETO\",\n            \"name\": \"Engineering to Order\"\n        },\n        \"workflow\": {\n            \"id\": 1,\n            \"code\": \"ETO-MFG\",\n            \"name\": \"ETO Manufacturing\",\n            \"version\": 1\n        },\n        \"pic\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"start_date\": \"2026-06-01\",\n        \"target_end_date\": \"2026-09-30\",\n        \"progress\": 80,\n        \"current_stage\": {\n            \"id\": 5,\n            \"code\": \"MANUFACTURING\",\n            \"name\": \"Manufacturing\",\n            \"status\": \"in_progress\",\n            \"progress\": 60,\n            \"pic\": {\n                \"id\": 11,\n                \"name\": \"Andi P\"\n            },\n            \"open_tasks\": 2,\n            \"pending_approvals\": 1\n        },\n        \"stages\": [\n            {\n                \"code\": \"REQUIREMENT\",\n                \"status\": \"completed\",\n                \"progress\": 100\n            },\n            {\n                \"code\": \"KICKOFF\",\n                \"status\": \"completed\",\n                \"progress\": 100\n            },\n            {\n                \"code\": \"DESIGN\",\n                \"status\": \"completed\",\n                \"progress\": 100\n            },\n            {\n                \"code\": \"PROTOTYPE\",\n                \"status\": \"completed\",\n                \"progress\": 100\n            },\n            {\n                \"code\": \"MANUFACTURING\",\n                \"status\": \"in_progress\",\n                \"progress\": 60\n            },\n            {\n                \"code\": \"QUALITY_TESTING\",\n                \"status\": \"not_started\",\n                \"progress\": 0\n            },\n            {\n                \"code\": \"DELIVERY\",\n                \"status\": \"not_started\",\n                \"progress\": 0\n            },\n            {\n                \"code\": \"CLOSURE\",\n                \"status\": \"not_started\",\n                \"progress\": 0\n            }\n        ],\n        \"milestones\": [\n            {\n                \"name\": \"Factory Acceptance Test (FAT)\",\n                \"target_date\": \"2026-09-15\",\n                \"status\": \"planned\"\n            }\n        ],\n        \"open_change_requests\": [\n            {\n                \"change_no\": \"CR-2026-001\",\n                \"title\": \"Perubahan spesifikasi motor penggerak\",\n                \"status\": \"pending\"\n            }\n        ],\n        \"custom_fields\": {\n            \"nilai_kontrak\": 1500000000,\n            \"no_po\": \"PO-2026-0891\",\n            \"garansi_bulan\": 12\n        },\n        \"content_id\": 1,\n        \"title\": \"Development Mesin A\",\n        \"slug\": \"development-mesin-a\",\n        \"description\": \"Pengembangan mesin custom untuk line produksi baru.\",\n        \"thumbnail_path\": \"/storage/projects/development-mesin-a.jpg\",\n        \"is_publicated\": true,\n        \"publish_date\": \"2026-06-01\",\n        \"tag_id\": [],\n        \"attachments\": []\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update proyek",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Update info dasar proyek.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Development Mesin A (Revisi)\",\n    \"target_end_date\": \"2026-10-15\",\n    \"description\": \"Perpanjangan waktu menunggu approval CR-2026-001.\",\n    \"status\": \"active\",\n    \"progress\": 20,\n    \"is_publicated\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Proyek diperbarui",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"project_no\": \"IMC.2026-001\",\n        \"name\": \"Development Mesin A (Revisi)\",\n        \"status\": \"active\",\n        \"target_end_date\": \"2026-10-15\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus proyek",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Hanya untuk proyek status draft (belum aktif)."
+          },
+          "response": [
+            {
+              "name": "204 - Proyek dihapus",
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": ""
+            },
+            {
+              "name": "404 - Proyek tidak ditemukan",
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Proyek tidak ditemukan\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Daftar/Buat/Detail/Update/Hapus proyek — DRD Bab 5."
+    },
+    {
+      "name": "3. Project Wizard & Lifecycle",
+      "item": [
+        {
+          "name": "Pilih workflow / buat stage manual",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "DRD langkah 4: pilih workflow template ATAU mode manual (mode='manual' + array stages).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"mode\": \"workflow_template\",\n    \"workflow_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Stage di-instansiasi dari workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"8 stage dari workflow ETO-MFG v1 di-instansiasi ke proyek\",\n    \"data\": {\n        \"workflow\": {\n            \"id\": 1,\n            \"code\": \"ETO-MFG\",\n            \"name\": \"ETO Manufacturing\",\n            \"version\": 1\n        },\n        \"stages\": [\n            {\n                \"id\": 1,\n                \"code\": \"REQUIREMENT\",\n                \"name\": \"Requirement\",\n                \"sequence\": 1,\n                \"status\": \"not_started\"\n            },\n            {\n                \"id\": 2,\n                \"code\": \"KICKOFF\",\n                \"name\": \"Kick-off\",\n                \"sequence\": 2,\n                \"status\": \"not_started\"\n            },\n            {\n                \"id\": 3,\n                \"code\": \"DESIGN\",\n                \"name\": \"Design\",\n                \"sequence\": 3,\n                \"status\": \"not_started\"\n            },\n            {\n                \"id\": 4,\n                \"code\": \"PROTOTYPE\",\n                \"name\": \"Prototype\",\n                \"sequence\": 4,\n                \"status\": \"completed\",\n                \"progress\": 100\n            },\n            {\n                \"id\": 5,\n                \"code\": \"MANUFACTURING\",\n                \"name\": \"Manufacturing\",\n                \"sequence\": 5,\n                \"status\": \"in_progress\",\n                \"progress\": 60\n            },\n            {\n                \"id\": 6,\n                \"code\": \"QUALITY_TESTING\",\n                \"name\": \"Quality Testing\",\n                \"sequence\": 6,\n                \"status\": \"not_started\"\n            },\n            {\n                \"id\": 7,\n                \"code\": \"DELIVERY\",\n                \"name\": \"Delivery\",\n                \"sequence\": 7,\n                \"status\": \"not_started\"\n            },\n            {\n                \"id\": 8,\n                \"code\": \"CLOSURE\",\n                \"name\": \"Closure\",\n                \"sequence\": 8,\n                \"status\": \"not_started\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "List stage (review konfigurasi)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "Review konfigurasi stage (DRD langkah 4–7)."
+          },
+          "response": [
+            {
+              "name": "200 - Stage proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"project_no\": \"IMC.2026-001\",\n        \"stages\": [\n            {\n                \"id\": 4,\n                \"code\": \"PROTOTYPE\",\n                \"name\": \"Prototype\",\n                \"sequence\": 4,\n                \"status\": \"completed\",\n                \"progress\": 100,\n                \"pic\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"start_date\": \"2026-07-01\",\n                \"end_date\": \"2026-07-24\"\n            },\n            {\n                \"id\": 5,\n                \"code\": \"MANUFACTURING\",\n                \"name\": \"Manufacturing\",\n                \"sequence\": 5,\n                \"status\": \"in_progress\",\n                \"progress\": 60,\n                \"pic\": {\n                    \"id\": 11,\n                    \"name\": \"Andi P\"\n                },\n                \"start_date\": \"2026-07-25\",\n                \"end_date\": \"2026-08-30\",\n                \"depends_on_stage_id\": 4\n            },\n            {\n                \"id\": 6,\n                \"code\": \"QUALITY_TESTING\",\n                \"name\": \"Quality Testing\",\n                \"sequence\": 6,\n                \"status\": \"not_started\",\n                \"progress\": 0,\n                \"pic\": {\n                    \"id\": 12,\n                    \"name\": \"Siti R\"\n                },\n                \"start_date\": \"2026-08-31\",\n                \"end_date\": \"2026-09-23\",\n                \"depends_on_stage_id\": 5\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Set timeline & dependency",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "DRD langkah 5: tanggal mulai/selesai per stage + dependency. Catatan: kolom dependency merupakan rekomendasi Gap #3 DRD.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stages\": [\n        {\n            \"project_stage_id\": 5,\n            \"start_date\": \"2026-07-25\",\n            \"end_date\": \"2026-08-30\",\n            \"depends_on_stage_id\": 4\n        },\n        {\n            \"project_stage_id\": 6,\n            \"start_date\": \"2026-08-31\",\n            \"end_date\": \"2026-09-23\",\n            \"depends_on_stage_id\": 5\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Timeline disimpan",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Timeline & dependency antar stage disimpan\",\n    \"data\": {\n        \"stages\": [\n            {\n                \"id\": 5,\n                \"start_date\": \"2026-07-25\",\n                \"end_date\": \"2026-08-30\",\n                \"duration_days\": 37\n            },\n            {\n                \"id\": 6,\n                \"start_date\": \"2026-08-31\",\n                \"end_date\": \"2026-09-23\",\n                \"duration_days\": 24\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Submit untuk approval aktivasi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/submit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "submit"
+              ]
+            },
+            "description": "DRD langkah 7 (Review & Activate): simpan draft / kirim untuk approval."
+          },
+          "response": [
+            {
+              "name": "200 - Menunggu approval",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek dikirim untuk approval aktivasi\",\n    \"data\": {\n        \"id\": 1,\n        \"status\": \"pending_approval\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Activate proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate"
+              ]
+            },
+            "description": "Activate Project — proyek berstatus active."
+          },
+          "response": [
+            {
+              "name": "200 - Proyek aktif",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek diaktifkan dan siap dieksekusi\",\n    \"data\": {\n        \"id\": 1,\n        \"project_no\": \"IMC.2026-001\",\n        \"status\": \"active\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hold proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/hold",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "hold"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Proyek on hold",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek di-hold\",\n    \"data\": {\n        \"id\": 1,\n        \"status\": \"on_hold\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Complete proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "complete"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Proyek selesai",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Proyek ditandai selesai\",\n    \"data\": {\n        \"id\": 1,\n        \"status\": \"completed\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Alur 13 langkah bagian setup & lifecycle (DRD langkah 4–7)."
+    },
+    {
+      "name": "4. Stage",
+      "item": [
+        {
+          "name": "Update progress stage",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}"
+              ]
+            },
+            "description": "DRD langkah 10 / Bab 3.6: progress manual atau turunan dari task.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"progress\": 60,\n    \"status\": \"in_progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Progres stage diperbarui",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Progres stage diperbarui\",\n    \"data\": {\n        \"id\": 5,\n        \"code\": \"MANUFACTURING\",\n        \"name\": \"Manufacturing\",\n        \"status\": \"in_progress\",\n        \"progress\": 60.0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Complete stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}",
+                "complete"
+              ]
+            },
+            "description": "Menyelesaikan stage; mengharuskan deliverable wajib lunas + approval gate."
+          },
+          "response": [
+            {
+              "name": "200 - Stage selesai",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Stage selesai (gate approval terpenuhi)\",\n    \"data\": {\n        \"id\": 5,\n        \"status\": \"completed\",\n        \"progress\": 100,\n        \"completed_at\": \"2026-08-30 17:00\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "5. Task",
+      "item": [
+        {
+          "name": "List task stage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}",
+                "tasks"
+              ]
+            },
+            "description": "Task board per stage (DRD langkah 10)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar task",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 15,\n            \"title\": \"Cutting material frame\",\n            \"assignee\": {\n                \"id\": 11,\n                \"name\": \"Andi P\"\n            },\n            \"status\": \"done\",\n            \"priority\": \"medium\",\n            \"due_date\": \"2026-07-31\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"Welding frame utama\",\n            \"assignee\": {\n                \"id\": 11,\n                \"name\": \"Andi P\"\n            },\n            \"status\": \"in_progress\",\n            \"priority\": \"high\",\n            \"due_date\": \"2026-08-15\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"Assembly komponen mesin\",\n            \"assignee\": {\n                \"id\": 14,\n                \"name\": \"Rian M\"\n            },\n            \"status\": \"todo\",\n            \"priority\": \"high\",\n            \"due_date\": \"2026-08-22\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"Quality check proses\",\n            \"assignee\": {\n                \"id\": 12,\n                \"name\": \"Siti R\"\n            },\n            \"status\": \"todo\",\n            \"priority\": \"medium\",\n            \"due_date\": \"2026-08-28\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}",
+                "tasks"
+              ]
+            },
+            "description": "Tambahkan task ke project stage.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Assembly komponen mesin\",\n    \"description\": \"Rakit frame + motor sesuai drawing v2\",\n    \"priority\": \"high\",\n    \"assignee_id\": 14,\n    \"due_date\": \"2026-08-22\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Task dibuat",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Task dibuat\",\n    \"data\": {\n        \"id\": 17,\n        \"title\": \"Assembly komponen mesin\",\n        \"status\": \"todo\",\n        \"priority\": \"high\",\n        \"assignee\": {\n            \"id\": 14,\n            \"name\": \"Rian M\"\n        },\n        \"due_date\": \"2026-08-22\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update task",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks",
+                "{{task_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"done\",\n    \"progress_notes\": \"Frame selesai diwelding sesuai drawing v2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Task diperbarui",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Task diperbarui\",\n    \"data\": {\n        \"id\": 16,\n        \"title\": \"Welding frame utama\",\n        \"status\": \"done\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus task",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks",
+                "{{task_id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 - Task dihapus",
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "6. Document",
+      "item": [
+        {
+          "name": "List dokumen proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "documents"
+              ]
+            },
+            "description": "Repositori dokumen + versioning (DRD langkah 11)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar dokumen",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"file_name\": \"notulen-rapat-awal.docx\",\n            \"type\": {\n                \"code\": \"MOM\",\n                \"name\": \"Notulen Rapat\"\n            },\n            \"version\": 1,\n            \"status\": \"active\",\n            \"stage\": \"Kick-off\",\n            \"uploaded_by\": {\n                \"id\": 10,\n                \"name\": \"Budi A\"\n            },\n            \"uploaded_at\": \"2026-06-10 09:00\"\n        },\n        {\n            \"id\": 2,\n            \"file_name\": \"drawing-mesin-a-v1.pdf\",\n            \"type\": {\n                \"code\": \"DRAW\",\n                \"name\": \"Drawing Teknik\"\n            },\n            \"version\": 1,\n            \"status\": \"superseded\",\n            \"stage\": \"Design\",\n            \"uploaded_by\": {\n                \"id\": 10,\n                \"name\": \"Budi A\"\n            },\n            \"uploaded_at\": \"2026-06-28 14:20\"\n        },\n        {\n            \"id\": 3,\n            \"file_name\": \"drawing-mesin-a-v2.pdf\",\n            \"type\": {\n                \"code\": \"DRAW\",\n                \"name\": \"Drawing Teknik\"\n            },\n            \"version\": 2,\n            \"status\": \"active\",\n            \"stage\": \"Design\",\n            \"uploaded_by\": {\n                \"id\": 10,\n                \"name\": \"Budi A\"\n            },\n            \"uploaded_at\": \"2026-07-20 09:15\"\n        },\n        {\n            \"id\": 4,\n            \"file_name\": \"laporan-uji-prototipe.pdf\",\n            \"type\": {\n                \"code\": \"REPORT\",\n                \"name\": \"Laporan\"\n            },\n            \"version\": 1,\n            \"status\": \"active\",\n            \"stage\": \"Prototype\",\n            \"uploaded_by\": {\n                \"id\": 12,\n                \"name\": \"Siti R\"\n            },\n            \"uploaded_at\": \"2026-07-24 16:40\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Upload dokumen",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}",
+                "documents"
+              ]
+            },
+            "description": "Multipart upload; integrasi file-service (file_path pointer). Validasi ekstensi & ukuran dari DOCUMENT_TYPE. Setiap unggahan = versi +1.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document_type_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "file_name",
+                  "value": "drawing-mesin-a-v2.pdf",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Revisi setelah CR-2026-001",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/path/to/drawing-mesin-a-v2.pdf"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Dokumen diunggah (versi 2)",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Dokumen diunggah (versi baru mensupersede versi lama)\",\n    \"data\": {\n        \"id\": 3,\n        \"file_name\": \"drawing-mesin-a-v2.pdf\",\n        \"type\": {\n            \"code\": \"DRAW\"\n        },\n        \"version\": 2,\n        \"status\": \"active\",\n        \"uploaded_by\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"uploaded_at\": \"2026-07-20 09:15\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "7. Deliverable",
+      "item": [
+        {
+          "name": "List deliverable stage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/stages/{{stage_id}}/deliverables",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "stages",
+                "{{stage_id}}",
+                "deliverables"
+              ]
+            },
+            "description": "Deliverable wajib/opsional per stage (prinsip desain #6)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar deliverable",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"Work Order Produksi\",\n            \"document_type\": {\n                \"code\": \"REPORT\"\n            },\n            \"is_required\": true,\n            \"status\": \"approved\",\n            \"due_date\": \"2026-07-27\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Quality Check Report\",\n            \"document_type\": {\n                \"code\": \"REPORT\"\n            },\n            \"is_required\": true,\n            \"status\": \"pending\",\n            \"due_date\": \"2026-08-28\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Submit deliverable",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/deliverables/{{deliverable_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "deliverables",
+                "{{deliverable_id}}"
+              ]
+            },
+            "description": "Menandai deliverable selesai; menunggu dokumen dengan document_type yang sama.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"submitted\",\n    \"document_id\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Deliverable disubmit",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Deliverable disubmit menunggu verifikasi\",\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"Quality Check Report\",\n        \"status\": \"submitted\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "8. Approval",
+      "item": [
+        {
+          "name": "List approval pending",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                }
+              ]
+            },
+            "description": "Antrean approval (DRD langkah 13). Gap #9: approval_type membedakan aktivasi/gate/CR/deliverable."
+          },
+          "response": [
+            {
+              "name": "200 - Antrean approval",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"total\": 3,\n        \"items\": [\n            {\n                \"id\": 1,\n                \"approval_type\": \"project_activation\",\n                \"ref\": {\n                    \"project_no\": \"IMC.2026-002\",\n                    \"name\": \"Development Mesin B\"\n                },\n                \"requested_by\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"requested_at\": \"2026-08-12 10:00\",\n                \"status\": \"pending\"\n            },\n            {\n                \"id\": 7,\n                \"approval_type\": \"stage_gate\",\n                \"ref\": {\n                    \"project_no\": \"IMC.2026-001\",\n                    \"stage\": \"MANUFACTURING\"\n                },\n                \"requested_by\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"requested_at\": \"2026-08-10 14:00\",\n                \"status\": \"pending\"\n            },\n            {\n                \"id\": 9,\n                \"approval_type\": \"change_request\",\n                \"ref\": {\n                    \"project_no\": \"IMC.2026-001\",\n                    \"change_no\": \"CR-2026-001\"\n                },\n                \"requested_by\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"requested_at\": \"2026-07-18 10:30\",\n                \"status\": \"pending\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Putuskan approval",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals/{{approval_id}}/decide",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals",
+                "{{approval_id}}",
+                "decide"
+              ]
+            },
+            "description": "approve / reject + notes; mencatat approved_by & approved_at.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"decision\": \"approved\",\n    \"notes\": \"Gate stage Manufacturing disetujui, lanjut Quality Testing.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Keputusan disimpan",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Approval diputuskan\",\n    \"data\": {\n        \"id\": 7,\n        \"status\": \"approved\",\n        \"approved_by\": {\n            \"id\": 13,\n            \"name\": \"Rian M\"\n        },\n        \"approved_at\": \"2026-08-11 09:00\",\n        \"notes\": \"Gate stage Manufacturing disetujui, lanjut Quality Testing.\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "9. Change Request",
+      "item": [
+        {
+          "name": "List change request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ]
+            },
+            "description": "Change request proyek (DRD langkah 12)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar CR",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"change_no\": \"CR-2026-001\",\n            \"title\": \"Perubahan spesifikasi motor penggerak\",\n            \"reason\": \"Permintaan client (kapasitas naik 15%)\",\n            \"impact_scope\": \"Design + Manufacturing + timeline +2 minggu\",\n            \"status\": \"pending\",\n            \"requested_by\": {\n                \"id\": 10,\n                \"name\": \"Budi A\"\n            },\n            \"requested_at\": \"2026-07-18 10:30\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Ajukan change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ]
+            },
+            "description": "CR berisi alasan + dampak + approval + audit trail (prinsip #7).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Perubahan spesifikasi motor penggerak\",\n    \"reason\": \"Permintaan client (kapasitas naik 15%)\",\n    \"impact_scope\": \"Design + Manufacturing + timeline +2 minggu\",\n    \"project_stage_id\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - CR diajukan",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Change request diajukan\",\n    \"data\": {\n        \"change_no\": \"CR-2026-001\",\n        \"title\": \"Perubahan spesifikasi motor penggerak\",\n        \"status\": \"pending\",\n        \"requested_by\": {\n            \"id\": 10,\n            \"name\": \"Budi A\"\n        },\n        \"requested_at\": \"2026-07-18 10:30\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Putuskan change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/change-requests/{{cr_id}}/decide",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "change-requests",
+                "{{cr_id}}",
+                "decide"
+              ]
+            },
+            "description": "Keputusan approver (approved/rejected + notes).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"decision\": \"approved\",\n    \"notes\": \"Disetujui, timeline disesuaikan +2 minggu.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - CR diputuskan",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Change request disetujui\",\n    \"data\": {\n        \"change_no\": \"CR-2026-001\",\n        \"status\": \"approved\",\n        \"approved_by\": {\n            \"id\": 13,\n            \"name\": \"Rian M\"\n        },\n        \"approved_at\": \"2026-07-19 08:00\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Implementasi change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/change-requests/{{cr_id}}/implement",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "change-requests",
+                "{{cr_id}}",
+                "implement"
+              ]
+            },
+            "description": "Menandai CR sudah dieksekusi di stage (status implemented)."
+          },
+          "response": [
+            {
+              "name": "200 - CR diimplementasi",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Perubahan dieksekusi di stage terdampak\",\n    \"data\": {\n        \"change_no\": \"CR-2026-001\",\n        \"status\": \"implemented\",\n        \"impacted_stages\": [\n            \"DESIGN\",\n            \"MANUFACTURING\"\n        ]\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "10. Milestone",
+      "item": [
+        {
+          "name": "List milestone",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/milestones",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "milestones"
+              ]
+            },
+            "description": "Milestone proyek (bukan stage)."
+          },
+          "response": [
+            {
+              "name": "200 - Daftar milestone",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Milestone Pembayaran 1\",\n            \"target_date\": \"2026-07-15\",\n            \"status\": \"achieved\",\n            \"completed_at\": \"2026-07-16\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Factory Acceptance Test (FAT)\",\n            \"target_date\": \"2026-09-15\",\n            \"status\": \"planned\",\n            \"completed_at\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat milestone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/milestones",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "milestones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Factory Acceptance Test (FAT)\",\n    \"target_date\": \"2026-09-15\",\n    \"description\": \"Uji bersama client di pabrik\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Milestone dibuat",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Milestone dibuat\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Factory Acceptance Test (FAT)\",\n        \"target_date\": \"2026-09-15\",\n        \"status\": \"planned\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update milestone",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/milestones/{{milestone_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "milestones",
+                "{{milestone_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"achieved\",\n    \"completed_at\": \"2026-09-14 16:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Milestone diperbarui",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Milestone diperbarui\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Factory Acceptance Test (FAT)\",\n        \"status\": \"achieved\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "11. Activity Log",
+      "item": [
+        {
+          "name": "List aktivitas proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activities",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activities"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Audit trail (prinsip #8) — paginated feed."
+          },
+          "response": [
+            {
+              "name": "200 - Aktivitas proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"current_page\": 1,\n        \"per_page\": 20,\n        \"total\": 42,\n        \"items\": [\n            {\n                \"id\": 42,\n                \"activity_type\": \"document_uploaded\",\n                \"description\": \"Budi mengunggah Drawing Desain v2\",\n                \"stage\": \"Design\",\n                \"user\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"created_at\": \"2026-07-20 09:15\"\n            },\n            {\n                \"id\": 39,\n                \"activity_type\": \"stage_completed\",\n                \"description\": \"Prototype selesai 100%\",\n                \"stage\": \"Prototype\",\n                \"user\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"created_at\": \"2026-07-24 16:40\"\n            },\n            {\n                \"id\": 31,\n                \"activity_type\": \"cr_submitted\",\n                \"description\": \"CR-2026-001 diajukan: perubahan spesifikasi motor\",\n                \"stage\": \"Design\",\n                \"user\": {\n                    \"id\": 10,\n                    \"name\": \"Budi A\"\n                },\n                \"created_at\": \"2026-07-18 10:30\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "12. Custom Field (admin)",
+      "item": [
+        {
+          "name": "List custom field",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/custom-fields",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "custom-fields"
+              ],
+              "query": [
+                {
+                  "key": "entity_type",
+                  "value": "project"
+                }
+              ]
+            },
+            "description": "Definisi field dinamis per entity_type (EAV)."
+          },
+          "response": [
+            {
+              "name": "200 - List custom field",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"code\": \"cf_project_1\",\n                \"name\": \"Nilai Kontrak\",\n                \"entity_type\": \"project\",\n                \"field_type\": \"money\",\n                \"is_required\": true,\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:37:20.000000Z\",\n                \"updated_at\": \"2026-09-08T08:37:20.000000Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 1,\n            \"page\": 1,\n            \"limit\": 1,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat custom field",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/custom-fields",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "custom-fields"
+              ]
+            },
+            "description": "code digenerate sistem (cf_{entity_type}_{id}). field_type enum: text, textarea, number, money, date, datetime, boolean, select, multiselect, email, url, file.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Nilai Kontrak\",\n    \"entity_type\": \"project\",\n    \"field_type\": \"money\",\n    \"is_required\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat custom field",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Custom field dibuat\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"cf_project_1\",\n        \"name\": \"Nilai Kontrak\",\n        \"entity_type\": \"project\",\n        \"field_type\": \"money\",\n        \"is_required\": true,\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:20.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:20.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Baca nilai custom field",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/custom-field-values",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "custom-field-values"
+              ],
+              "query": [
+                {
+                  "key": "entity_type",
+                  "value": "project"
+                },
+                {
+                  "key": "entity_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Nilai dibaca per entity."
+          },
+          "response": [
+            {
+              "name": "200 - Baca nilai custom field",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil nilai custom field\",\n    \"data\": {\n        \"entity_type\": \"project\",\n        \"entity_id\": \"1\",\n        \"values\": {\n            \"cf_project_1\": 1500000000\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Simpan nilai custom field",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/custom-field-values",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "custom-field-values"
+              ]
+            },
+            "description": "Upsert; key = code custom field.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"entity_type\": \"project\",\n    \"entity_id\": 1,\n    \"values\": {\n        \"cf_project_1\": 1500000000\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Simpan nilai custom field",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Nilai custom field disimpan\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "13. Master Data (admin)",
+      "item": [
+        {
+          "name": "List client",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients"
+              ]
+            },
+            "description": "Master Data Client (admin only)."
+          },
+          "response": [
+            {
+              "name": "200 - List client",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"PT ABC\",\n                \"identifier\": \"CL-0001\",\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:36:19.000000Z\",\n                \"updated_at\": \"2026-09-08T08:36:19.000000Z\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"PT Maju Jaya\",\n                \"identifier\": \"CL-0002\",\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:36:31.000000Z\",\n                \"updated_at\": \"2026-09-08T08:36:31.000000Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 2,\n            \"page\": 1,\n            \"limit\": 2,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients"
+              ]
+            },
+            "description": "identifier opsional; jika kosong digenerate CL-{id}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"PT ABC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat client",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Client dibuat\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT ABC\",\n        \"identifier\": \"CL-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:19.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:19.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail client",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients/{{client_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients",
+                "{{client_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - Detail client",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail client\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT ABC\",\n        \"identifier\": \"CL-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:19.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:19.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update client",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients/{{client_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients",
+                "{{client_id}}"
+              ]
+            },
+            "description": "identifier immutable (tidak bisa diubah saat update).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"PT ABC\",\n    \"status\": \"active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Update client",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Client diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT ABC\",\n        \"identifier\": \"CL-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:19.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:19.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus client",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients/{{client_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients",
+                "{{client_id}}"
+              ]
+            },
+            "description": "Soft delete."
+          },
+          "response": [
+            {
+              "name": "200 - Hapus client",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Client dihapus\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List mitra",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/partners",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "partners"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - List mitra",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"PT Sinar Teknik\",\n                \"identifier\": \"PR-0001\",\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:36:40.000000Z\",\n                \"updated_at\": \"2026-09-08T08:36:40.000000Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 1,\n            \"page\": 1,\n            \"limit\": 1,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat mitra",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/partners",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "partners"
+              ]
+            },
+            "description": "identifier opsional; jika kosong digenerate PR-{id}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"PT Sinar Teknik\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat mitra",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Mitra dibuat\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT Sinar Teknik\",\n        \"identifier\": \"PR-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:40.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:40.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail mitra",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/partners/{{partner_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - Detail mitra",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail mitra\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT Sinar Teknik\",\n        \"identifier\": \"PR-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:40.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:40.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update mitra",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/partners/{{partner_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            },
+            "description": "identifier immutable.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"PT Sinar Teknik\",\n    \"status\": \"active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Update mitra",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Mitra diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"PT Sinar Teknik\",\n        \"identifier\": \"PR-0001\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:40.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:40.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus mitra",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/partners/{{partner_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            },
+            "description": "Soft delete."
+          },
+          "response": [
+            {
+              "name": "200 - Hapus mitra",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Mitra dihapus\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List kategori proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - List kategori proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"code\": \"ETO\",\n                \"name\": \"Engineering to Order\",\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:36:50.000000Z\",\n                \"updated_at\": \"2026-09-08T08:36:50.000000Z\"\n            },\n            {\n                \"id\": 2,\n                \"code\": \"FP\",\n                \"name\": \"Fixed-Price\",\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:36:55.000000Z\",\n                \"updated_at\": \"2026-09-08T08:36:55.000000Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 2,\n            \"page\": 1,\n            \"limit\": 2,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat kategori proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories"
+              ]
+            },
+            "description": "code opsional; jika kosong digenerate PC-{id}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Engineering to Order\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat kategori proyek",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Kategori dibuat\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO\",\n        \"name\": \"Engineering to Order\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:50.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:50.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail kategori proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories/{{category_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories",
+                "{{category_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - Detail kategori proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail kategori proyek\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO\",\n        \"name\": \"Engineering to Order\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:50.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:50.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update kategori proyek",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories/{{category_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories",
+                "{{category_id}}"
+              ]
+            },
+            "description": "code immutable.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Engineering to Order\",\n    \"status\": \"active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Update kategori proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Kategori diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO\",\n        \"name\": \"Engineering to Order\",\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:36:50.000000Z\",\n        \"updated_at\": \"2026-09-08T08:36:50.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus kategori proyek",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories/{{category_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories",
+                "{{category_id}}"
+              ]
+            },
+            "description": "Soft delete."
+          },
+          "response": [
+            {
+              "name": "200 - Hapus kategori proyek",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Kategori dihapus\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List document type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types"
+              ]
+            },
+            "description": "Tipe dokumen + aturan validasi ekstensi & ukuran."
+          },
+          "response": [
+            {
+              "name": "200 - List document type",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"code\": \"DRAW\",\n                \"name\": \"Drawing Teknik\",\n                \"allowed_extension\": \"pdf,dwg\",\n                \"max_size_mb\": 25,\n                \"status\": \"active\",\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:37:00.000000Z\",\n                \"updated_at\": \"2026-09-08T08:37:00.000000Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 1,\n            \"page\": 1,\n            \"limit\": 1,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat document type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types"
+              ]
+            },
+            "description": "code opsional; jika kosong digenerate DT-{id}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Drawing Teknik\",\n    \"allowed_extension\": \"pdf,dwg\",\n    \"max_size_mb\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat document type",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Tipe dokumen dibuat\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"DRAW\",\n        \"name\": \"Drawing Teknik\",\n        \"allowed_extension\": \"pdf,dwg\",\n        \"max_size_mb\": 25,\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:00.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:00.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail document type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types/{{document_type_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types",
+                "{{document_type_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - Detail document type",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail tipe dokumen\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"DRAW\",\n        \"name\": \"Drawing Teknik\",\n        \"allowed_extension\": \"pdf,dwg\",\n        \"max_size_mb\": 25,\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:00.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:00.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update document type",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types/{{document_type_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types",
+                "{{document_type_id}}"
+              ]
+            },
+            "description": "code immutable.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Drawing Teknik\",\n    \"allowed_extension\": \"pdf,dwg\",\n    \"max_size_mb\": 25,\n    \"status\": \"active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Update document type",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Tipe dokumen diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"DRAW\",\n        \"name\": \"Drawing Teknik\",\n        \"allowed_extension\": \"pdf,dwg\",\n        \"max_size_mb\": 25,\n        \"status\": \"active\",\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:00.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:00.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus document type",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types/{{document_type_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types",
+                "{{document_type_id}}"
+              ]
+            },
+            "description": "Soft delete."
+          },
+          "response": [
+            {
+              "name": "200 - Hapus document type",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Tipe dokumen dihapus\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List workflow",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows"
+              ]
+            },
+            "description": "Template workflow (versi)."
+          },
+          "response": [
+            {
+              "name": "200 - List workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"code\": \"ETO-MFG\",\n                \"name\": \"ETO Manufacturing\",\n                \"version\": 1,\n                \"status\": \"active\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 1,\n            \"page\": 1,\n            \"limit\": 1,\n            \"total_page\": 1\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buat workflow",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows"
+              ]
+            },
+            "description": "code opsional (WF-{id} jika kosong). version auto-increment bila code sudah ada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"code\": \"ETO-MFG\",\n    \"name\": \"ETO Manufacturing\",\n    \"stages\": [\n        {\n            \"name\": \"Requirement\",\n            \"sequence\": 1\n        },\n        {\n            \"name\": \"Kick-off\",\n            \"sequence\": 2,\n            \"allow_repeat\": true\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 - Buat workflow",
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Workflow dibuat dengan 2 stage\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO-MFG\",\n        \"name\": \"ETO Manufacturing\",\n        \"version\": 1,\n        \"status\": \"active\",\n        \"total_stages\": 2,\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:10.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:10.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail workflow",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}"
+              ]
+            },
+            "description": "Termasuk array stages."
+          },
+          "response": [
+            {
+              "name": "200 - Detail workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data detail workflow\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO-MFG\",\n        \"name\": \"ETO Manufacturing\",\n        \"version\": 1,\n        \"status\": \"active\",\n        \"total_stages\": 2,\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:10.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:10.000000Z\",\n        \"stages\": [\n            {\n                \"id\": 1,\n                \"code\": \"WS-1-01\",\n                \"name\": \"Requirement\",\n                \"sequence\": 1,\n                \"is_required\": true,\n                \"allow_skip\": false,\n                \"allow_repeat\": false,\n                \"created_by\": \"Superadmin\",\n                \"updated_by\": \"Superadmin\",\n                \"created_at\": \"2026-09-08T08:37:10.000000Z\",\n                \"updated_at\": \"2026-09-08T08:37:10.000000Z\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update workflow",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}"
+              ]
+            },
+            "description": "code & version immutable. stages di-sync ulang bila dikirim.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"ETO Manufacturing\",\n    \"status\": \"active\",\n    \"stages\": [\n        {\n            \"name\": \"Requirement\",\n            \"sequence\": 1\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 - Update workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Workflow diperbarui\",\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"ETO-MFG\",\n        \"name\": \"ETO Manufacturing\",\n        \"version\": 1,\n        \"status\": \"active\",\n        \"total_stages\": 2,\n        \"created_by\": \"Superadmin\",\n        \"updated_by\": \"Superadmin\",\n        \"created_at\": \"2026-09-08T08:37:10.000000Z\",\n        \"updated_at\": \"2026-09-08T08:37:10.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Hapus workflow",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}"
+              ]
+            },
+            "description": "Soft delete."
+          },
+          "response": [
+            {
+              "name": "200 - Hapus workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Workflow dihapus\",\n    \"data\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List stage workflow",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}/stages",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}",
+                "stages"
+              ]
+            },
+            "description": ""
+          },
+          "response": [
+            {
+              "name": "200 - List stage workflow",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil data stage workflow\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"code\": \"WS-1-01\",\n            \"name\": \"Requirement\",\n            \"sequence\": 1,\n            \"is_required\": true,\n            \"allow_skip\": false,\n            \"allow_repeat\": false,\n            \"created_by\": \"Superadmin\",\n            \"updated_by\": \"Superadmin\",\n            \"created_at\": \"2026-09-08T08:37:10.000000Z\",\n            \"updated_at\": \"2026-09-08T08:37:10.000000Z\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Client, Mitra, Kategori Proyek, Document Type, Workflow. Seluruhnya admin only (role gate). Implementasi di master-service (/master-service/api)."
+    }
+  ]
+}

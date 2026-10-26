@@ -13,7 +13,15 @@ class ChildSubMenu extends Model
 {
     use HasActivityLog, HasAdditionalContentMapping, HasContentMapping, HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'sub_menu_id',
+        'title',
+        'slug',
+        'is_active',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 
     protected $appends = ['menu_id'];
 

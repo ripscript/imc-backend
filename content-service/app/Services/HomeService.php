@@ -55,7 +55,7 @@ class HomeService
             $beranda = Menu::where('slug', self::SLUG_BERANDA)->first();
             if (! $beranda) {
                 DB::rollBack();
-                throw new \Exception('Menu beranda tidak ditemukan', 404);
+                throw new \App\Exceptions\Domain\EntityNotFoundException('Menu beranda tidak ditemukan');
             }
 
             $layoutId = MsLayout::findByType('landing_page')->id;
@@ -75,6 +75,8 @@ class HomeService
             $this->saveContentService->store($content, $dto->toArray(), $dto->created_by);
 
             DB::commit();
+
+            $content->content = $content->getDetailBasedOnType();
 
             return $content;
         } catch (\Exception $e) {
@@ -98,6 +100,8 @@ class HomeService
             $this->saveContentService->store($content, $dto->toArray(), $dto->updated_by);
 
             DB::commit();
+
+            $content->content = $content->getDetailBasedOnType();
 
             return $content;
         } catch (\Exception $e) {

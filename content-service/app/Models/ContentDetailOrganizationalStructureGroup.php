@@ -9,5 +9,16 @@ class ContentDetailOrganizationalStructureGroup extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'name',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
+
+    public function members()
+    {
+        return $this->hasMany(ContentDetailOrganizationalStructureMember::class, 'content_detail_organizational_structure_group_id')->orderBy('order', 'asc');
+    }
 }

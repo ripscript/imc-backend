@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\Domain\ValidationException;
 use App\Models\MsNegara;
 use App\Models\MsPerwakilan;
 use App\Models\MsPerwakilanNegara;
@@ -102,7 +103,7 @@ class PerwakilanService
                 if ($totalNegaraValid !== count($dto->negara_id)) {
                     DB::rollBack();
 
-                    return ['error' => 'Terdapat negara yang tidak valid', 'code' => 422];
+                    throw new ValidationException('Terdapat negara yang tidak valid');
                 }
                 foreach ($dto->negara_id as $negara) {
                     MsPerwakilanNegara::create([
@@ -138,7 +139,7 @@ class PerwakilanService
                 if ($totalNegaraValid !== count($dto->negara_id)) {
                     DB::rollBack();
 
-                    return ['error' => 'Terdapat negara yang tidak valid', 'code' => 422];
+                    throw new ValidationException('Terdapat negara yang tidak valid');
                 }
                 foreach ($dto->negara_id as $negara) {
                     MsPerwakilanNegara::firstOrCreate([

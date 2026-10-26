@@ -13,12 +13,8 @@ class QuickLinkController extends Controller
 
     public function index()
     {
-        try {
-            $data = $this->quickLinkService->index();
+        $data = $this->quickLinkService->index();
 
-            return ApiResponse::success($data, 'Berhasil mengambil data link cepat');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return ApiResponse::success($data, 'Berhasil mengambil data link cepat');
     }
 }

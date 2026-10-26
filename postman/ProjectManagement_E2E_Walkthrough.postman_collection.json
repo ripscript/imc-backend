@@ -1,0 +1,2290 @@
+{
+  "info": {
+    "name": "Project Management E2E - Guided Walkthrough",
+    "description": "Panduan langkah-demi-langkah untuk junior front-end: dari MEMBUAT BLUEPRINT di halaman Master, masuk wizard Usulan Proyek, lalu approval aktivasi, eksekusi stage, dan change request setelah project aktif.\n\nMODEL DATA (penting): template hanya REFERENSI baca. FE mengambil blueprint (Step 1.4), menggabungkannya di state FE sendiri, dan mengirim pohon yang sudah dikonfigurasi — API menyimpan persis apa yang dikirim, tidak pernah menyalin diam-diam. Tidak ada baris yang lahir sebelum FE menekan simpan.\n\nCARA PAKAI:\n1. Jalankan folder berurutan: Step 0 (persiapan) -> Step 1 (blueprint di Master) -> Step 2-6 (wizard) -> Step 7 (eksekusi tiga gerbang) -> Lampiran.\n2. Setiap response berisi id yang dibutuhkan request berikutnya — copy nilainya ke variable collection (klik kanan collection > Edit > Variables): workflow_id, workflow_stage_id, project_id, stage_id, task_id, deliverable_id, document_id, member_id, change_request_id.\n3. Step 3 (Tentukan Stage) punya 2 cabang (A = kirim template yang sudah dikonfigurasi, B = manual) — pilih SALAH SATU.\n4. Semua request sudah diberi nomor; jalankan berurutan. Request bertanda (opsional) boleh dilewati.\n\nVariabel base URL (local dev via nginx gateway):\n- master_base_url = master-service (halaman Master: workflow blueprint, client, kategori, document type)\n- base_url = project-service (wizard dan eksekusi: project, stage, task, dokumen, tiga gerbang approval)\n- user_base_url = user-service (login + daftar user/PIC)\n- file_base_url = file-service (upload file lampiran/dokumen)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/project-service/api"
+    },
+    {
+      "key": "master_base_url",
+      "value": "http://localhost:4076/master-service/api"
+    },
+    {
+      "key": "user_base_url",
+      "value": "http://localhost:4076/user-service/api"
+    },
+    {
+      "key": "file_base_url",
+      "value": "http://localhost:4076/file-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_ADMIN"
+    },
+    {
+      "key": "workflow_id",
+      "value": "1",
+      "description": "copy id dari response 1.1 Buat workflow"
+    },
+    {
+      "key": "workflow_stage_id",
+      "value": "1",
+      "description": "copy id stage dari response 1.4 Preview blueprint"
+    },
+    {
+      "key": "client_id",
+      "value": "1",
+      "description": "copy dari response 0.2 List client"
+    },
+    {
+      "key": "category_id",
+      "value": "1",
+      "description": "copy dari response 0.3 List kategori"
+    },
+    {
+      "key": "pic_user_id",
+      "value": "1",
+      "description": "copy dari response 0.4 List user"
+    },
+    {
+      "key": "project_id",
+      "value": "1",
+      "description": "copy id dari response 2.1 Buat proyek"
+    },
+    {
+      "key": "stage_id",
+      "value": "1",
+      "description": "copy dari response Step 3 / 3.3 List stage"
+    },
+    {
+      "key": "task_id",
+      "value": "1",
+      "description": "copy dari response 5.3 Buat task"
+    },
+    {
+      "key": "deliverable_id",
+      "value": "1",
+      "description": "copy dari response 5.8 Buat deliverable"
+    },
+    {
+      "key": "document_id",
+      "value": "1",
+      "description": "copy dari response 5.12 Upload dokumen"
+    },
+    {
+      "key": "member_id",
+      "value": "1",
+      "description": "copy dari response A.3 Tambah anggota"
+    },
+    {
+      "key": "change_request_id",
+      "value": "1",
+      "description": "copy id dari response 7.6/7.7"
+    },
+    {
+      "key": "approval_id",
+      "value": "1",
+      "description": "copy id dari response 8.1 List approval inbox"
+    }
+  ],
+  "item": [
+    {
+      "name": "Step 0 - Persiapan: Auth & Master Data",
+      "description": "Bekal sebelum membuat blueprint. Hasil setiap request dicopy ke variable collection.",
+      "item": [
+        {
+          "name": "0.1 Login admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{user_base_url}}/auth/login",
+              "host": [
+                "{{user_base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Login dulu untuk dapat token. Copy nilai 'token' (atau 'access_token') dari response ke variable {{token}}. Berlaku untuk SEMUA request lain.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email_or_username\": \"superadmin@gmail.com\",\n    \"password\": \"12345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "0.2 List client",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/clients/",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "clients",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "optional"
+                }
+              ]
+            },
+            "description": "Dropdown Client (dipakai Step 2). Copy 'id' ke {{client_id}}."
+          }
+        },
+        {
+          "name": "0.3 List kategori proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/project-categories/",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "project-categories",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "optional"
+                }
+              ]
+            },
+            "description": "Dropdown Kategori Proyek (dipakai Step 2). Copy 'id' ke {{category_id}}."
+          }
+        },
+        {
+          "name": "0.4 List user (PIC)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{user_base_url}}/user/",
+              "host": [
+                "{{user_base_url}}"
+              ],
+              "path": [
+                "user",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "optional"
+                }
+              ]
+            },
+            "description": "Dropdown PIC — email PIC otomatis terbaca dari user ini. Copy 'id' ke {{pic_user_id}}."
+          }
+        },
+        {
+          "name": "0.5 List document type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/document-types/",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "document-types",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "optional"
+                }
+              ]
+            },
+            "description": "Dipakai saat menyusun blueprint deliverable (Step 1) dan kartu Dokumen (Step 5). Tiap tipe mengatur ekstensi dan ukuran file yang boleh diupload."
+          }
+        },
+        {
+          "name": "0.6 Upload file (opsional, bila ada lampiran)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{file_base_url}}/upload",
+              "host": [
+                "{{file_base_url}}"
+              ],
+              "path": [
+                "upload"
+              ]
+            },
+            "description": "Upload file lampiran/dokumen (Step 2 & Step 5). Aturan: pdf,doc,docx,jpg,jpeg,png, maks 5 MB. Copy URL hasil upload ke 'file_url'.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/path/ke/Rencana_Project_2026.pdf"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 1 - Blueprint Workflow (halaman Master)",
+      "description": "Halaman Master > Workflow. Di sinilah template (blueprint) dibuat: tiap stage membawa description, flag Perlu Approval, daftar task, dan daftar deliverable. Template TIDAK menyimpan tanggal dan orang — itu diisi per project di wizard. Template adalah referensi baca: revisi di sini tidak mengubah project yang sudah tersimpan.",
+      "item": [
+        {
+          "name": "1.1 Buat workflow + blueprint",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows"
+              ]
+            },
+            "description": "Buat workflow lengkap dengan isi tiap stage. tasks[]: title wajib, priority opsional (low|medium|high). deliverables[]: name wajib, document_type_id opsional (lihat 0.5), is_required default true. Copy 'id' workflow ke {{workflow_id}}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"ETO Manufacturing\",\n    \"stages\": [\n        {\n            \"name\": \"Requirement\",\n            \"sequence\": 1,\n            \"description\": \"Pengumpulan dan analisis kebutuhan proyek.\"\n        },\n        {\n            \"name\": \"Manufacturing\",\n            \"sequence\": 2,\n            \"description\": \"Proses produksi dan perakitan.\",\n            \"requires_approval\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"description\": \"Siapkan area dan material.\",\n                    \"priority\": \"high\"\n                },\n                {\n                    \"title\": \"Setup mesin\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                },\n                {\n                    \"name\": \"Work Order\",\n                    \"document_type_id\": 1\n                }\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "1.2 Detail workflow",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}"
+              ]
+            },
+            "description": "Buka kembali workflow beserta blueprint-nya."
+          }
+        },
+        {
+          "name": "1.3 Update blueprint (opsional revisi)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}"
+              ]
+            },
+            "description": "Edit blueprint kapan saja (REPLACE-ALL: kirim ulang daftar stage lengkap; yang hilang ikut terhapus beserta tasks/deliverables-nya). Revisi template TIDAK mengubah project yang sudah tersimpan — API tidak pernah menyalin diam-diam.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"ETO Manufacturing\",\n    \"stages\": [\n        {\n            \"name\": \"Requirement\",\n            \"sequence\": 1,\n            \"description\": \"Pengumpulan dan analisis kebutuhan proyek.\"\n        },\n        {\n            \"name\": \"Manufacturing\",\n            \"sequence\": 2,\n            \"description\": \"Proses produksi dan perakitan.\",\n            \"requires_approval\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"description\": \"Siapkan area dan material.\",\n                    \"priority\": \"high\"\n                },\n                {\n                    \"title\": \"Setup mesin\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                },\n                {\n                    \"name\": \"Work Order\",\n                    \"document_type_id\": 1\n                }\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "1.4 Preview blueprint",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{master_base_url}}/workflows/{{workflow_id}}/stages",
+              "host": [
+                "{{master_base_url}}"
+              ],
+              "path": [
+                "workflows",
+                "{{workflow_id}}",
+                "stages"
+              ]
+            },
+            "description": "Sumber prefill FE: baca blueprint untuk digabung di state FE (Step 3 & Step 5). Copy 'id' tiap stage sebagai workflow_stage_id (ke {{workflow_stage_id}})."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 2 - Wizard 1: Usulan Proyek Kolaborasi",
+      "description": "Layar wizard step 1 (Figma 'Tambah Project'). Membuat project berstatus draft.",
+      "item": [
+        {
+          "name": "2.1 Buat proyek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Form Usulan Proyek. Field: title, description (rich text/HTML), client_id, partner_id (opsional), category_id, pic_user_id, start_date (opsional), target_end_date, budget = Nilai Proyek, attachments (file_url dari 0.6 + file_name + file_size_kb; maks 5 file @ 5 MB). Field PM opsional lain: duration, location, organization_name, organization_address, status, progress, workflow_id. Field content/CMS (content_id, slug, thumbnail, layout, tags, additional content) SENGAJA tidak dipakai di alur ini. Response berisi 'id' — COPY ke {{project_id}}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Development Mesin Giling\",\n    \"description\": \"<p>Deskripsi proyek kolaborasi.</p>\",\n    \"client_id\": 1,\n    \"partner_id\": null,\n    \"category_id\": 1,\n    \"pic_user_id\": 1,\n    \"start_date\": \"2026-06-01\",\n    \"target_end_date\": \"2026-09-30\",\n    \"budget\": 100000000,\n    \"attachments\": [\n        {\n            \"file_url\": \"https://files.example.com/Rencana_Project_2026.pdf\",\n            \"file_name\": \"Rencana_Project_2026.pdf\",\n            \"file_size_kb\": 1228\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "2.2 Detail proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Buka kembali data proyek (dipakai tiap kali user kembali ke Step 1). Email PIC sudah ikut di dalam object 'pic'."
+          }
+        },
+        {
+          "name": "2.3 Update proyek (opsional revisi)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Edit kapan saja (navigasi bebas): kirim HANYA field yang berubah. Hapus lampiran via 'deleted_attachment_ids'.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Development Mesin Giling (Revisi)\",\n    \"target_end_date\": \"2026-10-31\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "2.4 Cek setup-state",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/setup-state",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "setup-state"
+              ]
+            },
+            "description": "Ceklis kelengkapan wizard: steps {1,2,3,4} true/false + daftar 'missing' bila belum lengkap. Setelah Step 2 benar, steps.1 = true."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 3 - Wizard 2: Tentukan Stage (pilih A atau B)",
+      "description": "Layar wizard step 2. PILIH SALAH SATU cabang: A = kirim template yang sudah dikonfigurasi di FE (hasil gabungan blueprint Step 1.4 + edit user) dalam SATU request — inilah 'create project_stage from it'. B = tab 'Buat Manual' (ketik nama stage sendiri, hanya milik project ini). Keduanya memakai endpoint yang sama. API menyimpan persis apa yang dikirim: tidak ada yang tersalin otomatis, tidak ada baris yang lahir sebelum FE menekan simpan.",
+      "item": [
+        {
+          "name": "3.1 Kirim template terkonfigurasi (cabang A)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "Satu request membuat stage + tasks + deliverables sekaligus. workflow_id + workflow_stage_id hanya penanda asal (provenance, divalidasi) — ISINYA murni dari body ini. Nested tasks[]/deliverables[] mengganti isi stage bila key-nya dikirim (entry ber-id = update, tanpa id = buat baru, yang hilang = hapus). 'sequence' cukup menentukan urutan (disimpan ulang 1..n).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"workflow_id\": 1,\n    \"stages\": [\n        {\n            \"workflow_stage_id\": 1,\n            \"name\": \"Requirement\",\n            \"sequence\": 1,\n            \"description\": \"Pengumpulan dan analisis kebutuhan proyek.\"\n        },\n        {\n            \"workflow_stage_id\": 2,\n            \"name\": \"Manufacturing\",\n            \"sequence\": 2,\n            \"allow_skip\": true,\n            \"description\": \"Proses produksi dan perakitan.\",\n            \"requires_approval\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"description\": \"Siapkan area dan material.\",\n                    \"priority\": \"high\",\n                    \"due_date\": \"2026-06-05\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                }\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "3.2 Buat manual (cabang B)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "Tanpa workflow_id dan tanpa workflow_stage_id — stage hanya milik project ini, Step 5-nya mulai dari kosong. Request ini REPLACE-ALL: untuk edit/hapus/susun ulang, kirim ulang DAFTAR LENGKAP (yang punya 'id' dipertahankan, yang tidak ada 'id' dibuat baru, yang hilang dihapus). 422 bila menghapus stage yang masih dituju dependency stage lain.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stages\": [\n        {\n            \"name\": \"Requirement\",\n            \"sequence\": 1\n        },\n        {\n            \"name\": \"Manufacturing\",\n            \"sequence\": 2,\n            \"allow_skip\": true\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "3.3 List stage (verifikasi)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages"
+              ]
+            },
+            "description": "Tabel 'Daftar Stage'. Membaca TIDAK membuat baris apa pun. Copy 'id' tiap stage — stage pertama dipakai sebagai {{stage_id}} untuk Step 4 dan 5. Setelah ini steps.2 = true."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 4 - Wizard 3: Tentukan Timeline",
+      "description": "Layar wizard step 3. Isi 'id' stage dari 3.3. Durasi dihitung otomatis inklusif (tanggal selesai - tanggal mulai + 1 hari).",
+      "item": [
+        {
+          "name": "4.1 Save timeline",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/timeline",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "timeline"
+              ]
+            },
+            "description": "Tanggal proyek + tanggal tiap stage + dependency opsional ('Stage B setelah Stage A' = depends_on_project_stage_id: id A). Kirim null untuk menghapus dependency. 422 bila: tanggal selesai < mulai, stage di luar periode proyek, self-ref/siklus, atau dependency mulai lebih akhir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"start_date\": \"2026-06-01\",\n    \"target_end_date\": \"2026-09-30\",\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"start_date\": \"2026-06-03\",\n            \"end_date\": \"2026-06-09\"\n        },\n        {\n            \"id\": 2,\n            \"start_date\": \"2026-06-10\",\n            \"end_date\": \"2026-06-16\",\n            \"depends_on_project_stage_id\": 1\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "4.2 Cek setup-state",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/setup-state",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "setup-state"
+              ]
+            },
+            "description": "Setelah tanggal lengkap, steps.3 = true."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 5 - Wizard 4: Konfigurasi Setiap Stage",
+      "description": "Layar wizard step 4. DISARANKAN: simpan seluruh stage dalam SATU request bulk 5.0 (cukup kirim stage yang diubah; is_configured otomatis true untuk semua stage). Fallback satuan: ULANGI 5.1-5.2 untuk tiap stage (ganti {{stage_id}}). Form di-prefill DARI STATE FE (hasil gabungan blueprint + edit user di Step 3) — API hanya menampilkan baris yang sudah tersimpan.",
+      "item": [
+        {
+          "name": "5A - Simpan Bulk (disarankan)",
+          "description": "Satu tombol Simpan untuk seluruh layar Step 5: kirim semua stage yang diubah dalam satu request 5.0 (atomik). Respons sudah berisi setup_state untuk indikator kelengkapan wizard.",
+          "item": [
+            {
+              "name": "5.0 Simpan konfigurasi semua stage sekaligus (bulk, disarankan)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/configuration",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "configuration"
+                  ]
+                },
+                "description": "Simpan konfigurasi BANYAK stage dalam SATU request (atomik: gagal satu = gagal semua, error terindeks stages.{i}.... Hanya stage yang dikirim yang kontennya diubah (info + tasks[] + deliverables[], aturan replace sama seperti 5.2); is_configured disapu true untuk SEMUA stage proyek sehingga satu panggilan ini menyatakan step 4 selesai. requires_approval hanya menandai perlunya clearance saat complete; tidak ada daftar approver. Respons berisi stages + setup_state sekaligus. Untuk 30+ stage, kirim seluruh form dalam satu request ini.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"description\": \"Tahap requirement\",\n            \"allow_skip\": true,\n            \"tasks\": [\n                {\n                    \"title\": \"Persiapan produksi\",\n                    \"priority\": \"high\",\n                    \"due_date\": \"2026-06-05\"\n                }\n            ],\n            \"deliverables\": [\n                {\n                    \"name\": \"Production Plan\",\n                    \"document_type_id\": 1,\n                    \"is_required\": true\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"description\": \"Tahap feasibility\",\n            \"requires_approval\": true\n        }\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "5A - Info Dasar Stage",
+          "description": "Fallback satuan bila tidak memakai bulk 5.0: baca (5.1) + simpan (5.2) info satu stage beserta isi kartu Task & Deliverable, termasuk flag Perlu Approval.",
+          "item": [
+            {
+              "name": "5.1 Detail stage",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}"
+                  ]
+                },
+                "description": "Buka konfigurasi satu stage: info + tasks + deliverables + documents + field clearance (requires_approval, approved_by, approved_at, approver) yang TERSIMPAN. Tidak ada prefill server-side — yang kosong berarti memang belum disimpan."
+              }
+            },
+            {
+              "name": "5.2 Simpan konfigurasi stage",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}"
+                  ]
+                },
+                "description": "Simpan SELURUH form stage sekaligus: info + tasks[] + deliverables[] (aturan replace sama seperti 3.1: ber-id = update, tanpa id = buat, hilang = hapus, [] = kosongkan). Otomatis menandai stage 'configured'. requires_approval hanya menandai perlunya clearance saat complete; tidak ada daftar approver.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"description\": \"Tahap requirement\",\n    \"start_date\": \"2026-06-03\",\n    \"end_date\": \"2026-06-09\",\n    \"requires_approval\": true,\n    \"tasks\": [\n        {\n            \"title\": \"Persiapan produksi\",\n            \"priority\": \"high\",\n            \"due_date\": \"2026-06-05\"\n        }\n    ],\n    \"deliverables\": [\n        {\n            \"name\": \"Production Plan\",\n            \"document_type_id\": 1,\n            \"is_required\": true\n        }\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "5B - Kartu Task (edit satuan, opsional)",
+          "description": "Endpoint satuan untuk edit cepat di luar alur simpan form. Tidak wajib bila selalu menyimpan via 5.2.",
+          "item": [
+            {
+              "name": "5.3 Buat task",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/tasks",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "tasks"
+                  ]
+                },
+                "description": "priority default medium, status default pending. Copy 'id' ke {{task_id}}.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Persiapan produksi\",\n    \"description\": \"Siapkan area dan material\",\n    \"priority\": \"high\",\n    \"assignee_id\": 1,\n    \"due_date\": \"2026-06-05\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "5.4 List task",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/tasks",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "tasks"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "description": "optional"
+                    }
+                  ]
+                },
+                "description": "Isi kartu Task (checkbox + badge 'x/y Selesai')."
+              }
+            },
+            {
+              "name": "5.5 Toggle task (centang)",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/tasks/{{task_id}}/toggle",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "tasks",
+                    "{{task_id}}",
+                    "toggle"
+                  ]
+                },
+                "description": "Klik checkbox task: pending <-> done. Response berisi counter done_count/total_count + stage_progress untuk badge."
+              }
+            },
+            {
+              "name": "5.6 Update task (opsional)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/tasks/{{task_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "tasks",
+                    "{{task_id}}"
+                  ]
+                },
+                "description": "Edit task: kirim hanya field yang berubah.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Persiapan produksi (revisi)\",\n    \"status\": \"in_progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "5.7 Hapus task (opsional)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/tasks/{{task_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "tasks",
+                    "{{task_id}}"
+                  ]
+                },
+                "description": "Hapus task yang salah input."
+              }
+            }
+          ]
+        },
+        {
+          "name": "5C - Kartu Deliverable (edit satuan, opsional)",
+          "description": "Endpoint satuan untuk edit cepat di luar alur simpan form.",
+          "item": [
+            {
+              "name": "5.8 Buat deliverable",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/deliverables",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "deliverables"
+                  ]
+                },
+                "description": "is_required=true ikut menghitung 'Dokumen Wajib' di Review. Copy 'id' ke {{deliverable_id}}.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Production Plan\",\n    \"document_type_id\": 1,\n    \"is_required\": true,\n    \"due_date\": \"2026-06-09\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "5.9 List deliverable",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/deliverables",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "deliverables"
+                  ]
+                },
+                "description": "Checklist Deliverable + badge status (pending/wip/completed)."
+              }
+            },
+            {
+              "name": "5.10 Update deliverable (opsional)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/deliverables/{{deliverable_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "deliverables",
+                    "{{deliverable_id}}"
+                  ]
+                },
+                "description": "Contoh: ubah status menjadi wip/completed.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": \"wip\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "5.11 Hapus deliverable (opsional)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/deliverables/{{deliverable_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "deliverables",
+                    "{{deliverable_id}}"
+                  ]
+                },
+                "description": "Hapus deliverable."
+              }
+            }
+          ]
+        },
+        {
+          "name": "5D - Kartu Dokumen",
+          "description": "Kartu Dokumen: upload (via 0.6 dulu), list, hapus.",
+          "item": [
+            {
+              "name": "5.12 Upload dokumen",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/documents",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "documents"
+                  ]
+                },
+                "description": "Tombol '+ Tambah Dokumen'. LANGKAH: upload file dulu via 0.6, lalu simpan URL-nya sebagai 'file_path'. Upload ulang 'file_name' yang sama membuat versi n+1 (versi lama jadi superseded). Ekstensi/ukuran divalidasi terhadap document type. Copy 'id' ke {{document_id}}.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"document_type_id\": 1,\n    \"file_name\": \"Production Plan.pdf\",\n    \"file_path\": \"https://files.example.com/plan-v1.pdf\",\n    \"file_size_kb\": 1228\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "5.13 List dokumen",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/documents",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "documents"
+                  ]
+                },
+                "description": "Daftar file kartu Dokumen (nama + versi + ukuran)."
+              }
+            },
+            {
+              "name": "5.14 Hapus dokumen (opsional)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/documents/{{document_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    "stages",
+                    "{{stage_id}}",
+                    "documents",
+                    "{{document_id}}"
+                  ]
+                },
+                "description": "Hapus dokumen."
+              }
+            }
+          ]
+        },
+        {
+          "name": "5.17 Cek setup-state",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/setup-state",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "setup-state"
+              ]
+            },
+            "description": "Ulangi 5.1-5.14 untuk SEMUA stage. Bila setiap stage configured, steps.4 = true dan siap ke Review."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 6 - Wizard 5: Review & Activate",
+      "description": "Layar wizard step 5 (Review & Activate Project).",
+      "item": [
+        {
+          "name": "6.1 Review proyek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/review",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "review"
+              ]
+            },
+            "description": "Ringkasan + Preview Timeline (Gantt). Selalu 200: bila belum lengkap, lihat object 'setup' (ready_to_activate=false + missing[]) untuk tahu step mana yang kurang. summary.total_approval menghitung stage ber-flag requires_approval (bukan antrean keputusan)."
+          }
+        },
+        {
+          "name": "6.2 Activate project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate"
+              ]
+            },
+            "description": "Tombol oranye 'Activate Project'. 422 bila setup belum lengkap, 409 bila sudah tidak draft. SELALU dua langkah: status -> pending_approval (lanjut ke Step 7.1 untuk disetujui super_admin/admin_pusat -> active)."
+          }
+        },
+        {
+          "name": "6.3 Simpan draft (tombol abu-abu)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Tombol 'Simpan Draft' = TIDAK ADA endpoint khusus — cukup tutup wizard atau update biasa; project tetap draft dan bisa dilanjutkan kapan saja.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Development Mesin Giling\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 7 - Eksekusi: Approval Aktivasi, Clearance Stage & Change Request",
+      "description": "Setelah wizard selesai (Step 6). TOKEN: gunakan token super_admin/admin_pusat untuk semua keputusan (7.1, 7.2, clearance pada 7.3, dan 7.8-7.10); token admin_pustik cukup untuk pengisian, 7.6, dan 7.7.\n\nGATE 1 — AKTIVASI: 6.2 selalu mengirim proyek ke pending_approval. Pilih satu cabang per proyek: 7.1 menyetujui (status -> active, stage pertama -> in_progress, activated_by/at tercatat) ATAU 7.2 menolak (status -> draft). Untuk menguji cabang lainnya, ulangi wizard dengan proyek lain.\n\nGATE 2 — CLEARANCE STAGE: 7.3 hanya untuk stage in_progress pada proyek active. Untuk satu stage, pilih complete (7.3) ATAU skip (7.4, bila allow_skip). Setelah 7.3/7.4, copy data.next_stage.id ke {{stage_id}} untuk melanjutkan. Setelah complete, 7.5 dapat membuka kembali stage tersebut bila allow_repeat; reopen mengosongkan completed_at serta approved_by/at sehingga pengulangan butuh clearance baru.\n\nGATE 3 — CHANGE REQUEST: 7.6 mencatat usulan -> pending_approval; copy id ke {{change_request_id}}. Pilih satu cabang per CR: 7.8 menyetujui lalu 7.9 menerapkan (approved -> applied) ATAU 7.10 menolak (notes wajib, proyek tidak berubah). Untuk menguji cabang lainnya, buat CR baru lewat 7.6.",
+      "item": [
+        {
+          "name": "7.1 Approve aktivasi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate",
+                "approve"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat (403 untuk role lain). Efek: status -> active, stage pertama -> in_progress, activated_by/at tercatat. 409 bila bukan pending_approval."
+          }
+        },
+        {
+          "name": "7.2 Reject aktivasi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activate/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activate",
+                "reject"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Efek: status -> draft (revisi + aktivasi ulang). 409 bila bukan pending_approval."
+          }
+        },
+        {
+          "name": "7.3 Request clearance stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/request-clearance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "request-clearance"
+              ]
+            },
+            "description": "PIC/Admin mengajukan clearance stage yang butuh approval (requires_approval=true) setelah checklist task dan deliverable wajib beres. Stage status -> pending_clearance.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Pekerjaan stage selesai, mohon review clearance.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.4 Reject clearance stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/reject-clearance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "reject-clearance"
+              ]
+            },
+            "description": "Approver menolak clearance stage disertai alasan revisi. Stage kembali ke in_progress.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Dokumen uji belum ditandatangani QA lead.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.5 Complete stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "complete"
+              ]
+            },
+            "description": "Hanya stage in_progress pada proyek active. Digebangi: dependency selesai, semua task done/cancelled, deliverable wajib completed. Bila requires_approval=true: hanya super_admin/admin_pusat (403 untuk peran lain); approved_by/at tercatat. Sukses: stage completed, next_stage in_progress, atau proyek completed. 422 memuat missing[] (mis. stage_{id}.open_tasks)."
+          }
+        },
+        {
+          "name": "7.6 Skip stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/skip",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "skip"
+              ]
+            },
+            "description": "Lewati stage bila allow_skip=true (tanpa gerbang). 422 bila tidak mengizinkan."
+          }
+        },
+        {
+          "name": "7.7 Reopen stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/stages/{{stage_id}}/reopen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "stages",
+                "{{stage_id}}",
+                "reopen"
+              ]
+            },
+            "description": "Buka kembali stage completed bila allow_repeat=true (stage -> in_progress, completed_at + approved_by/at dikosongkan). 422 bila tidak mengizinkan."
+          }
+        },
+        {
+          "name": "7.8 Buat change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ]
+            },
+            "description": "Admin mencatat usulan (dari client bila ada: client_id; requested_by = admin pencatat). proposed_changes hanya menerima field whitelist: title, description, start_date, target_end_date, budget, location, duration, organization_name, organization_address, client_id, partner_id, category_id, pic_user_id, ditambah stages:[{id,start_date?,end_date?}]. Field lain -> 422; tanggal memakai YYYY-MM-DD. Hasil: pending_approval + change_no otomatis.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Perpanjang target akhir\",\n  \"reason\": \"Client meminta penambahan scope.\",\n  \"client_id\": 1,\n  \"proposed_changes\": {\n    \"target_end_date\": \"2026-11-30\",\n    \"budget\": 750000000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.9 List change request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests?status=pending_approval&page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending_approval"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Contoh menampilkan halaman pertama CR pending_approval. Ubah status menjadi approved/rejected/applied, ubah page/limit, atau hapus query untuk semua CR. Copy id ke {{change_request_id}}."
+          }
+        },
+        {
+          "name": "7.10 Approve change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "approve"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Efek: pending_approval -> approved. 409 bila status lain."
+          }
+        },
+        {
+          "name": "7.11 Apply change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/apply",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "apply"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. Menulis proposed_changes ke proyek (+ tanggal stage), lalu approved -> applied. 409 bila belum approved, 422 bila stage asing."
+          }
+        },
+        {
+          "name": "7.12 Reject change request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/change-requests/{{change_request_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "change-requests",
+                "{{change_request_id}}",
+                "reject"
+              ]
+            },
+            "description": "Hanya super_admin/admin_pusat. notes WAJIB. Efek: -> rejected, proyek tidak berubah.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Dampak biaya belum jelas.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "7.13 Detail proyek (verifikasi)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}"
+              ]
+            },
+            "description": "Cek status proyek (pending_approval/active/completed), activated_by/at, progress, dan current_stage."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 8 - Layar Approval Proyek (Global Inbox Home / My Account / Approval)",
+      "description": "Sesuai desain Spec 006: Layar antarmuka terpusat bagi approver untuk melihat seluruh pengajuan approval lintas proyek (Aktivasi Proyek, Stage Clearance, dan Change Request).",
+      "item": [
+        {
+          "name": "8.1 List approval inbox (semua pending)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals?status=pending&page=1&per_page=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "pending | approved | rejected | all"
+                },
+                {
+                  "key": "type",
+                  "value": "all",
+                  "description": "activation | stage_clearance | change_request | all",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "kata kunci pencarian",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Menampilkan daftar seluruh approval menunggu tindakan. Salin id approval ke variable {{approval_id}} untuk request selanjutnya."
+          }
+        },
+        {
+          "name": "8.2 Filter approval per jenis request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals?status=pending&type=stage_clearance&page=1&per_page=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "type",
+                  "value": "stage_clearance",
+                  "description": "activation | stage_clearance | change_request"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Filter hanya menampilkan jenis Stage Clearance."
+          }
+        },
+        {
+          "name": "8.3 Direct approve dari tabel inbox",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals/{{approval_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals",
+                "{{approval_id}}",
+                "approve"
+              ]
+            },
+            "description": "Tombol Centang Hijau pada tabel Approval Proyek. Langsung menyetujui request (aktivasi proyek, stage clearance, atau change request)."
+          }
+        },
+        {
+          "name": "8.4 Direct reject dari tabel inbox",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/approvals/{{approval_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "approvals",
+                "{{approval_id}}",
+                "reject"
+              ]
+            },
+            "description": "Tombol Silang Merah pada tabel Approval Proyek. Menolak request disertai catatan revisi wajib.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Perlu perbaikan kelistrikan sebelum disetujui.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lampiran - Activities & Members",
+      "description": "Di luar wizard: jejak audit dan keanggotaan (dipakai layar monitoring / setelah aktif).",
+      "item": [
+        {
+          "name": "A.1 List aktivitas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/activities",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "activities"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "optional"
+                }
+              ]
+            },
+            "description": "Jejak audit: siapa mengubah apa dan kapan (terbaru dulu)."
+          }
+        },
+        {
+          "name": "A.2 List anggota",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "members"
+              ]
+            },
+            "description": "Anggota proyek. PIC otomatis masuk sebagai role 'pic' saat aktivasi/penetapan PIC."
+          }
+        },
+        {
+          "name": "A.3 Tambah anggota",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "members"
+              ]
+            },
+            "description": "role default member (pic | member | approver). 422 bila user sudah anggota. Copy 'id' ke {{member_id}}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": 2,\n    \"role\": \"member\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "A.4 Hapus anggota",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                "members",
+                "{{member_id}}"
+              ]
+            },
+            "description": "422 bila user masih tercatat sebagai PIC proyek/stage — lepas dulu peran PIC-nya."
+          }
+        }
+      ]
+    }
+  ]
+}

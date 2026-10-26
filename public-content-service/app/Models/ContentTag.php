@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ContentTag extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_type',
+        'content_id',
+        'tag_id',
+        'created_by',
+        'updated_by',
+    ];
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_type', 'content_id', 'tag_id', 'tag'];
 
     protected $appends = ['tag_title'];

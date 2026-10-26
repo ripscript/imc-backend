@@ -2,10 +2,25 @@
 
 namespace App\Services;
 
+use App\Models\Visitor;
 use Illuminate\Support\Facades\DB;
 
 class VisitorService
 {
+    public function create(array $data): void
+    {
+        Visitor::create([
+            'ip_address' => $data['ip_address'],
+            'slug' => $data['slug'],
+            'latitude' => $data['latitude'] ?? null,
+            'longitude' => $data['longitude'] ?? null,
+            'country' => $data['country'] ?? null,
+            'city' => $data['city'] ?? null,
+            'user_agent' => $data['user_agent'] ?? null,
+            'device_type' => $data['device_type'] ?? null,
+        ]);
+    }
+
     public function track(array $data)
     {
         $ipAddress = $data['ip'] ?? request()->ip();

@@ -1,0 +1,250 @@
+{
+  "info": {
+    "name": "Public Content Service - Content (type: project)",
+    "description": "Sample requests/responses untuk konten dengan type 'project' pada public-content-service.\n\nEndpoints:\n1. GET /api/content - Index content (list project, content type = 'project')\n2. GET /api/content/project - Detail project\n\nBase URL local dev: http://localhost:4076/public-content-service/api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/public-content-service/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Content Index (project list)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/content?type=sub_menu&slug[]=profil&slug[]=proyek&page=1&limit=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "content"
+          ],
+          "query": [
+            {
+              "key": "type",
+              "value": "sub_menu",
+              "description": "required | in:menu,sub_menu,child_sub_menu - level menu tempat konten berada"
+            },
+            {
+              "key": "slug[]",
+              "value": "profil",
+              "description": "required | array - slug menu per level (urutan sesuai type)"
+            },
+            {
+              "key": "slug[]",
+              "value": "proyek",
+              "description": "required | array"
+            },
+            {
+              "key": "page",
+              "value": "1",
+              "description": "optional - halaman (default 1)"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "description": "optional - jumlah item per halaman"
+            },
+            {
+              "key": "search",
+              "value": "",
+              "description": "optional - cari berdasarkan title",
+              "disabled": true
+            },
+            {
+              "key": "sort_by",
+              "value": "publish_date",
+              "description": "optional - kolom sorting",
+              "disabled": true
+            },
+            {
+              "key": "sort_order",
+              "value": "desc",
+              "description": "optional - asc | desc",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - List project berhasil",
+          "originalRequest": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/content?type=sub_menu&slug[]=profil&slug[]=proyek&page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "content"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "sub_menu"
+                },
+                {
+                  "key": "slug[]",
+                  "value": "profil"
+                },
+                {
+                  "key": "slug[]",
+                  "value": "proyek"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil detail content sub_menu\",\n    \"data\": {\n        \"content_id\": 12,\n        \"type\": \"project\",\n        \"section_title\": \"Proyek Strategis\",\n        \"title\": \"Proyek Strategis\",\n        \"slug\": \"proyek\",\n        \"layout\": \"list-project\",\n        \"order\": 1,\n        \"is_section\": false,\n        \"is_accessible\": true,\n        \"sub_type\": null,\n        \"content\": [\n            {\n                \"title\": \"Revitalisasi Taman Kota\",\n                \"slug\": \"revitalisasi-taman-kota\",\n                \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n                \"publish_date\": \"2026-07-15\",\n                \"duration\": \"12 bulan\",\n                \"location\": \"Jakarta Pusat\",\n                \"start_date\": \"2026-01-10\",\n                \"budget\": \"Rp 25.000.000.000\",\n                \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n                \"kategori_title\": \"Infrastruktur\",\n                \"project_no\": \"IMC.2026-001\",\n                \"status\": \"active\",\n                \"progress\": 80,\n                \"target_end_date\": \"2027-01-10\",\n                \"client_name\": \"PT ABC\",\n                \"partner_name\": \"PT Sinar Teknik\",\n                \"category_name\": \"Engineering to Order\"\n            },\n            {\n                \"title\": \"Pembangunan Jembatan Penyeberangan\",\n                \"slug\": \"pembangunan-jembatan-penyeberangan\",\n                \"thumbnail_path\": \"/storage/projects/jembatan-penyeberangan.jpg\",\n                \"publish_date\": \"2026-06-20\",\n                \"duration\": \"8 bulan\",\n                \"location\": \"Jakarta Selatan\",\n                \"start_date\": \"2025-11-01\",\n                \"budget\": \"Rp 18.500.000.000\",\n                \"organization_name\": \"Dinas Bina Marga\",\n                \"kategori_title\": \"Infrastruktur\",\n                \"project_no\": \"IMC.2026-001\",\n                \"status\": \"active\",\n                \"progress\": 80,\n                \"target_end_date\": \"2027-01-10\",\n                \"client_name\": \"PT ABC\",\n                \"partner_name\": \"PT Sinar Teknik\",\n                \"category_name\": \"Engineering to Order\"\n            }\n        ],\n        \"breadcrumb\": [\n            \"Profil\",\n            \"Proyek Strategis\"\n        ],\n        \"parent_menu\": \"profil\",\n        \"meta\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"total\": 2,\n            \"total_page\": 1\n        }\n    }\n}"
+        },
+        {
+          "name": "422 - Validasi gagal",
+          "status": "Unprocessable Entity",
+          "code": 422,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"message\": \"The selected type is invalid.\",\n    \"errors\": {\n        \"type\": [\n            \"The selected type is invalid.\"\n        ],\n        \"slug\": [\n            \"The slug field is required.\"\n        ]\n    }\n}"
+        },
+        {
+          "name": "404 - Content tidak ditemukan",
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Content sub_menu\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "Detail Project",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/content/project?type=sub_menu&content_slug=proyek&slug=revitalisasi-taman-kota",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "content",
+            "project"
+          ],
+          "query": [
+            {
+              "key": "type",
+              "value": "sub_menu",
+              "description": "required | in:menu,sub_menu,child_sub_menu"
+            },
+            {
+              "key": "content_slug",
+              "value": "proyek",
+              "description": "required - slug parent content (menu/sub_menu/child_sub_menu yang menampung konten project)"
+            },
+            {
+              "key": "slug",
+              "value": "revitalisasi-taman-kota",
+              "description": "required - slug detail project"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Detail project berhasil",
+          "originalRequest": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/content/project?type=sub_menu&content_slug=proyek&slug=revitalisasi-taman-kota",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "content",
+                "project"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "sub_menu"
+                },
+                {
+                  "key": "content_slug",
+                  "value": "proyek"
+                },
+                {
+                  "key": "slug",
+                  "value": "revitalisasi-taman-kota"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Berhasil mengambil detail proyek\",\n    \"data\": {\n        \"title\": \"Revitalisasi Taman Kota\",\n        \"slug\": \"revitalisasi-taman-kota\",\n        \"content\": \"Revitalisasi Taman Kota bertujuan menghadirkan ruang terbuka hijau yang nyaman, aman, dan inklusif bagi seluruh warga...\",\n        \"thumbnail_path\": \"/storage/projects/revitalisasi-taman-kota.jpg\",\n        \"publish_date\": \"2026-07-15\",\n        \"duration\": \"12 bulan\",\n        \"location\": \"Jakarta Pusat\",\n        \"start_date\": \"2026-01-10\",\n        \"budget\": \"Rp 25.000.000.000\",\n        \"organization_name\": \"Dinas Pertamanan dan Hutan Kota\",\n        \"organization_address\": \"Jl. Merdeka Selatan No. 8-9, Jakarta Pusat\",\n        \"kategori_title\": \"Infrastruktur\",\n        \"layout\": {\n            \"name\": \"Detail Proyek Standar\",\n            \"slug\": \"detail-project-standar\"\n        },\n        \"parent_menu\": \"profil\",\n        \"breadcrumb\": [\n            \"Profil\",\n            \"Proyek Strategis\",\n            \"Revitalisasi Taman Kota\"\n        ],\n        \"project_no\": \"IMC.2026-001\",\n        \"status\": \"active\",\n        \"progress\": 80,\n        \"target_end_date\": \"2027-01-10\",\n        \"client_name\": \"PT ABC\",\n        \"partner_name\": \"PT Sinar Teknik\",\n        \"category_name\": \"Engineering to Order\"\n    }\n}"
+        },
+        {
+          "name": "404 - Proyek tidak ditemukan",
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Proyek\",\n    \"errors\": null,\n    \"data\": null\n}"
+        }
+      ]
+    }
+  ]
+}

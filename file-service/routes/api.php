@@ -46,7 +46,7 @@ Route::get('show', [FileController::class, 'show']);
 Route::get('download', [FileController::class, 'download']);
 Route::post('base64', [FileController::class, 'getFileBase64']);
 
-Route::middleware(['jwt.error:admin,pemohon'])->group(function () {
+Route::middleware(['jwt.error:admin'])->group(function () {
     Route::post('upload', [FileController::class, 'upload']);
     Route::post('compress-image', [FileController::class, 'compressImage']);
     Route::post('lock-pdf', [FileController::class, 'lockUploadedPdf']);

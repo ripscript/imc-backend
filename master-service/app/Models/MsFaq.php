@@ -13,7 +13,7 @@ class MsFaq extends Model
 
     protected $table = 'ms_faq';
 
-    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'description', 'is_active', 'kategori_faq_id', 'created_by', 'updated_by'];
 
     protected $logName = 'FAQ';
 }

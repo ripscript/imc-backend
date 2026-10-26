@@ -15,74 +15,68 @@ server {
 
     # Mapping ke master-service
     location /master-service/ {
-        proxy_pass http://eppid-master-service:8000/;
+        proxy_pass http://imc-new-engine-master-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "master-service" always;
     }
 
     # Mapping ke user-service
     location /user-service/ {
-        proxy_pass http://eppid-user-service:8000/;
+        proxy_pass http://imc-new-engine-user-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-    }
 
-    # Mapping ke migration-service
-    location /migration-service/ {
-        proxy_pass http://eppid-migration-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke file-service
-    location /file-service/ {
-        proxy_pass http://eppid-file-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        add_header X-Debug-Upstream "user-service" always;
     }
 
     # Mapping ke content-service
     location /content-service/ {
-        proxy_pass http://eppid-content-service:8000/;
+        proxy_pass http://imc-new-engine-content-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-    }
 
-    # Mapping ke permohonan-service
-    location /permohonan-service/ {
-        proxy_pass http://eppid-permohonan-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Mapping ke setting-service
-    location /setting-service/ {
-        proxy_pass http://eppid-setting-service:8000/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        add_header X-Debug-Upstream "content-service" always;
     }
 
     # Mapping ke public-content-service
     location /public-content-service/ {
-        proxy_pass http://eppid-public-content-service:8000/;
+        proxy_pass http://imc-new-engine-public-content-service:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "public-content-service" always;
+    }
+
+    # Mapping ke file-service
+    location /file-service/ {
+        proxy_pass http://imc-new-engine-file-service:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "file-service" always;
+    }
+
+    # Mapping ke setting-service
+    location /setting-service/ {
+        proxy_pass http://imc-new-engine-setting-service:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "setting-service" always;
     }
 
 }

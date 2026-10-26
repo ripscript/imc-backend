@@ -9,7 +9,16 @@ use Illuminate\Support\Facades\DB;
 class ContentDetailConsume extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'content_id',
+        'consume_id',
+        'consume_type',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
+
     protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_id', 'consume_id'];
 
     protected $appends = ['list_content', 'parent_menu'];
@@ -59,6 +68,40 @@ class ContentDetailConsume extends Model
 
             case 'repository':
                 $query = DB::table('content_detail_repositories')
+                    ->where('content_id', $this->consume_id)
+                    ->where('is_publicated', true)
+                    ->select(
+                        'title',
+                        'slug',
+                        'thumbnail_path',
+                        'publish_date'
+                    )
+                    ->orderBy('publish_date', 'desc')
+                    ->limit(5)
+                    ->get();
+
+                return $query;
+                break;
+
+            case 'project':
+                $query = DB::table('content_detail_projects')
+                    ->where('content_id', $this->consume_id)
+                    ->where('is_publicated', true)
+                    ->select(
+                        'title',
+                        'slug',
+                        'thumbnail_path',
+                        'publish_date'
+                    )
+                    ->orderBy('publish_date', 'desc')
+                    ->limit(5)
+                    ->get();
+
+                return $query;
+                break;
+
+            case 'showcase':
+                $query = DB::table('content_detail_showcases')
                     ->where('content_id', $this->consume_id)
                     ->where('is_publicated', true)
                     ->select(

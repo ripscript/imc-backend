@@ -9,5 +9,13 @@ class ContentDetailCardLink extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content_id',
+        'title',
+        'color_code',
+        'link',
+        'order',
+        'created_by',
+        'updated_by',
+    ];
 }

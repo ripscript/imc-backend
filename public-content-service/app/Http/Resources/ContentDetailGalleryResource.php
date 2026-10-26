@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class ContentDetailGalleryResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'description' => $this->description,
+            'type' => $this->type,
+            'thumbnail_path' => $this->list->first()?->image_path,
+            'publish_date' => $this->publish_date,
+            'list' => $this->whenLoaded('list'),
+            'content_tag' => $this->whenLoaded('contentTag'),
+            'layout' => $this->whenLoaded('layout'),
+            'sub_type' => $this->when(isset($this->sub_type), $this->sub_type),
+            'parent_menu' => $this->when(isset($this->parent_menu), $this->parent_menu),
+            'breadcrumb' => $this->when(isset($this->breadcrumb), $this->breadcrumb),
+        ];
+    }
+}

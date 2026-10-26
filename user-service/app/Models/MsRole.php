@@ -11,5 +11,5 @@ class MsRole extends Model
 
     protected $table = 'ms_roles';
 
-    protected $fillable = ['name', 'is_active', 'created_by', 'updated_by'];
+    protected $fillable = ['code', 'name', 'is_active', 'created_by', 'updated_by'];
 }

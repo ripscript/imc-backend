@@ -57,8 +57,15 @@ class QuickLinkService
 
     public function destroy($id)
     {
-        QuickLink::findOrFail($id)->delete();
+        DB::beginTransaction();
+        try {
+            QuickLink::findOrFail($id)->delete();
+            DB::commit();
 
-        return true;
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }
