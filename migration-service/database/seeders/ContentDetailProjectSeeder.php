@@ -34,7 +34,7 @@ class ContentDetailProjectSeeder extends Seeder
                 'budget' => 1,
                 'organization_name' => 'IMC',
                 'organization_address' => '-',
-                'thumbnail_path' => '/images/proyek-peralatan-mesin.jpg',
+                'thumbnail_path' => '/upload/8bac6aad-db1a-452f-aa3d-07c2e3864261.jpeg',
                 'kategori_content_id' => $categoryMap['Alat Kesehatan dan Farmasi'] ?? null,
             ],
             [
@@ -46,7 +46,7 @@ class ContentDetailProjectSeeder extends Seeder
                 'budget' => 10,
                 'organization_name' => 'Balai Besar Standardisasi dan Pelayanan Jasa Industri Logam dan Mesin',
                 'organization_address' => 'Jl. Sangkuriang No. 12 – Bandung 40135.',
-                'thumbnail_path' => '/images/proyek-drone.jpg',
+                'thumbnail_path' => '/upload/b1cf71c5-093d-4917-b561-3155cff6dcf6.jpeg',
                 'kategori_content_id' => $categoryMap['Elektronik dan Komunikasi'] ?? null,
             ],
             [
@@ -58,7 +58,7 @@ class ContentDetailProjectSeeder extends Seeder
                 'budget' => 150000000,
                 'organization_name' => 'Balai Besar Standardisasi dan Pelayanan Jasa Industri Logam dan Mesin',
                 'organization_address' => 'Jl. Sangkuriang No. 12 – Bandung 40135.',
-                'thumbnail_path' => '/images/proyek-kesehatan-masyarakat.jpg',
+                'thumbnail_path' => '/upload/e7bf1b7c-add5-4b1c-a08e-7df2a1006cee.jpeg',
                 'kategori_content_id' => $categoryMap['Elektronik dan Komunikasi'] ?? null,
             ],
             [
@@ -70,7 +70,7 @@ class ContentDetailProjectSeeder extends Seeder
                 'budget' => 300000000,
                 'organization_name' => 'Balai Besar Standardisasi dan Pelayanan Jasa Industri Logam dan Mesin',
                 'organization_address' => 'Jl. Sangkuriang No. 12 – Bandung 40135.',
-                'thumbnail_path' => '/images/proyek-egov.jpg',
+                'thumbnail_path' => '/upload/768aeb22-2a46-47df-8f3b-591c3337584f.jpeg',
                 'kategori_content_id' => $categoryMap['Makanan'] ?? null,
             ],
         ];

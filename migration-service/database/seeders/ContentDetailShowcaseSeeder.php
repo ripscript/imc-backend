@@ -34,7 +34,7 @@ class ContentDetailShowcaseSeeder extends Seeder
                 'budget' => 363370000,
                 'organization_name' => 'PT. Poly Jaya Medikal',
                 'organization_address' => 'Kp. Kebon Duren, Jl. Ciliwung No. 61 RT 01 RW 01, Kel. Kalimulya, Kec. Cilodong Kota Depok 16413 Jawa Barat - Indonesia',
-                'thumbnail_path' => '/images/showcase-peralatan-mesin.jpg',
+                'thumbnail_path' => '/upload/7785cb2a-499d-48c7-885b-0461cff68520.jpeg',
                 'kategori_content_id' => $categoryMap['Alat Kesehatan dan Farmasi'] ?? null,
             ]
         ];

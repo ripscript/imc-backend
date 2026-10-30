@@ -1,6 +1,6 @@
 -- ========================================================
 -- Publication SQL Dump (PostgreSQL)
--- Generated: 2026-10-13 00:05:27
+-- Generated: 2026-10-13 11:09:38
 -- Source: ILMATE Public Content Service API
 -- ========================================================
 
@@ -106,7 +106,7 @@ BEGIN
             'Industri manufaktur Indonesia terus menunjukkan daya tahan di tengah dinamika ekonomi global yang masih penuh ketidakpastian.',
             '<p style="text-align:justify;">Industri manufaktur Indonesia terus menunjukkan daya tahan di tengah dinamika ekonomi global yang masih penuh ketidakpastian. Salah satu indikatornya terlihat dari pertumbuhan kelompok industri barang logam, komputer, barang elektronik, optik, dan peralatan listrik yang mencapai 9,20 persen pada Triwulan – II tahun 2026. Perkembangan ini menjadi bagian dari penguatan industri elektronika nasional, termasuk melalui peningkatan kapasitas produksi dan pengembangan fasilitas manufaktur.</p><p style="text-align:justify;">“Kami mengapresiasi komitmen Midea dan PT Jaya Refrigeration Equipment dalam mengembangkan investasi serta memperluas kegiatan produksi di Indonesia. Hal ini tentunya mencerminkan kepercayaan dunia usaha terhadap prospek manufaktur nasional,” ujar Wakil Menteri Perindustrian Faisol Riza dalam acara Pencapaian Produksi 3 Juta Unit dan Peresmian Pabrik Midea Indonesia di Cikarang, Rabu (9/9).</p><p style="text-align:justify;">Faisol menjelaskan, kinerja kelompok industri barang logam, komputer, barang elektronik, optik, dan peralatan listrik yang tumbuh 9,20 persen pada Triwulan – II 2026 menunjukkan pentingnya sektor tersebut dalam struktur manufaktur nasional.</p><p style="text-align:justify;">Pada periode yang sama, komoditas air conditioner (AC) mencatat surplus neraca perdagangan sebesar USD103,70 juta, sedangkan refrigerator membukukan surplus USD96,39 juta. Di sisi lain, mesin cuci masih mencatatkan defisit neraca perdagangan sekitar USD100 juta. Kondisi ini menunjukkan adanya ruang yang besar untuk terus memperkuat produksi dalam negeri.</p><p style="text-align:justify;">“Penguatan produksi domestik perlu berjalan seiring dengan pengembangan ekosistem industri yang lebih luas. Hal tersebut mencakup keterhubungan rantai pasok, peningkatan penggunaan komponen dalam negeri, pengembangan sumber daya manusia, serta penguasaan teknologi dan inovasi,” katanya.</p><p style="text-align:justify;">Hingga saat ini, Midea Electronics Indonesia telah membangun berbagai fasilitas industri di kawasan Cikarang dan Karawang melalui PT Jaya Refrigeration Equipment. Fasilitas tersebut memproduksi berbagai produk home appliances, antara lain AC, mesin cuci, refrigerator, dan freezer.</p><p style="text-align:justify;">“Pengembangan fasilitas ini menjadi bagian dari komitmen jangka panjang perusahaan dalam memperluas kegiatan manufaktur di Indonesia,” tuturnya.</p><p style="text-align:justify;">Pada kesempatan tersebut, Midea mencatatkan pencapaian produksi tiga juta unit produk sekaligus meresmikan pabrik untuk produk AC dan refrigerator, yang terdiri atas 2,25 juta unit AC, satu juta unit refrigerator, dan 367.500 unit mesin cuci.</p><p style="text-align:justify;">Selain memenuhi kebutuhan pasar domestik, Midea Electronics Indonesia juga telah mengembangkan kegiatan ekspor. Hingga tahun 2026, perusahaan tercatat mengekspor dua juta unit produk ke kawasan ASEAN dan Amerika Utara.&nbsp;</p><p style="text-align:justify;">“Capaian ekspor ini menunjukkan bahwa Indonesia memiliki peran dalam mendukung kebutuhan pasar internasional. Pengembangan fasilitas produksi di dalam negeri juga memperkuat posisi Indonesia sebagai bagian dari jaringan produksi dan bisnis global perusahaan,” katanya.</p><p style="text-align:justify;">Faisol menambahkan, pengembangan Midea di Indonesia diharapkan memberikan dampak yang semakin luas bagi ekosistem industri nasional. Selain peningkatan kapasitas produksi, keberadaan fasilitas manufaktur tersebut dapat memperkuat rantai pasok, meningkatkan penggunaan komponen dalam negeri, mengembangkan kompetensi tenaga kerja, serta memperluas penerapan teknologi dan inovasi.</p><p style="text-align:justify;">Kementerian Perindustrian berkomitmen menciptakan iklim usaha yang kondusif melalui berbagai instrumen kebijakan, di antaranya penerapan Standar Nasional Indonesia (SNI) wajib dan Tingkat Komponen Dalam Negeri (TKDN). Kebijakan tersebut menjadi bagian dari upaya menjaga kualitas produk, memperkuat struktur industri, serta meningkatkan nilai tambah kegiatan manufaktur di Indonesia.</p><p style="text-align:justify;">“Kami berharap Midea dapat semakin meningkatkan posisi Indonesia dalam jaringan produksi dan bisnis global perusahaan. Indonesia tidak hanya menjadi pasar, tetapi juga menjadi mitra strategis dalam pengembangan manufaktur dan salah satu basis produksi penting Midea untuk melayani kebutuhan pasar regional maupun global,” pungkasnya.</p>',
             true,
-            'publikasi/17909004796abef8ff7c276_midea1.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17909004796abef8ff7c276_midea1.jpeg',
             '2026-09-10',
             v_layout_id,
             true,
@@ -168,7 +168,7 @@ BEGIN
             'Kementerian Perindustrian terus mengakselerasi pengembangan ekosistem kendaraan listrik nasional sebagai bagian dari transformasi industri otomotif menuju sektor yang semakin berdaya saing',
             '<p style="text-align:justify;">Kementerian Perindustrian terus mengakselerasi pengembangan ekosistem kendaraan listrik nasional sebagai bagian dari transformasi industri otomotif menuju sektor yang semakin berdaya saing, berkelanjutan, serta terintegrasi dari hulu hingga hilir. Komitmen tersebut semakin diperkuat dengan beroperasinya fasilitas produksi PT BYD Motor Indonesia di Subang, Jawa Barat, yang diharapkan menjadi salah satu basis penting pengembangan industri kendaraan listrik di Indonesia.</p><p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan, kehadiran fasilitas produksi BYD merupakan momentum strategis untuk membawa perkembangan kendaraan listrik di Indonesia dari fase pertumbuhan pasar menuju penguatan basis manufaktur dan pendalaman struktur industri di dalam negeri.</p><p style="text-align:justify;">“Atas nama Pemerintah Republik Indonesia, kami menyampaikan apresiasi yang setinggi-tingginya kepada BYD atas kepercayaan dan komitmennya untuk berinvestasi serta mengembangkan kegiatan manufaktur kendaraan listrik di Indonesia. Kami sangat yakin BYD akan terus berkembang dan sukses di Indonesia,” kata Menperin dalam sambutannya pada peresmian fasilitas produksi BYD Motor Indonesia di Subang, Kamis (3/9).</p><p style="text-align:justify;">Pada kesempatan ini, Menperin juga menyampaikan apresiasi secara khusus kepada Luhut Binsar Pandjaitan yang turut hadir, karena memiliki peran penting dalam proses masuknya investasi BYD ke Indonesia. Menurutnya, realisasi investasi hingga berdirinya fasilitas produksi BYD merupakan buah dari proses panjang diplomasi dan pengawalan investasi strategis pemerintah.&nbsp;</p><p style="text-align:justify;">Ketika menjabat sebagai Menteri Koordinator Bidang Kemaritiman dan Investasi, Luhut secara aktif mengawal berbagai investasi strategis agar masuk ke Indonesia, termasuk melalui diplomasi langsung dengan kantor pusat BYD di Shenzhen, Tiongkok.</p><p style="text-align:justify;">“Saya menyaksikan langsung proses tersebut dan bagaimana Pak Luhut begitu gigih memperjuangkan agar investasi masuk ke Indonesia, termasuk investasi BYD. Proses yang panjang itu akhirnya dapat kita lihat hasilnya dengan berdirinya fasilitas produksi BYD di Indonesia,” ujar Agus.</p><p style="text-align:justify;">Upaya tersebut juga berjalan seiring dengan komitmen Indonesia dalam pengendalian perubahan iklim setelah Persetujuan Paris yang dihasilkan pada Konferensi Perubahan Iklim PBB ke-21 atau COP21. Pengembangan kendaraan listrik menjadi salah satu bagian penting dari agenda transformasi menuju ekonomi rendah karbon sekaligus optimalisasi sumber daya nasional.&nbsp;</p><p style="text-align:justify;">Jalan bagi pengembangan Kendaraan Bermotor Listrik Berbasis Baterai (KBLBB) semakin diperkuat melalui penerbitan Peraturan Presiden Nomor 55 Tahun 2019 tentang Percepatan Program Kendaraan Bermotor Listrik Berbasis Baterai untuk Transportasi Jalan, yang kemudian diikuti berbagai kebijakan teknis di bidang investasi, industri, fiskal, serta pengembangan pasar kendaraan listrik.&nbsp;</p><p style="text-align:justify;">Berbagai instrumen tersebut diarahkan agar perkembangan kendaraan listrik tidak semata-mata meningkatkan konsumsi di pasar domestik, tetapi sekaligus menciptakan kapasitas produksi dan memperkuat struktur industri nasional.</p><p style="text-align:justify;"><strong>Manufaktur Terus Menguat</strong></p><p style="text-align:justify;">Menperin menjelaskan, pengoperasian fasilitas produksi BYD berlangsung ketika fundamental industri manufaktur nasional tetap menunjukkan kinerja yang positif. Berdasarkan data Badan Pusat Statistik (BPS), pada triwulan II tahun 2026 industri pengolahan nonmigas (IPNM) tumbuh sebesar 5,32 persen secara tahunan (<i>year-on-year</i>/yoy). Pertumbuhan tersebut berada di atas pertumbuhan ekonomi nasional yang tercatat sebesar 5,29 persen.</p><p style="text-align:justify;">“Pertumbuhan industri manufaktur sebesar 5,32 persen sudah berada di atas pertumbuhan ekonomi nasional sebesar 5,29 persen. Terakhir kali pertumbuhan manufaktur berada di atas pertumbuhan ekonomi nasional terjadi sekitar 14 tahun lalu. Ini menjadi sinyal yang sangat positif bagi industri kita,” ungkap Agus.</p><p style="text-align:justify;">Selain pertumbuhan, indikator lainnya seperti kontribusi industri terhadap produk domestik bruto (PDB), kinerja ekspor, realisasi investasi, dan penyerapan tenaga kerja juga menunjukkan perkembangan positif.</p><p style="text-align:justify;">Kinerja industri manufaktur Indonesia turut tercermin dari penciptaan nilai tambah atau <i>Manufacturing Value Added</i>(MVA). Berdasarkan data Bank Dunia, MVA Indonesia pada tahun 2025 tercatat sebesar USD275,61 miliar, meningkat dibandingkan tahun 2024 yang mencapai USD265,07 miliar. Capaian ini membuat posisi Indonesia meningkat dari peringkat ke-13 dunia pada 2024 menjadi peringkat ke-12 dunia pada 2025 dalam penciptaan MVA.</p><p style="text-align:justify;">“Ini bukan data Kementerian Perindustrian dan bukan pula data BPS, tetapi data Bank Dunia. Artinya, kemampuan industri manufaktur Indonesia dalam menciptakan nilai tambah terus mengalami peningkatan,” tutur Menperin.</p><p style="text-align:justify;">Di kawasan ASEAN, nilai MVA Indonesia juga berada pada posisi tertinggi. Bahkan, menurut Agus, nilai tambah manufaktur yang dihasilkan Indonesia sekitar dua kali lipat dibandingkan Thailand. Sementara di kawasan Asia, Indonesia berada pada posisi kelima setelah Tiongkok, Jepang, India, dan Korea Selatan.</p><p style="text-align:justify;">“Kalau kita disiplin menjalankan program dan kebijakan industrialisasi yang telah ditetapkan, saya yakin dalam waktu ke depan kita dapat semakin mendekati capaian MVA negara-negara industri utama di Asia tersebut,” ujarnya.</p><p style="text-align:justify;"><strong>Pasar Semakin Besar</strong></p><p style="text-align:justify;">Peresmian fasilitas produksi BYD juga berlangsung di tengah perkembangan positif kendaraan listrik nasional. Hingga April 2026, populasi kendaraan listrik di Indonesia telah mencapai sekitar 486 ribu unit, dengan kendaraan roda dua sekitar 242 ribu unit dan kendaraan roda empat sekitar 223 ribu unit, sementara sisanya berasal dari berbagai jenis kendaraan listrik lainnya&nbsp;</p><p style="text-align:justify;">Tren positif tersebut semakin terlihat pada pasar kendaraan roda empat berbasis elektrifikasi. Pada semester I tahun 2026, penjualan <i>Battery Electric Vehicle </i>(BEV) telah mencapai sekitar 70 ribu unit dengan pangsa pasar sekitar 16 persen. Sementara itu, penjualan <i>Hybrid Electric Vehicle</i> (HEV) mencapai sekitar 40.400 unit, dengan pangsa pasar mendekati 10 persen.</p><p style="text-align:justify;">“Besarnya pangsa kendaraan elektrifikasi menunjukkan penerimaan konsumen Indonesia terhadap teknologi kendaraan rendah emisi semakin kuat. Karena itu, pemerintah terus menghadirkan kebijakan afirmatif yang tidak hanya bertujuan membangun pasar, tetapi juga memperkuat struktur industri dan kapasitas produksi di dalam negeri,” jelas Menperin.</p><p style="text-align:justify;">Pemerintah menilai pertumbuhan pasar tersebut harus dimanfaatkan untuk memperbesar nilai tambah yang diciptakan di Indonesia. Karena itu, investasi kendaraan listrik diarahkan semakin terintegrasi dengan industri komponen dan rantai pasok domestik.</p><p style="text-align:justify;"><strong>Pendalaman Struktur Industri</strong></p><p style="text-align:justify;">Di sisi manufaktur, pemerintah terus mengarahkan pengembangan industri kendaraan listrik agar semakin terintegrasi dengan rantai pasok nasional melalui peningkatan penggunaan produk dan komponen dalam negeri.</p><p style="text-align:justify;">Peta jalan pengembangan KBLBB menetapkan peningkatan nilai minimum Tingkat Komponen Dalam Negeri (TKDN) secara bertahap, yaitu minimal 40 persen hingga 2026, minimal 60 persen pada periode 2027–2029, serta minimal 80 persen mulai 2030. Ketentuan tahapan tersebut juga telah menjadi bagian penting dalam arah kebijakan penguatan industri KBLBB nasional.&nbsp;</p><p style="text-align:justify;">Menurut Agus, peningkatan TKDN sangat penting agar investasi kendaraan listrik tidak berhenti pada aktivitas perakitan, tetapi secara bertahap semakin melibatkan industri komponen, material, dan pemasok dalam negeri.</p><p style="text-align:justify;">Menperin juga mengungkapkan adanya gagasan untuk mengembangkan skema insentif yang semakin dikaitkan dengan capaian TKDN. “Ada arahan dari Pak Luhut, agar kita coba pelajari untuk memberikan program insentif yang berbasis penguatan nilai TKDN. Jadi semakin tinggi nilai TKDN, itu semakin perlu mendapat perhatian dari pemerintah termasuk persiapan-persiapan dalam pemberian insentif,” ujarnya.</p><p style="text-align:justify;">Kemenperin akan segera mendesain dan mengoordinasikan gagasan tersebut dengan kementerian dan lembaga terkait. Skema tersebut diharapkan semakin memacu produsen kendaraan listrik untuk memperbesar penggunaan komponen domestik sekaligus menarik pemasok global membangun fasilitas produksinya di Indonesia.</p><p style="text-align:justify;"><strong>Bangun Ekosistem Hulu-Hilir</strong></p><p style="text-align:justify;">Ke depan, Kemenperin berharap investasi BYD tidak berhenti pada produksi kendaraan. Kehadiran perusahaan ini diharapkan menjadi penggerak pengembangan ekosistem industri kendaraan listrik nasional secara menyeluruh.</p><p style="text-align:justify;">Ekosistem tersebut mencakup industri pengolahan bahan baku, manufaktur sel baterai dan <i>battery pack</i>, industri komponen, manufaktur kendaraan listrik, pengembangan pasar domestik, hingga industri daur ulang baterai. Arah ini akan memperkuat konsep pengembangan ekosistem hulu-hilir yang telah menjadi bagian dari rancangan pengembangan kendaraan listrik nasional.</p><p style="text-align:justify;">Menurut Agus, industri daur ulang baterai akan semakin strategis seiring dengan pertumbuhan populasi kendaraan listrik. Pengembangan industri tersebut diperlukan untuk menciptakan ekosistem kendaraan listrik yang semakin berkelanjutan sekaligus meningkatkan efisiensi pemanfaatan sumber daya&nbsp;</p><p style="text-align:justify;">“Kami berharap kehadiran BYD dapat semakin memperkuat keterkaitan antarmata rantai industri tersebut, termasuk dengan semakin banyak melibatkan industri komponen dan pemasok dalam negeri,” tuturnya.</p><p style="text-align:justify;">Penguatan rantai pasok domestik tersebut juga penting agar investasi kendaraan listrik menghasilkan efek berganda yang semakin besar, mulai dari peningkatan nilai tambah, penciptaan lapangan kerja, penguasaan teknologi, pengembangan SDM industri, hingga peningkatan ekspor.</p><p style="text-align:justify;">Menperin optimistis fasilitas produksi BYD di Subang akan menjadi salah satu pijakan penting bagi transformasi industri otomotif nasional sekaligus memperkuat posisi Indonesia dalam rantai pasok kendaraan listrik global.</p><p style="text-align:justify;">“Peresmian fasilitas produksi BYD Indonesia bukan sekadar beroperasinya sebuah pabrik baru. Ini merupakan momentum untuk memperkuat basis manufaktur, memperdalam struktur industri, serta membangun ekosistem kendaraan listrik nasional yang semakin terintegrasi,” tegas Agus&nbsp;</p><p style="text-align:justify;">“Atas nama Pemerintah Republik Indonesia, kami menyampaikan selamat atas beroperasinya fasilitas produksi BYD Indonesia. Kami yakin investasi ini akan memberikan manfaat sebesar-besarnya, bukan hanya bagi BYD, tetapi juga bagi kemajuan industri nasional dan pada akhirnya mendukung pertumbuhan ekonomi Indonesia,” pungkas Menperin.</p>',
             true,
-            'publikasi/17909006586abef9b2180cc_WhatsApp_Image_2026_09_03_at_19_29_36__1_.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17909006586abef9b2180cc_WhatsApp_Image_2026_09_03_at_19_29_36__1_.jpeg',
             '2026-09-03',
             v_layout_id,
             true,
@@ -230,7 +230,7 @@ BEGIN
             'Program Pemagangan Nasional Lulusan Perguruan Tinggi (Batch 2) memberikan kesempatan emas bagi kita untuk secara langsung membentuk SDM yang kompeten dan siap kerja.',
             '<p>Kita semua tahu bahwa talenta muda adalah mesin penggerak utama inovasi dan kemajuan di sektor industri logam, mesin, transportasi, dan elektronika. Saat ini, Pemerintah melalui Program Pemagangan Nasional Lulusan Perguruan Tinggi (Batch 2) memberikan kesempatan emas bagi kita untuk secara langsung membentuk SDM yang kompeten dan siap kerja.</p><p>Kami mengajak Anda berpartisipasi. Program ini adalah investasi strategis perusahaan Anda untuk merekrut dan membentuk talenta terbaik selama 6 bulan.</p><p>✅ Insentif Pemerintah: Uang saku (setara UMP) dan Jaminan Sosial Ketenagakerjaan peserta DITANGGUNG PENUH OLEH PEMERINTAH.<br>✅ Peran Anda Sederhana: Memberi bimbingan, pelatihan, dan kesempatan praktik nyata.</p><p>Mari, Jadilah Bagian dari Solusi! Peran Anda hanya menyediakan program pembelajaran, Mentor, dan fasilitas K3.</p><p>Tindak Lanjut Mendesak:<br>⏺️ Segera sampaikan komitmen dan daftarkan kebutuhan magang perusahaan Anda melalui link <a href="https://bit.ly/Registrasiprogammagang2-ILMATE">https://bit.ly/Registrasiprogammagang2-ILMATE</a><br>⏹️ Kami menunggu partisipasi Anda dalam sesi Sosialisasi pada 7 November 2025 bagi perusahaan yang telah mendaftar.</p><p>Mari kita genggam tangan generasi muda, bersama kita perkuat sektor ILMATE!</p>',
             true,
-            'publikasi/1762413704690c4c88a4599_WhatsApp_Image_2025_11_06_at_12_48_41.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1762413704690c4c88a4599_WhatsApp_Image_2025_11_06_at_12_48_41.jpeg',
             '2025-11-06',
             v_layout_id,
             true,
@@ -292,7 +292,7 @@ BEGIN
             'Pada tanggal 20 Oktober 2025, telah dilaksanakan upacara Serah Terima Jabatan (Sertijab) bagi Pejabat Pimpinan Tinggi Pratama di lingkungan Direktorat Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (Ditjen ILMATE) Kementerian Perindustrian.',
             '<p>Pada tanggal 20 Oktober 2025, telah dilaksanakan upacara Serah Terima Jabatan (Sertijab) bagi Pejabat Pimpinan Tinggi Pratama di lingkungan Direktorat Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (Ditjen ILMATE) Kementerian Perindustrian.</p><p>Pergantian kepemimpinan ini mencakup dua posisi strategis:</p><p><strong>Sekretaris Direktorat Jenderal ILMATE:</strong> Ibu Sri Hastuti Nawaningsih, S.E., M.Si, resmi menggantikan Bapak Ir. Sopor Halomoan Sirait, M.Si.</p><p><strong>Direktur Elektronika dan Telematika:</strong> Bapak Junadi Marki, S.T., M.T, resmi menggantikan Bapak Ronggolawe Sahuri, S.Kom., M.Sc.</p><figure class="image"><img style="aspect-ratio:6000/4000;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/176101074768f6e43b92035_DSC_0522.jpg" width="6000" height="4000"></figure><p>&nbsp;</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:6000/4000;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/176101095768f6e50d82ae9_DSC_0535.jpg" width="6000" height="4000"></figure><p>&nbsp;</p><p>Segenap Keluarga Besar Direktorat Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) mengucapkan:</p><p><strong>Selamat Bertugas</strong> kepada Ibu Sri Hastuti Nawaningsih, S.E., M.Si dan Bapak Junadi Marki, S.T., M.T di posisi yang baru. Semoga dapat menjalankan amanah dengan baik dan membawa Ditjen ILMATE semakin maju.</p><p><strong>Apresiasi dan Terima Kasih yang Setinggi-tingginya</strong> kepada Bapak Ir. Sopor Halomoan Sirait, M.Si dan Bapak Ronggolawe Sahuri, S.Kom., M.Sc atas dedikasi, pengabdian, serta kontribusi yang luar biasa selama menjabat. Kami juga mengucapkan selamat bertugas di tempat yang baru, semoga semangat untuk terus berinovasi dan berkarya selalu menyertai.</p>',
             true,
-            'publikasi/176101034768f6e2ab58a10_DSC_0537.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/176101034768f6e2ab58a10_DSC_0537.jpg',
             '2025-10-20',
             v_layout_id,
             false,
@@ -339,7 +339,7 @@ BEGIN
             'Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan apresiasi kepada Chery atas kontribusinya dalam mengembangkan kendaraan ramah lingkungan di Indonesia.',
             '<p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan apresiasi kepada Chery atas kontribusinya dalam mengembangkan kendaraan ramah lingkungan di Indonesia. Pemerintah mendukung penuh langkah Chery yang telah berpartisipasi dalam program <i>Low Carbon Emission Vehicle</i> (LCEV) melalui pengembangan tiga jenis teknologi kendaraan, yaitu <i>Full Hybrid</i>, <i>Plug-in Hybrid</i>, dan <i>Electric Vehicle</i> (EV).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Komitmen investasi ini menunjukkan keseriusan Chery dalam memperkuat industri otomotif nasional, khususnya pada kendaraan rendah emisi dan berbasis listrik. Pemerintah akan terus mendorong percepatan realisasi investasi tersebut,” ujar Menperin dalam keterangannya di Jakarta, Selasa (14/10).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Adapun investasi Chery telah dimulai sejak tahun 2024, dan perusahaan berkomitmen untuk terus berinvestasi hingga tahun 2030. Secara kumulatif, nilai investasi akan mencapai lebih dari Rp5,2 triliun yang mencakup pengembangan fasilitas produksi di Indonesia, baik melalui kemitraan dengan pihak lain maupun pembangunan pabrik mandiri.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pemerintah Indonesia meminta Chery untuk segera menyampaikan rencana bisnis (<i>business plan</i>) yang lebih rinci untuk lima tahun ke depan, terutama yang terkait dengan penguatan kapasitas produksi dan strategi ekspor. “Kami berharap Indonesia dapat menjadi basis produksi dan ekspor kendaraan listrik (EV) Chery untuk kawasan ASEAN,” tambah Menteri.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Data penjualan nasional menunjukkan tren positif untuk kendaraan ramah lingkungan. Penjualan kendaraan <i>battery electric vehicle</i> (BEV) terus meningkat signifikan, dari hanya 0,08% pada tahun 2021 menjadi 10,22% dari total pasar kendaraan roda empat pada Januari–Agustus 2025. Chery sendiri kini telah menempati posisi ke-4 merek dengan penjualan BEV terbesar di Indonesia.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pemerintah mendorong Chery untuk memperluas lini produk kendaraan ramah lingkungan di Indonesia agar masyarakat memiliki lebih banyak pilihan sesuai karakteristik konsumen dalam negeri. Selain itu, Kemenperin juga membuka peluang kerja sama lebih luas untuk pengembangan teknologi, SDM, dan ekosistem industri kendaraan&nbsp;listrik.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Lebih lanjut, Kemenperin juga meminta Chery untuk dapat menjadikan Indonesia sebagai basis produksinya dan melakukan ekspor ke negara ASEAN hingga Australia. Hal ini dikarenakan <i>brand</i> Chery cukup kuat di Australia dan memiliki kemiripan <i>platform </i>dengan model yang diproduksi&nbsp;di&nbsp;Indonesia.</p>',
             true,
-            'publikasi/176057883268f04d1028ec2_20251010_161234.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/176057883268f04d1028ec2_20251010_161234.jpg',
             '2025-10-14',
             v_layout_id,
             true,
@@ -401,7 +401,7 @@ BEGIN
             'Kementerian Perindustrian RI terus berupaya untuk terus meningkatkan kerja sama dengan para pelaku industri skala global',
             '<p style="text-align:justify;">Kementerian Perindustrian RI terus berupaya untuk terus meningkatkan kerja sama dengan para pelaku industri skala global, termasuk dari Tiongkok, dalam rangka memperkuat arus investasi dan menjadikan Indonesia sebagai <strong>basis produksi serta ekspor manufaktur</strong>. Upaya ini diyakini akan turut mengakselerasi penguatan struktur industri di dalam negeri serta memacu pertumbuhan ekonomi nasional.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Guna memperdalam kemitraan komprehensif tersebut, <strong>Menteri Perindustrian RI Agus Gumiwang Kartasasmita</strong> melakukan pertemuan bilateral dengan Associate Government Affairs Director <strong>Xiaomi Communications Co., Ltd.</strong>, <strong>Jon Dove</strong> di Shanghai, Tiongkok, Jumat (10/10).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pertemuan ini turut dihadiri oleh <strong>Sekretaris Jenderal Kemenperin RI Eko S.A. Cahyanto</strong>, <strong>Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta</strong>, serta perwakilan dari <strong>PT Xiaomi Technology Indonesia</strong>, yaitu <strong>Zhao Wentao</strong> (Managing Director) dan <strong>Tel Lee</strong> (Product Certification Manager).</p><p style="text-align:justify;"><strong>&nbsp;</strong></p><p style="text-align:justify;">Pada kesempatan tersebut, Menperin Agus menyampaikan apresiasi kepada Xiaomi atas investasi dan kontribusinya dalam membangun ekosistem industri <i>smartphone</i> dan televisi di Indonesia. “Xiaomi telah menjadi bagian penting dalam memperkuat rantai pasok industri elektronik nasional. Pemerintah Indonesia sangat mengapresiasi komitmen Xiaomi yang terus menanamkan investasi dan mengembangkan lini produknya di Indonesia,” ujarnya dalam keterangan resmi di Jakarta, Senin (13/10).</p><p style="text-align:justify;"><strong>&nbsp;</strong></p><p style="text-align:justify;">Menperin mengemukakan, Pemerintah Indonesia mendukung rencana Xiaomi untuk <strong>memproduksi tablet secara lokal di Indonesia</strong>, khususnya untuk model yang telah hadir di pasar domestik. “Kami mendorong Xiaomi agar segera menyampaikan <i>business plan</i> yang rinci untuk lima tahun ke depan, guna merealisasikan rencana investasi baru di Indonesia. Rencana tersebut diharapkan mencakup strategi pengembangan fasilitas produksi, baik secara mandiri maupun bekerja sama dengan mitra lokal,” ungkapnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Selain sektor elektronik, Menperin juga menyoroti peluang investasi Xiaomi di bidang <strong>kendaraan listrik (EV)</strong>. “Kami mengetahui bahwa Xiaomi telah meluncurkan produk kendaraan listrik berperforma tinggi, yaitu Xiaomi SU7. Kami mendorong agar Xiaomi dapat menjajaki investasi pada sektor kendaraan ramah lingkungan di Indonesia. Ini akan memperkaya pilihan kendaraan bagi konsumen Indonesia sekaligus memperkuat ekosistem industri hijau nasional,” jelasnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Perlu diketahui, Xiaomi Communications Co., Ltd. merupakan perusahaan teknologi multinasional asal Tiongkok yang didirikan pada tahun 2010 dan berbasis di Beijing. Perusahaan ini bergerak di bidang <strong>elektronik konsumen, manufaktur cerdas, dan </strong><i><strong>platform Internet of Things</strong></i><strong> (IoT)</strong>.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Hingga tahun 2025, Xiaomi telah menanamkan investasi senilai <strong>Rp3 triliun</strong> di Indonesia untuk produksi <i>smartphone</i>, tablet, dan televisi. Perusahaan ini kini menjadi salah satu merek smartphone unggulan di pasar nasional, dengan <strong>pangsa pasar sebesar 21% pada kuartal II tahun 2025</strong>.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Investasi Xiaomi berkontribusi besar dalam menciptakan lapangan kerja, transfer teknologi, serta memperkuat daya saing industri elektronik nasional. Hal ini sejalan dengan visi <i>Making Indonesia 4.0</i> yang menempatkan sektor elektronika sebagai salah satu prioritas utama,” pungkas Menperin.</p>',
             true,
-            'publikasi/176057891668f04d64d205e_20251010_104103.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/176057891668f04d64d205e_20251010_104103.jpg',
             '2025-10-13',
             v_layout_id,
             true,
@@ -463,7 +463,7 @@ BEGIN
             'Kementerian Perindustrian (Kemenperin) memberikan apresiasi atas pencapaian ekspor ke-3 juta unit kendaraan yang dilakukan oleh Toyota Group di Indonesia',
             '<p style="text-align:justify;">Kementerian Perindustrian (Kemenperin) memberikan apresiasi atas pencapaian ekspor ke-3 juta unit kendaraan yang dilakukan oleh Toyota Group di Indonesia. Capaian tersebut menjadi bukti nyata ketangguhan sektor manufaktur Indonesia yang terus tumbuh dan berdaya saing di kancah global.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Toyota Indonesia telah menjadi salah satu motor penggerak industri otomotif nasional dengan kontribusi besar terhadap ekspor dan penyerapan tenaga kerja. Keberhasilan menembus ekspor tiga juta unit ini adalah tonggak penting yang menunjukkan bahwa struktur industri kita semakin kuat dan adaptif terhadap dinamika ekonomi global,” ujar Menteri Perindustrian Agus Gumiwang Kartasasmita dalam keterangannya di Jakarta, Jumat (10/10).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Menperin menjelaskan, sektor otomotif memiliki efek berganda yang besar terhadap perekonomian nasional. Pada 2024, nilai tambah bruto industri kendaraan bermotor mencapai Rp180 triliun. Dengan <i>backward linkage</i> sebesar 2,07 dan <i>forward linkage</i> sebesar 2,4, industri ini diperkirakan memberikan dampak tambahan sebesar Rp804 triliun terhadap sektor hulu dan hilir.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Industri otomotif bukan hanya memproduksi kendaraan, tetapi juga menggerakkan ekosistem industri pendukung seperti baja, karet, plastik, logam, hingga sektor transportasi dan logistik,” papar Menperin. Toyota Indonesia juga telah membina lebih dari 700 perusahaan pemasok dan menyerap lebih dari 360 ribu tenaga kerja. Ini adalah kontribusi luar biasa terhadap ekonomi nasional.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Menperin berharap Toyota Indonesia terus mendukung komitmen pemerintah dalam pengembangan kendaraan ramah lingkungan dan pengurangan emisi karbon. Menurutnya, inisiatif tersebut menjadi bagian dari agenda besar transformasi industri menuju keberlanjutan.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Keberhasilan ekspor tiga juta unit ini tidak hanya menjadi kebanggaan nasional, tetapi juga momentum untuk mempercepat adopsi teknologi hijau di industri otomotif. Kita ingin Indonesia menjadi pemain utama kendaraan rendah emisi di Asia,” tegasnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Menperin juga menyampaikan apresiasi atas konsistensi dan kontribusi Toyota Indonesia yang telah mengekspor produk ke lebih dari 100 negara. “Semoga capaian ini menjadi inspirasi bagi seluruh pelaku industri untuk terus berinovasi, berdaya saing, dan memberikan nilai tambah bagi bangsa,” ujarnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pada kesempatan ini, Presiden Toyota Motor Corporation Koji Sato menyampaikan, pencapaian tiga juta unit kendaraan ini menjadi pengingat akan kemampuan Indonesia yang mumpuni, menunjukkan kualias atas apa yang telah kami produksi di sini. "Kami menyampaikan rasa terima kasih mendalam kepada seluruh pelanggan setia di Indonesia yang telah mendukung produk Toyota Group, apresiasi ini juga kami sampaikan kepada pemerintah Indonesia atas dukungan yang telah diberikan, dan kepada para mitra dan semua pemangku kepentingan atas upaya dan dedikasinya selama lebih dari lima dekade ini," ungkapnya</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Ke depannya, lanjut Koji Sato, pihaknya akan memperkuat peran Indonesia sebagai pusat <i>Research and Development </i>(R&amp;D) dan ekspor untuk <i>Global South</i>. "Bersama para mitra, kami terus berupaya untuk menciptakan kendaraan yang semakin berkualitas, untuk masyarakat Indonesia, dan kemajuan bangsa yang hebat ini,” imbuhnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Sebagai industri padat karya, Toyota Indonesia secara aktif berkontribusi untuk memperkuat ekosistem industri otomotif Indonesia, melalui kerjasama dengan lebih dari 240 pemasok lokal Tier-1 dan lebih dari 520 pemasok lokal Tier-2 dan Tier-3.&nbsp; Sinergi ini bukan hanya mengurangi ketergantungan impor, tetapi juga mendorong tumbuhnya kemandirian industri dalam negeri, termasuk Industri Kecil dan Menengah (IKM), sebagai bagian penting dari rantai pasok nasional. Hasil dari kolaborasi ini terlihat nyata pada kandungan lokal produk Toyota Indonesia yang kini mencapai hingga lebih dari 80%.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Di Indonesia, investasi Toyota Group yang mencapai Rp 100 triliun, turut berkontribusi pada pertumbuhan ekonomi.&nbsp; Investasi ini, bersama dengan jaringan pemasok lokal dan dealer yang melibatkan lebih dari 360.000 tenaga kerja di berbagai sektor, mulai dari produksi, rantai pasok, distribusi, hingga layanan purna jual. Kolaborasi tidak hanya membangun kemandirian industri namun menjadi pilar penting yang memperkuat pondasi ekonomi dan kesejahteraan masyarakat secara menyeluruh.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Industri otomotif juga berperan penting dalam penerimaan pajak, tidak hanya melalui Pajak Penghasilan (PPh), Pajak Pertambahan Nilai (PPN), dan Pajak Penjualan atas Barang Mewah (PPnBM) yang dikenakan secara nasional, tetapi juga melalui Pajak Daerah seperti Pajak Kendaraan Bermotor (PKB) dan Bea Balik Nama Kendaraan Bermotor (BBNKB), yang menurut Kementerian Dalam Negeri menjadi salah satu sumber utama Pendapatan Asli Daerah (PAD) yang berpengaruh&nbsp; terhadap fiskal daerah.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Berkat kekuatan industri manufaktur dan komitmen terhadap kualitas, Toyota Indonesia telah memproduksi 10 juta unit dan mengekspor 3 juta unit kendaraan, membuktikan bahwa talenta Indonesia siap bersaing di pasar global melalui produk-produk berkelas dunia,” ucap Presiden Direktur PT. TMMIN Nandi Julyanto.</p>',
             true,
-            'publikasi/176057900368f04dbbc0e3a_IMG_20251009_WA0054.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/176057900368f04dbbc0e3a_IMG_20251009_WA0054.jpg',
             '2025-10-10',
             v_layout_id,
             true,
@@ -510,7 +510,7 @@ BEGIN
             'Sebagai mother of industry, industri logam dasar memiliki peran vital dalam menopang berbagai subsektor lainnya.',
             '<p style="text-align:justify;"><span style="font-size:11pt;">Sebagai <i>mother of industry</i>, industri logam dasar memiliki peran vital dalam menopang berbagai subsektor lainnya. Kinerja industri logam dasar juga terus menunjukkan tren gemilang, yang terlihat pada triwulan II tahun 2025, dengan mencatatkan kontribusi sebesar 6,7 persen terhadap PDB nasional dan tumbuh <i>double digit</i> sebesar 14,7 persen (<i>y-o-y</i>).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Capaian ini merupakan hasil ekspansi produksi yang semakin luas, didorong oleh permintaan global yang terus meningkat, khususnya dari sektor besi dan baja, serta keberhasilan program hilirisasi nasional yang konsisten menambah nilai produk dalam negeri,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Setia Diarta mewakili Menteri Perindustrian pada acara Pelepasan Ekspor Produk <i>Cold Rolled Coil</i> (CRC) PT Krakatau Baja Industri (KBI) ke Spanyol yang berlangsung di Cilegon, Banten, Kamis (25/9).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Dirjen ILMATE mengemukakan, industri baja nasional kini memiliki peranan penting dalam mendukung pembangunan infrastruktur, penguatan industri permesinan, otomotif, galangan kapal, hingga energi. Berdasarkan data <i>World Steel Association</i>, Indonesia pada 2024 menempati posisi ke-14 dalam produksi crude steel dunia dengan capaian 17 juta ton, atau meningkat 98,5 persen dibandingkan tahun 2019 yang hanya berproduksi 8,5 juta ton.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Saat ini, kapasitas terpasang <i>crude steel</i> nasional mencapai 21 juta ton dan ditargetkan meningkat menjadi 27 juta ton pada 2029. Ini menunjukkan optimisme dan langkah ekspansif Indonesia dalam memperkuat daya saing di tingkat global,” ungkapnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Sejalan dengan sasaran tersebut, PT KBI ikut memberikan andil terhadap performa positif industri logam dasar nasional. Sepanjang 2025, perusahaan ini telah mengekspor 62 ribu ton produk CRC ke berbagai negara, termasuk Amerika Serikat, Polandia, dan Spanyol. Pada pelepasan ekspor ke Spanyol kali ini, PT KBI mengapalkan produk CRC dengan volume lebih dari 54 ribu ton atau senilai Rp571 miliar.&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menurut Setia, momentum ekspor ini menjadi bukti nyata ketangguhan industri manufaktur Indonesia, khususnya industri baja, dalam menembus pasar internasional. Selain itu, menjadi bukti bahwa produk baja Indonesia memiliki peluang besar dan mampu bersaing di kancah global.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Pelepasan ekspor ini mencerminkan kemampuan industri baja nasional menghasilkan produk berkualitas tinggi yang mampu memenuhi standar internasional. Kami memberikan apresiasi kepada PT Krakatau Baja Industri atas konsistensinya dalam mendukung pertumbuhan ekonomi nasional melalui aktivitas ekspor yang berkelanjutan,” tuturnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Setia menambahkan, ekspor CRC kali ini juga memperlihatkan sinergi kuat antara PT KBI sebagai industri penggilingan baja dengan PT Krakatau Steel sebagai penyedia bahan baku hulu. “Kolaborasi ini mencerminkan kekuatan ekosistem industri baja dalam negeri dalam merespons permintaan global,” jelasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Dirjen ILMATE pun menekankan pentingnya keberlanjutan dan inovasi bagi industri baja nasional. “Industri besi dan baja memiliki peran krusial dalam memperkuat perekonomian nasional melalui penciptaan nilai tambah dan ekosistem hulu-hilir yang terintegrasi. Kami mendorong pelaku industri untuk terus meningkatkan kualitas produk, mengembangkan inovasi bernilai tambah tinggi, serta menerapkan proses produksi yang efisien dan ramah lingkungan,” tegasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Setia menyampaikan rasa bangga dan terima kasih kepada PT KBI. “Keberhasilan ini kami harap dapat menjadi inspirasi bagi pelaku industri lain untuk terus meningkatkan daya saing dan memperluas pasar ekspor, sehingga industri Indonesia semakin diperhitungkan di kancah global,” ujarnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Sementara itu, Direktur Utama PT KBI Arief Purnomo menuturkan, keberhasilan ekspor ini merupakan hasil komitmen perusahaan dalam menjaga mutu produk dan layanan. Menurutnya, pasar ekspor ke depannya akan menjadi salah satu kekuatan penjualan bagi perusahaan.&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Saat ini PTKBI sedang gencar bekerja sama dengan para mitra untuk mengakses pasa ekspor untuk produk CRC di berbagai belahan dunia. Kegiatan ekspor ini merupakan hasil kolaborasi Krakatau Baja Industri, Krakatau Posco sebagai penyedia bahan baku, dan Posco Internasional yang melakukan penguatan distribusi pasar internasional,” ungkapnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Dengan keberhasilan ekspor ke Spanyol ini, PT KBI diharapkan semakin memperkokoh posisinya sebagai produsen baja berkualitas global sekaligus mendukung Krakatau Steel Group dalam mewujudkan kemandirian industri baja Indonesia. Pencapaian ini juga menunjukkan komitmen PT KBI untuk terus tumbuh, memperluas pasar, dan memberikan kontribusi nyata bagi perekonomian nasional.</span></p><p style="text-align:justify;"><span style="font-size:11pt;"><strong>Dukungan pemerintah</strong></span></p><p style="text-align:justify;"><span style="font-size:11pt;">Pada kesempatan terpisah, Menteri Perindustrian (Menperin) Agus Gumiwang Kartasasmita menekankan, pemerintah terus berkomitmen menjaga momentum pertumbuhan industri baja nasional melalui berbagai kebijakan strategis. Upaya strategis yang dilakukan, antara lain mengoptimalkan dukungan melalui penerapan upaya-upaya hukum <i>trade remedies</i> secara efektif, pemberlakuan Standar Nasional Indonesia (SNI) wajib, pemberian fasilitas Harga Gas Bumi Tertentu (HGBT), pengutamaan penggunaan produk dalam negeri pada proyek pemerintah, fasilitas fiskal, serta penerapan prinsip industri hijau.&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Kebijakan-kebijakan ini bertujuan memastikan adanya peningkatan kapasitas dan utilisasi produksi baja nasional secara berkesinambungan, serta memastikan produk baja dalam negeri mampu bersaing baik di pasar domestik maupun ekspor,” ungkapnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Agus juga mengingatkan bahwa ekspansi industri baja nasional tidak lepas dari berbagai tantangan akibat disrupsi ekonomi global. “Kita menghadapi dinamika global mulai dari efek kebijakan proteksionisme seperti <i>Trump Tariff</i>, ketegangan geopolitik antara Amerika Serikat dan Tiongkok, hingga konflik terbuka seperti Rusia–Ukraina dan Iran–Israel. Semua ini berpotensi mengganggu perdagangan dan stabilitas rantai pasok, termasuk produk baja dunia,” jelasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Namun, Menperin optimistis, situasi ini sekaligus membuka peluang strategis. “Industri baja nasional memiliki ruang untuk memperluas penetrasi pasar ekspor dengan memanfaatkan terbukanya peluang akibat pembatasan perdagangan di antara para pemain utama global,” tegasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menperin menyatakan, pentingnya keberlanjutan dan inovasi bagi industri baja nasional. “Industri besi dan baja memiliki peran krusial dalam memperkuat perekonomian nasional melalui penciptaan nilai tambah dan ekosistem hulu-hilir yang terintegrasi. Kami mendorong pelaku industri untuk terus meningkatkan kualitas produk, mengembangkan inovasi bernilai tambah tinggi, serta menerapkan proses produksi yang efisien dan ramah lingkungan,” pungkasnya.</span></p>',
             true,
-            'publikasi/176057905968f04df3c710c_WhatsApp_Image_2025_09_25_at_16_31_28__1_.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/176057905968f04df3c710c_WhatsApp_Image_2025_09_25_at_16_31_28__1_.jpeg',
             '2025-09-25',
             v_layout_id,
             true,
@@ -572,7 +572,7 @@ BEGIN
             'Menteri Perindustrian (Menperin) Republik Indonesia, Agus Gumiwang Kartasasmita menghadiri 12th Annual Teknofest Aerospace and Technology Festival yang berlangsung di Bandara Internasional Atatürk, Istanbul, Turki.',
             '<p style="text-align:justify;">Menteri Perindustrian (Menperin) Republik Indonesia, Agus Gumiwang Kartasasmita menghadiri <i>12th Annual Teknofest Aerospace and Technology Festival</i> yang berlangsung di Bandara Internasional Atatürk, Istanbul, Turki. Dalam kunjungan kerja ini, Menperin menyampaikan apresiasi atas penyelenggaraan festival teknologi berskala internasional tersebut yang tidak hanya menampilkan kemajuan teknologi Turki, tetapi juga menjadi ajang kompetisi sains dan teknologi bagi generasi muda dari Indonesia.</p><p style="text-align:justify;">“Kami memberikan apresiasi setinggi-tingginya kepada para delegasi Indonesia yang ikut serta dalam kompetisi sains dan teknologi di Teknofest ini. Ajang ini merupakan kesempatan emas untuk menambah wawasan, sekaligus menjadi motivasi bagi anak muda Indonesia agar semakin giat melakukan penelitian dan pengembangan (R&amp;D) di dalam negeri,” ujar Menperin Agus dalam keterangannya yang diterima di Jakarta, Senin (22/9).</p><p style="text-align:justify;">Menurut Menperin, Teknofest 2025 menjadi ruang belajar yang sangat baik bagi peneliti muda Indonesia. “Dengan melihat langsung inovasi dan pencapaian di bidang sains dan teknologi, para peserta diharapkan semakin terdorong untuk melakukan riset serta menciptakan teknologi yang membanggakan bangsa,” tuturnya.</p><p style="text-align:justify;">Menperin juga menekankan, esensi dari Teknofest adalah menumbuhkan kebanggaan rakyat Turki atas pencapaian sains dan teknologi mereka. Hal serupa penting diwujudkan di Indonesia. “Jika masyarakat Indonesia, khususnya generasi muda, bangga dengan karya sains dan produk teknologi bangsa sendiri, maka kita akan memiliki dorongan kuat untuk terus berinovasi. Inilah semangat yang saya lihat di Teknofest, dan ini yang ingin kita tanamkan di Indonesia,” ungkapnya.</p><p style="text-align:justify;">Dari sisi Turki, lanjut Menperin, penyelenggaraan festival ini bukan semata mengejar transaksi bisnis, melainkan bertujuan memperkenalkan perkembangan sains dan teknologi kepada masyarakat, khususnya generasi muda. Melalui pengenalan tersebut, anak-anak muda Turki semakin bangga dengan pencapaian teknologi bangsanya.</p><p style="text-align:justify;">“Pelajaran penting yang bisa kita ambil adalah bahwa Turki membangun budaya kebanggaan nasional melalui pengembangan sains dan teknologi. Indonesia pun perlu mengarah ke sana, agar sejak dini anak-anak muda kita mencintai sains dan teknologi, sehingga tumbuh motivasi untuk berkarya dan melahirkan inovasi bagi bangsa terutama bagi pengembangan industri manufaktur dalam negeri,” imbuhnya.</p><p style="text-align:justify;">Menperin pun menggarisbawahi strategi pemerintah Turki yang membangun banyak pusat sains dan teknologi di setiap provinsi patut dicontoh Indonesia. Pusat-pusat ini mendorong terciptanya kompetisi sehat antardaerah dalam menghasilkan teknologi terbaru.</p><p style="text-align:justify;">“Ini menjadi inspirasi bagi kita di Indonesia. Pemerintah Turki menyadari bahwa ekosistem sains, teknologi dan industri harus dibangun secara merata. Dengan begitu, tercipta atmosfer persaingan positif untuk melahirkan inovasi. Model ini dapat kita adaptasi dalam penguatan ekosistem riset dan industri di tanah air,” ujarnya.</p><p style="text-align:justify;">Pada kesempatan ini, Menperin turut mengunjungi stan Aspilsan, salah satu perusahaan teknologi energi dan baterai Turki yang juga mengembangkan solusi untuk kendaraan listrik. Kunjungan ini menjadi penting mengingat Indonesia tengah mendorong ekosistem kendaraan listrik berbasis baterai sebagai bagian dari transformasi industri nasional.</p><p style="text-align:justify;">Oleh karena itu, Menperin menekankan pentingnya kerja sama dalam pengembangan baterai kendaraan listrik, baik untuk kebutuhan sipil maupun militer. Perusahaan asal Turki, Aspilsan, yang dikenal sebagai produsen sel baterai <i>lithium-ion</i>, membuka ruang kolaborasi dengan Indonesia Battery Corporation (IBC). Dengan kapasitas produksi mencapai 21,6 juta unit per tahun, Aspilsan berpotensi memperkuat rantai pasok ekosistem kendaraan listrik di Indonesia.</p><p style="text-align:justify;">Saat ini, populasi kendaraan listrik di Indonesia terus meningkat pesat, dari 116 ribu unit pada 2023 menjadi 207 ribu unit pada 2024. Proyeksi kebutuhan material baterai untuk kendaraan listrik nasional pun melonjak signifikan, sejalan dengan megaproyek ekosistem baterai EV yang baru saja diresmikan Presiden Prabowo Subianto, dengan nilai investasi mencapai USD5,9 miliar atau sekitar Rp96 triliun.</p><p style="text-align:justify;">“Indonesia siap mendukung kolaborasi dengan Turki dalam industri baterai, baik melalui riset bersama, investasi, maupun transfer teknologi, agar rantai pasok regional dapat lebih kuat dan berdaya saing,” ujar Agus.</p><p style="text-align:justify;">Sebagai informasi, Teknofest Aerospace and Technology Festival adalah ajang tahunan yang digagas sejak 2018 oleh Turkish Technology Team Foundation (T3 Foundation) bersama Kementerian Industri dan Teknologi Turki. Festival ini bertujuan memacu minat generasi muda terhadap sains dan teknologi sekaligus mempercepat perkembangan ekosistem inovasi di Turki.</p>',
             true,
-            'publikasi/175859227468d1fd1200101_IDN02054.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175859227468d1fd1200101_IDN02054.jpg',
             '2025-09-22',
             v_layout_id,
             true,
@@ -634,7 +634,7 @@ BEGIN
             'Indonesia dan Turki menegaskan kembali komitmennya untuk terus memperkuat kerja sama yang komprehensif di sektor industri sebagai motor penggerak pertumbuhan ekonomi kedua negara.',
             '<p style="text-align:justify;">Indonesia dan Turki menegaskan kembali komitmennya untuk terus memperkuat kerja sama yang komprehensif di sektor industri sebagai motor penggerak pertumbuhan ekonomi kedua negara. Hal ini disampaikan dalam pertemuan bilateral antara Menteri Perindustrian Republik Indonesia, Agus Gumiwang Kartasasmita dengan Menteri Perindustrian dan Teknologi Turki, Mehmet Fatih Kacir.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Indonesia akan segera menyusun <i>roadmap</i> kerja sama industri Indonesia–Turki sebagai panduan strategis untuk memperkuat kolaborasi jangka panjang di berbagai sektor,” kata Menperin Agus dalam keterangan resminya yang diterima di Jakarta, Minggu (21/9).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pertemuan dua sahabat dekat yang penuh keakraban tersebut, dilaksanakan di sela keikutsertaan Menperin Agus pada 12th Annual Teknofest Aerospace and Technology Festival di Bandara Internasional Ataturk, Istanbul, Sabtu (20/9) waktu setempat. Festival teknologi kedirgantaraan terbesar di Turki ini dihadiri jutaan pengunjung dari kalangan pemerintah, pelaku usaha, hingga akademisi</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Pertemuan ini sekaligus menindaklanjuti rangkaian interaksi intensif antara Indonesia dan Turki dalam dua tahun terakhir. Sejak kunjungan kami ke Turki pada Juni 2024, sejumlah perusahaan besar seperti Sanko Holding, Arcelik (KOC Holding), dan Kordsa (Sabanci Holding) menunjukkan minat besar untuk berinvestasi di Indonesia,” tutur Menperin.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Sebagai informasi, Sanko Holding telah memulai investasi budi daya tuna di Biak, Papua. Menperin berharap Sanko memperluas ke sektor hilirisasi, termasuk pengolahan tuna dan industri pendukung seperti galangan kapal, bahkan terbuka peluang investasi pada proyek energi terbarukan di bidang PLTA.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Sementara itu, Kordsa yang telah beroperasi di Bogor dengan memproduksi bahan baku ban, tengah mengembangkan riset material komposit dan produk bernilai tambah tinggi untuk ekspor. Perusahaan ini telah membangun fasilitas penelitian dan pengembangan pada tahun 2023 dan akan mengembangkan produk komposit, airbag, dan penguat struktur bangunan dengan tujuan ekspor. Menperin mengusulkan agar perusahan ini mengajukan insentif fiskal berupa <i>super tax deduction</i> untuk litbang.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Adapun Arcelik, produsen peralatan rumah tangga terbesar kedua di dunia, telah bekerja sama dengan mitra lokal untuk memproduksi mesin cuci di Indonesia dan berencana memperluas produksi lemari es serta pendingin udara. Perusahaan ini bahkan menargetkan Indonesia sebagai basis produksi baru di Asia, sejajar dengan fasilitasnya di Thailand</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Momentum kerja sama Indonesia dan Turki juga diperkuat melalui pertemuan <i>High-Level Strategic Cooperation Council</i><strong> </strong>(HLSC) pada Februari 2025, ketika Presiden RI dan Presiden Turki menandatangani <i>Joint Statement</i> memperingati 75 tahun hubungan diplomatik,” ungkap Menperin.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pertemuan tersebut menghasilkan 12 nota kesepahaman antar-pemerintah di berbagai sektor, termasuk industri pertahanan, energi, kesehatan, pendidikan tinggi, perdagangan, hingga perindustrian. Khusus di bidang industri, kedua negara telah menyepakati pembentukan <i>Joint Committee for Industrial Cooperation</i> yang mencakup 14 sektor strategis, mulai dari teknologi baterai, kendaraan listrik, tekstil, hingga industri halal.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Selain itu, terdapat 10 kesepakatan antarperusahaan, seperti kerja sama antara Pertamina Hulu Energi dan TPAO di sektor migas, kerja sama PT PAL Indonesia dengan TAIS Shipyard untuk pembangunan frigat kelas Istanbul, hingga <i>joint venture</i> antara perusahaan Indonesia dengan Baykar dan Roketsan untuk pendirian fasilitas produksi <i>drone</i> tempur,” imbuhnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pada April 2025, Presiden RI Prabowo Subianto kembali melakukan kunjungan kerja ke Turki dengan fokus pada investasi di sektor strategis, khususnya baterai kendaraan listrik, energi terbarukan, industri pertahanan, dan tekstil kelas atas. Kunjungan tersebut juga menghasilkan kesepakatan kolaborasi produksi vaksin serta kerja sama pengembangan drone, misil, dan komunikasi militer.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Dari sisi bisnis, perusahaan Indonesia seperti Asia Pacific Rayon berhasil menandatangani kontrak ekspor dengan mitra Turki untuk serat viscose senilai jutaan dolar. Selanjutnya, pada April 2025, Menperin Agus juga menerima <i>courtesy call</i> dari Duta Besar Turki untuk Indonesia, yang menyepakati penyelenggaraan 1st Joint Committee Meeting pada Juni 2025 dengan <i>deliverables</i> awal berupa pengembangan SDM di kawasan industri, kerja sama <i>techno park</i>, produksi baterai dan EV, serta forum investasi</p>',
             true,
-            'publikasi/175851541668d0d0d818a70_IMG_9365.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175851541668d0d0d818a70_IMG_9365.jpg',
             '2025-09-21',
             v_layout_id,
             true,
@@ -696,7 +696,7 @@ BEGIN
             'Menteri Perindustrian Agus Gumiwang Kartasasmita didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kedua dari kiri), Staf Khusus Menteri bidang Konektivitas dan Pengembangan Sistem Logistik Emmanuel Lestarto Wanandi (kiri) melakukan pertemuan bilateral dengan Menteri Perindustrian dan Teknologi Turki Mehmet Fatih Kacir (keempat dari kanan), Istanbul, Turki, 20 September 2025.',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kedua dari kiri), Staf Khusus Menteri bidang Konektivitas dan Pengembangan Sistem Logistik Emmanuel Lestarto Wanandi (kiri) melakukan pertemuan bilateral dengan Menteri Perindustrian dan Teknologi Turki Mehmet Fatih Kacir (keempat dari kanan), Istanbul, Turki, 20 September 2025.</span></p><figure class="image"><img style="aspect-ratio:720/382;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/175851559968d0d18f21702_IMG_9286.jpg" width="720" height="382"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita berfoto dengan Menteri Perindustrian dan Teknologi Turki Mehmet Fatih Kacir (kanan), Istanbul, Turki, 20 September 2025.</span></p><figure class="image"><img style="aspect-ratio:668/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/175851563868d0d1b66ae6b_IMG_9260.jpg" width="668" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita bertukar cinderamata pada saat pertemuan bilateral dengan Menteri Perindustrian dan Teknologi Turki Mehmet Fatih Kacir, Istanbul, Turki, 20 Desember 2025. Pada pertemuan bilateral ini Menperin juga ikut serta pada 12th Annual Teknofest Aerospace and Technology Festival di Bandara Internasional Ataturk, Istanbul, 20 September 2025.</span></p><figure class="image"><img style="aspect-ratio:720/465;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/175851566168d0d1cd75b11_IMG_9330.jpg" width="720" height="465"></figure>',
             true,
-            'publikasi/175851551768d0d13ddbff3_IMG_9286__1_2.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175851551768d0d13ddbff3_IMG_9286__1_2.jpg',
             '2025-09-20',
             v_layout_id,
             true,
@@ -758,7 +758,7 @@ BEGIN
             'Kementerian Perindustrian (Kemenperin) berkomitmen untuk terus melakukan penguatan industri alat kesehatan (alkes) dalam negeri agar semakin inovatif, berdaya saing, dan mampu memenuhi kebutuhan nasional maupun pasar global.',
             '<p style="text-align:justify;"><span style="font-size:11pt;">Kementerian Perindustrian (Kemenperin) berkomitmen untuk terus melakukan penguatan industri alat kesehatan (alkes) dalam negeri agar semakin inovatif, berdaya saing, dan mampu memenuhi kebutuhan nasional maupun pasar global. Guna mencapai sasaran tersebut, langkah yang dapat diwujudkan adalah melalui kolaborasi strategis dengan para mitra industri, baik swasta maupun internasional.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menteri Perindustrian Agus Gumiwang Kartasasmita menegaskan, industri alat kesehatan merupakan salah satu sektor prioritas yang akan terus dikembangkan karena berpotensi menjadi penyumbang besar terhadap perekonomian nasional. “Industri alat kesehatan diharapkan berkontribusi besar dalam PDB nasional dalam beberapa tahun mendatang,” ujarnya dalam keterangannya, Senin (8/9).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menperin optimistis, dengan semangat gotong royong dan inovasi yang direalisasikan oleh pelaku industri alkes dalam negeri, akan mewujudkan visi Indonesia Emas 2045 sebagai sebuah bangsa yang mandiri, kompetitif, dan berdaulat di bidang teknologi kesehatan. “Inisiatif seperti ini bukan hanya tentang produksi alat, tetapi tentang menyelamatkan nyawa, memperkuat sistem kesehatan nasional, dan membangun ketahanan ekonomi di tengah tantangan global seperti perubahan iklim dan pandemi,” tuturnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Oleh karena itu, Kemenperin memberikan apresiasi terhadap sinergi PT. Graha Teknomedika dan Mindray Medical International Limited untuk memproduksi sejumlah alat kesehatan yang inovatif. Alat kesehatan yang dihasilkan tersebut, yakni dua jenis ventilator (SV300 dan SV800) serta tiga tipe mesin anesthesia yaitu WATO EX-35, EX-65 PRO, dan A8.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Produksi ventilator dan mesin anesthesia ini selaras dengan <i>roadmap</i> Making Indonesia 4.0, yang menempatkan sektor alat kesehatan sebagai pilar transformasi menuju ekonomi berbasis teknologi tinggi,” jelas Direktur Industri Permesinan dan Alat Mesin Pertanian Kemenperin, Solehan mewakili Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) pada peluncuran produk alkes terebut di PT. Graha Teknomedika, Depok, Senin (8/9).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Solehan menyebutkan, berdasarkan data perdagangan, nilai ekspor mesin anestesi dalam kelompok instrumen dan peralatan elektro bedah atau elektromedis melonjak signfikan dari USD354.000 pada tahun 2022 menjadi USD5,84 juta pada 2024. “Sementara itu, untuk nilai ekspor ventilator sebesar USD10,37 juta tahun 2024,” ungkapnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Pada sesi talkshow, Solehan menuturkan, Kemenperin terus mendukung pengembangan industri alat kesehatan berteknologi tinggi, seperti ventilator dan mesin anestesi, melalui berbagai strategi yang komprehensif dan berkelanjutan. “Salah satu fokus utamanya adalah pengembangan sumber daya manusia industri melalui program pelatihan yang sesuai dengan kebutuhan industri alat kesehatan, baik di bidang pengembangan desain, proses produksi, material analysis, pengujian/testing, maupun transformasi industri 4.0, agar tercipta tenaga kerja yang kompeten dan siap menghadapi tantangan global,” paparnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Di sisi lain, Kemenperin juga mendorong penguatan pasar dalam negeri dengan mendorong belanja produk dalam negeri melalui program P3DN (Peningkatan Penggunaan Produk Dalam Negeri), serta memperkuat rantai pasok industri dalam negeri dengan membina industri komponen dan bahan baku agar tercipta ekosistem industri yang terintegrasi.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;"><strong>Substitusi impor</strong></span></p><p style="text-align:justify;"><span style="font-size:11pt;">Lebih lanjut, Kemenperin mendorong PT. Graha Teknomedika dan Mindray Medical International Limited dapat mengambil peluang untuk substitusi impor serta menumbuhkan upaya ekspor produk melalui produksi ventilator dan mesin anestesi di dalam negeri. “Hal ini mencerminkan komitmen kuat untuk mempercepat kemandirian industri alat kesehatan di Indonesia,” imbuhnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Solehan juga menyampaikan bahwa kolaborasi ini menunjukkan keberhasilan integrasi teknologi global dengan kapasitas produksi lokal sehingga dapat menghasilkan produk berstandar internasional. “Kolaborasi dengan mitra strategis menjadi salah satu kunci percepatan inovasi. Melalui kerja sama riset, transfer teknologi, hingga pengembangan kapasitas produksi, industri kita akan mampu melahirkan produk-produk alkes modern yang sesuai dengan kebutuhan pasar,” jelasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Solehan mengemukakan, pandemi Covid-19 telah mengajarkan pelajaran berharga tentang kerentanan rantai pasok global. Ventilator dan mesin anestesi sebagai alat vital untuk perawatan intensif, sempat menjadi barang langka yang bergantung sepenuhnya pada impor.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Kini, dengan hadirnya produksi dari dalam negeri, kita tidak hanya mengurangi ketergantungan impor, tetapi juga menciptakan <i>multiplier effect</i> ekonomi yang luar biasa berupa penciptaan lapangan kerja baru di sektor manufaktur, peningkatan kapasitas R&amp;D domestik, dan potensi ekspor ke pasar regional ASEAN maupun global,” paparnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Di samping itu, Indonesia yang dahulu sebagai konsumen, kini berpotensi menjadi pusat produksi alat kesehatan inovatif, dengan daya saing yang didukung oleh standar internasional seperti ISO dan CE marking yang telah dipenuhi oleh beberapa perusahaan alat kesehatan di Indonesia.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Melalui kolaborasi antara PT. Graha Teknomedika dengan Mindray Medical International Limited ini, menjadi langkah awal yang baik menuju kemajuan industri alat kesehatan nasional yang mandiri dan berdaya saing, demi kesejahteraan masyarakat Indonesia,” ujarnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Solehan menambahkan, Kemenperin bertekad untuk memacu pengembangan industri alkes di dalam negeri, antara lain melalui berbagai pemberian insentif seperti fasilitas pajak berupa <i>tax holiday</i>, <i>tax allowance</i>, dan <i>super deduction tax</i>, serta promosi investasi terutama untuk produk alat kesehatan yang belum diproduksi di dalam negeri.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Mari kita manfaatkan momentum ini untuk mendorong lebih banyak investasi langsung (<i>foreign direct investment</i>/FDI) yang berfokus pada transfer teknologi, serta pengembangan SDM melalui pelatihan vokasi yang relevan dengan Industri 4.0 seperti otomatisasi dan AI dalam perangkat medis,” tandasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;"><strong>Kebangkitan industri alkes</strong></span></p><p style="text-align:justify;"><span style="font-size:11pt;">Pada kesempatan yang sama, Direktur Marketing dan Keuangan PT Graha Teknomedika, Febie Yuriza Poetri menyampaikan, peluncuran produk baru ini menjadi simbol kebangkitan industri alat kesehatan Indonesia menuju kemandirian dan daya saing global.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Ini bukti nyata bahwa bangsa Indonesia mampu menghadirkan produk alat kesehatan berteknologi tinggi yang setara dengan standar internasional. Kerja sama ini juga menjadi tonggak penting dalam membangun kemandirian bangsa di sektor alat kesehatan,” ujarnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Kolaborasi GTM dan Mindray tidak hanya mencakup investasi finansial, tetapi juga investasi pengetahuan, transfer teknologi, hingga peningkatan kapasitas SDM. Mindray menghadirkan platform teknologi kelas dunia, desain produk, serta pelatihan tenaga kerja, sementara GTM berinvestasi dalam infrastruktur produksi modern, assembly line, quality control, hingga pengembangan rantai pasok lokal.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Yang kami lakukan bukan hanya soal investasi finansial, tetapi sebuah nilai besar untuk kemandirian bangsa. Mindray membawa teknologi kelas dunia, sementara kami memastikan teknologi itu dapat diproduksi dan dikembangkan di tanah air,” jelas Febie.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Saat ini, fasilitas produksi GTM telah memenuhi standar internasional ISO 13485, lengkap dengan peralatan produksi dan pengujian ventilator maupun mesin anestesi. Targetnya, kapasitas produksi mencapai 500–1.000 unit per tahun, bukan hanya untuk memenuhi kebutuhan dalam negeri tetapi juga untuk pasar ekspor.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Dari sisi tenaga kerja, tahap awal rekrutmen telah melibatkan 20 tenaga kerja lokal yang dilatih untuk menjadi operator, engineer, peneliti, hingga tenaga ahli yang menguasai teknologi tinggi. Jumlah ini akan terus meningkat seiring dengan eskalasi kapasitas produksi.</span></p><p style="text-align:justify;"><br><span style="font-size:11pt;">Produk ventilator SV300 dan SV800 sudah mendapatkan sertifikat Tingkat Komponen Dalam Negeri (TKDN) di atas 40%, sedangkan produk anesthesia machine WATO EX-35, WATO EX-65 PRO dan A8 sedang dalam proses mendapatkan sertifikat Tingkat Komponen Dalam Negeri (TKDN) dengan estimasi pencapaian juga di atas 40%, sesuai regulasi dan harapan Kementerian Perindustrian. Dengan capaian tersebut, produk ini berhak masuk kategori prioritas dalam e-Katalog pengadaan pemerintah.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Ini adalah langkah konkret memperkuat kemandirian alat kesehatan nasional. Indonesia tidak lagi hanya menjadi pasar, tetapi juga produsen alat kesehatan kritis berteknologi tinggi,” tutur Febie.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Sementara itu, General Manager Mindray Indonesia, Max Cao menyampaikan bahwa komitmen perusahaan untuk mendukung visi pemerintah Indonesia dalam mewujudkan kemandirian industri alat kesehatan. “Mindray adalah perusahaan perangkat medis kelas dunia, tetapi komitmen kami bersifat lokal. Mindray Indonesia berakar di sini, berdedikasi untuk mendukung kesehatan dan kesejahteraan bangsa ini,” ujarnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menurut Max Cao, sejak tahun 2023, Mindray dan GTM memulai langkah ambisius untuk memproduksi ventilator dan anesthesia machine berkelas dunia secara lokal. Kemitraan ini menyatukan inovasi global Mindray dengan keahlian manufaktur lokal GTM. “Hari ini, saya dengan bangga menyatakan bahwa misi tersebut berhasil. Produk seri AKD yang kami kembangkan bersama tidak hanya diluncurkan, tetapi juga mendapat sambutan positif,” jelasnya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Max Cao menyampaikan dua pencapaian penting dari hasil kolaborasi ini. Pertama, produk ventilator dan anesthesia machine tersebut telah berhasil meraih Tingkat Komponen Dalam Negeri (TKDN) lebih dari 40 persen. Kedua, sambutan pasar terbukti sangat positif dengan adanya pemesanan sebanyak 200 unit ventilator.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Keberhasilan ini adalah bukti nyata komitmen kami pada strategi lokalisasi Indonesia. Respon cepat pasar semakin menguatkan keyakinan kami untuk terus melangkah,” tambahnya.</span></p>',
             true,
-            'publikasi/175851523968d0d0272dc0e_4.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175851523968d0d0272dc0e_4.jpg',
             '2025-09-08',
             v_layout_id,
             true,
@@ -820,7 +820,7 @@ BEGIN
             'Kementerian Perindustrian meresmikan beroperasinya Apple Developer Academy @BINUS Bali, sebagai bagian dari pemenuhan komitmen investasi Apple di Indonesia.',
             '<p style="text-align:justify;">Kementerian Perindustrian meresmikan beroperasinya Apple Developer Academy @BINUS Bali, sebagai bagian dari pemenuhan komitmen investasi Apple di Indonesia. Kehadiran akademi ini menjadi tonggak penting dalam pengembangan ekosistem talenta digital nasional serta mendukung penerapan Tingkat Komponen Dalam Negeri (TKDN) berbasis inovasi.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan apresiasi atas keberlanjutan program Apple Developer Academy di Indonesia. Apple Developer Academy telah menyediakan fasilitas dan kurikulum yang membantu para pelajar Indonesia dalam mengembangkan pola pikir inovatif, keterampilan digital, serta keahlian yang diperlukan untuk menjadi pengembang kelas dunia.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Peresmian ini tidak hanya menandai kemajuan investasi Apple dalam inovasi di Indonesia, tetapi juga membuka peluang lebih besar bagi tumbuhnya inovasi di dalam negeri. Kami menantikan kemitraan yang terus berlanjut dengan Apple di Indonesia,” kata Menperin dalam keterangannya, Kamis (28/8).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Menperin menegaskan, kerja sama ini telah diformalkan melalui nota kesepahaman antara Kemenperin dan Apple. Penandatanganan MoU antara Kemenperin dengan Apple menjadi dasar penting dalam pelaksanaan berbagai program pengembangan inovasi, termasuk keberlanjutan Apple Developer Academy, rencana pendirian Apple Developer Academy baru, pembentukan Apple Innovation and Software Technology Institute, Apple Professional Developers Institute, serta Pusat Penelitian dan Pengembangan Perangkat Lunak Apple di Indonesia bersama-sama dengan perguruan tinggi di Indonesia melalui Indonesia Chips Design Collaborative Center (ICDEC) .</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Pembukaan Apple Developer Academy @BINUS Bali pada hari ini merupakan bagian dari komitmen tersebut, sekaligus bukti nyata kontribusi Apple dalam meningkatkan kapasitas talenta digital Indonesia dan memperkuat ekosistem inovasi nasional,” tambahnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta yang hadir pada peresmian tersebut menegaskan pentingnya program ini bagi ekosistem industri nasional. “Kehadiran Apple Developer Academy @BINUS Bali merupakan bukti nyata pemenuhan komitmen investasi Apple, sekaligus kontribusi konkret dalam mencetak talenta digital kelas dunia yang akan memperkuat ekosistem inovasi nasional,” ungkapnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Apalagi, pada triwulan I tahun 2025, sektor industri barang logam, komputer, barang elektronik, optik, dan peralatan listrik memiliki kinerja yang gemilang dengan tumbuh sebesar 6,18 persen, meningkat dibandingkan periode yang sama tahun sebelumnya dan mampu melampaui pertumbuhan ekonomi nasional. Khusus subsektor perangkat handphone, komputer genggam, dan tablet (HKT), produksi dalam negeri sepanjang tahun 2024 tercatat sebanyak 48,89 juta unit, dan hingga triwulan II tahun 2025 telah mencapai 14,27 juta unit.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;"><strong>Bertaraf internasional</strong></p><p style="text-align:justify;">Apple Developer Academy @BINUS Bali berlokasi di Parc23, Denpasar, dengan kapasitas mencapai 220 peserta per angkatan. Fasilitas akademi ini dirancang modern dengan ruang kolaborasi, area pembelajaran fleksibel, dan ruang konferensi, sehingga mendukung terciptanya lingkungan belajar yang kreatif dan inklusif.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Akademi ini merupakan Apple Developer Academy internasional pertama di Asia, hasil kolaborasi antara Apple dengan BINUS University. Program intensif selama 9 bulan penuh ini terbuka untuk individu berusia 18 tahun ke atas, tanpa memandang latar belakang pendidikan. Melalui pendekatan Challenge-Based Learning (CBL), peserta dilatih tidak hanya dalam keterampilan teknis seperti coding dan desain, tetapi juga dalam keterampilan profesional seperti komunikasi, kepemimpinan, dan pemecahan masalah.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Sejak hadir di Indonesia, Apple Developer Academy telah melahirkan lebih dari 2.000 alumni, dengan 89% di antaranya terserap di dunia kerja di berbagai sektor industri, termasuk startup teknologi, perbankan, kesehatan, dan manufaktur. Beberapa karya inovatif yang lahir dari akademi ini antara lain HerLens, aplikasi berbasis kecerdasan buatan (AI) untuk deteksi dini kanker serviks, serta PetaNetra, aplikasi navigasi berbasis augmented reality untuk penyandang disabilitas netra.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Kami percaya kehadiran Apple Developer Academy @BINUS Bali akan menjadi katalisator dalam meningkatkan daya saing bangsa, memperkuat industri elektronika dan telekomunikasi, serta membuka lapangan kerja baru di era ekonomi digital,” tegas Setia.</p>',
             true,
-            'publikasi/175851511568d0cfab6d646_3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175851511568d0cfab6d646_3.jpeg',
             '2025-08-28',
             v_layout_id,
             true,
@@ -882,7 +882,7 @@ BEGIN
             'Kementerian Perindustrian berkomitmen menjaga ekosistem industri otomotif nasional agar tetap tangguh di tengah dinamika global yang penuh tantangan.',
             '<p style="text-align:justify;"><span style="font-size:11pt;">Kementerian Perindustrian berkomitmen menjaga ekosistem industri otomotif nasional agar tetap tangguh di tengah dinamika global yang penuh tantangan. Apalagi, industri otomotif selama ini berkontribusi besar terhadap peningkatan investasi dan inovasi produk, bahkan juga menjadi penggerak penting bagi pertumbuhan ekonomi daerah dan nasional.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Pemerintah berkomitmen untuk terus menjaga keseimbangan ekosistem industri otomotif nasional. Di tengah ketidakpastian ekonomi global, kami memastikan industri dalam negeri tetap memiliki akses bahan baku, daya saing produksi, serta peluang ekspor yang terus diperluas,” kata Menteri Perindustrian Agus Gumiwang Kartasasmita dalam keterangannya, Rabu (27/8).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Guna mendukung kemajuan industri otomotif di tanah air, Kemenperin memberikan dukungan penuh terhadap penyelenggaraan GAIKINDO Indonesia International Auto Show (GIIAS), termasuk yang digelar di beberapa daerah. Pameran otomotif berskala internasional ini diharapkan menjadi etalase bagi kemajuan industri otomotif nasional sekaligus sarana memperkuat posisi Indonesia di rantai pasok global.</span></p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;"><span style="font-size:11pt;">Pada pembukaan GIIAS Surabaya 2025,&nbsp;Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Kemenperin, Setia Diarta menyampaikan apresiasi kepada GAIKINDO atas konsistensi menghadirkan pameran otomotif berskala internasional yang berdampak positif terhadap perekonomian.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Surabaya, sebagai salah satu kota terbesar di Indonesia, memiliki peran strategis dalam peta industri otomotif nasional. Jawa Timur menyumbang pangsa pasar sebesar&nbsp;9,7 persen dari total penjualan nasional, menempati posisi ketiga tertinggi di Indonesia. Potensi ini harus diimbangi dengan penguatan struktur industri yang kokoh dan terintegrasi dari hulu ke hilir,” kata Setia di Surabaya, Rabu (27/8).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Berdasarkan data&nbsp;Vehicles in Use 2024&nbsp;dari OICA, Indonesia mencatat&nbsp;Car Ownership Ratio sebesar 99 per 1.000 penduduk, masih lebih rendah dibandingkan Malaysia (490), Thailand (275), dan Singapura (211). Namun, Indonesia mencatat penjualan kendaraan domestik tertinggi di ASEAN, menunjukkan pasar yang luas dan prospektif untuk mendorong investasi, transfer teknologi, dan ekspansi kapasitas produksi.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Struktur industri otomotif nasional terbukti memiliki&nbsp;koefisien <i>backward linkage</i> sebesar 0,975&nbsp;dan&nbsp;<i>forward linkage</i> sebesar 0,835, yang berarti memberikan efek pengganda besar pada perekonomian, termasuk sektor logam, karet, elektronik, perdagangan, transportasi, logistik, dan jasa keuangan,” ungkap Setia. Dirjen ILMATE juga menekankan bahwa pemerintah terus mendorong&nbsp;penggunaan komponen dalam negeri untuk memperkuat kemandirian industri dan membuka lebih banyak lapangan kerja.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Penyelenggaraan&nbsp;GIIAS Surabaya 2025&nbsp;diikuti oleh&nbsp;30 merek kendaraan bermotor&nbsp;— 21 merek kendaraan penumpang, 1 merek kendaraan komersial, 8 merek sepeda motor, serta 14 merek industri pendukung — termasuk&nbsp;7 merek baru yang pertama kali berpartisipasi. Kehadiran mereka tidak hanya memperkaya pilihan bagi konsumen, tetapi juga memicu pertumbuhan bisnis lokal mulai dari hotel, transportasi, hingga UMKM di sekitar venue pameran.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Pemerintah berkomitmen menjaga resiliensi industri, daya beli masyarakat, dan mengakselerasi transisi menuju teknologi ramah lingkungan, termasuk kendaraan listrik berbasis baterai (KBLBB),” imbuh Setia.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Kehadiran KBLBB di GIIAS Surabaya 2025 selaras dengan target nasional menurunkan emisi gas rumah kaca dan mendorong inovasi di sektor otomotif, yang berdampak pada percepatan ekosistem industri baru serta membuka peluang investasi di bidang infrastruktur pendukung.</span></p><p style="text-align:justify;"><span style="font-size:11pt;"><strong>GIIAS The Series: Menggerakkan Ekonomi dari Barat hingga Timur</strong></span></p><p style="text-align:justify;"><span style="font-size:11pt;">GIIAS Surabaya 2025 merupakan bagian dari&nbsp;GIIAS The Series, rangkaian pameran otomotif terbesar di Indonesia yang dimulai di&nbsp;Tangerang (24 Juli–3 Agustus), berlanjut ke&nbsp;Surabaya (27–31 Agustus), kemudian&nbsp;Semarang (24–28 September), dan akan ditutup di&nbsp;Makassar (5–9 November).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Rangkaian ini tidak hanya menjadi ajang pamer teknologi otomotif terkini, tetapi juga memberikan&nbsp;multiplier effect pada perekonomian lokal di setiap kota penyelenggara melalui peningkatan kunjungan wisata, konsumsi domestik, dan transaksi penjualan.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Kemenperin memberikan apresiasi kepada GAIKINDO, seluruh peserta, sponsor, dan pemangku kepentingan yang telah mendukung penyelenggaraan GIIAS Surabaya 2025. “Pameran ini adalah katalisator kolaborasi strategis antara pemerintah, industri, dan masyarakat untuk memperkuat posisi Indonesia sebagai pusat produksi dan ekspor kendaraan di tingkat regional maupun global,” tutup Setia.</span></p>',
             true,
-            'publikasi/175851502668d0cf529936d_3.JPG',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175851502668d0cf529936d_3.JPG',
             '2025-08-28',
             v_layout_id,
             false,
@@ -944,7 +944,7 @@ BEGIN
             'Kinerja industri logam, mesin, alat transportasi, dan elektronika (ILMATE) mencatatkan hasil positif pada triwulan II tahun 2025 dengan pertumbuhan sebesar 5,19 persen (year-on-year)',
             '<p style="text-align:justify;">Kinerja industri logam, mesin, alat transportasi, dan elektronika (ILMATE) mencatatkan hasil positif pada triwulan II tahun 2025 dengan pertumbuhan sebesar 5,19 persen (year-on-year). Capaian gemilang ini diperkuat oleh lonjakan subsektor industri mesin dan perlengkapan yang tumbuh hingga 18,75 persen, tertinggi sejak tahun 2012.</p><p style="text-align:justify;">Direktur Industri Permesinan dan Alat Mesin Pertanian Direktorat Jeneral ILMATE Kementerian Perindustrian, Solehan mengungkapkan, performa tangguh dari industri mesin dan perlengkapan tersebut tidak terlepas dari meningkatnya belanja modal pemerintah yang naik sebesar 30,37 persen.&nbsp;</p><p style="text-align:justify;">“Kenaikan belanja modal ini berdampak langsung pada peningkatan produksi dan investasi. Kami optimistis, pertumbuhan dan kontribusi sektor manufaktur masih dapat ditingkatkan lebih tinggi lagi jika didukung oleh kebijakan yang pro-industri,” ujarnya pada kegiatan Focus Group Discussion Industrial Research and Development Sektor Industri Permesinan dan Alat Mesin Pertanian di Bandung, Selasa (12/8).</p><p style="text-align:justify;">Solehan menegaskan, untuk mewujudkan visi Indonesia sebagai salah satu dari sepuluh ekonomi terbesar dunia, penguasaan teknologi industri menjadi keniscayaan. Artinya, transformasi menuju digitalisasi dan otomatisasi dinilai sebagai langkah strategis yang tidak dapat ditunda demi meningkatkan daya saing nasional.&nbsp;</p><p style="text-align:justify;">“Strategi ini harus diiringi penguatan sumber daya manusia, pembangunan infrastruktur digital, serta dorongan inovasi yang berkelanjutan,” jelasnya. Melalui pendekatan ini, diyakini juga industri nasional akan mampu menciptakan nilai tambah yang tinggi sekaligus menjaga keberlanjutan pertumbuhannya.</p><p style="text-align:justify;">Menurut Solehan, pemerintah juga terus mengakselerasi kemandirian dalam upaya memproduksi mesin dan peralatan industri sebagai landasan menuju industrialisasi yang lebih mendalam. Langkahnya antara lain dengan fokus pada kolaborasi pemerintah, pelaku industri, dan lembaga riset guna meningkatkan kapasitas desain serta manufaktur dalam negeri.&nbsp;</p><p style="text-align:justify;">“Langkah kolaborasi ini untuk memastikan industri nasional mampu memproduksi alat-alat yang sesuai dengan kebutuhan sektor prioritas. Selain itu, diharapkan mampu mengurangi ketergantungan terhadap impor dan memperkuat daya saing produk di pasar domestik maupun global,” imbuhnya.</p><p style="text-align:justify;">Sebagai wujud nyata komitmen tersebut, Direktorat Industri Permesinan dan Alat Mesin Pertanian Kemenperin membentuk Indonesia Manufacturing Center (IMC) yang berperan sebagai fasilitator kolaborasi industri, pengguna, lembaga litbang, dan akademisi.&nbsp;</p><p style="text-align:justify;">“IMC ini bertujuan mempercepat hilirisasi teknologi dan menghasilkan produk permesinan yang sesuai tren serta kebutuhan teknologi di Indonesia. Pemerintah juga telah menyiapkan insentif seperti super tax deduction bagi industri yang berinvestasi pada penelitian dan pengembangan,” tutur Solehan.</p><p style="text-align:justify;">Lebih lanjut, melalui forum FGD ini, semua pihak dapat membahas potensi dan peluang kolaborasi riset dan pengembangan produk industri dalam mendukung program dan kebutuhan nasional, serta peran IMC dalam memfasilitasi kemajuan teknologi tersebut. “Semoga forum ini dapat menghasilkan terobosan yang bermanfaat bagi kemajuan industri permesinan nasional,” tegasnya.</p><p style="text-align:justify;">Solehan menambahkan, capaian yang telah diraih harus menjadi pemacu semangat untuk memperkuat sinergi antara pemerintah, industri, akademisi, dan lembaga penelitian. “Kolaborasi yang solid diyakini akan melahirkan inovasi yang mampu menjawab tantangan zaman dan kebutuhan pasar, sehingga industri permesinan dan alat mesin pertanian nasional dapat menjadi pilar penting dalam mendorong kemandirian dan daya saing bangsa,” ujarnya.</p><p style="text-align:justify;"><strong>Adopsi teknologi</strong><br>Pengawas Alat dan Mesin Pertanian Madya Badan Perakitan dan Modernisasi Pertanian (BRMP) Kementerian Pertanian, Harsono mengemukakan bahwa adopsi teknologi di sektor pertanian terbukti meningkatkan produktivitas hingga 30–50 persen. Selain itu menghemat tenaga kerja, mengurangi biaya operasional, dan memperbaiki kualitas hasil panen. “Digitalisasi pertanian bahkan turut membuka akses pasar yang lebih luas bagi petani,” ujarnya.</p><p style="text-align:justify;">Ia menambahkan, strategi percepatan modernisasi harus memanfaatkan teknologi mekanisasi untuk berbagai komoditas, mulai dari padi, jagung, kedelai, tebu, hingga hortikultura. Dengan dukungan kebijakan yang tepat, Indonesia berpeluang memperkuat ketahanan pangan sekaligus meningkatkan kesejahteraan petani.</p><p style="text-align:justify;">“Alsintan dan teknologi modern adalah kunci percepatan transformasi pertanian. Jika seluruh pemangku kepentingan bersinergi, maka visi pertanian Indonesia yang efisien, produktif, dan berdaya saing global dapat terwujud,” tutur Harsono.</p><p style="text-align:justify;">Sementara itu, Ketua Umum Asosiasi Robot Industri Indonesia (ASRII), Malik Khidir, menegaskan pentingnya pengembangan ekosistem berbasis inovasi untuk memperkuat daya saing industri nasional. Salah satu langkah strategis yang didorong adalah melalui gerakan nasional Indonesia Manufacturing Center yang terintegrasi.</p><p style="text-align:justify;">Menurut Malik, pusat inovasi tersebut diharapkan menjadi wadah kolaborasi antara pelaku industri, akademisi, dan pemerintah dalam mengembangkan teknologi, khususnya di bidang otomasi dan robotik. “Kita perlu membangun sebuah ekosistem yang tidak hanya menghasilkan riset, tetapi juga mampu mengkomersialisasikan inovasi menjadi produk yang bermanfaat bagi industri dan masyarakat,” ujarnya.</p><p style="text-align:justify;">Pada FGD ini juga menghadirkan narasumber dari PT. Kubota Indonesia, pelopor dari perusahaan mesin diesel bermutu tinggi yang terus mendukung pengembangan industri pertanian nasional. Perusahaan ini telah melakukan ekspor produknya ke tujuh negara, di antaranya ke Australia dan Afrika Selatan, yang menunjukkan kualitas dan daya saing produk mereka di pasar global.</p><p style="text-align:justify;">FGD ini disambut antusias oleh para pengusaha dan akademisi, yang mengharapkan Indonesia Manufacturing Center segera beroperasi sebagai solusi permasalahan industri manufaktur dalam negeri.</p>',
             true,
-            'publikasi/1755056882689c0af2603a0_3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1755056882689c0af2603a0_3.jpeg',
             '2025-08-12',
             v_layout_id,
             true,
@@ -1006,7 +1006,7 @@ BEGIN
             'ndustri manufaktur tetap konsisten sebagai sektor penyumbang terbesar pada capaian nilai ekspor nasional. Sepanjang tahun 2024, nilai ekspor dari sektor industri manufaktur menembus USD196,5 miliar atau berkontribusi sebesar 74,25 persen dari total ekspor nasional.',
             '<p style="text-align:justify;">Industri manufaktur tetap konsisten sebagai sektor penyumbang terbesar pada capaian nilai ekspor nasional. Sepanjang tahun 2024, nilai ekspor dari sektor industri manufaktur menembus USD196,5 miliar atau berkontribusi sebesar 74,25 persen dari total ekspor nasional.&nbsp;</p><p style="text-align:justify;">“Angka tersebut tumbuh 5,11 persen dari ekspor industri manufaktur pada tahun 2023 dengan nilai USD186,9 miliar. Sedangkan pada triwulan I tahun 2025, sektor industri manufaktur memperoleh surplus perdagangan sebesar USD10,4 miliar, di mana nilai ekspor manufaktur tercatat sebesar USD52,9 miliar atau 79,4 persen dari total ekspor nasional,” kata Menteri Perindustrian Agus Gumiwang Kartasasmita dalam sambutannya pada acara Pelepasan Ekspor Produk Baja Lapis PT Tata Metal Lestari ke Amerika Serikat, di Pelabuhan Tanjung Priok, Jakarta, Jumat (18/7).</p><p style="text-align:justify;">Kontribusi surplus perdagangan sektor industri manufaktur turut mendominasi surplus perdagangan Indonesia secara agregat nasional pada bulan-bulan berikutnya. Hal ini merujuk data Trading Economics dan laporan resmi Menteri Keuangan yang dirilis oleh Reuters, Indonesia membukukan surplus perdagangan sebesar USD4,9 miliar pada bulan Mei 2025.&nbsp;</p><p style="text-align:justify;">Sementara itu, berdasarkan pemeringkatan dari World Visualized, surplus tersebut menempatkan Indonesia pada peringkat ke-3 dunia, setelah Tiongkok (USD 103,22 miliar) dan Jerman (USD 17,8 miliar). Posisi Indonesia ini di atas Rusia (USD 4,5 miliar) dan Malaysia (USD 3,5 miliar).</p><p style="text-align:justify;">“Angka positif pencapaian kinerja sektor manufaktur nasional, yang diperkuat dan bersumber dari berbagai lembaga internasional itu, mencerminkan struktur industri manufaktur Indonesia yang kuat dari hulu ke hilir. Artinya, Indonesia tidak pernah terjadi dalam fase deindustrialisasi. Hal ini sekaligus menepis dan mematahkan analisa dari siapapun yang mengatakan bahwa telah terjadi deindustrialisasi di Indonesia,” ungkap Menperin.</p><p style="text-align:justify;">Menurut Agus, subsektor industri logam dasar yang di banyak negara industri maju diposisikan sebagai strategic backbone of industrial development, telah menunjukkan kinerja yang semakin kuat di tataran nasional. Pada triwulan I tahun 2025, sektor industri logam dasar memberikan kontribusi sebesar 1,10 persen terhadap PDB nasional, sekaligus mencatat pertumbuhan tertinggi dibandingkan dengan sub sektor industri manufaktur lainnya, yaitu mencapai 14,47 persen (yoy).&nbsp;</p><p style="text-align:justify;">“Pencapaian ini mencerminkan ekspansi produksi yang kuat, didukung oleh meningkatnya permintaan global, khususnya dari sektor besi dan baja, serta keberhasilan implementasi program hilirisasi nasional yang secara konsisten meningkatkan nilai tambah komoditas dalam negeri,” imbuhnya.</p><p style="text-align:justify;">Secara khusus, industri baja nasional juga telah menunjukkan peranan yang semakin penting dalam menopang pertumbuhan ekonomi, pembangunan infrastruktur, pengembangan teknologi, serta mendukung penguatan industri permesinan, otomotif, galangan kapal, dan energi.&nbsp;</p><p style="text-align:justify;">Berdasarkan data World Steel Association, pada tahun 2024 Indonesia menempati posisi ke-14 dalam produksi crude steel dunia dengan produksi sebesar 17 juta ton. Jumlah realisasi produksi ini telah mengalami kenaikan signifikan dalam lima tahun terakhir, yaitu mencapai 98,5 persen jika dibandingkan produksi 2019 sebesar 8,5 juta ton. “Kami menargerkan dalam tiga atau empat tahun ke depan, kita bisa menempati posisi ke-11 atau ke-10,” ujar Menperin.</p><p style="text-align:justify;">Saat ini, kapasitas produksi terpasang crude steel nasional berada di angka 21 juta ton dan ditargetkan terus meningkat menjadi 27 juta ton pada tahun 2029. Hal ini menunjukkan optimisme dan langkah ekspansif Indonesia dalam meningkatkan daya saing industri baja di tingkat global.</p><p style="text-align:justify;">Untuk menjaga momentum pertumbuhan industri baja nasional, pemerintah telah dan akan terus mengoptimalkan dukungan melalui berbagai kebijakan strategis, antara lain penerapan upaya-upaya hukum tindakan perdagangan (trade remedies) secara efektif, pemberlakuan Standar Nasional Indonesia (SNI) secara wajib, pemberian fasilitas Harga Gas Bumi Tertentu (HGBT), pengutamaan penggunaan produk dalam negeri untuk proyek pemerintah, pemberian fasilitas fiskal, serta penerapan prinsip industri hijau.&nbsp;</p><p style="text-align:justify;">“Kebijakan-kebijakan ini tentunya bertujuan untuk memastikan adanya peningkatan kapasitas dan utilisasi produksi baja nasional secara berkesinambungan, serta memastikan produk baja dalam negeri mampu bersaing di pasar domestik maupun pasar ekspor,” tutur Menperin.</p>',
             true,
-            'publikasi/175324270068805c4c8dd1b_WhatsApp_Image_2025_07_18_at_14_00_52.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175324270068805c4c8dd1b_WhatsApp_Image_2025_07_18_at_14_00_52.jpeg',
             '2025-07-18',
             v_layout_id,
             true,
@@ -1068,7 +1068,7 @@ BEGIN
             'Industri baja nasional terus menunjukkan ketangguhannya di tengah tantangan global.',
             '<p style="text-align:justify;">Industri baja nasional terus menunjukkan ketangguhannya di tengah tantangan global. Peluang ekspor semakin terbuka lebar seiring dengan kebijakan pembatasan perdagangan di antara para pemain utama global, termasuk Amerika Serikat (AS) yang menerapkan tarif tinggi terhadap produk baja berdasarkan Section 232.&nbsp;</p><p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita menyatakan, meskipun tarif impor baja di AS mencapai 50 persen, lebih tinggi dibandingkan tarif produk lainnya yang terkena 19 persen, AS tetap bergantung pada impor untuk memenuhi kebutuhan baja lapisnya.</p><p style="text-align:justify;">“Untuk meningkatkan daya saing, para pelaku industri nasional harus bisa lebih efisien dalam proses produksinya sehingga nilai tambah produk yang dihasilkan menjadi lebih tinggi,” kata Menperin dalam sambutannya pada acara Pelepasan Ekspor Produk Baja Lapis PT Tata Metal Lestari ke Amerika Serikat, di Pelabuhan Tanjung Priok, Jakarta, Jumat (18/7).</p><p style="text-align:justify;">Pada kesempatan ini, Menperin mengakui kepiawaian Presiden Prabowo Subianto dalam bernegosiasi dengan Presiden Amerika Serikat Donald Trump, karena Indonesia berhasil memperoleh tarif yang lebih menguntungkan dibandingkan dengan negara-negara pesaing. Hal ini menjadi modal penting bagi peningkatan daya saing industri nasional.</p><p style="text-align:justify;">“Oleh karena itu, industri nasional perlu mengoptimalkan ekspor produknya ke pasar Amerika guna memanfaatkan tarif bea masuk yang rendah bagi Indonesia dibanding negara lain,” ujarnya. Saat ini, ekspor menjadi satu mesin ekonomi yang diandalakan dalam memacu perekonomian nasional. Tidak hanya dari capaian nilai, tetapi juga volume barang yang diekspor terus meningkat. Artinya, produksi dan logistik benar-benar bergerak.</p><p style="text-align:justify;">“Ada empat mesin utama yang menggerakkan ekonomi Indonesia, yaitu konsumsi rumah tangga, belanja pemerintah, investasi, dan net ekspor. Dari keempat mesin tersebut, saat ini kinerja ekspor yang masih melaju kencang,” ungkapnya.&nbsp;</p><p style="text-align:justify;">Oleh karena itu, kebijakan hilirisasi industri perlu konsisten untuk terus dijalankan dalam menciptakan produk turunan yang bernilai tambah tinggi. Ini juga menjadi peluang bagi pelaku industri untuk mengisi produk hilir ke pasar ekspor, termasuk ke Amerika Serikat.</p><p style="text-align:justify;">Namun demikian, Menperin juga mengingatkan, potensi pasar dalam negeri masih sangat besar. “Sebesar 80 persen output dari industri manufaktur kita untuk memenuhi kebutuhan pasar domestik, dan ini yang perlu kita jaga dari serbuan produk impor,” imbuhnya.</p><p style="text-align:justify;">Menperin memberikan apresiasi tinggi kepada PT Tata Metal Lestari atas keberhasilannya menembus pasar ekspor AS di tengah kebijakan proteksionis yang ketat. Keberhasilan ini sebagai wujud nyata kemampuan industri manufaktur Indonesia dalam menghasilkan produk berstandar global.</p><p style="text-align:justify;">Menurut Menperin, agresifitas PT Tata Metal Lestari untuk terus menembus pasar ekspor sebagai wujud nyata optimisme yang tinggi dari pelaku industri dalam negeri di tengah ketidakpastian dinamika global. “Capaian ini sekaligus membantah pendapata bahwa Indonesia sedang dalam fase deindustrialisasi, karena aktivitas industri masih berjalan baik hingga mereka aktif untuk memperluas pasarnya,” ujarnya.</p><p style="text-align:justify;">Dalam kesempatan tersebut, PT Tata Metal Lestari mengirimkan ekspor baja lapis ke pasar AS dengan volume sebesar 10.000 ton senilai USD12,6 juta. Sepanjang tahun 2025, perusahaan telah mengapalkan empat kali dengan target ekspor mencapai 69.000 ton, naik 133% dibandingkan realisasi tahun 2024.</p><p style="text-align:justify;">“Informasi yang kami terima menyebutkan bahwa ekspor PT TML ke Amerika Serikat dan Kanada, telah dilakukan secara berkelanjutan sejak Oktober 2024. Ini membuktikan bahwa produk baja Indonesia dipercaya dan diterima di pasar global, bahkan di tengah dinamika kebijakan perdagangan yang terus berubah. Kami juga mengapresiasi PT TML sebagai salah satu perusahaan yang patuh terhadap upaya pemberlakukan SNI,” tambah Menperin.</p><p style="text-align:justify;"><strong>Pentingnya kolaborasi</strong></p><p style="text-align:justify;">Agus juga menyoroti pentingnya kolaborasi antara PT Tata Metal Lestari sebagai pelaku industri hilir dengan PT Krakatau Steel selaku penyedia bahan baku dari sektor hulu. “Sinergi ini mencerminkan kekuatan ekosistem industri baja nasional yang solid dan mampu menjawab tantangan serta peluang pasar global,” jelasnya.</p><p style="text-align:justify;">Menperin menekankan bahwa kunci penguatan ekonomi nasional terletak pada kemampuan industri untuk menciptakan nilai tambah serta membangun jejaring hulu-hilir yang kuat, berkelanjutan, dan inklusif. Hal ini juga dipacu bagi pelaku industri besi dan baja untuk terus meningkatkan kualitas produksi dan berinovasi menciptakan produk bernilai tambah tinggi serta ramah lingkungan.</p><p style="text-align:justify;">“Dengan strategi tersebut, saya yakin produk baja Indonesia akan semakin kompetitif dan diterima luas di pasar internasional.Saya juga berharap keberhasilan ini dapat menjadi inspirasi bagi pelaku industri lainnya untuk terus meningkatkan daya saing serta memperluas pasar ekspor,” tegas Agus.</p><p style="text-align:justify;">Pada kesempatan yang sama, VP of Operations PT Tata Metal, Stephanus Koeswandi menyampaikan bahwa ekspor ke AS kali ini merupakan bagian dari ekspansi agresif perusahaan ke pasar global. “Bulan Februari kami ekspor 5000 ton, kemudian setiap bulan terus meningkat hingga Juli ini kami ekspor 10.000 ton, atau sekitar 14,5 persen dari total target ekspor 2025 yang mencapai 69.000 ton,” jelasnya.&nbsp;</p><p style="text-align:justify;">Menurut Stephanus, peningkatan ekspor tahun 2025 ini telah mencapai 133 persen dibandingkan 2024. “Ini adalah bukti bahwa produk nasional mampu menjawab kebutuhan industri konstruksi global, khususnya di pasar Amerika yang tetap terbuka,” ungkapnya.&nbsp;</p><p style="text-align:justify;">Lebih lanjut, dengan kontribusi ekspor sebesar 30–40 persen terhadap total penjualan Tata Metal, kegiatan ini menjadi salah satu penopang penting bagi penguatan ekonomi nasional berbasis industri, sekaligus membuka lebih banyak lapangan kerja di sektor hilir.</p><p style="text-align:justify;">Pelepasan kali ini, ada tiga produk yang akan diekspor, yakni BJLAS (Baja Lapis Aluminium Seng) bermerek Nexalume, BJLS (Baja Lapis Seng) bermerek Nexium, BJLS Warna bermerek Nexcolor. “Produk yang diekspor telah melalui proses pelapisan baja dan pelapisan warna sesuai standar kualitas internasional, dan digunakan sebagai bahan baku roll-former untuk industri konstruksi di AS,” tukasnya.</p><p style="text-align:justify;">Sementara itu, Direktur Utama PT Krakatau Steel, Muhamad Akbar Djohan mengemukakan, sinergi kedua perusahaan ini menjadi pondasi penting dalam memperkuat ekosistem industri baja nasional. “Krakatau Baja Industri memiliki keandalan manufaktur dalam memproduksi baja lembaran dingin (CRC) unggulan yang berkualitas tinggi dan diakui di pasar dunia,” ujarnya.&nbsp;</p><p style="text-align:justify;">Menurutnya, pasar ekspor kini menjadi salah satu andalan bagi Krakatau Steel Group untuk mendukung kinerja penjualan. Sebelumnya Krakatau Baja Industri telah melakuakan ekspor ke Polandia dan dalam waktu dekat kegiatan ekspor juga akan terus kami lakukan ke beberapa negara di Eropa lainnya.</p><p style="text-align:justify;">“Kami mendukung ekspor ini dengan pasokan baja lembaran berkualitas tinggi. Ekspor ini tidak hanya memperluas pasar, tetapi juga meningkatkan utilitas pabrik dan memperkuat struktur industri hulu-hilir dalam negeri,” tegas Akbar.</p>',
             true,
-            'publikasi/1753241788688058bc3d698_HMZ09162.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1753241788688058bc3d698_HMZ09162.jpg',
             '2025-07-18',
             v_layout_id,
             true,
@@ -1130,7 +1130,7 @@ BEGIN
             'Pelepasan Ekspor PT Tata Metal Lestari dan PT Krakatau Steel ke Amerika Serikat',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kiri) dan Direktur Utama PT Krakatau Steel Akbar Djohan (kanan) mengecek produk baja PT Tata Metal Lestari dan PT Krakatau Steel yang di ekspor ke Amerika Serikat, 18 Juli 2025. Menteri Perindustrian Agus Gumiwang Kartasasmita di dampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (ketiga dari kanan), Chief Executive Officer PT Tatalogam Lestari Jarryanto R. Koeswandi (keempat dari kiri), Chief Financial Officer Wulani Wihardjono (kelima dari kiri), Vice President Operations PT Tata Metal Lestari Stephanus Koeswandi (kanan), Direktur Utama PT Krakatau Steel Akbar Djohan (kedua dari kanan), Direktur Infrastruktur &amp; Operasi PT Krakatau Steel Utomo Nugroho (kedua dari kiri), dan Direktur Utama PT Pelindo Indra Hidayat Sani (ketiga dari kiri) secara resmi melepas Ekspor Baja PT Tata Metal Lestari dan PT Krakatau Steel ke Amerika Serikat, Jakarta, 18 Juli 2025.</span></p><figure class="image"><img style="aspect-ratio:702/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/1753241038688055ce18462_HMZ09190.jpg" width="702" height="480"></figure><p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita memberikan sambutan di acara Pelepasan Ekspor PT Tata Metal Lestari dan PT Krakatau Steel ke Amerika Serikat, Jakarta, 18 Juli 2025.</p><figure class="image"><img style="aspect-ratio:720/464;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/1753241059688055e3c818b_HMZ09162.jpg" width="720" height="464"></figure>',
             true,
-            'publikasi/17532409516880557702402_HMZ09361_2.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17532409516880557702402_HMZ09361_2.jpg',
             '2025-07-18',
             v_layout_id,
             true,
@@ -1192,7 +1192,7 @@ BEGIN
             'Menteri Perindustrian Agus Gumiwang Kartasasmita meminta komitmen kepada tiga produsen otomotif besar asal Jepang, yakni Toyota, Suzuki, dan Daihatsu agar tidak menaikkan harga jual kendaraan produksiya dan tidak melakukan pemutusan hubungan kerja (PHK) terhadap tenaga kerja mereka di Indonesia, meskipun situasi ekonomi global sedang tidak menentu.',
             '<p style="text-align:justify;">Menteri Perindustrian Agus Gumiwang Kartasasmita meminta komitmen kepada tiga produsen otomotif besar asal Jepang, yakni Toyota, Suzuki, dan Daihatsu agar tidak menaikkan harga jual kendaraan produksiya dan tidak melakukan pemutusan hubungan kerja (PHK) terhadap tenaga kerja mereka di Indonesia, meskipun situasi ekonomi global sedang tidak menentu. Hal ini disampaikan Menperin saat di Paviliun Indonesia dalam rangka menghadiri World Expo 2025 Osaka, Jepang, Kamis (11/7/).&nbsp;</p><p style="text-align:justify;">Kepada ketiga prinsipal tersebut, Menperin menyampaikan keprihatinan atas potensi gejolak di sektor otomotif nasional jika terjadi lonjakan harga kendaraan atau pengurangan tenaga kerja. “Maka itu, saya secara khusus meminta agar tidak ada kenaikan harga mobil dan tidak ada PHK di Indonesia. Ini penting demi menjaga daya beli masyarakat dan menjaga lapangan kerja di sektor otomotif, yang merupakan salah satu penopang industri nasional,” ujar Menperin Agus Gumiwang Kartasasmita usai pertemuan.</p><p style="text-align:justify;">Permintaan tersebut disambut positif oleh para petinggi Toyota, Suzuki, dan Daihatsu. Mereka memahami kekhawatiran pemerintah Indonesia dan menyatakan komitmennya untuk menjaga harga tetap stabil dan mempertahankan tenaga kerja di tengah berbagai tantangan global.</p><p style="text-align:justify;">“Komitmen mereka kami apresiasi. Ini adalah langkah konkret dalam mendukung stabilitas industri otomotif di Indonesia,” tegas Menperin.</p><p style="text-align:justify;">Dalam pertemuan tersebut, Menperin juga membahas pentingnya menjaga pasar otomotif domestik Indonesia agar tetap atraktif dan kompetitif. Pemerintah Indonesia sendiri sedang mengupayakan berbagai langkah deregulasi dan insentif fiskal untuk mendorong iklim investasi di sektor otomotif ini.</p><p style="text-align:justify;">Menperin pun menekankan bahwa kolaborasi erat antara pemerintah dan prinsipal otomotif menjadi sangat penting untuk memastikan keberlanjutan industri dan kesejahteraan tenaga kerja di Indonesia. Dengan kontribusi signifikan terhadap PDB dan penyerapan tenaga kerja, industri otomotif menjadi sektor strategis yang harus dijaga bersama.</p><p style="text-align:justify;">“Pasar otomotif Indonesia sangat potensial. Jangan sampai kehilangan momentum hanya karena kenaikan harga atau pengurangan tenaga kerja yang bisa memicu efek domino,” ujarnya.</p><p style="text-align:justify;">Kemenperin mencatat, industri kendaraan bermotor Indonesia memiliki skala besar dengan kontribusi signifikan dari segmen roda 4 serta roda 2 dan 3. Segmen roda 4 didukung 32 pabrikan dengan kapasitas produksi 2,35 juta unit per tahun, dengan menyerap tenaga kerja hingga 69,39 ribu orang, dan realisasi investasi mencapai Rp 143,91 triliun.&nbsp;</p><p style="text-align:justify;">Sementara itu, segmen roda 2 dan 3, didukung oleh 73 pabrikan, dengan total kapasitas produksi sebesar 10,72 juta unit per tahun, penyerapan tenaga kerja sebanyak 30,31 ribu orang, dan realisasi investasi Rp30,4 triliun.&nbsp;</p><p style="text-align:justify;">Hingga Januari–Mei 2025, industri kendaraan roda 4 mencatat produksi 459 ribu unit, penjualan 316 ribu unit, dan ekspor CBU 192 ribu unit,. Pada periode yang sama, industri kendaraan roda 2 dan 3 membukukan produksi 3,37 juta unit, penjualan 3,1 juta unit, serta ekspor CBU 268 ribu unit.</p><p style="text-align:justify;">Menperin optimistis, langkah antisipatif ini akan mendapat respons positif dari publik dan pelaku industri sebagai sinyal kepastian dan keberpihakan pemerintah terhadap keberlangsungan industri otomotif nasional di tengah dinamika ekonomi global.</p><p style="text-align:justify;"><strong>Curhat prinsipal</strong></p><p style="text-align:justify;">Pada saat pertemuan dengan pihak Suzuki Motor Corporation, Menperin juga mendapat curahan hati terkait penurunan signifikan penjualan kendaraan niaga ringan di Indonesia. Suzuki menyatakan kekhawatirannya atas kondisi pasar yang menurun, yang berdampak pada produk andalan mereka seperti Suzuki Carry. Namun, pihak Suzuki tetap berkomitmen mendukung pasar Indonesia dan menyambut baik arahan Menperin untuk tidak melakukan PHK.</p><p style="text-align:justify;">Adapun pihak Suzuki yang hadir pada saat itu, yakni Mr. Masafumi Harano (Managing Officer Executive General Manager, Automobile Marketing Asia, Latin America and Oceania Suzuki Motor Corporation, Mr. Fumihiro Sakurai (Department Manager Indonesia Automobile Department Suzuki Motor Corporation), Mr. Minoru Amano (President Director PT Suzuki Indomobil Motor). serta Shodiq Wicaksono (Director PT Suzuki Indomobil Motor).</p><p style="text-align:justify;">Menperin menanggapi hal itu dengan menyampaikan bahwa pemerintah sedang mengevaluasi berbagai kebijakan untuk merangsang kembali permintaan kendaraan niaga, termasuk melalui pembelian pemerintah daerah dan insentif fiskal untuk UMKM.</p><p style="text-align:justify;">Sementara itu, pihak Toyota Motor Corporation dalam pertemuan tersebut, juga menyampaikan aspirasi penting kepada Menperin. Pihak Toyota meminta adanya relaksasi aturan Tingkat Komponen Dalam Negeri (TKDN) untuk kendaraan hybrid. Saat ini, beberapa varian hybrid Toyota seperti Kijang Innova Zenix Hybrid dan Yaris Cross sudah mencapai TKDN di atas 40%, namun mereka mengusulkan agar regulasi TKDN untuk kendaraan elektrifikasi lebih fleksibel guna menarik investasi dan mempercepat adopsi teknologi ramah lingkungan.</p><p style="text-align:justify;">Menperin menyambut positif usulan tersebut dan menyatakan bahwa pemerintah terbuka untuk mendiskusikan relaksasi TKDN secara selektif dengan tetap menjaga arah kebijakan industrialisasi dalam negeri. “Kami akan pelajari permintaan tersebut, karena prinsipnya kita ingin membangun industri otomotif nasional yang kuat namun juga kompetitif secara global,” ujar Menperin.</p><p style="text-align:justify;">Menperin juga memastikan bahwa program insentif Low Cost Green Car (LCGC) akan terus dilanjutkan hingga tahun 2031. Hal ini bertujuan untuk menjaga keterjangkauan kendaraan bagi masyarakat serta mendukung transisi elektrifikasi secara bertahap.</p><p style="text-align:justify;">“Program LCGC terbukti berhasil meningkatkan kepemilikan kendaraan masyarakat dan mendukung industri otomotif nasional. Oleh karena itu, insentif untuk LCGC akan kami lanjutkan hingga 2031,” jelas Menperin. Hal ini diharapkan memberikan kepastian jangka panjang bagi prinsipal dan pelaku industri untuk terus memproduksi dan mengembangkan kendaraan hemat energi di dalam negeri.</p><p style="text-align:justify;"><strong>Daya Saing dan Kolaborasi Investasi</strong></p><p style="text-align:justify;">Kementerian Perindustrian juga menegaskan bahwa kolaborasi antara pemerintah dan prinsipal otomotif sangat penting, terutama dalam menghadapi transisi elektrifikasi, tantangan global, serta menjaga keseimbangan antara produksi lokal dan ekspor.</p><p style="text-align:justify;">“Pasar otomotif Indonesia sangat besar, dan industri ini telah menyerap tenaga kerja dalam jumlah besar. Kita harus jaga bersama agar tidak terjadi guncangan di sektor ini,” tutup Menperin.</p><p style="text-align:justify;">Pertemuan-pertemuan strategis ini merupakan bagian dari upaya pemerintah Indonesia memperkuat diplomasi industri, menciptakan iklim investasi yang kondusif, serta menjaga keberlanjutan dan kinerja sektor otomotif nasional yang berkontribusi signifikan terhadap Produk Domestik Bruto (PDB) dan ekspor manufaktur.</p>',
             true,
-            'publikasi/175324224168805a810f273_WhatsApp_Image_2025_07_11_at_18_51_16.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175324224168805a810f273_WhatsApp_Image_2025_07_11_at_18_51_16.jpeg',
             '2025-07-12',
             v_layout_id,
             false,
@@ -1254,7 +1254,7 @@ BEGIN
             'Pemerintah terus memperkuat fondasi transformasi industri nasional menuju visi Indonesia Emas 2045 melalui hilirisasi, digitalisasi ekonomi, dan transisi energi berkelanjutan.',
             '<p style="text-align:justify;">Pemerintah terus memperkuat fondasi transformasi industri nasional menuju visi Indonesia Emas 2045 melalui hilirisasi, digitalisasi ekonomi, dan transisi energi berkelanjutan. Langkah strategis ini diyakini dapat mengakselerasi pertumbuhan ekonomi hingga 8 persen pada tahun 2029 yang ditargetkan oleh Presiden Prabowo Subianto.</p><p style="text-align:justify;">“Guna mencapai sasaran tersebut, salah satu upayanya adalah peresmian 37 proyek ketenagalistrikan dengan kapasitas lebih dari 3.200 megawatt. Ini bukan sekadar pembangunan infrastruktur, melainkan penguatan daya saing industri nasional dengan basis energi bersih,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta dalam keterangannya di Jakarta, Jumat (27/6).</p><p style="text-align:justify;">Dirjen ILMATE mengemukakan, pemerintah juga tengah mendorong percepatan ekonomi digital dengan target nilai ekonomi digital sebesar USD120 miliar pada tahun 2025 dan diproyeksi bisa menembus USD400 miliar pada 2030. “Ini mencerminkan komitmen untuk membangun pertumbuhan yang inklusif dan berkelanjutan, serta membuka peluang besar bagi sektor industri manufaktur dan teknologi,” ungkapnya.</p><p style="text-align:justify;">Sementara itu, dalam mencapai target Net Zero Emission pada tahun 2060, pemerintah pun terus mengembangkan pembangkit Energi Baru Terbarukan (EBT) seperti energi surya, panas bumi, air, angin, dan bioenergi. “Kami mendorong pengembangan industri pendukung EBT seperti sel surya, baterai, panel kontrol, generator, turbin air, dan turbin angin. Kami juga berharap perusahaan seperti Schneider Electric dapat berperan aktif dalam pengembangan komponen energi terbarukan ini,” tambah Setia.</p><p style="text-align:justify;">Sejalan dengan upaya pemerintah, Kementerian Perindustrian memberikan apresiasi tinggi kepada PT Schneider Electric Indonesia atas keberhasilan pembangunan pabrik ketiga di Cikarang. Pabrik baru ini dinilai sebagai langkah strategis dalam memperkuat sektor industri manufaktur khususnya industri peralatan listrik di Indonesia, serta memanfaatkan potensi sumber daya nasional yang berkelanjutan.</p><p style="text-align:justify;">“Pembangunan ini bukan hanya sekadar dimulainya sebuah lini produksi, tetapi juga menjadi simbol tekad bersama untuk menjadikan Indonesia pemain utama dalam industri manufaktur global. Inilah momentum untuk bangkit, berinovasi, dan menunjukkan bahwa anak bangsa mampu bersaing di ranah teknologi tinggi,” ujar Setia.</p><p style="text-align:justify;">Pada acara peresmian perluasan pabrik PT Schneider Electric Indonesia di Cikarang, beberapa waktu lalu. turut dihadiri Direktur Industri Permesinan dan Alat Mesin Pertanian Kemenperin, Solehan. Pada kesempatan itu, Solehan menyampaikan, Kemenperin juga menekankan pentingnya penggunaan produk dalam negeri dalam proses produksi dan pengadaan komponen industri.</p><p style="text-align:justify;">Kemenperin optimistis, melalui peresmian pabrik ini, diharapkan akan muncul lebih banyak investasi berkualitas dan sinergi lintas sektor demi mendorong kemandirian industri, menciptakan ekonomi hijau, dan mewujudkan masa depan Indonesia yang berdaya saing global dan berkelanjutan.</p><p style="text-align:justify;">President Director Schneider Electric Indonesia &amp; Timor-Leste, Martin Setiawan menyampaikan, ekspansi smart factory di Cikarang merupakan cerminan dari komitmen jangka panjang Schneider Electric untuk mendukung agenda transformasi dan ketahanan industri nasional.</p><p style="text-align:justify;">“Inisiatif ini juga mencerminkan semangat bersama Indonesia dan Prancis dalam mendorong inovasi dan mengakselerasi teknologi hijau. Kehadiran Schneider Electric di Indonesia bukan sekadar investasi industri, melainkan bagian dari misi bersama untuk membangun ekosistem yang tangguh, berdaya saing global, dan siap menghadapi masa depan melalui pemanfaatan teknologi digital dan energi bersih,” ujar Martin.</p><p style="text-align:justify;">Menurutnya, pabrik di Cikarang merupakan salah satu smart factory milik Schneider Electric, yang merepresentasikan komitmen perusahaan terhadap keberlanjutan dan inovasi. Pabrik ini menerapkan teknologi EcoStruxure™, sistem panel surya atap, otomasi berbasis kecerdasan buatan (AI), serta digital Factory Acceptance Testing (FAT) untuk mengoptimalkan efisiensi operasional dan meminimalisir dampak lingkungan.</p><p style="text-align:justify;">Duta Besar Prancis untuk Indonesia, Timor Leste, dan ASEAN Fabien Penone mengatakan, Prancis dan Indonesia terus memperkuat kemitraan ekonomi bilateral, sebagaimana disepakati oleh Presiden Emmanuel Macron dan Presiden Prabowo Subianto pada 28 Mei 2025. “Banyak perusahaan Prancis berpartisipasi dalam mendukung pengembangan sektor industri dan teknologi Indonesia, salah satunya Schneider Electric yang telah menunjukkan komitmen jangka panjangnya terhadap pembangunan berkelanjutan di Indonesia,” ungkapnya.</p>',
             true,
-            'publikasi/1751942907686c86fbbf7fd_WhatsApp_Image_2025_06_24_at_13_19_44.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1751942907686c86fbbf7fd_WhatsApp_Image_2025_06_24_at_13_19_44.jpeg',
             '2025-06-26',
             v_layout_id,
             true,
@@ -1316,7 +1316,7 @@ BEGIN
             'Kementerian Perindustrian bertekad untuk terus meningkatkan peran strategis industri alat mesin pertanian (alsintan) nasional guna mendukung peningkatan produktivitas dan efisiensi sektor pertanian di Indonesia.',
             '<p style="text-align:justify;">Kementerian Perindustrian bertekad untuk terus meningkatkan peran strategis industri alat mesin pertanian (alsintan) nasional guna mendukung peningkatan produktivitas dan efisiensi sektor pertanian di Indonesia. Oleh karenanya, penguatan industri alsintan menjadi langkah penting dalam mendorong transformasi sektor pertanian menuju mekanisasi yang lebih maju dan berkelanjutan.</p><p style="text-align:justify;">“Kami berkomitmen mendorong pertumbuhan industri alat mesin pertanian dalam negeri, terutama dalam rangka mendukung mekanisasi sektor pertanian yang menjadi tulang punggung ketahanan pangan nasional,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Setia Darta dalam keterangan resminya di Jakarta, Minggu (22/6).</p><p style="text-align:justify;">Menurut Dirjen ILMATE, sejumlah langkah telah dilakukan untuk mendukung penguatan industri alsintan nasional, antara lain melalui program standardisasi produk alat dan mesin pertanian guna memastikan kualitas serta efisiensi penggunaan di lapangan. “Selain itu, Kemenperin juga mengoptimalkan penggunaan produk dalam negeri sebagai bentuk nyata dukungan terhadap ketahanan pangan nasional,” ujarnya.</p><p style="text-align:justify;">Lebih lanjut, Setia mengungkapkan, pihaknya telah menyusun strategi jangka panjang untuk menjadikan industri alsintan pertanian lebih produktif, inovatif, kompetitif, dan berkelanjutan. Strategi tersebut di antaranya adalah mengintegrasikan kebijakan Making Indonesia 4.0 guna mendorong transformasi industri manufaktur ke arah teknologi digital yang hemat energi dan biaya.</p><p style="text-align:justify;">“Kami juga terus memacu investasi, baik dari dalam maupun luar negeri, khususnya di sektor teknologi menengah-tinggi, untuk mempercepat adopsi dan transfer teknologi. Hal ini difasilitasi melalui pemberian insentif fiskal seperti <i>tax holiday</i>, <i>mini tax holiday</i>, dan <i>tax allowance</i>,” imbuhnya.</p><p style="text-align:justify;">Sebagai upaya peningkatan kualitas teknologi di industri alsintan, Direktur Industri Permesinan dan Alat Mesin Pertanian, Solehan mengemukakan, Kemenperin juga mendorong kolaborasi antara pelaku industri dengan akademisi dan lembaga penelitian. Hal ini dilakukan melalui penguatan ekosistem riset dan inovasi, salah satunya dengan pembentukan Indonesia Manufacturing Center.</p><p style="text-align:justify;">“Kami memfasilitasi kegiatan <i>business matching</i> antara industri dan pengguna alsintan, di mana lembaga litbang dan akademisi bisa menjadi penyedia teknologi dan inovasi. Tujuannya adalah menghasilkan produk-produk alsintan yang sesuai dengan karakteristik pertanian Indonesia,” jelas Solehan.</p><p style="text-align:justify;">Tak hanya itu, insentif seperti <i>super tax deduc</i>tion juga diberikan kepada industri yang aktif melakukan kegiatan penelitian dan pengembangan untuk mendorong inovasi produk secara berkelanjutan.</p><p style="text-align:justify;">Kemenperin optimistis bahwa melalui sinergi antar pemangku kepentingan dan dukungan kebijakan yang tepat, industri permesinan pertanian nasional dapat menjadi motor penggerak peningkatan produktivitas pertanian, sekaligus mendukung ketahanan pangan dan kedaulatan teknologi dalam negeri.</p><p style="text-align:justify;">Potensi ini terlihat dari jumlah industri alsintan di dalam negeri sebanyak 67 perusahaan dengan penyerapan tenaga kerja hingga 5.629 orang. Keunggulan produk alsintan di dalam negeri juga sudah banyak diminati pasar internasional, dengan terlihat dari capaian nilai ekspornya sebesar US90 juta USD pada tahun 2024.</p><p style="text-align:justify;">Adapun produk-produk yang sudah dihasilkan industri alsintan dalam negeri, di antaranya berbagai jenis mesin dan peralatan untuk kegiatan pra-panen, panen, dan pasca-panen, seperti traktor roda dua, <i>cultivator</i>, pompa irigasi, <i>hand sprayer</i>, rotavator, mesin pengolah tanah, dan mesin pengering hasil panen.</p>',
             true,
-            'publikasi/175220085068707692aa64f_0.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/175220085068707692aa64f_0.jpeg',
             '2025-06-22',
             v_layout_id,
             false,
@@ -1378,7 +1378,7 @@ BEGIN
             'Kementerian Perindustrian terus memperkuat sektor industri panel surya dalam upaya membangun kemandirian industri energi terbarukan nasional.',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian terus memperkuat sektor industri panel surya dalam upaya membangun kemandirian industri energi terbarukan nasional. Keberadaan sektor ini juga mencerminkan keseriusan Indonesia dalam mencapai target <i>Net Zero Emission</i><strong>.</strong></span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Di sinilah peran industri panel surya menjadi sangat krusial. Industri panel surya bukan hanya sebagai pemasok teknologi, tetapi juga sebagai katalisator terciptanya ekosistem energi surya nasional yang berdaulat,” kata Menteri Perindustrian Agus Gumiwang Kartasasmita pada <i>Grand Opening</i> Pabrik Panel Surya PT Trina Mas Agra Indonesia (TMAI) di Kawasan Ekonomi Khusus (KEK) Kendal, Jawa Tengah, Kamis (19/6).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin memberikan apresiasi atas peresmian pabrik panel surya milik PT TMAI yang menjadi tonggak penting bagi sektor industri dalam negeri melalui produksi panel surya yang berteknologi tinggi. Pembangunan pabrik ini menelan investasi lebih dari Rp1,5 triliun.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Saya sangat berbahagia karena akhirnya pabrik panel surya terintegrasi PT TMAI akan mulai beroperasi dengan kapasitas 1 GW per tahun. Kami juga sangat mengapresiasi langkah strategis dari PT TMAI memproduksi panel surya dengan teknologi termutakhir i-Topcon dengan efisiensi mencapai 23%, yang mampu memproduksi per unit panel surya dengan kapasitas <i>output</i> maksimal 720 Watt-<i>peak</i>,” tuturnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Memiliki kapasitas 1 GW-<i>peak</i> per tahun, PT TMAI akan memproduksi kira-kira 1,4 juta lembar panel surya per tahun. Artinya, ketergantungan kita akan impor modul dan sel surya dari Tiongkok, Malaysia, atau Vietnam, diharapkan dapat berkurang secara signifikan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Dengan adanya investasi yang dilakukan oleh PT TMAI tentu akan mendorong pembentukan ekosistem industri panel surya dalam negeri dengan adanya penggunaan komponen lokal dari industri pendukung, maupun percepatan hilirisasi yang berupa penyerapan produk sel surya dalam negeri hingga nantinya pengembangan produk <i>wafer</i>, <i>ingot</i> dan <i>smelter </i>polisilikon,” imbuhnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Selain itu,<strong> </strong>PT TMAI telah menyerap 640 tenaga kerja<strong> </strong>terlatih di bidang panel surya, yang sebelumnya mendapatkan pelatihan langsung di Tiongkok. Langkah ini menjadi bukti komitmen perusahaan terhadap alih teknologi dan pengembangan kompetensi sumber daya manusia lokal.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin juga menyoroti pentingnya hilirisasi pasir silika, bahan baku utama panel surya. Indonesia memiliki cadangan pasir silika lebih dari 330 juta ton, dengan potensi mencapai 25 miliar ton tersebar di berbagai daerah. Nilai tambah pasir silika yang diolah menjadi <i>wafer</i> bisa mencapai 25 kali lipat, sehingga pengembangan rantai pasok industri dari hulu ke hilir menjadi prioritas ke depan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Oleh karena itu, Kemenperin menyambut baik langkah PT TMAI untuk mencapai target awal Tingkat Komponen Dalam Negeri (TKDN) sebesar 41%, dan mendorong agar capaian tersebut terus ditingkatkan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kami juga tengah menyiapkan reformasi tata cara penghitungan nilai TKDN, untuk mempercepat proses, mempermudah mekanisme, dan mengurangi beban biaya sertifikasi. Reformasi ini akan membuka ruang lebih luas bagi investasi baru dan usaha dalam negeri,” jelasnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Upaya tersebut sejalan dengan amanat Perpres Nomor 46 Tahun 2025 tentang perubahan Perpres 16/2018, yang mewajibkan penggunaan produk dalam negeri dalam pengadaan barang dan jasa pemerintah, termasuk rancang bangun dan perekayasaan nasional.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Membangun industri nasional sejati tidak hanya soal investasi dan pabrik. Ini tentang menanamkan nilai-nilai kebersamaan, pemberdayaan SDM lokal, dan alih teknologi yang berkeadilan. Inilah industri yang berpijak pada Pancasila,” tegas Menperin.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin juga memberikan apresiasi kepada seluruh mitra strategis PT TMAI, termasuk Trina Solar Co. Ltd.<strong>, </strong>PT Dian Swastatika Sentosa Tbk, dan PT PLN (Persero) yang telah berperan aktif mewujudkan pabrik ini. “Semoga kehadiran PT TMAI di KEK Kendal menjadi titik tolak lahirnya ekosistem industri hijau yang inklusif, berkelanjutan, dan berdaulat secara ekonomi,” ungkapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Wakil Direktur Utama PT TMAI Lokita Prasetya menyampaikan, pabrik sel dan modul surya TMAI merupakan pabrik sel dan modul surya terintegrasi di Indonesia, yang saat ini mampu memproduksi hingga 1 GW, menjadikannya pabrik panel surya terbesar di Indonesia. Pabrik sel dan modul surya ini juga bisa menghasilkan salah satu panel surya terbesar di dunia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kehadiran TMAI diharapkan bisa memberikan dampak positif terhadap perwujudan energi bersih di Indonesia serta membantu mengurangi ketergantungan terhadap impor komponen industri energi di Indonesia,” terangnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Managing Director Sinar Mas, Ferry Salman menyampaikan, perusahaan mengapresiasi dukungan Kemenperin dalam mengawal transisi energi melalui pengembangan Energi Baru dan Terbarukan (EBT), dalam hal ini lewat pemanfaatan tenaga surya. “Ke depan, kami mengharapkan sekaligus berupaya agar momentum positif yang telah berlangsung dapat terus terjaga agar ekosistem industri panel surya nasional dapat bertumbuh secara mandiri dan semakin berdaya saing,” ujarnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Pabrik sel dan modul surya terintegrasi ini merupakan hasil kolaborasi dari Trina Solar Co Ltd, PT Daya Sukses Makmur Selaras (anak usaha dari PT Dian Swastatika Sentosa Tbk) yang merupakan bagian dari Sinar Mas, dan PT PLN Indonesia Power Renewable. Peresmian pabrik ini menunjukkan dukungan Sinar Mas melalui TMAI untuk memperkuat transisi energi baru dan terbarukan di Indonesia.</span></p>',
             true,
-            'publikasi/1752201725687079fd04309_3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1752201725687079fd04309_3.jpeg',
             '2025-06-19',
             v_layout_id,
             true,
@@ -1440,7 +1440,7 @@ BEGIN
             'Industri alat kesehatan merupakan salah satu sektor prioritas nasional yang terus menunjukkan peningkatan melalui penguatan ekonomi dan ekosistemnya.',
             '<p style="text-align:justify;">Industri alat kesehatan merupakan salah satu sektor prioritas nasional yang terus menunjukkan peningkatan melalui penguatan ekonomi dan ekosistemnya. Sejalan dengan Rencana Pembangunan Jangka Menengah Nasional (RPJMN) 2025 – 2029 yang menetapkan industri alkes adalah sektor strategis, PT Dräger Indonesia melakukan peluncuran fasilitas produksi ventilator di Bekasi, Jawa Barat.</p><p style="text-align:justify;">“Saya mengucapkan selamat kepada PT Dräger Indonesia, karena investasi yang dilakukan tidak hanya menunjukkan kepercayaan terhadap potensi pasar Indonesia, tetapi juga merupakan kontribusi nyata dalam memperkuat pondasi kemandirian industri alat kesehatan nasional,” tutur Wakil Menteri Perindustrian Faisol Riza di Bekasi, Kamis (19/6).</p><p style="text-align:justify;">Dengan memproduksi ventilator di dalam negeri, Faisol menuturkan, PT Dräger Indonesia turut mendukung program substitusi impor, menciptakan lapangan kerja, memfasilitasi transfer teknologi, dan mendorong peningkatan penggunaan produk dalam negeri (P3DN).</p><p style="text-align:justify;">Kinerja sektor industri manufaktur Indonesia saat ini menunjukkan capaian yang positif. Berdasarkan data World Bank dan United Nations Statistics, nilai Manufacturing Value Added (MVA) Indonesia pada tahun 2023 mencapai USD 255,96 miliar, menempatkan Indonesia di peringkat ke-12 dunia dan ke-5 di ASEAN.</p><p style="text-align:justify;">Sementara itu, berdasarkan data BPS, sektor industri pengolahan non-migas mencatatkan kontribusi sebesar 17,50% terhadap PDB pada Triwulan – I tahun 2025, naik sebesar 17,47% dibandingkan periode yang sama tahun 2024. Data ini menunjukkan bahwa sektor manufaktur Indonesia juga tetap tercatat sebagai sektor utama penopang pertumbuhan ekonomi, penciptaan lapangan kerja, dan kinerja ekspor nasional. &nbsp;</p><p style="text-align:justify;">Faisol menekankan, kebutuhan alat kesehatan dalam negeri diproyeksikan terus meningkat, didorong oleh pertumbuhan penduduk, dinamika epidemiologi, serta ekspansi fasilitas layanan kesehatan. Produk ventilator saat ini termasuk dalam sepuluh besar alat kesehatan dengan nilai impor tertinggi, yang pada tahun 2024 tercatat sebesar USD 68,4 juta, naik dua kali lipat dibandingkan tahun sebelumnya.</p><p style="text-align:justify;">Hal ini mengindikasikan tantangan besar kemandirian sektor kesehatan nasional yaitu dominasi produk impor yang masih tinggi. Di samping itu, Kemenperin melihat peluang besar yang dapat dimanfaatkan oleh pelaku industri alkes.</p><p style="text-align:justify;">“Dalam konteks ini, kami memberikan apresiasi kepada PT Dräger Indonesia atas komitmen dan investasi yang dapat mendorong peningkatan kapasitas produksi dalam negeri, mendukung substitusi impor, menciptakan lapangan kerja, serta memfasilitasi transfer teknologi dan penguatan sumber daya manusia industri. Hal ini sangat sejalan dengan kebijakan pemerintah terkait Program P3DN dan transformasi industri 4.0,” katanya.</p><p style="text-align:justify;">Sebagai bagian dari upaya pemerintah memperkuat industri nasional, Kemenperin terus memberikan dukungan kepada pelaku industri melalui berbagai kebijakan, insentif, fasilitasi TKDN, serta mendorong kolaborasi antara industri, lembaga riset, dan instansi pemerintah.</p><p style="text-align:justify;">“Kami percaya, melalui langkah konkret seperti yang ditunjukkan PT Dräger Indonesia, kita akan mampu membangun ekosistem industri alat kesehatan yang kuat, mandiri, dan berdaya saing global, menuju cita-cita besar Indonesia Emas 2045,” ujarnya.</p><p style="text-align:justify;">Wamen Faisol berharap, dari kolaborasi antar pemangku kepentingan dan pelaku industri akan menjadi pemicu lahirnya lebih banyak investasi, inovasi, dan sinergi untuk mendukung ketahanan industri kesehatan nasional.</p><p style="text-align:justify;">Turut hadir dalam kegiatan peresmian tersebut, Duta Besar Jerman untuk Indonesia Ina Lepel, Dirjen Farmalkes Kementerian Kesehatan Lucia Rizka Andalusia, serta jajaran manajemen dari PT Dräger Indonesia dan mitra strategis lainnya.</p>',
             true,
-            'publikasi/17522010636870776791791_ARS_9452__1_.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17522010636870776791791_ARS_9452__1_.jpg',
             '2025-06-19',
             v_layout_id,
             true,
@@ -1502,7 +1502,7 @@ BEGIN
             'Industri otomotif di Indonesia masih menunjukkan geliat yang positif di tengah ketidakpastian kondisi ekonomi global.',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Industri otomotif di Indonesia masih menunjukkan geliat yang positif di tengah ketidakpastian kondisi ekonomi global. Hal ini tercermin dari sejumlah produsen otomotif di dalam negeri yang merealisasikan investasinya untuk menambah kapasitas produksinya dalam upaya memenuhi peningkatan kebutuhan di pasar domestik dan ekspor.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Banyak perusahaan-perusahaan multinasional di dalam negeri, termasuk di antaranya sektor otomotif, yang masih melihat Indonesia memiliki prospek menjanjikan untuk menjalankan produksi manufaktur,” kata Menteri Perindustrian Agus Gumiwang Kartasasmita pada Pembukaan Pabrik Baru PT Daimler Commercial Vehicles Manufacturing Indonesia (PT DCVMI) di Kawasan Industri Delta Silicon 8, Cikarang, Jawa Barat, Selasa (10/6).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin menjelaskan, geliat ini sebagai sinyal kuat bahwa investasi di sektor industri otomotif masih terus berjalan dan Indonesia masih menjadi destinasi strategis bagi pengembangan industri kendaraan bermotor, terutama dalam menyambut era kendaraan ramah lingkungan. “Mereka melihat peluang besar dari pasar domestik yang terus tumbuh, serta posisi strategis Indonesia sebagai <i>hub</i> produksi untuk tujuan ekspor pasar global,” ungkapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian memberikan apresiasi kepada PT DCVMI yang telah sukses membangun pabrik barunya. Selain itu juga apresiasi ditujukan kepada Daimler Truck AG yang telah memberikan kepercayaan kepada Indonesia sebagai salah satu basis produksi bus dan truk Mercedes-Benz di Asia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Pembangunan pabrik baru ini merupakan langkah strategis dan komitmen nyata Daimler Truck AG dan PT DCVMI dalam memperkuat sektor industri otomotif di Indonesia, sekaligus mencerminkan keyakinan terhadap prospek positif Indonesia sebagai <i>hub</i> industri kendaraan niaga global. Kami optimistis Daimler bisa menjadi perusahaan yang semakin baik dan lebih besar bersama Indonesia,” papar Agus.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Perlu diketahui, Mercedes-Benz sejak pertama diproduksi di Indonesia pada tahun 1978 melalui PT Star Motor Indonesia, hingga terbentuknya PT DCVMI pada tahun 2019. Ini merupakan salah satu <i>brand</i> kendaraan niaga yang telah menunjukkan komitmennya dalam pengembangan industri otomotif di Indonesia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Dengan kemampuan produksi mencapai 5000 unit per tahun, PT DCVMI mampu masuk dalam lima besar produksi kendaraan niaga truk dan bus di Indonesia,” ujar Menperin. Hal ini menunjukkan bahwa Mercedes-Benz merupakan salah satu <i>top of mind</i> bagi konsumen kendaraan niaga di Indonesia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><strong>Kendaraan niaga ramah lingkungan</strong></span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Lebih lanjut, melalui pembukaan pabrik baru ini, Kemenperin berharap kepada PT DCVMI agar lebih aktif mengembangkan model produksi khususnya untuk kendaraan niaga ramah lingkungan sebagai respons terhadap tren global yang semakin mengarah pada mobilitas hijau. Dalam hal ini, Kemenperin akan memfasilitasi pemberian insentif fiskal dan nonfiskal untuk memacu pengembangan produksi kendaraan niaga yang bisa masuk dalam fase <i>green mobility</i>.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Di tengah disrupsi global dan tren transisi menuju kendaraan listrik dan energi bersih, Indonesia berkomitmen untuk tidak hanya menjadi pasar, namun juga menjadi pemain utama dalam rantai pasok kendaraan niaga dan kendaraan ramah lingkungan secara global. Apalagi, kami telah menetapkan NZE sektor manufaktur lebih cepat 10 tahun menjadi tahun 2050 dibanding target nasional,” imbuhnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin menunjukkan komitmennya untuk terus mendukung percepatan transformasi industri otomotif di Indonesia menuju era elektrifikasi, digitalisasi, keberlanjutan, dan era otomotif ramah lingkungan atau <i>green mobility</i>. “Oleh karena itu, kami berperan aktif memacu kolaborasi antara pemerintah, pelaku usaha, dan akademisi untuk menyiapkan sumber daya manusia yang kompeten, mengembangkan teknologi dalam negeri, serta memperluas jaringan riset dan inovasi,” tegas Agus.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin juga menyambut baik komitmen PT DCVMI melalui fasilitas pabrik barunya untuk mengadopsi standar emisi Euro 4 melalui teknologi SCR (<i>Selective Catalytic Reduction</i>) dan penggunaan DEF (<i>Diesel Exhaust Fluid</i>) berbasis urea dan air terionisasi. “Ini merupakan langkah positif dalam mendukung agenda pemerintah untuk mewujudkan industri yang lebih ramah lingkungan dan berkelanjutan,” ujarnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Ke depan, Menperin berharap kepada PT DCVMI agar terus mengembangkan model-model untuk memenuhi pasar ekspor dengan teknologi Euro 5 dan Euro 6 sehingga akan memperkuat posisi PT DCVMI baik di pasar domestik maupun internasional.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Selain itu, pemerintah juga berharap PT DCVMI dapat terus meningkatkan nilai kandungan lokal, di mana saat ini tercatat rerata nilai Tingkat Komponen Dalam Negeri (TKDN) pada <i>line up </i>kendaraan yang diproduksi berada di angka 28,08 persen,” sebutnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin mengingatkan pentingnya upaya peningkatan nilai TKDN dalam setiap proses produksi maupun pengadaan bahan baku dan komponen, akan mendukung penguatan industri nasional. Selain itu, peningkatan nilai TKDN dapat juga memberikan peluang lebih besar bagi perusahaan untuk berpartisipasi dalam pengadaan barang dan jasa pemerintah, serta memanfaatkan berbagai insentif fiskal yang telah disediakan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Oleh karenanya, pencapaian TKDN yang tinggi melalui peningkatan nilai tambah dan <i>local supply</i>, pada akhirnya dapat memperkuat daya saing perusahaan, baik di pasar domestik maupun di pasar ekspor,” tuturnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Neraca perdagangan kendaraan niaga pada bulan Januari hingga Maret 2025, masih mengalami defisit USD608,7 juta atau senilai Rp9,7 triliun. Sebab, ekspor kendaraan niaga tercatat sebesar USD75,5 juta, sedangkan impornya mencapai USD684,2 juta. Untuk itu, langkah peningkatan nilai TKDN, khususnya pada industri kendaraan niaga, merupakan langkah strategis dalam upaya menjawab tantangan terhadap tingginya impor pada kendaraan komersial.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kami berbahagia karena orientasi pembangunan pabrik baru ini sangat relevan merespons tantangan defisit perdagangan kendaraan niaga nasional. Kami mencatat komitmen PT DCVMI yang akan mengoptimalkan fasilitas pabrik baru ini tidak hanya untuk memenuhi kebutuhan pasar domestik, tetapi juga untuk meningkatkan ekspor kendaraan komersial ke berbagai negara. Lebih dari itu, kami juga menyambut baik komitmen PT DCMVI untuk mengembangkan rantai pasok lokal dan menciptakan lapangan kerja yang seluas-luasnya melalui pembangunan pabrik baru ini,” pungkas Menperin.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Sankaranarayanan Ramamurthi, Presiden Direktur DCVMI, menyatakan bahwa peresmian pabrik ini menandai fase pertumbuhan baru bagi DCVMI di Indonesia. “Pabrik ini bukan sekadar penambahan infrastruktur—melainkan perwujudan visi kami untuk memberikan kontribusi nyata bagi perekonomian Indonesia, memberdayakan masyarakat lokal, dan membangun ekosistem industri yang lebih kokoh. Setiap unit yang diproduksi di sini mencerminkan keunggulan rekayasa dan semangat kolaborasi, serta keyakinan kami akan masa depan Indonesia. Kami berkomitmen untuk terus menciptakan lapangan kerja, berinovasi, dan berkontribusi pada pertumbuhan Indonesia,” jelasnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Pabrik DCVMI di Cikarang berdiri di atas lahan seluas 15 hektar dengan total investasi mencapai Rp500 miliar. Fasilitas ini menjadi wujud nyata dari komitmen Daimler Truck dalam memperkuat industri kendaraan niaga di Indonesia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Pabrik ini akan terus memproduksi model-model andalan seperti Mercedes-Benz Axor Trucks: 2528 CH, 4928 T, 4028 T, 4023 T, 2528 RMC, 2528 CX, dan 2528 C, serta sasis bus Mercedes-Benz: OH 1626 L dan OH 1626 S yang dirancang khusus untuk pasar Indonesia.</span></p>',
             true,
-            'publikasi/17501268276850d0ebf3c4e_WhatsApp_Image_2025_06_10_at_15_20_53__1_.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501268276850d0ebf3c4e_WhatsApp_Image_2025_06_10_at_15_20_53__1_.jpeg',
             '2025-06-10',
             v_layout_id,
             true,
@@ -1549,7 +1549,7 @@ BEGIN
             'Menteri Perindustrian Agus Gumiwang Kartasasmita memberikan sambutan dalam acara Peresmian Pabrik Baru PT Daimler Commercial Vehicles Manufacturing Indonesia (DCVMI), Cikarang, 10 Juni 2025.',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita memberikan sambutan dalam acara Peresmian Pabrik Baru PT Daimler Commercial Vehicles Manufacturing Indonesia (DCVMI), Cikarang, 10 Juni 2025.&nbsp;</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501266526850d03c13562_HMZ01900.jpg" width="720" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (ketiga dari kiri), Duta Besar Jerman untuk Indonesia Ina Lepel (kedua dari kanan), Presiden Direktur PT Daimler Commercial Vehicles Manufacturing Indonesia Sankaranarayanan Ram (kanan), Presiden Direktur PT Daimler India Commercial Vehicles Satyakam Arya (ketiga dari kanan), Presiden Direktur PT Daimler Commercial Vehicles Indonesia Naeem Hassim (kiri), dan Direktur Operasi Utama Muthu Maruthachalam C (kedua dari kiri) membuka acara Peresmian Pabrik Baru PT Daimler Commercial Vehicles Manufacturing Indonesia (DCVMI), Cikarang, 10 Juni 2025.</span></p><figure class="image"><img style="aspect-ratio:720/405;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501266576850d0416925e_HMZ02037.jpg" width="720" height="405"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita berfoto bersama Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kedua dari kiri), Presiden Direktur PT Daimler Commercial Vehicles Manufacturing Indonesia Sankaranarayanan Ram (ketiga dari kiri), Presiden Direktur PT Daimler India Commercial Vehicles Satyakam Arya (kanan) dan Presiden Direktur PT Daimler Commercial Vehicles Indonesia Naeem Hassim (kiri) saat Plan Tour di acara Peresmian Pabrik Baru PT Daimler Commercial Vehicles Manufacturing Indonesia, Cikarang, 10 Juni 2025.</span></p><figure class="image"><img style="aspect-ratio:720/405;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501266736850d05160aaa_Peresmian_Pabrik__Daimler_00_04_20_22_Still001.jpg" width="720" height="405"></figure>',
             true,
-            'publikasi/17501265826850cff6aed9f_HMZ01900.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501265826850cff6aed9f_HMZ01900.jpg',
             '2025-06-10',
             v_layout_id,
             false,
@@ -1611,7 +1611,7 @@ BEGIN
             'Kementerian Perindustrian (Kemenperin) terus memperkuat daya saing dan kemandirian industri alat kesehatan dalam negeri sebagai bagian dari program prioritas pemerintahan Presiden Prabowo Subianto',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian (Kemenperin) terus memperkuat daya saing dan kemandirian industri alat kesehatan dalam negeri sebagai bagian dari program prioritas pemerintahan Presiden Prabowo Subianto. Langkah ini menjadi bagian penting dari upaya mewujudkan ketahanan sektor kesehatan nasional, mengurangi ketergantungan impor, menarik investasi, serta membuka peluang lapangan kerja baru di sektor industri manufaktur.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta menegaskan, pemerintah berkomitmen mempercepat penguatan ekosistem industri alat kesehatan nasional, mulai dari hulu hingga hilir. “Arahan Bapak Presiden Prabowo sudah jelas, termasuk juga tekad Bapak Menteri Perindustrian Agus Gumiwang Kartasasmita, bahwa kita harus bisa berdikari di sektor strategis, seperti industri alat kesehatan,” ujarnya dalam keterangan resmi di Jakarta, Kamis (5/6).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Oleh karena itu, Kemenperin mendorong transformasi industri alat kesehatan yang inovatif, berbasis teknologi, dan mampu memenuhi kebutuhan dalam negeri secara mandiri. “Ke depannya, kami berharap, industri alat kesehatan nasional mampu berdaya saing secara global. Hal ini akan menjadikan Indonesia sebagai negara yang berdaulat, mandiri, dan modern di segala sektor, sebagai bagian dalam upaya untuk mewujudkan visi Indonesia Emas 2045,” tutur Dirjen ILMATE.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Apalagi, industri alat kesehatan merupakan salah satu sektor yang mendapat prioritas pengembangan dalam peta jalan Making Indonesia 4.0. Adapun fokus utama dari peta jalan ini adalah pengembangan industri yang berbasis inovasi, teknologi digital, dan efisiensi rantai pasok.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Artinya, industri alat kesehatan memiliki peranan penting sebagai sektor strategis yang diarahkan untuk memperkuat substitusi impor dan meningkatkan kemandirian nasional. Dengan dukungan teknologi manufaktur cerdas dan otomatisasi, industri ini diharapkan mampu menjadi tulang punggung dalam penyediaan alat kesehatan yang berkualitas,” imbuhnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Setia mengemukakan, selain terus mendukung untuk substitusi impor, Kemenperin juga memacu industri alat kesehatan nasional berorientasi ekspor ke pasar regional dan global. “Beberapa produk unggulan alat kesehatan seperti <i>hospital furniture</i>, jarum suntik, dan alat diagnostik dalam negeri telah mulai menembus pasar ASEAN dan Timur Tengah,” ungkapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Di samping itu, guna meningkatkan kemampuan industri alat kesehatan nasional, diperlukan kolaborasi dengan para pemangku kepentingan terkait seperti Kementerian Kesehatan dan Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah (LKPP). Tujuannya agar produk alat kesehatan dalam negeri lebih mendapat prioritas dalam e-Katalog pengadaan barang dan jasa pemerintah.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Untuk itu, kami mengharapkan dukungan penuh dari Kementerian Kesehatan sebagai pengampu sektor kesehatan untuk terus menerapkan implementasi P3DN di Indonesia. Kami juga mengapresiasi langkah konkret Kementerian Kesehatan yang telah meningkatkan pembelian produk lokal hingga mencapai 48 persen di e-Katalog sektoral kesehatan pada tahun 2024 dari sebelumnya 8 persen di tahun 2019,” kata Direktur Industri Permesinan dan Alat Mesin Pertanian Kemenperin, Solehan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin juga tengah mereformasi tata cara penghitungan dan penerbitan sertifikat Tingkat Komponen Dalam Negeri (TKDN) sebagai bagian dari upaya jangka panjang untuk memperkuat industri nasional melalui peningkatan penggunaan produk dalam negeri. Reformasi ini dilakukan agar juga kebijakan TKDN yang saat ini diterapkan menjadi lebih adaptif, transparan, dan memberikan manfaat optimal bagi pelaku industri dalam negeri.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Dengan semangat kolaborasi yang tinggi, kami optimistis bahwa Indonesia akan mampu menjadi pusat produksi alat kesehatan global yang inovatif dan berkelanjutan. Kita semua memiliki peran penting dalam mewujudkan visi ini, dan bersama-sama, kita bisa menjadikan industri alat kesehatan nasional sebagai kebanggaan bangsa,” tegas Solehan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><strong>Produksi </strong><i><strong>CT Scan</strong></i></span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin pun memberikan apresiasi atas inisiatif kerja sama yang dijalin antara PT GE HealthCare dengan PT Forsta Kalmedic Global selaku anak perusahaan PT Kalbe Farma untuk memproduksi <i>Computed Tomography</i> (<i>CT</i>) <i>scan</i> berteknologi canggih. Fasilitas produksi ini berlokasi di pabrik Forsta, Bogor, Jawa Barat.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><i>CT scan</i> merupakan salah satu alat kesehatan diagnostik yang sering digunakan di dunia medis karena kemampuan diagnostiknya yang terperinci untuk berbagai penyakit. “Penyediaan mesin <i>CT scan</i> ini termasuk 10 besar alat kesehatan yang diprioritaskan untuk diproduksi secara lokal karena saat ini masih 100% dipenuhi oleh produk impor. Oleh karena itu, membangun fasilitas produksi <i>CT scan</i> di dalam negeri menjadi penting untuk meningkatkan akses pelayanan kesehatan yang lebih luas dan dapat menciptakan peluang kerja baru,” ungkap Yvone Astri Della Sijabat, Direktur Forsta. Adapun kapasitas produksi terpasang <i>CT scan</i> ini sebesar 52 unit per tahun dengan proyeksi kebutuhan mencapai 306 unit hingga tahun 2027.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Proses perakitan dilakukan oleh tenaga kerja lokal yang memperoleh pelatihan dari <i>principal</i> GE. Ke depannya, kami berharap industri dapat meningkatkan kedalaman struktur produknya melalui <i>sourcing</i> bahan baku dan komponen lokal secara bertahap sesuai dengan <i>guidance principal</i> dari GE HealthCare Amerika Serikat sehingga dengan adanya investasi ini dapat mendukung pengembangan ekosistem alat kesehatan di Indonesia. Selain itu, kami juga berharap kolaborasi ini dapat lebih memacu industri&nbsp; untuk mengembangkan produknya ke arah yang lebih <i>advance</i> seperti produksi <i>Magnetic Resonance Imaging</i> (MRI) yang saat ini juga masih 100% impor,” ungkap Solehan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Sementara itu, Presiden &amp; CEO GE HealthCare International Elie Chaillot menyampaikan, fasilitas produksi ini akan membantu perusahaan merespons kebutuhan lokal dengan lebih cepat sambil mempertahankan standar kualitas dan keamanan internasional. “Lini produksi ini meningkatkan akses ke teknologi diagnostik canggih yang penting, kemudian menciptakan lapangan kerja bernilai tinggi, dan mendukung pengembangan tenaga kerja teknologi kesehatan Indonesia,” jelas Elie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Presiden Direktur PT Kalbe Farma Tbk (Kalbe) Irawati Setiady menyatakan, kemitraan strategis antara Kalbe dan GE HealthCare untuk menyediakan mesin <i>CT scan</i> secara lokal ini merupakan komitmen Kalbe dalam mendukung upaya pemerintah untuk mewujudkan ketahanan kesehatan dan kemandirian industri alat kesehatan dalam negeri. “Kami berharap inisiatif penyediaan mesin <i>CT scan</i> di dalam negeri dapat memajukan layanan kesehatan dan meningkatkan kualitas hidup masyarakat Indonesia,” ujarnya.</span></p>',
             true,
-            'publikasi/17501264016850cf41366ab_WhatsApp_Image_2025_06_05_at_16_06_45.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501264016850cf41366ab_WhatsApp_Image_2025_06_05_at_16_06_45.jpeg',
             '2025-06-05',
             v_layout_id,
             true,
@@ -1673,7 +1673,7 @@ BEGIN
             'Industri otomotif memiliki peran penting dan strategis dalam menopang perekonomian nasional.',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Industri otomotif memiliki peran penting dan strategis dalam menopang perekonomian nasional. Tidak hanya berkontribusi pada sektor hulu (<i>backward linkage</i>) yang menyuplai bahan baku atau komponen produksi seperti industri logam, elektronik, kaca dan karet, tetapi industri otomotif juga membawa dampak positif terhadap sektor hilir (<i>forward linkage</i>) yang memanfaatkan hasil produksinya (<i>output</i>) antara lain oleh sektor perdagangan, transportasi, dan logistik.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Industri otomotif merupakan salah satu sektor yang sangat penting dalam mendukung pertumbuhan ekonomi Indonesia. Apalagi, Indonesia punya potensi sebagai pasar terbesar kendaraan bermotor di Asia Tenggara,” kata Wakil Menteri Perindustrian Faisol Riza pada pengumuman produk Suzuki Fronx di Jakarta, Rabu (28/5).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian mencatat, industri kendaraan bermotor memiliki nilai <i>forward linkage</i> sebesar 0,835 dan <i>backward linkage</i> sebesar 0,975. Nilai tersebut menunjukkan angka yang cukup tinggi dalam membawa dampak terhadap ketergantungan dan keterkaitan pada sektor lain.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Namun demikian, pada tahun 2024, terjadi penurunan penjualan kendaraan bermotor dibandingkan tahun 2023. Penurunan ini memberi dampak terhadap <i>backward linkage</i> dan <i>forward linkage</i> industri otomotif sebesar Rp 10 triliun, yang terdiri dari <i>backward linkage</i> sebesar Rp 5,4 triliun dan <i>forward linkage</i> sebesar Rp 4,6 triliun.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Untuk meningkatkan <i>backward linkage</i> dan <i>forward linkage</i> di industri otomotif, pemerintah berupaya memberikan insentif pajak, mendorong inovasi, dan mendukung perluasan pasar ekspor. Selain itu, perlu ada regulasi yang mendukung pertumbuhan industri, serta peningkatan kualitas SDM dan teknologi.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Wamenperin mengemukakan, di tengah tantangan global terkait perubahan iklim, industri otomotif juga diminta berkomitmen untuk mendukung transisi menuju kendaraan yang lebih ramah lingkungan. Kendaraan dengan emisi karbon rendah merupakan salah satu solusi untuk mengurangi emisi gas rumah kaca dan meningkatkan kualitas udara.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Oleh karena itu, pemerintah memberikan dukungan penuh dalam pengembangan industri kendaraan emisi karbon rendah, sebagai bagian dari komitmen terhadap pengurangan emisi karbon dan upaya menuju ekonomi hijau yang berkelanjutan,” tuturnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Wamenperin memberikan apresiasi kepada PT Suzuki Indomobil Motor yang mengumumkan kehadiran Suzuki Fronx di Indonesia. Suzuki Fronx merupakan sebuah inovasi kendaraan <i>mild hybrid</i> terbaru dari Suzuki Indonesia yang diharapkan dapat memperkuat posisi Indonesia dalam peta industri otomotif global serta menambah alternatif pilihan produk kendaraan bermotor ramah lingkungan.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Peluncuran ini menandai komitmen Suzuki terhadap pasar Indonesia dan menunjukkan kepercayaan perusahaan internasional terhadap potensi besar yang dimiliki oleh industri otomotif di tanah air,” ujar Wamen Riza.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kehadiran Suzuki Fronx ini melanjutkan kesuksesan produk ramah lingkungan Suzuki sebelumnya seperti Ertiga Hybrid dan XL7 Hybrid. “Kami berharap Suzuki Fronx tidak hanya diproduksi untuk pasar domestik, melainkan juga untuk memenuhi pasar ekspor global,” imbuhnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">PT Suzuki Indomobil Motor, salah satu pabrikan otomotif terbesar di Indonesia, yang telah berperan penting mendukung kinerja industri sektor otomotif nasional. Hal ini terbukti dari angka produksi yang mencapai 73 ribu unit dan penjualan sebanyak 65 ribu unit pada tahun 2024 sehingga menempatkan Suzuki ke dalam lima besar pabrikan otomotif di Indonesia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Presiden Direktur Suzuki Indomobil Motor dan Suzuki Indomobil Sales, Minoru Amano, menyampaikan bahwa peluncuran Fronx di Tanah Air merupakan langkah penting bagi bisnis Suzuki secara keseluruhan. “Suzuki Fronx ini bukan hanya mobil baru tapi pilar baru dalam bisnis kami, dengan target penjualan 2.000 unit per bulan,” ucapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Suzuki optimistis Fronx akan diterima dengan baik oleh konsumen di Indonesia. Keyakinan ini didukung oleh fakta bahwa Fronx sudah diproduksi secara lokal di pabrik Suzuki di Cikarang, Bekasi, Jawa Barat.</span></p>',
             true,
-            'publikasi/17501327436850e80796712_0.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501327436850e80796712_0.jpg',
             '2025-05-28',
             v_layout_id,
             false,
@@ -1735,7 +1735,7 @@ BEGIN
             'Wakil Menteri Perindustrian (Wamenperin) Faisol Riza yang didampingi oleh Direktur Industri Maritim, Alat Transportasi, dan Alat Pertahanan (Dir IMATAP), Mahardi Tunggul Wicaksono menghadiri peluncuran produk mobil Suzuki Fronx',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wakil Menteri Perindustrian (Wamenperin) Faisol Riza yang didampingi oleh Direktur Industri Maritim, Alat Transportasi, dan Alat Pertahanan (Dir IMATAP), Mahardi Tunggul Wicaksono menghadiri peluncuran produk mobil Suzuki Fronx di Jakarta, Rabu 28 Mei 2025. Kementerian Perindustrian mencatat, industri kendaraan bermotor memiliki nilai forward linkage sebesar 0,835 dan backward linkage sebesar 0,975.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501260256850cdc9eb94c_ARS_8429.jpg" width="720" height="480"></figure><p>&nbsp;</p><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wamenperin Faisol Riza memberikan sambutan serta arahannya saat peluncuran produk mobil Suzuki Fronx di Jakarta, Rabu 28 Mei 2025. Dalam sambutannya, Wamen mengatakan bahwa industri otomotif merupakan salah satu sektor yang sangat penting dalam mendukung pertumbuhan ekonomi Indonesia serta memiliki potensi sebagai pasar terbesar kendaraan bermotor di Asia Tenggara.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501260406850cdd8b8b6e_ARS_8490.jpg" width="720" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wamenperin Faisol Riza yang didampingi oleh Direktur IMATAP Mahardi Tunggul Wicaksono (kiri) berfoto bersama Presiden Direktur Suzuki Indomobil Motor dan Suzuki Indomobil Sales Minoru Amano (tiga dari kiri) beserta jajarannya saat menghadiri peluncuran produk mobil Suzuki Fronx di Jakarta, Rabu 28 Mei 2025.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501260536850cde5f29ac_ARS_8523.jpg" width="720" height="480"></figure>',
             true,
-            'publikasi/17501259726850cd947a040_ARS_8523.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501259726850cd947a040_ARS_8523.jpg',
             '2025-05-28',
             v_layout_id,
             false,
@@ -1797,7 +1797,7 @@ BEGIN
             'Kementerian Perindustrian mengapresiasi kinerja PT Yuasa Battery Indonesia, salah satu pabrikan aki kendaraan terbesar Indonesia, yang berperan penting dan telah berkontribusi aktif dalam penguatan sektor industri nasional, khususnya industri komponen otomotif.',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian mengapresiasi kinerja PT Yuasa Battery Indonesia, salah satu pabrikan aki kendaraan terbesar Indonesia, yang berperan penting dan telah berkontribusi aktif dalam penguatan sektor industri nasional, khususnya industri komponen otomotif. Hingga saat ini, PT Yuasa telah mampu memproduksi sekitar sembilan juta unit aki motor dan 1,2 juta unit aki industri setiap tahunnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">PT Yuasa Battery memproduksi berbagai jenis aki, termasuk aki kering (<i>maintenance-free</i>), aki basah, dan baterai industri seperti <i>Valve Regulated Lead Acid </i>(VRLA) dan <i>deep cycle</i>. Produk-produk ini telah memenuhi standar nasional dan internasional, serta didukung oleh laboratorium uji mutu bersertifikasi ISO 9001:2015 dan ISO 14001:2015.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Tidak hanya di pasar domestik, Yuasa telah menembus pasar internasional. Sekitar 20% dari produksinya diekspor ke negara-negara Asia Tenggara, Timur Tengah, dan Afrika. Di dalam negeri, jaringan distribusi Yuasa tersebar luas, dengan lebih dari 47 cabang dan <i>dealer</i> resmi,” ujar Menteri Perindustrian Agus Gumiwang Kartasasmita di Jakarta, Senin (26/5).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Berdasarkan data World Bank dan United Nations Statistics, nilai <i>Manufacturing Value Added</i> (MVA) Indonesia Tahun 2023 mencapai USD 255,96 miliar, merupakan yang tertinggi dari yang sebelumnya pernah dicapai. Nilai tersebut menempatkan Indonesia dalam 12 besar negara manufaktur dunia, serta yang terbesar ke-5 di Asia, di bawah RRT, Jepang, India, dan Korea Selatan. Di ASEAN, nilai MVA Indonesia menjadi yang tertinggi, jauh melampaui nilai MVA negara-negara ASEAN termasuk Thailand dan Vietnam.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Rata-rata MVA dunia adalah USD 78,73 miliar, sementara Indonesia mencatatkan rerata historis sebesar USD 102,85 miliar. “Saya yakin betul, perusahaan Yuasa sedikit banyak telah memberikan kontribusi terhadap nilai MVA yang ada di Indonesia,” ungkap Menperin.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menurut data BPS, Pertumbuhan industri pengolahan nonmigas pada Triwulan I – 2025 mencapai 4,31 persen. Meskipun pertumbuhannya menurun, kontribusi sektor manufaktur terhadap PDB pada Triwulan I – 2025 yaitu sebesar 17,50%, tercatat mengalami kenaikan baik secara <i>q-to-q</i> atau naik 0,19%, maupun secara <i>y-o-y</i> (0,03%).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Saya ingin men-<i>challenge</i> siapa pun itu, yang mengatakan bahwa Indonesia sedang dalam tahap deindustrialisasi, sama sekali tidak benar. Bisa terlihat dari data yang saya sampaikan terkait MVA, catatan ekspor dan impor yang berasal dari industri manufaktur, serta capaian investasi dari industri manufaktur,” tegasnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Sebagai negara dengan pasar kendaraan bermotor terbesar di Asia Tenggara, Indonesia memiliki <i>car ownership ratio</i> 99/1000 penduduk. Rasio ini relatif rendah, dibandingkan dengan negara tetangga seperti Malaysia yang mencapai 490, Thailand 275, dan Singapura 211. Meskipun demikian, Indonesia memiliki penjualan domestik tertinggi.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Perbandingan antara <i>car ownership ratio</i> dengan penjualan domestik tersebut, mengindikasikan bahwa potensi pasar kendaraan bermotor beserta komponen penunjangnya di Indonesia masih sangat menjanjikan. “Hal ini merupakan peluang besar, termasuk bagi PT Yuasa Battery Indonesia, untuk bisa mengambil manfaat, bersama-sama meningkatkan <i>car ownership ratio</i> itu dengan upaya pemerintah untuk meningkatkan kesejahteraan masyarakat, ekonomi, dan daya beli,” kata Menperin.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Di sisi lain, pemerintah juga terus mendukung arah perkembangan industri otomotif yang semakin ramah lingkungan dengan memberikan berbagai insentif untuk kendaraan berteknologi ramah lingkungan seperti <i>hybrid</i>, hingga <i>Battery Electric Vehicle</i>.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kami berharap Yuasa sebagai <i>market leader</i> dalam produk aki kendaraan juga terus berinovasi untuk memenuhi kebutuhan pasar produk-produk tersebut, sehingga target NZE yang dicanangkan pemerintah tahun 2060, bisa terlaksana dengan waktu yang sudah ditargetkan Kemenperin, yaitu 10 tahun lebih cepat, pada tahun 2050,” tuturnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Selain itu, kontribusi Yuasa tidak hanya dalam bentuk produk, tetapi juga dalam pembentukan ekosistem industri nasional. Melalui kemitraan dengan berbagai pelaku industri hulu dan hilir, Yuasa memperkuat rantai pasok nasional, dari pemasok bahan baku lokal hingga penyedia sistem energi cadangan untuk sektor telekomunikasi, perbankan, dan industri kendaraan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Pada kesempatan yang sama, Menperin juga menyampaikan empat poin harapan kepada PT Yuasa. <i>Pertama</i>, PT Yuasa dapat meningkatkan produktivitas dan daya saing melalui otomatisasi, digitalisasi, dan penguatan kapasitas Sumber Daya Manusia (SDM). “Kami sangat terbuka untuk perusahaan bisa bekerja sama dengan SMK, politeknik, dan balai-balai Kemenperin, guna menyuplai tenaga kerja yang kompeten dan adaptif terhadap perkembangan teknologi,” katanya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><i>Kedua</i>, memperkuat jejak di pasar global. Dengan kapasitas produksi dan standar mutu yang tinggi, Yuasa memiliki potensi besar untuk menjadi <i>export champion</i>. Kemenperin akan mendukung perluasan pasar global melalui fasilitas promosi dagang, dan penguatan <i>branding</i> produk Indonesia di luar negeri.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><i>Ketiga</i>, selaras dengan komitmen nasional terhadap pembangunan berkelanjutan, perusahaan industri termasuk Yuasa, harus menjalankan prinsip industri hijau. “Saya mendorong Yuasa untuk menargetkan sertifikasi Green Industry Label, tentu prosesnya akan kami kawal,” jelas Menperin. <i>Keempat</i>, Yuasa dapat bersinergi dalam ekosistem baterai nasional.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menperin berharap, setelah lima dekade perjalanannya, PT Yuasa dapat terus memberi kontribusi besar dalam menjadikan Indonesia sebagai negara industri tangguh, mandiri, dan berkelanjutan. “Saya percaya, dengan visi dan inovasi yang terus diperkuat, Yuasa akan tetap relevan dan menjadi pemimpin dalam industri baterai Indonesia, bahkan di tingkat global,” pungkasnya.</span></p>',
             true,
-            'publikasi/17501331916850e9c7a1953_ARS_8348__1___2_.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501331916850e9c7a1953_ARS_8348__1___2_.jpg',
             '2025-05-27',
             v_layout_id,
             false,
@@ -1859,7 +1859,7 @@ BEGIN
             'Menteri Perindustrian Agus Gumiwang Kartasasmita memberikan sambutannya saat menghadiri Ulang Tahun ke-50 PT Yuasa Battery Indonesia, di Jakarta, 26 Mei 2025',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita memberikan sambutannya saat menghadiri Ulang Tahun ke-50 PT Yuasa Battery Indonesia, di Jakarta, 26 Mei 2025. Menperin mengatakan, sebagai negara dengan pasar kendaraan bermotor terbesar di Asia Tenggara, Indonesia memiliki car ownership ratio 99/1000 penduduk atau lebih rendah dibanding dengan Malaysia, Thailand dan Singapura.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501329656850e8e50cd3f_ARS_8332.jpg" width="720" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita yang didampingi oleh Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta (lima dari kanan) serta Staff Khusus Menperin Emmanuel L. Wanandi (empat dari kanan) berfoto bersama Duta Besar Jepang untuk Indonesia Masaki Yasushi (delapan dari kiri), Sofjan Wanandi (tujuh dari kiri), serta jajaran direksi PT Yuasa Battery Indonesia, di Jakarta, 26 Mei 2025.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501330026850e90a58964_ARS_8231.jpg" width="720" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Menteri Perindustrian Agus Gumiwang Kartasasmita berbincang dengan Duta Besar Jepang untuk Indonesia Masaki Yasushi (kiri), Sofjan Wanandi (dua dari kiri) serta Lukito Wanandi (kanan) saat menghadiri Ulang Tahun ke-50 PT Yuasa Battery Indonesia, di Jakarta, 26 Mei 2025. Menperin berharap Yuasa sebagai market leader dalam produk aki kendaraan juga terus berinovasi untuk memenuhi kebutuhan pasar produk-produk tersebut, sehingga target NZE yang dicanangkan pemerintah tahun 2060, bisa terlaksana dengan waktu yang sudah ditargetkan Kemenperin.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501330166850e918e7e15_ARS_8409.jpg" width="720" height="480"></figure>',
             true,
-            'publikasi/17501328856850e895a36fd_ARS_8332.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501328856850e895a36fd_ARS_8332.jpg',
             '2025-05-27',
             v_layout_id,
             false,
@@ -1921,7 +1921,7 @@ BEGIN
             'Wakil Menteri Perindustrian Faisol Riza memberikan sambutan pada rangkaian acara The 1st Indonesia Maritime Week 2025 di Jakarta, 27 Mei 2025.',
             '<p style="text-align:justify;">Wakil Menteri Perindustrian Faisol Riza (keempat dari kanan) didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kedua dari kanan) berfoto bersama Narasumber dan penyelenggara acara The 1st Indonesia Maritime Week 2025 di Jakarta, 27 Mei 2025.</p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501258816850cd39dbc0b_HMZ01111.jpg" width="720" height="480"></figure><p style="text-align:justify;">Wakil Menteri Perindustrian Faisol Riza (keempat dari kanan) didampingi Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika Setia Diarta (kedua dari kanan) berfoto bersama Narasumber dan penyelenggara acara The 1st Indonesia Maritime Week 2025 di Jakarta, 27 Mei 2025.</p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501258996850cd4bc8802_HMZ01190__2_.jpg" width="720" height="480"></figure><p>&nbsp;</p><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wakil Menteri Perindustrian Faisol Riza bersalaman dengan Chairman Indonesia Maritime Week 2025 Antoni Arif Priadi setelah berfoto bersama pada acara The 1st Indonesia Maritime Week 2025 di Jakarta, 27 Mei 2025.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17501259316850cd6b84a2b_HMZ01207.jpg" width="720" height="480"></figure>',
             true,
-            'publikasi/17501257986850cce63ed36_HMZ01190__2_.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17501257986850cce63ed36_HMZ01190__2_.jpg',
             '2025-05-27',
             v_layout_id,
             false,
@@ -1983,7 +1983,7 @@ BEGIN
             'Industri elektronik nasional menunjukkan kinerja yang semakin positif dan berdaya saing, seiring dengan meningkatnya kebutuhan pasar domestik serta investasi di sektor ini',
             '<p style="text-align:justify;">Industri elektronik nasional menunjukkan kinerja yang semakin positif dan berdaya saing, seiring dengan meningkatnya kebutuhan pasar domestik serta investasi di sektor ini. Sektor industri elektronik juga menjadi salah satu prioritas dalam peta jalan Making Indonesia 4.0 karena perannya yang strategis dalam mendukung ekosistem industri manufaktur nasional.</p><p style="text-align:justify;">Neraca perdagangan industri elektronika sepanjang tahun 2024 tercatat masih mengalami defisit sebesar USD16,2 miliar dan impor produk elektronika tercatat sebesar 25,43 Miliar USD. Sedangkan, ekspornya hanya mencapai USD9,23 miliar. Salah satu kontributor utama impor elektronik tersebut yaitu produk Air Conditioner (AC) rumah tangga, dengan nilai mencapai USD420,46 juta pada tahun 2024. Meski turun sebesar sembilan persen dari tahun sebelumnya, nilai impor produk AC rumah tangga masih tergolong besar.</p><p style="text-align:justify;">“Nilai impor produk AC yang tinggi, mencerminkan meningkatnya permintaan domestik terhadap AC. Saat ini AC telah menjadi kebutuhan pokok seiring dengan kenaikan suhu akibat perubahan iklim, meningkatnya daya beli masyarakat, serta kesadaran akan kualitas udara turut mendorong penggunaan AC secara luas,” kata Wakil Menteri Perindustrian Faisol Riza di Jakarta, Jumat (16/5).</p><p style="text-align:justify;">Melihat kondisi tersebut, Wamenperin mengapreasi atas kehadiran pabrik baru PT Daikin Industries Indonesia, yang membawa angin segar dalam rangka mengurangi ketergantungan impor serta memperkuat posisi Indonesia sebagai pusat manufaktur AC di kawasan ASEAN.</p><p style="text-align:justify;">“Saya menyampaikan apresiasi setinggi-tingginya kepada Jajaran PT Daikin Industries Indonesia, atas peran dan komitmen dalam investasi dan prakarsa memajukan industri elektronika Indonesia,” tutur Faisol.</p><p style="text-align:justify;">Daikin Global sebelumnya hadir melalui PT Daikin Manufacturing Indonesia dengan produksi AC tipe ducting dan Air Handling Units. Kini, telah hadir dengan entitas baru yaitu PT Daikin Industries Indonesia dengan fokus produksi AC rumah tangga.</p><p style="text-align:justify;">Dengan nilai investasi sebesar Rp3,3 triliun dan kapasitas produksi mencapai 1,5 juta unit per tahun, Wamen Faisol yakin fasilitas produksi AC yang baru di Kawasan GIIC Industrial Parks dapat memberikan posisi strategis bagi PT Daikin Industries Indonesia, baik di dalam pasar domestik maupun eskpor produk AC Rumah Tangga.</p><p style="text-align:justify;">“Lebih dari itu, yang juga menggembirakan, pabrik baru PT Daikin ini turut berkontribusi pada penyerapan tenaga kerja sekitar 950 hingga 1.000 tenaga kerja,” jelasnya.</p><p style="text-align:justify;">Wamenperin menyampaikan, industri elektronik masih menghadapi tantangan ketergantungan impor kompresor AC yang mencapai USD244,29 juta pada tahun 2024. Menyikapi hal ini, pemerintah mendorong PT Daikin Industries Indonesia untuk secara bertahap mampu memproduksi komponen utama secara lokal, termasuk kompresor, guna memperkuat kemandirian dan rantai pasok domestik.</p><p style="text-align:justify;">Dari sisi regulasi teknis, produk AC telah diwajibkan memenuhi SNI berdasarkan Permenperin No. 34 tahun 2013. Selanjutnya, pada bulan Juli 2025, regulasi teknis SNI Wajib produk elektronik rumah tangga termasuk AC, secara efektif akan diatur melalui Permenperin No. 7 Tahun 2025, tentang Pemberlakuan SNI untuk Elektronika Rumah Tangga Secara Wajib.</p><p style="text-align:justify;">Dengan adanya peraturan tersebut, produk AC yang diproduksi di Indonesia, termasuk PT Daikin Industries Indonesia, diharapkan dapat memenuhi standar kualitas dan keselamatan yang ditetapkan dalam regulasi baru tersebut.</p><p style="text-align:justify;">“Saya berharap kehadiran pabrik baru ini dapat menjadi pendorong pertumbuhan dan daya saing industri elektronika nasional, serta secara signifikan memberikan sumbangsih kontribusi yang makin besar dari industri pengolahan pada perekonomian tanah air,” pungkasnya.</p>',
             true,
-            'publikasi/1747794555682d3a7b1651c_DSC_4971_min.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1747794555682d3a7b1651c_DSC_4971_min.jpg',
             '2025-05-16',
             v_layout_id,
             false,
@@ -2045,7 +2045,7 @@ BEGIN
             'Kementerian Perindustrian berkomitmen untuk terus mendukung penguatan ekosistem industri animasi nasional melalui pengembangan dan pemanfaatan Kekayaan Intelektual (IP) dalam rangka menghasilkan produk animasi yang berkualitas',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian berkomitmen untuk terus mendukung penguatan ekosistem industri animasi nasional melalui pengembangan dan pemanfaatan Kekayaan Intelektual (IP) dalam rangka menghasilkan produk animasi yang berkualitas. Sebab, IP memiliki peranan penting pada masyarakat dan pelaku industri animasi karena memberikan nilai tambah pada produk karya mereka.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Pemerintah secara khusus mendorong kolaborasi antara pelaku IP lokal dengan berbagai sektor industri lain. IP animasi lokal memiliki potensi besar untuk menjadi mitra strategis dalam memperkuat daya saing industri nasional, sekaligus membuka pasar baru bagi produk dalam negeri,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Diarta pada acara Bedah Film Animasi Jumbo di Jakarta, Kamis (8/5).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menurut Setia, keterlibatan pelaku industri dalam mendukung IP lokal akan memperkuat identitas produk dan mendorong pertumbuhan industri berbasis kekayaan intelektual. “Kami mengajak industri dan produk dalam negeri untuk melihat potensi besar kerja sama dengan IP lokal. Selain memperkuat identitas produk, ini juga berkontribusi pada kemajuan industri berbasis kekayaan intelektual,” ungkapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Potensi besar yang dimiliki oleh IP lokal mendorong Kemenperin untuk menciptakan kolaborasi yang lebih luas, mulai dari <i>co-branding</i> produk, kampanye pemasaran berbasis karakter animasi, pengembangan konten digital interaktif, hingga pemanfaatan IP untuk <i>merchandise</i> dan <i>edutainment</i>. “Melalui kolaborasi ini, diharapkan mampu menjadi jembatan antara sektor animasi dengan sektor lain seperti makanan dan minuman, transportasi, teknologi, ritel, dan produk konsumen,” ujar Setia.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Lebih lanjut, berbagai bentuk komitmen Kemenperin dalam upaya mendukung sub sektor animasi diwujudkan dalam berbagai inisiatif. Misalnya, Balai Diklat Industri (BDI) Denpasar secara rutin memberikan pelatihan teknis animasi 2D dan 3D serta memfasilitasi partisipasi para pelaku animasi dalam ajang promosi seperti BEAST (Bengkel Animasi Creative &amp; Digital Arts Festival), serta penguatan jejaring lintas sektor melalui penyelenggaraan Networking Forum Industri berbasis IP.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Meski menunjukkan kemajuan yang pesat, industri animasi Indonesia masih menghadapi sejumlah tantangan, antara lain kurangnya pendanaan dari sektor keuangan formal, minimnya platform distribusi nasional, dan terbatasnya pelatihan teknis di luar pusat industri animasi yang masih perlu diatasi secara sistematis.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menurut data Asosiasi Industri Animasi Indonesia (AINAKI) pada tahun 2020, nilai produksi animasi Indonesia sebelum pandemi mencapai Rp 600–800 miliar per tahun. Saat ini terdapat lebih dari 150 studio animasi yang tersebar di 23 kota, dengan konsentrasi terbesar di Pulau Jawa. Potensi ini masih bisa terus dikembangkan sehingga dapat ikut berkontribusi dalam menopang perekonomian nasional.&nbsp;</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Sementara itu, film “Jumbo” menjadi bukti nyata keberhasilan IP lokal yang dikelola dengan baik. Dengan lebih dari 8 juta penonton, film ini telah mencetak sejarah sebagai film animasi Indonesia terlaris di Asia Tenggara, dan menunjukkan potensi karya lokal yang mampu bersaing di pasar global.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Direktur Industri Elektronika dan Telematika, Ronggolawe Sahuri menyampaikan, melalui kegiatan ini diharapkan mampu mengembangkan potensi para pelaku industri animasi lokal dan menguatkan ekosistem IP lokal melalui berbagai program sinergi. &nbsp;“Kemenperin mengapresiasi IP Lokal seperti Jumbo sebagai wujud nyata dari upaya kita membangun daya saing industri animasi nasional dan memajukan industri berbasis kekayaan intelektual dalam negeri,” ujarnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Ronggolawe menambahkan, pihaknya akan terus aktif berkoordinasi dengan seluruh pemangku kepentingan dalam penyusunan peta jalan industri animasi nasional, dengan fokus pada penguatan SDM industri, perluasan akses pasar, dan kolaborasi lintas sektor yang berkelanjutan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Penyelenggaraan kegiatan ini merupakan salah satu wujud Kemenperin dalam mendorong pengembangan industri animasi lokal. Ditjen ILMATE menghadirkan sutradara dan produser film “Jumbo” sebagai narasumber dalam sesi <i>talkshow</i> dan diikuti oleh 75 orang peserta yang berasal dari pelaku studio animasi lokal, sekolah dan kampus dengan prodi animasi, serta asosiasi animasi.</span></p>',
             true,
-            'publikasi/1747794666682d3aeaed405_Jumbo_2.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1747794666682d3aeaed405_Jumbo_2.jpg',
             '2025-05-09',
             v_layout_id,
             true,
@@ -2107,7 +2107,7 @@ BEGIN
             'Industri otomotif Indonesia sedang mengalami disrupsi teknologi baik dari sisi produksi maupun produk. Berbagai produk otomotif berteknologi tinggi dan ramah lingkungan telah memasuki pasar domestik Indonesia.',
             '<p style="text-align:justify;">Industri otomotif Indonesia sedang mengalami disrupsi teknologi baik dari sisi produksi maupun produk. Berbagai produk otomotif berteknologi tinggi dan ramah lingkungan telah memasuki pasar domestik Indonesia. Saat ini, sudah beredar berbagai kendaraan modern dan berteknologi tinggi di Indonesia seperti kendaraan menggunakan teknologi ICE, <i>hybrid</i>, baterai listrik dan <i>fuel cell hydrogen</i>.</p><p style="text-align:justify;">Menghadapi perkembangan teknologi otomotif yang berkembang pesat saat ini serta potensi pasar otomotif domestik, Kementerian Perindustrian mengenalkan konsep <i>Green Mobility </i>sebagai pendekatan kebijakan yang mengintegrasikan teknologi lebih ramah lingkungan, efisien dalam penggunaan energi, berdaya saing tinggi dan mendukung keberlanjutan mobilitas penduduk .</p><p style="text-align:justify;">“Apapun perkembangan teknologi otomotif, kami menyambut baik dan berkomitmen memfasilitasi kebijakannya melalui konsep <i>Green Mobility</i>. Kebijakan ini akan lebih adaptif dan <i>sustain</i> bagi industri otomotif nasional terutama menjawab perkembangan pesat teknologi otomotif yang ramah lingkungan, efisien dalam penggunaan energi, mendukung mobilitas penduduk dan melindungi investasi otomotif yang telah ada di Indonesia selama ini,” ujar Menteri Perindustrian Agus Gumiwang Kartasasmita pada acara New Energy Vehicle, Kumparan di Jakarta, Selasa (6/5).</p><p style="text-align:justify;"><i>Green Mobility </i>juga mempertimbangkan investasi otomotif yang sudah berlangsung lama di Indonesia. Pemerintah misalnya telah memfasilitasi investor yang memproduksi kendaraan berteknologi ICE dalam bentuk insentif bagi produk LCGC (<i>Low Cost Green Car</i>) dan program <i>biofuel</i>. Pemerintah juga telah menerbitkan kebijakan dan insentif yang mendorong terciptanya ekosistem kendaraan listrik melalui insentif PPNBM DTP serta hilirisasi sumber daya alam mendukung industri baterai kendaraan. Pemerintah juga telah memberikan insentif untuk produksi kendaraan <i>hybrid</i>. Terbaru, pemerintah juga menyiapkan kebijakan dan insentif bagi investor yang memproduksi kendaraan berteknologi <i>fuel cell hydrogen</i>.</p><p style="text-align:justify;">“Selain memfasilitasi teknologi otomotif terbaru, kami juga tetap akan melindungi investasi otomotif yang sudah lama berproduksi di Indonesia. Prinsipnya, selama investasi industri otomotif lama atau baru tersebut menghasilkan produk otomotif lebih ramah lingkungan, efisien dalam penggunaan energi dan mendukung mobilitas masyarakat, maka akan kami fasilitasi melalui kebijakan <i>Green Mobility”, </i>ujar Menperin</p><p style="text-align:justify;">Pasar otomotif Indonesia masih memiliki ruang untuk tumbuh dan berkembang serta dapat diisi oleh produk otomotif dalam negeri. Hal ini ditunjukkan oleh rasio kepemilikan mobil Indonesia relatif lebih rendah dibanding dengan rasio kepemilikan mobil di negara tetangga ASEAN&nbsp;</p><p style="text-align:justify;"><span style="color:rgb(66,66,66);">Agus menyebut rasio kepemilikan kendaraan roda empat di Indonesia hanya 99 unit per 1.000 orang penduduk, sedangkan jumlah penduduk Indonesia mencapai 281 juta orang per tahun 2024. Rasio kepemilikan kendaraan motor roda 4 di Malaysia misalnya, sebesar 490 unit per 1.000 orang penduduk. Sementara Malaysia hanya memiliki sekitar 35 juta penduduk.</span></p><p style="text-align:justify;"><span style="color:rgb(66,66,66);">Sementara itu, Thailand juga menunjukkan rasio kepemilikan mobil yang lebih tinggi dibanding Indonesia. Dengan jumlah penduduk sekitar 70 juta orang, Thailand mampu mencatat rasio kepemilikan mobil sebanyak 275 unit per 1.000 orang. "Di Singapura 211 unit per 1.000 orang, Korea Selatan 530 unit per 1.000 orang, dan Jepang 670 unit per 1.000 orang," kata Agus.</span></p><p style="text-align:justify;">Konsep <i>green mobility</i> diharapkan mendukung upaya pemerintah untuk pencapaian target <i>Net Zero Emission</i>(NZE) sektor manufaktur pada tahun 2050. Besarnya potensi pasar otomotif Indonesia serta distrupsi teknologi otomotif kearah produk yang lebih ramah lingkungan, efisiensi dalam energi dan mendukung mobilitas penduduk diharapkan mempercepat pencapaian target NZE manufaktur Indonesia.</p><p style="text-align:justify;">“Kami mengakselerasi target NZE di sektor industri manufaktur dapat tercapai pada tahun 2050 atau 10 tahun lebih cepat daripada target yang ditetapkan oleh pemerintah. Kami juga telah melakukan koordinasi dengan para pelaku industri, termasuk sektor otomotif. <i>Alhamdulillah</i>, mereka siap untuk mendukung tercapainya target NZE di sektor manufaktur tersebut,” tutur Menperin.</p><p style="text-align:justify;"><strong>Apresiasi kepada Polytron</strong></p><p style="text-align:justify;">Menperin memberikan apresiasi kepada Polytron atas peluncuran mobil listrik, yang sebelumnya sukses meluncurkan motor listrik. “Ini adalah langkah besar yang memperlihatkan komitmen Polytron untuk terus berinovasi dan berkontribusi dalam pengembangan industri otomotif di Indonesia. Kami juga mengucapkan selamat kepada Polytron atas peluncuran mobil listrik dengan merek nasional,” tutur Agus.&nbsp;</p><p style="text-align:justify;">Sebagai sebuah momen bersejarah di industri otomotif Indonesia, peluncuran mobil listrik Polytron G3 yang juga menandai kehadiran merek asli Indonesia. Tidak hanya memperlihatkan kebangkitan industri otomotif, tetapi juga memperkuat posisi Indonesia dalam pasar kendaraan listrik.</p><p style="text-align:justify;">“Dengan keberhasilan ini, kita semakin yakin bahwa industri otomotif Indonesia dapat berinovasi dan berkembang dengan menghadirkan produk-produk yang tidak hanya memenuhi kebutuhan pasar domestik, tetapi juga siap untuk bersaing di pasar global,” tegasnya.</p><p style="text-align:justify;">Bahkan, peluncuran mobil listrik Polytron ini sebagai bukti nyata bahwa industri otomotif Indonesia mampu memproduksi kendaraan bermotor sendiri dengan kualitas yang bersaing. Lebih dari itu, mobil listrik ini juga memiliki tingkat komponen dalam negeri (TKDN) yang tinggi, yang mencerminkan kemajuan luar biasa dalam kemampuan manufaktur dalam negeri.</p><p style="text-align:justify;">Apalagi Presiden Prabowo baru saja menandatangani Perpres No. 46 Tahun 2025 tentang Pengadaan Barang Dan Jasa dimana pemerintah pusat dan daerah serta BUMN/BUMD wajib membeli produk dalam negeri. Produk otomotif Polytron berpotensi dibeli pemerintah dan BUMN/BUMD untuk menjadi mobil dinas ataupun mobil operasional.&nbsp;</p><p style="text-align:justify;">Berdasarkan hasil <i>self assessment</i>, mobil listrik Polytron G3 sudah mencapai nilai TKDN sebesar 40 persen. “Dengan semakin tingginya nilai TKDN pada produk kendaraan listrik, kita akan dapat mengurangi ketergantungan pada impor, serta mengoptimalkan potensi industri manufaktur Indonesia,” tandasnya.</p><p style="text-align:justify;">CEO Polytron Hariono mengatakan, pihaknya mengucapkan terima kasih atas dukungan Kemenperin sehingga terjalin sinergi yang kuat antara pemerintah dan pelaku industri. Peluncuran mobil listrik pertama ini menandai kehadiran Polytron yang menginjak usia ke-50 pada bulan September mendatang.</p><p style="text-align:justify;">“Tahun 2025 adalah tahun yang istimewa bagi Polytron, di mana usia kami melayani konsumen Indonesia genap 50 tahun. Sebuah perjalanan panjang yang kami lalui bersama sejak tahun 1975,” ujarnya.&nbsp;</p><p style="text-align:justify;">Selam lima dekade terakhir ini, menurut Hariono, Polytron semakin tumbuh dan terus belajar berinovasi untuk mencapai satu tujuan, yakni mempermudah hidup keluarga Indonesia melalui teknologi dan layanan yang sesuai dengan kebutuhan.&nbsp;</p><p style="text-align:justify;">“Hari ini, kami mengambil langkah lanjutan dari perjalanan kami, yaitu memperkenalkan mobil listrik pertama Polytron," jelasnya. Polytron memulai langkah ini dengan keyakinan yang sederhana, bahwa teknologi yang baik adalah yang bisa dijangkau dan dirasakan manfaatnya oleh banyak orang.</p><p style="text-align:justify;">“Karena itu, mobil listrik Polytron ini hadir bukan sekadar inovasi, tetapi juga sebagai solusi yang menghadrrkan mobilitas yang lebih ramah lingkungan, aman, dan mudah dijangkau secara lebih luas oleh keluarga Indonesia,” imbuhnya.</p>',
             true,
-            'publikasi/1746589218681ad622a5234_WhatsApp_Image_2025_05_06_at_16_55_27.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1746589218681ad622a5234_WhatsApp_Image_2025_05_06_at_16_55_27.jpeg',
             '2025-05-07',
             v_layout_id,
             true,
@@ -2169,7 +2169,7 @@ BEGIN
             'Industri alat kesehatan adalah salah satu sektor yang mendapat prioritas pengembangan sesuai dengan peta jalan Making Indonesia 4.0.',
             '<p style="text-align:justify;"><span style="font-size:11pt;">Industri alat kesehatan adalah salah satu sektor yang mendapat prioritas pengembangan sesuai dengan peta jalan Making Indonesia 4.0. Sektor ini dinilai memiliki potensi besar dalam memacu perekonomian nasional.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Industri alat kesehatan merupakan salah satu sektor yang masuk kategori <i>high demand</i>. Kondisi ini perlu dimanfaatkan dengan baik dan optimal, termasuk untuk mewujudkan kemandirian Indonesia di sektor industri alat kesehatan,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Kementerian Perindustrian, Setia Diarta dalam keterangan resminya di Jakarta, Minggu (27/4).</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Melihat potensi industri alat kesehatan di Indonesia, berdasarkan data SIINas, saat ini sudah ada 393 perusahaan alat kesehatan yang terdaftar memproduksi beragam produk alat kesehatan, antara lain produk tempat tidur rumah sakit, alat suntik, tensimeter, elektromedik, ventilator dan lain sebagainya.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Kami juga melihat perkembangan yang sangat bagus pada peningkatan transaksi produk alat kesehatan dalam negeri pada e-Katalog yang terus meningkat hingga mencapai 48 persen di tahun 2024. Selain itu, data ekspor alat kesehatan juga mengalami peningkatan sejak tahun 2019, di mana ekspor alat kesehatan pada tahun 2024 lebih dari USD273 juta,” ungkap Direktur Industri Permesinan dan Alat Mesin Pertanian Kemenperin, Solehan.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Untuk memperkuat ekosistem industri alat kesehatan, Kemenperin telah melakukan kajian mengenai penguatan bahan baku melalui pembentukan Hub Bahan Baku Alat Kesehatan. Inisiatif ini bertujuan untuk menjembatani kebutuhan bahan baku dalam negeri dengan para produsen lokal, sehingga industri dalam negeri bisa lebih berdaya saing dan memberikan dampak ekonomi yang lebih besar secara nasional.&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Untuk itu, kami sangat mengharapkan dukungan serta kolaborasi yang erat dari seluruh pemangku kepentingan terkait, baik itu dari pemerintah, pelaku industri, maupun akademisi dalam membangun ekosistem hulu alat kesehatan yang kuat,” tutur Solehan.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Sebagai bagian dari alat kesehatan elektromedis, ultrasonografi (USG) memiliki banyak fungsi dalam bidang medis, mulai dari memantau perkembangan janin selama kehamilan hingga mendeteksi masalah pada organ tubuh. Sehingga saat ini keberadaan industri USG dalam negeri akan mendukung kemandirian alat kesehatan nasional.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Dalam pengembangan sebuah produk, kami menyadari bahwa produk USG juga merupakan produk yang kompleks, memerlukan kolaborasi lintas disiplin, mulai dari elektronika, permesinan, kedokteran, <i>software</i>, <i>precision engineering</i>, hingga uji klinis dan sertifikasi medis. Serta tahapan pengembangan produk yang panjang mulai dari desain awal, prototipe, pengujian, produksi, distribusi, instalasi dan training terhadap tenaga kesehatan (user),” ujar Solehan.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Menurutnya, Kemenperin mengapresiasi industri dalam negeri seperti </span><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">GE Healthcare yang telah </span><span style="font-size:11pt;">berhasil menghadirkan produk USG secara mandiri. Ini menunjukkan bahwa kemampuan industri nasional semakin siap naik kelas. “Ke depannya, kami akan terus mendorong agar industri dalam negeri mampu menguasai sejak dari tahap desain awal sebuah produk alat kesehatan,” jelas Solehan.</span></p><p style="text-align:justify;"><span style="color:black;font-size:11pt;">Di samping itu, Direktorat Jenderal ILMATE Kemenperin juga gencar mendorong penguatan industri komponen lokal, agar produk USG ini tidak hanya dirakit di Indonesia, tetapi benar-benar tumbuh dari ekosistem dalam negeri. “Selanjutnya adalah pemanfaatan teknologi digital dan manufaktur cerdas, agar kualitas dan efisiensi produksi dapat ditingkatkan. Pada akhirnya akan meningkatkan kemitraan dengan sektor riset dan pendidikan tinggi, agar inovasi terus mengalir dan tidak berhenti di satu generasi produk saja,” papar Solehan.</span></p><p style="text-align:justify;"><span style="font-size:11pt;">Kemenperin menyadari masih banyak tantangan yang dihadapi pelaku industri alat kesehatan dalam negeri, misalnya ketersediaan bahan baku lokal khususnya untuk bahan baku <i>medical grade</i> yang perlu terus ditingkatkan. Selanjutnya, skala produksi yang harus didorong agar kompetitif secara ekonomi, melalui perluasan pasar, baik domestik maupun ekspor, yang membutuhkan dukungan regulasi seperti insentif bagi industri dan promosi bersama.&nbsp;</span></p><p style="text-align:justify;"><span style="font-size:11pt;">“Ketika kita berbicara soal alat kesehatan, kita tidak hanya bicara tentang produk industri. Kita sedang bicara tentang ketahanan nasional, tentang kemandirian bangsa, dan tentang kemampuan Indonesia untuk menjawab kebutuhan rakyatnya sendiri,” pungkas Solehan.</span></p>',
             true,
-            'publikasi/1745801800680ed248aa5f2_WhatsApp_Image_2025_04_27_at_14_48_14.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1745801800680ed248aa5f2_WhatsApp_Image_2025_04_27_at_14_48_14.jpeg',
             '2025-04-27',
             v_layout_id,
             true,
@@ -2231,7 +2231,7 @@ BEGIN
             'Kementerian Perindustrian (Kemenperin) konsisten mendukung percepatan pengembangan ekosistem kendaraan listrik di Indonesia, termasuk dalam mendorong produksi baterai kendaraan listrik. Seiring dengan dilaksanakannya program percepatan ini, populasi kendaraan listrik di Indonesia setiap tahun mengalami peningkatan',
             '<p style="text-align:justify;">Kementerian Perindustrian (Kemenperin) konsisten mendukung percepatan pengembangan ekosistem kendaraan listrik di Indonesia, termasuk dalam mendorong produksi baterai kendaraan listrik. Seiring dengan dilaksanakannya program percepatan ini, populasi kendaraan listrik di Indonesia setiap tahun mengalami peningkatan. Pada tahun 2024, total populasi kendaraan listrik di Indonesia mencapai 207 ribu unit atau meningkat sebesar 78 persen dibanding tahun 2023 yang berjumlah 116 ribu unit.</p><p style="text-align:justify;">“Perkembangan ekosistem kendaraan listrik di Indonesia ini semakin tumbuh, dengan kapasitas yang jauh melampaui perkembangan pasar. Hal ini juga didorong dari berbagai kebijakan strategis dari pemerintah, termasuk memberikan kepastian dan kemudahan usaha, penyusunan <i>roadmap</i>, serta pengoptimalan tingkat komponen dalam negeri (TKDN),” kata Menteri Perindustrian Agus Gumiwang Kartasasmita dalam keterangan resminya di Jakarta, Kamis (24/4).</p><p style="text-align:justify;">Kemenperin menargetkan, pada tahun 2030 mendatang, industri otomotif di dalam negeri dapat memproduksi 9 juta unit sepeda motor listrik roda dua dan tiga serta 600 ribu unit mobil dan bus listrik. Target tersebut diharapkan dapat berkontribusi terhadap pengurangan konsumsi bahan bakar minyak (BBM) sebesar 21,65 juta barel atau setara pengurangan emisi CO2 sebanyak 7,9 juta ton secara total.</p><p style="text-align:justify;">Selanjutnya, hingga saat ini, di Indonesia sudah ada 63 perusahaan yang memproduksi sepeda motor listrik roda dua dan tiga, dengan jumlah kapasitas produksi sebanyak 2,28 juta unit per tahun dan total investasi sebesar Rp1,13 triliun. Kemudian, terdapat 9 perusahaan yang memproduksi mobil listrik dengan jumlah kapasitas produksi sebanyak 70.060 unit per tahun dan investasi sebesar Rp4,12 triliun.</p><p style="text-align:justify;">Ada pula, 7 perusahaan yang memproduksi bus listrik, dengan jumlah kapasitas produksi sebanyak 3.100 unit per tahun dan total investasi sebesar Rp0,38 triliun. “Jadi, keseluruhan investasi tersebut sebesar Rp5,63 triliun. Investasi ini yang perlu kita jaga, karena membawa <i>multiplier effect</i> bagi perekonomian kita, termasuk pada peningkatan jumlah tenaga kerja di Indonesia,” ungkap Menperin.</p><p style="text-align:justify;">Oleh karena itu, adanya informasi terkait mundurnya LG Energy Solution dari investasi proyek kendaraan listrik (EV) di Indonesia, tidak perlu dikhawatirkan karena akan digantikan dengan mitra investasi baru dari perusahaan Tiongkok, yakni Huayou. Perusahaan yang berkantor pusat di Tongxiang Zhejiang ini bergerak dalam kegiatan penelitian, pengembangan, dan manufaktur material baterai <i>lithium-ion</i> energi serta material kobalt. Komponen tersebut biasanya digunakan untuk elektronik hingga kendaraan listrik.</p><p style="text-align:justify;">“Dalam sebuah konsorsium bisnis atau proyek skala besar, pergantian investor merupakan hal yang lazim terjadi. Ini tidak mengganggu dari target program pengembangan EV di Indonesia. Akselerasi pengembangan untuk ekosistem kendaraan listrik di Indonesia tetap berjalan sesuai perencanaan dan targetnya, apalagi sudah ada yang berproduksi,” tutur Menperin.</p><p style="text-align:justify;">Saat ini, sudah ada dua perusahaan yang memproduksi baterai untuk motor listrik, yaitu PT Industri Ion Energisindo yang memiliki kapasitas produksi sebanyak 10.000 pcs baterai per tahun dan investasi sebesar Rp18 miliar, serta PT Energi Selalu Baru yang memiliki kapasitas produksi sebanyak 12.000 pcs baterai per tahun dan investasi sebesar Rp15 miliar.</p><p style="text-align:justify;">Sementara itu, terdapat 2 industri baterai sel untuk mobil listrik, yaitu PT HLI Green Power, yang merupakan konsorsium antara Hyundai Grup dan LG sebagai produsen sel baterai, dengan kapasitas tahap pertama sebanyak 10 GWh dengan total nilai investasi mencapai USD1,1 miliar dolar AS. Industri sel baterai ini akan memasok 150.000 hingga 170.000 unit kendaraan bermotor listrik melalui PT Hyundai Energy Indonesia selaku industri baterai pack&nbsp; yang memiliki kapasitas produksi mencapai 120 ribu pack baterai kendaraan bermotor listrik dengan total investasi sebesar Rp674 milliar.</p><p style="text-align:justify;">Kedua, PT International Chemical Industry yang memiliki kapasitas produksi mencapai 100 MWh per tahun (setara dengan 9 juta sel), dengan target total kapasitas produksi sebesar 256 MWh per tahun (setara dengan 25 juta sel).</p><p style="text-align:justify;">Selain PT Hyundai Energy Indonesia terdapat 1 produsen baterai pack lain, yaitu PT Gotion Green Energy Solutions Indonesia yang memiliki total nilai investasi lebih dari USD8,7 juta dengan kapasitas produksi sebesar 17.952&nbsp;unit&nbsp;per&nbsp;tahun.</p><p style="text-align:justify;"><strong>Sejalan kebijakan hilirisasi</strong></p><p style="text-align:justify;">Kemenperin juga menyatakan dengan tegas bahwa pengembangan ekosistem kendaraan listrik di Indonesia sejalan dengan kebijakan hilirisasi yang juga menjadi program prioritas pemerintahan Presiden Prabowo Subianto. “Semangat ini sesuai dengan misi Asta Cita Bapak Presiden, yakni melanjutkan hilirisasi dan industrialisasi untuk meningkatkan nilai tambah di dalam negeri,” imbuhnya.</p><p style="text-align:justify;">Kemenperin telah memacu hilirisasi nikel untuk produksi baterai kendaraan listrik. “Ini bertujuan untuk menciptakan nilai tambah dari sumber daya alam Indonesia, khususnya nikel, dan membuat industri baterai EV nasional lebih mandiri dan kompetitif, sehingga tidak lagi bergantung pada impor,” ujar Agus.</p><p style="text-align:justify;">Bahkan, Kemenperin turut mendorong pengembangan teknologi daur ulang baterai dalam mendukung terciptanya ekosistem baterai kendaraan listrik secara terintegrasi. Hal ini bertujuan untuk memastikan keberlanjutan industri baterai kendaraan listrik di Indonesia. “Jadi, kami ingin adanya integrasi industri baterai EV dari hulu (pengolahan nikel) hingga hilir (produksi baterai), termasuk dalam pengembangan teknologi daur ulangnya,” tambah Agus.</p><p style="text-align:justify;">Sesuai dengan amanat Peraturan Presiden Nomor 55 Tahun 2019 tentang Percepatan Program Kendaraan Bermotor Listrik Berbasis Baterai (<i>Battery Electric Vehicle</i>) untuk Transportasi Jalan, pemerintah juga memberikan insentif baik kepada konsumen maupun terhadap industri manufaktur.</p><p style="text-align:justify;">Insentif kepada konsumen, antara lain PPnBM 0 persen dan PPN DTP, BBN dan PKB KBLBB 0 persen dari dasar pengenaan pajak, suku bunga yang rendah dan uang muka 0 persen, diskon tambah daya listrik, serta pelat nomor khusus.</p><p style="text-align:justify;">Sementara itu, insentif kepada industri manufaktur, meliputi <i>tax holiday</i>, <i>mini tax holiday</i>, <i>tax allowance</i>, fasilitas Bea Masuk (<i>Master List</i>), BMDTP, dan <i>Super Tax Deduction</i>. “Dengan adanya sejumlah insentif ini untuk produsen, diharapkan akan memicu produksi berbagai jenis kendaraan listrik di Indonesia, sehingga juga terciptanya ekosistem yang kuat dan berdaya saing,” pungkas Agus.</p>',
             true,
-            'publikasi/1745801920680ed2c0a0c3a_2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1745801920680ed2c0a0c3a_2.jpeg',
             '2025-04-24',
             v_layout_id,
             false,
@@ -2293,7 +2293,7 @@ BEGIN
             'Kementerian Perindustrian terus mendorong peran industri dalam negeri sebagai rantai pasok program Makan Bergizi Gratis (MBG) yang akan menyasar peserta didik di seluruh Indonesia.',
             '<p style="text-align:justify;">Kementerian Perindustrian terus mendorong optimalisasi peran industri dalam negeri sebagai rantai pasok program strategis nasional, termasuk program Makan Bergizi Gratis (MBG) yang akan menyasar peserta didik di seluruh Indonesia. Salah satu komponen pendukung utama dalam program ini adalah penyediaan peralatan makan dan minum yang layak, aman, dan memenuhi standar.</p><p style="text-align:justify;">Para pelaku industri dalam negeri telah menunjukkan kesiapan untuk berkontribusi dalam pengadaan food tray (wadah makan) dan peralatan pendukung lainnya. “Bahkan, beberapa industri di luar produsen alat dapur turut antusias untuk ikut memproduksi food tray atau ompreng ini guna mendukung berjalannya program MBG,” ujar Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Setia Diarta dalam keterangannya di Jakarta, Selasa (22/4).</p><p style="text-align:justify;">Beberapa perusahaan yang telah menyatakan kesiapannya antara lain PT Almasindo, PT Arwana Gemilang Sejahtera, PT Inomec Jaya, PT Maspion, PT Multimegah Indahjaya, PT Supra Teratai Metal, serta pelaku industri permesinan di Malang. Masing-masing perusahaan mampu memproduksi food tray sebanyak 100 ribu unit per bulan. Tak hanya itu, sebanyak 15 produsen lainnya dari luar sektor peralatan dapur juga menyatakan siap untuk ikut serta dalam produksi food tray, tentu para produsen berharap adanya kepastian produksi mereka akan diserap oleh pengelola dapur MBG.</p><p style="text-align:justify;">Kebutuhan peralatan makan dan minum untuk program MBG diperkirakan mencapai 82,9 juta unit, terdiri dari sendok, garpu, serta food tray. Khusus food tray, ketentuan yang ditetapkan untuk memenuhi standar meliputi barang berbahan stainless steel 304 dengan ketebalan 0,6 mm.&nbsp;</p><p style="text-align:justify;">Potensi suplai food tray dari dalam negeri hingga akhir tahun 2025 diproyeksikan mencapai 15 juta set, dengan realisasi saat ini sebesar 300 ribu set, sementara itu penggunaan food tray impor masih mendominasi. Hal ini menunjukkan potensi yang besar untuk pemenuhan kebutuhan food tray dengan produk dalam negeri. Adapun tantangan yang masih dihadapi produsen food tray di dalam negeri seperti bahan baku yang masih bergantung pada impor, karena bahan baku lokal cenderung terlalu tebal, sehingga lebih mahal serta sulit memenuhi deep drawing quality.</p><p style="text-align:justify;">Dengan peningkatan kapasitas produksi dan penambahan lini, beberapa industri telah meningkatkan utilisasi produksi menjadi 350 ribu pcs per bulan, dan total kapasitas nasional dari enam produsen diproyeksikan mencapai 15 juta pcs pada akhir tahun 2025. Saat ini, utilisasi masih berada di angka 50% dari kapasitas yang tersedia yakni 600 ribu pcs per bulan.</p><p style="text-align:justify;">“Langkah subtitusi impor ini juga merupakan upaya pemerintah dalam mendorong pertumbuhan industri dalam negeri, termasuk di dalamnya meningkatkan penyerapan tenaga kerja dan mengurangi ketergantungan terhadap impor,” kata Dirjen ILMATE.</p><p style="text-align:justify;">Dari sisi bahan baku, setiap set food tray membutuhkan sekitar 0,7 kg stainless steel, menghasilkan produk jadi seberat 0,5 kg. Dengan target produksi 15 juta pcs, kebutuhan bahan baku mencapai sekitar 7.500 ton. Untuk mempercepat proses produksi, opsi impor barang setengah jadi dapat diterapkan. Para produsen lokal cukup melakukan proses akhir yaitu trimming, folding, dan finishing.</p><p style="text-align:justify;">Dukungan regulasi juga terus diperkuat melalui penerbitan Peraturan Menteri Perindustrian Nomor 53 Tahun 2024 tentang pemberlakuan Standar Nasional Indonesia (SNI) wajib untuk cookware dan flatware, yang berlaku efektif mulai 18 April 2025. Adapun SNI yang diberlakukan meliputi SNI 8752:2020 untuk peralatan masak logam dan SNI 8753:2020 untuk peralatan makan dari baja tahan karat. Namun, regulasi tersebut belum secara spesifik mencakup food tray, termasuk yang digunakan dalam program MBG. Oleh karena itu, produk impor wajib mengajukan Pertek pengecualian SNI.</p><p style="text-align:justify;">Standar khusus untuk food tray MBG juga dinilai penting mengingat penggunanya meliputi anak di bawah llima tahun (Balita), ibu hamil, ibu menyusui, dan peserta didik dalam jumlah yang besar, sehingga aspek Keamanan, Kesehatan, dan Keselamatan (K3) perlu menjadi perhatian utama.</p><p style="text-align:justify;">Selain food tray, industri nasional juga memiliki kapasitas untuk memproduksi berbagai kebutuhan lainnya dalam program MBG, seperti peralatan masak, kompor gas, wastafel, peralatan makan lainnya, dan material kaleng aluminium yang akan diproduksi menjadi peralatan minum.</p><p style="text-align:justify;">“Kemenperin akan terus mendorong penggunaan produk dalam negeri dan memastikan ekosistem industri nasional mampu menjadi tulang punggung dalam pelaksanaan program strategis nasional, sekaligus meningkatkan daya saing produk-produk lokal,” katanya.</p>',
             true,
-            'publikasi/1745802103680ed37772724_ILMATE_1.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/1745802103680ed37772724_ILMATE_1.jpeg',
             '2025-04-22',
             v_layout_id,
             true,
@@ -2355,7 +2355,7 @@ BEGIN
             'Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mendorong peningkatan ekspor produk air conditioner (AC) hingga 10 juta unit per tahun, di tengah tingginya kebutuhan AC secara global.',
             '<p style="text-align:justify;">Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mendorong peningkatan ekspor produk <i>air conditioner</i> (AC) hingga 10 juta unit per tahun, di tengah tingginya kebutuhan AC secara global. Hal ini disampaikan dalam pra-pembukaan pabrik AC terbaru PT LG Electronics Indonesia (LG), di Cibitung, Bekasi Jawa Barat, pada Rabu (16/4).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Wamen Riza mengatakan, sejauh ini industri AC dalam negeri telah melakukan ekspor ke berbagai negara, seperti ke Timur Tengah, Fiji, Papua Nugini, dan beberapa negara Asean. “Pemerintah ingin ekspor AC ini ditingkatkan hingga 10 juta unit setiap tahun. Kebutuhan AC dunia itu mencapai 2 miliar unit. Kalau kita ekspor 10 juta ini belum apa-apa dibandingkan kebutuhan AC seluruh dunia,” ungkapnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Wamenperin menegaskan, Kementerian Perindustrian turut memacu LG dapat mendukung program peningkatan ekspor produk elektronika Indonesia ke pasar dunia. “Kami yakin LG akan menjadi perusahaan yang tangguh untuk bersaing di pasar global," tambahnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Selain meningkatkan kapasitas ekspor, Wamen Riza juga menyampaikan, ketergantungan terhadap impor komponen masih menjadi tantangan bagi industri AC di Indonesia. Oleh karenanya, perlu memperkuat industri komponen AC dalam negeri agar pasokan bagi industri hilir tidak lagi bergantung pada impor.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Untuk mengatasi hal ini, pemerintah mendorong PT LG Electronics Indonesia agar memproduksi secara lokal berbagai komponen utama, termasuk kompresor, guna memperkuat kemandirian dan rantai pasok nasional,” tuturnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Wamenperin juga menyatakan, pemerintah secara umum akan terus mendorong pengggunaan produk dalam negeri sebagai bagian dari semangat kemandirian industri nasional. Sebab, penggunaan produksi lokal telah menjadi fokus utama dalam pembangunan ekonomi berkelanjutan.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Kami berharap, kehadiran pabrik ini dapat mendorong pertumbuhan industri elektronika di Indonesia, yang dapat memperkuat daya saing nasional, serta mengakselerasi perkembangan industri elektronika secara menyeluruh,” ujarnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Salah satu produk elektronika dengan nilai impor yang cukup tinggi adalah AC rumah tangga. Pada tahun 2024, produk ini mencatatkan impor sebesar USD420,46 juta. Meski mengalami penurunan 9 persen dari tahun sebelumnya, nilai impor tersebut masih tetap signifikan.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Karena itu, semoga kehadiran pabrik AC baru PT LG Electronics Indonesia dapat menekan ketergantungan terhadap impor, memenuhi kebutuhan pasar dalam negeri, sekaligus juga meningkatkan pasar ekspor,” kata Wamenperin.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Ha Sang-chul selaku President of LG Electronics Indonesia menyatakan, pihaknya kembali mewujudkan komitmen pada peningkatan operasionalnya di Indonesia. Genap berusia 35 tahun di Indonesia pada 2025 ini, perusahaan elektronik asal Korea Selatan tersebut mengumumkan kesiapannya dalam mengoperasikan pabrik penyejuk udara (<i>air conditioner</i> – AC) di Indonesia. Bakal menjadi perluasan fasilitas produksi AC-nya di dalam negeri, pabrik ini dijadwalkan bakal siap beroperasi penuh pada akhir tahun ini.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Ini merupakan sebuah investasi strategis yang mengukuhkan langkah evolusi perusahaan dalam penciptaan lapangan pekerjaan sekaligus menjadi yang terdepan dalam proses manufaktur di dalam negeri,” ujar Ha Sang-chul.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Pabrik AC LG ini akan berlokasi di Cibitung, Bekasi. Menempati area 32,000 meter persegi, dikatakan Ha Sang-chul, keberadaannya akan menjadi pusat produksi bagi AC untuk hunian maupun bagi kebutuhan bangunan komersial.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Dengan total nilai investasi awal senilai USD22 juta (Rp374 Miliar), pabrik baru ini akan memiliki kapasitas produksi awal sekitar 1,8 juta unit AC pada tahun pertamanya. Dalam rencananya, LG bakal meningkatkan kapasitas produksi hingga dua kali lipat pada tahun-tahun berikutnya.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">“Kami akan menerapkan standar kualitas Korea yang sama, yang diterapkan LG bagi seluruh fasilitas produksinya di dunia. Salah satunya dilakukan dengan menerapkan pengawasan kualitas yang ketat pada setiap tahapan produksi untuk memastikan performa maksimal, efisiensi energi, dan daya tahan yang andal,” tutur Ha Sang-chul.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">Kegiatan pra-pembukaan pabrik AC terbaru PT LG Electronics Indonesia juga dihadiri oleh Wakil Duta Besar Korea Selatan untuk Indonesia, Park Soo-deok, Wakil Bupati Bekasi, Asep Surya Atmaja, dan Direktur Industri Elektronika dan Telematika Kemenperin, Ronggolawe Sahuri.</p><p style="text-align:justify;">Demikian Siaran Pers ini untuk disebarluaskan.</p>',
             true,
-            'publikasi/17452074286805c084a83c9_HMZ09999.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17452074286805c084a83c9_HMZ09999.jpg',
             '2025-04-16',
             v_layout_id,
             false,
@@ -2417,7 +2417,7 @@ BEGIN
             'Indonesia dan Arab Saudi terus berupaya meningkatkan kerja sama yang komprehensif di berbagai bidang, termasuk di sektor industri',
             '<p style="text-align:justify;">Indonesia dan Arab Saudi terus berupaya meningkatkan kerja sama yang komprehensif di berbagai bidang, termasuk di sektor industri. Kedua negara telah memiliki hubungan diplomatik yang sudah terjalin secara historis dan strategis sejak tahun 1950.&nbsp;</p><p style="text-align:justify;">“Hubungan kedua negara terus berkembang, tidak hanya dalam bidang keagamaan, tetapi juga dalam perdagangan, investasi, pendidikan, dan kerja sama industri. Kedua negara juga sepakat untuk saling mengisi dan melengkapi kebutuhan di sektor industri,” kata Menteri Perindustrian RI Agus Gumiwang Kartasasmita dalam keterangan resminya seusai menerima kunjungan Menteri Industri dan Sumber Daya Mineral Kerajaan Arab Saudi, Bandar bin Ibrahim Alkhorayef di Jakarta, Rabu (16/4).</p><p style="text-align:justify;">Menperin optimistis, pertemuan bilateral ini dapat menjadi langkah konkret untuk memperkuat kerja sama khususnya di sektor industri. Diharapkan, dengan terjalinnya kolaborasi ini akan dapat memacu perekonomian bagi kedua negara yang lebih bernilai tambah, inklusif, dan berkelanjutan.&nbsp;</p><p style="text-align:justify;">“Indonesia, dengan potensi sumber daya alam, pasar dan tenaga kerja yang besar, serta komitmen pemerintah dalam mendorong hilirisasi industri, membuka peluang luas untuk kolaborasi yang saling menguntungkan,” tuturnya.</p><p style="text-align:justify;">Adapun potensi kerja sama yang dapat dijalin kedua negara dalam pengembangan sektor industri, antara lain industri petrokimia, industri pengolahan kayu, industri halal, pengembangan energi baru dan terbarukan (EBT), pengembangan kawasan industri, serta peningkatan kapasitas SDM dan alih teknologi, serta bekerja sama dalam penyediaan tenaga kerja terampil.</p><p style="text-align:justify;">“Di sektor petrokimia khususnya, Indonesia masih membutuhkan untuk sektor hilirnya dalam upaya mendukung sektor-sektor turunannya. Apalagi, industri petrokimia merupakan mother of industry selain industri logam. Sementara itu, Arab Saudi ingin bekerja sama dengan Indonesia dalam pengembangan hilirisasi mineral untuk juga menjadi pemain global,” ungkap Agus.</p><p style="text-align:justify;">Menurut Menperin, Indonesia dengan memiliki pengalaman yang lebih panjang dalam membangun sektor industri manufaktur, akan dapat menjadi model bagi pengembangan industri di Arab Saudi. “Mereka juga akan tukar pikiran dengan Indonesia dalam mengembangkan kawasan industri, di mana Indonesia sudah dapat mengelolanya dengan baik, yang saat ini sudah mencapai lebih dari 150 kawasan industri,” sebutnya. &nbsp;</p><p style="text-align:justify;">Terlebih lagi kedua negara telah memiliki visi besar yang selaras dalam melaksanakan transformasi ekonomi, termasuk dalam meningkatkan diversifikasi industri dan investasi global. Indonesia dengan Visi Indonesia Emas 2045 dan Arab Saudi dengan Visi Saudi Vision 2030.</p><p style="text-align:justify;">“Melalui pertemuan ini juga kami berharap, hubungan kedua negara agar semakin kuat, dan dengan komitmen untuk sinergi yang terarah dan berkelanjutan, Indonesia dan Arab Saudi dapat membangun kemitraan industri yang strategis,” ungkap Menperin.</p><p style="text-align:justify;">Menperin percaya bahwa upaya dalam meningkatkan kerja sama di sektor industri ini akan menjadi motor penggerak kemitraan strategis yang lebih luas dan mendalam antara kedua negara. “Kami juga menyambut baik dialog dan inisiatif lanjutan untuk merealisasikan peluang-peluang tersebut secara konkret dalam suatu komitmen yang mengikat, demi kemajuan bersama,” ungkapnya.</p><p style="text-align:justify;">Selama ini, hubungan perdagangan dan investasi kedua negara pada sektor industri terus meningkat. Total perdagangan antara Indonesia dan Arab saudi, khususnya untuk produk nonmigas pada tahun 2024 mencapai USD3,3 miliar dengan pertumbuhan sebesar 14,5 persen dari tahun 2020-2024. “Nilai perdagangan ini perlu ditingkatkan lagi, telebih kedua negara termasuk anggota G20 yang sama-sama memiliki kekuatan ekonomi yang cukup potensial,” imbuhnya.</p><p style="text-align:justify;">Sementara itu, dalam periode 2019 – 2024, total realisasi investasi Arab Saudi di Indonesia mencapai USD23,6 juta, dengan meliputi sebanyak 437 proyek pada tahun 2024. “Masih banyak ruang untuk tumbuh bersama. Oleh karena itu, Pemerintah Indonesia menyambut baik peningkatan minat investor Arab Saudi terhadap berbagai sektor strategis di Indonesia, termasuk dalam penguatan ekosistem industri nasional,” ujar Menperin.</p><p style="text-align:justify;">Menurutnya, Pemerintah Indonesia dan Arab Saudi akan merealisasikan kerja sama bilateral ini dalam penandatanganan MoU yang akan segera dilaksanakan pada waktu dekat. “Di dalam MoU ini tidak akan terlalu luas, kami akan pilih dua atau tiga proyek saja, yang memang quick win dan sama-sama menjadi perhatian bagi Indonesia dan Arab Saudi,” pungkas Agus.</p>',
             true,
-            'publikasi/17452071746805bf86b5b04_WhatsApp_Image_2025_04_16_at_13_36_45.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17452071746805bf86b5b04_WhatsApp_Image_2025_04_16_at_13_36_45.jpeg',
             '2025-04-16',
             v_layout_id,
             true,
@@ -2464,7 +2464,7 @@ BEGIN
             'Wakil Menteri Perindustrian Faisol Riza memberikan sambutan pada Peninjauan Pembangunan Pabrik AC LG Electronics, Bekasi, 16 April 2025',
             '<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wakil Menteri Perindustrian Faisol Riza memberikan sambutan pada Peninjauan Pembangunan Pabrik AC LG Electronics, Bekasi, 16 April 2025. Dalam sambutanya, Wamenperin menyampaikan apresiasi yang setinggi-tingginya kepada seluruh jajaran PT. LG Electronics Indonesia atas peran dan realisasi komitmen investasi produk elektronik di Indonesia. Wakil Menteri Perindustrian Faisol Riza berfoto bersama dengan Presiden PT. LG Electronics Indonesia Ha Sang-Chui saat menerima pelakat penghargaan, Bekasi, 16 April 2025.</span></p><figure class="image"><img style="aspect-ratio:694/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17452175546805e812117ee_HMZ00122.jpg" width="694" height="480"></figure><p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);font-size:14px;">Wakil Menteri Perindustrian Faisol Riza berfoto bersama Wakil Bupati Bekasi Asep Surya Atmaja (kanan), Wakil Duta Besar Republik Korea Republik Indonesia Park Soo-Deok (dua dari kanan), dan Presiden LG Electronics Indonesia Ha Sang-Chui (dua dari kiri) saat Peninjauan Pembangunan Pabrik AC LG Electronics, Bekasi, 16 April 2025.</span></p><figure class="image"><img style="aspect-ratio:720/480;" src="https://ilmate.kemenperin.go.id/back/files-service/storage/ckeditor/17452175606805e8182006f_HMZ00304.jpg" width="720" height="480"></figure>',
             true,
-            'publikasi/17452066396805bd6f4255b_HMZ09999.jpg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17452066396805bd6f4255b_HMZ09999.jpg',
             '2025-04-16',
             v_layout_id,
             false,
@@ -2511,7 +2511,7 @@ BEGIN
             'Kementerian Perindustrian telah menerbitkan Peraturan Menteri Perindustrian (Permenperin) Nomor 13 Tahun 2025 tentang Tata Cara Penyampaian Data Industri, Data Kawasan Industri, Data Lain, Informasi Industri, dan Informasi Lain melalui Sistem Informasi Industri Nasional (SIINas).',
             '<p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kementerian Perindustrian telah menerbitkan Peraturan Menteri Perindustrian (Permenperin) Nomor 13 Tahun 2025 tentang Tata Cara Penyampaian Data Industri, Data Kawasan Industri, Data Lain, Informasi Industri, dan Informasi Lain melalui Sistem Informasi Industri Nasional (SIINas). Melalui penerapan regulasi ini diharapkan dapat meningkatkan kualitas dan akurasi data industri untuk mendukung pembangunan ekonomi dan industri nasional melalui pengambilan kebijakan yang efektif, cepat, dan tepat sasaran berdasarkan data yang lengkap dan akurat.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Sektor industri manufaktur masih memberikan kontribusi yang signifikan bagi perekonomian nasional. Untuk mencapai target pertumbuhan ekonomi sebesar 8 persen, sektor industri tidak hanya dipacu semakin tumbuh, tetapi juga harus terus diperkuat oleh struktur dan kedalaman industri nasional,” kata Staf Ahli Menteri Bidang Penguatan Kemampuan Industri Dalam Negeri, Adie Rochmanto Pandiangan pada Sosialisasi Permenperin 13/2025 di Jakarta, Jumat (11/4).</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Guna mencapai sasaran tersebut, Adie menyampaikan, perlunya landasan yang kokoh berupa data yang kuat dan akurat melalui pengumpulan, pengolahan, dan analisis data, terutama yang berkaitan dengan kinerja sektor industri. Selama lima tahun ini, Kemenperin telah membangun SIINas untuk mendukung kebutuhan data industri nasional.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Pembangunan SIINas ini memang tidaklah mudah karena melibatkan ekosistem industri nasional secara keseluruhan yang besar dan kompleks. Namun, kami optimistis SIINas dapat menjawab kebutuhan akan data yang akurat, mutakhir, dan berkualitas, serta memberikan gambaran kinerja masing-masing sektor industri secara <i>real-time</i>,” paparnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Adie menjelaskan, Permenperin 13/2025 untuk menggantikan peraturan sebelumnya, yaitu Permenperin 2/2019 serta Surat Edaran Menteri Perindustrian Nomor 1 Tahun 2025 Tentang Penyampaian Data Industri dan Data Kawasan Industri.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Dengan diberlakukannya peraturan baru ini, diharapkan seluruh pelaku industri, termasuk pengelola kawasan industri, dapat berpartisipasi aktif dalam pelaporan data secara berkala sebanyak empat kali setiap tahun atau per triwulan melalui SIINas, yang sebelumnya dilakukan setiap semester atau dua kali setiap tahun,” ungkapnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Menurut Adie, penyesuaian dalam Permenperin ini mempunyai tujuan agar terjadinya relevansi secara bersamaan dalam rangka penghitungan PDB sektor industri oleh Badan Pusat Statistik (BPS), yang membutuhkan data dalam frekuensi triwulanan serta terperinci. “Poin penting yang diatur dalam Permenperin 13/2025 ini adalah terkait batas waktu pelaporan data oleh perusahaan industri dan perusahaan kawasan industri,” ujarnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Untuk pelaporan triwulan I, paling lambat disampaikan pada tanggal 10 April. Namun khusus triwulan I tahun 2025, batas penyampaian laporan pada tanggal 15 April 2025. Berikutnya, pelaporan triwulan II, paling lambat disampaikan pada tanggal 10 Juli. Kemudian, untuk pelaporan triwulan III, paling lambat disampaikan pada tanggal 10 Oktober. Selanjutnya, pelaporan triwulan IV, paling lambat disampaikan pada tanggal 10 Januari tahun berikutnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Selain itu, terdapat perubahan beberapa data seperti Praktek Kerja Industri guna menyiapkan tenaga kerja yang adaptif untuk mendukung kebutuhan industri yang dinamis, Rencana Produksi dan Distribusi guna melihat&nbsp;<i>supply </i>dan<i> demand</i>, dan lain sebagainya,” imbuh Adie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Lebih lanjut, batas waktu pelaporan yang sudah diatur dalam Permenperin 13/2025, diharapkan dapat menjadi perhatian bersama bagi pelaku industri dan pengelola kawasan industri. “Karena ini merupakan hal penting bagi Kemenperin, guna memastikan bahwa data yang disampaikan dapat segera diproses dan digunakan untuk berbagai keperluan, termasuk dalam perhitungan PDB yang dirilis setiap triwulan oleh BPS,” tutur Adie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;"><strong>Berlaku Wajib</strong></span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kewajiban penyampaian data oleh perusahaan industri dan perusahaan kawasan industri melalui SIINas telah tertuang dalam Undang-Undang Nomor 3 Tahun 2014 tentang Perindustrian serta Peraturan Pemerintah Nomor 2 Tahun 2017 tentang Pembangunan Sarana dan Prasarana Industri. “Dengan diberlakukannya kewajiban ini, maka tentu ada konsekuensi yang menyertai,” tegas Adie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Bagi perusahaan industri dan perusahaan kawasan industri yang patuh menyampaikan pelaporan data melalui SIINas, akan mendapatkan prioritas layanan dan fasilitas yang diberikan oleh Kemenperin. Sebaliknya, bagi perusahaan industri dan perusahaan kawasan industri yang tidak tertib menyampaikan data secara berkala, maka tidak dapat mengajukan fasilitas dan layanan yang diberikan oleh Kemenperin, serta mendapatkan sanksi sesuai dengan peraturan perundang-undangan.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kami meyakini bahwa implementasi dari Permenperin 13/2025 ini akan membawa dampak signifikan bagi perusahaan industri dan perusahaan kawasan industri, sehingga Kemenperin berkomitmen untuk terus memberikan asistensi dan sosialisasi agar implementasi kebijakan ini dapat berjalan dengan baik,” terang Adie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin akan juga melaksanakan <i>monitoring</i> dan evaluasi kepatuhan perusahaan industri dan perusahaan kawasan industri terhadap kewajiban penyampaian data industri dan data kawasan industri secara berkala. <i>Monitoring</i> dan evaluasi ini sangat diperlukan untuk memastikan bahwa perusahaan dapat mematuhi kewajiban pelaporan secara konsisten.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">“Kepatuhan terhadap pelaporan data ini tidak hanya menjadi tanggung jawab perusahaan, tetapi juga bagian dari upaya kita bersama untuk menjaga kualitas dan akurasi data yang digunakan sebagai dasar pengambilan kebijakan,” tandasnya.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin memahami perubahan peraturan ini memerlukan upaya lebih bagi perusahaan industri dan perusahaan kawasan industri, namun diyakini dapat mempererat ekosistem industri pengolahan nonmigas untuk mengantisipasi risiko gangguan kegiatan usahanya. “Untuk mendukung hal tersebut, kami telah mengkoordinasikan dengan Direktorat Pembina untuk melakukan pembinaan kepada Perusahaan Industri dan Perusahaan Kawasan Industri untuk taat dan tertib dalam menyampaikan laporan kegiatannya,” tegas Adie.</span></p><p style="text-align:justify;"><span style="background-color:white;color:rgb(51,51,51);font-size:11pt;">Kemenperin juga meminta kepada pemerintah daerah dan asosiasi industri sebagai mitra terdepan bagi pemerintah pusat untuk dapat mengingatkan kepada industri di wilayahnya dan para anggotanya agar dapat aktif melaporkan perkembangan data industrinya. “Perubahan ini adalah langkah maju yang sangat penting dalam menciptakan ekosistem industri yang lebih kondusif, terpadu, efisien, dan berbasis data yang akurat,” pungkasnya.</span></p>',
             true,
-            'publikasi/17452075266805c0e67b6a3_WhatsApp_Image_2025_04_11_at_16_27_48.jpeg',
+            'https://ilmate.kemenperin.go.id/files/publikasi/17452075266805c0e67b6a3_WhatsApp_Image_2025_04_11_at_16_27_48.jpeg',
             '2025-04-11',
             v_layout_id,
             false,
@@ -2573,7 +2573,7 @@ BEGIN
             'Papua - Presiden Prabowo Subianto telah meluncurkan Program Makan Bergizi Gratis (MBG)—sebuah inisiatif nyata untuk meningkatkan kesejahteraan masyarakat serta mengatasi tantangan gizi buruk dan stunt...',
             '<p>Papua - Presiden Prabowo Subianto telah meluncurkan Program Makan Bergizi Gratis (MBG)—sebuah inisiatif nyata untuk meningkatkan kesejahteraan masyarakat serta mengatasi tantangan gizi buruk dan stunting di Indonesia. Program ini bukan sekadar bantuan sosial, tetapi langkah konkret untuk memastikan setiap anak mendapatkan akses terhadap makanan bergizi dan memiliki kesempatan tumbuh sehat serta cerdas.</p><p>Dalam semangat pemerataan dan keadilan sosial, Kementerian Pertahanan bersama TNI dan Kogabwilhan III berkomitmen penuh dalam membantu pemerintah untuk menjangkau daerah-daerah terpencil, termasuk Distrik Homeyo, Kabupaten Intan Jaya, Papua Tengah. Kehadiran aparat keamanan tidak hanya memastikan distribusi berjalan lancar, tetapi juga memberikan rasa aman bagi masyarakat yang menerima manfaat program ini.</p><p>Dukungan luas dari berbagai elemen masyarakat semakin memperkuat program ini. Pemimpin adat, pemuka agama, dan tokoh masyarakat di berbagai wilayah—dari perkotaan hingga pelosok pegunungan—menyambut baik dan merasakan langsung manfaatnya. Namun, tantangan tetap ada. Beberapa kelompok, seperti Organisasi Papua Merdeka (OPM), memiliki pandangan berbeda terhadap program ini. Penyebaran informasi yang tidak akurat tentang keamanan pangan MBG dapat menghambat upaya pemerintah dalam meningkatkan kesejahteraan anak-anak Papua.</p><p>Di balik keberhasilan program MBG, Badan Gizi Nasional memainkan peran penting dalam memastikan kualitas nutrisi yang tinggi. Setiap makanan yang didistribusikan telah melewati pengawasan ketat untuk memastikan kandungan gizinya sesuai dengan standar kesehatan nasional. Sementara itu, Kemhan, TNI, dan Kogabwilhan III tidak hanya berkontribusi membantu pemerintah dalam distribusi tersebut, namun juga aktif memberikan edukasi gizi kepada masyarakat. Dengan pendekatan berbasis kearifan lokal, para prajurit bekerja sama dengan pemimpin adat dan tokoh masyarakat untuk memastikan program ini diterima dengan baik dan berdampak maksimal.</p><p>Pemerintah menyadari bahwa membangun masa depan yang lebih baik membutuhkan kolaborasi dan komunikasi yang terbuka. Oleh karena itu, ruang dialog selalu tersedia bagi semua pihak yang ingin berkontribusi dalam keberhasilan program ini.&nbsp;</p><p>Perbedaan pendapat tidak boleh menjadi penghalang bagi kesejahteraan rakyat Papua. Program MBG bukan hanya kebijakan, tetapi amanah moral bangsa—sebuah janji bahwa setiap anak Indonesia berhak atas kehidupan yang lebih sehat dan masa depan yang penuh harapan.</p><p>Mari bersatu dalam langkah kebaikan ini. Kesejahteraan bangsa adalah tanggung jawab kita bersama. Bersama, kita wujudkan Indonesia yang lebih kuat, sehat, dan sejahtera!&nbsp;</p><p>&nbsp;</p>',
             true,
-            'img/berita/1740015377-2521IMG-20250219-WA0014.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1740015377-2521IMG-20250219-WA0014.jpg',
             '2025-02-19',
             v_layout_id,
             true,
@@ -2646,7 +2646,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1739761170-1-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1739761170-1-2.jpg',
             '2025-02-15',
             v_layout_id,
             false,
@@ -2734,7 +2734,7 @@ BEGIN
 
 <p>Kemenperin telah melakukan kick-off AIGIS 2025 pada 18 Desember 2024 lalu. AIGIS 2025 membuka ruang untuk kolaborasi strategis antara pemerintah, industri, mitra strategis, hingga organisasi internasional dalam memperkuat komitmen Kemenperin terkait dekarbonisasi industri nasional. Adapun informasi lebih lanjut mengenai AIGIS 2025 dan rangkaian kegiatan dapat dilihat pada situs &nbsp;http://aigis-moi.id/</p>',
             true,
-            'img/berita/1739761420-NC_1.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1739761420-NC_1.JPG',
             '2025-02-14',
             v_layout_id,
             false,
@@ -2842,7 +2842,7 @@ BEGIN
 
 <p>Namun demikian, Menperin juga mengingatkan kepada para produsen agar tidak hanya melakukan impor, tetapi juga mendorong untuk penguatan produksi dalam negeri termasuk pengoptimalan TKDN untuk memberdayakan industri nasional khususnya industri kecil dan menengah (IKM). &ldquo;Setelah itu, bisa untuk menjajaki pasar ekspor yang lebih luas,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1739761488-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1739761488-2.jpg',
             '2025-02-13',
             v_layout_id,
             false,
@@ -2924,7 +2924,7 @@ BEGIN
 
 <p>Hidrogen memainkan sejumlah peran strategis dalam transisi energi, di antaranya memungkinkan integrasi energi terbarukan beserta pembangkit listrik skala besar, mendistribusikan energi ke seluruh sektor atau wilayah, bertindak sebagai penyangga yang meningkatkan ketahanan sistem. Lebih lanjut, hidrogen dapat membantu dekarbonisasi pada transportasi, energi industri, pemanas dan listrik gedung, serta menjadi bahan baku terbarukan.</p>',
             true,
-            'img/berita/1739761559-HRS_2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1739761559-HRS_2.jpg',
             '2025-02-12',
             v_layout_id,
             false,
@@ -2986,7 +2986,7 @@ BEGIN
             'Tautan presensi, bahan materi, dan pertanyaan Pemaparan Teknis dan Asistensi Laporan Triwulanan SIINas  https://linktr.ee/siinas',
             '<p>Tautan presensi, bahan materi, dan pertanyaan Pemaparan Teknis dan Asistensi Laporan Triwulanan SIINas <a href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqa3NhOHFqQVFUWTRVNVJOMkg5QXhGUGcxRVhRQXxBQ3Jtc0trTGlkYmM4aFhXX0VpSEhKYlVUay10S0l5QUdRY2xNM2xyYnJHYkFzZzl5Zm9VLUU0ZVRsU0ZSWHJIRmpKOHd5S2UxVUpKS1dUNFpnRWxPWGJkbVlCNlZaRktPTXRBS01Eb2Q1VHFONUtYN0ZwbURXSQ&amp;q=https%3A%2F%2Flinktr.ee%2Fsiinas&amp;v=QFhASvdi8FY" target="_blank">https://linktr.ee/siinas</a></p>',
             true,
-            '',
+            NULL,
             '2025-01-31',
             v_layout_id,
             false,
@@ -3019,7 +3019,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Pemaparan Teknis dan Asistensi Laporan Triwulan SIINas', 'url', 'https://www.youtube.com/watch?v=QFhASvdi8FY', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=QFhASvdi8FY', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -3051,7 +3051,7 @@ BEGIN
             'Berbagai langkah strategis telah diambil untuk memastikan fondasi kuat menuju Indonesia Emas 2045. Dengan kebijakan yang terarah, pemerintah akan terus bekerja membangun negeri dan mewujudkan Indonesi...',
             '<p>Berbagai langkah strategis telah diambil untuk memastikan fondasi kuat menuju Indonesia Emas 2045. Dengan kebijakan yang terarah, pemerintah akan terus bekerja membangun negeri dan mewujudkan Indonesia yang lebih baik. Kabinet Merah Putih pun telah mencatatkan sejumlah capaian signifikan di sektor industri.</p>',
             true,
-            '',
+            NULL,
             '2025-01-30',
             v_layout_id,
             false,
@@ -3084,7 +3084,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '100 Hari Kerja Kabinet Merah Putih : Capaian Sektor Industri Nasional', 'url', 'https://www.youtube.com/watch?v=BLv0FU2vvbs', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=BLv0FU2vvbs', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -3118,7 +3118,7 @@ BEGIN
 
 <p><a href="https://www.youtube.com/hashtag/infoperin" target="">#infoperin</a> <a href="https://www.youtube.com/hashtag/jagaindustri" target="">#jagaindustri</a> <a href="https://www.youtube.com/hashtag/100harikerja" target="">#100HariKerja</a> <a href="https://www.youtube.com/hashtag/merahputih" target="">#MerahPutih</a>&nbsp;<a href="https://www.youtube.com/hashtag/kabinetmerahputih" target="">#KabinetMerahPutih</a>&nbsp;</p>',
             true,
-            '',
+            NULL,
             '2025-01-30',
             v_layout_id,
             false,
@@ -3151,7 +3151,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '100 HARI SEMANGAT MEMBANGUN NEGERI', 'url', 'https://www.youtube.com/watch?v=5008xK7fNO4', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=5008xK7fNO4', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -3207,7 +3207,7 @@ BEGIN
 
 <p>&quot;Kami melihat Indonesia punya potensi untuk berkontribusi terhadap pengembangan industri penerbangan yang berkelanjutan. Kami juga berkomitmen untuk melanjutkan kerja sama tersebut dengan perusahaan Indonesia dalam meningkatkan kapabilitas dan membawa mereka menjadi penyedia komponen&nbsp;Boeingglobal,&rdquo; kata Penny.</p>',
             true,
-            'img/berita/1738568454-WhatsApp Image 2025-01-23 at 13.00.40.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1738568454-WhatsApp Image 2025-01-23 at 13.00.40.jpeg',
             '2025-01-23',
             v_layout_id,
             false,
@@ -3299,7 +3299,7 @@ BEGIN
 
 <p>&ldquo;Kalau ukuran SDM dijadikan sebagai penarik investasi, pengamat tersebut harus menggunakan kualitas SDM di bidang teknologi informasi (IT) atau yang terkait dengan produksi produk berteknologi tinggi yang berasal dari perguruan tinggi sebagai ukuran. Kami pikir banyak lulusan IT dari perguruan tinggi terbaik di Indonesia yang bisa mendukung kinerja fasilitas produksi HKT Apple nantinya. Kualitas mereka tidak kaleng-kaleng dan sangat menarik bagi investor asing,&rdquo; pungkas Jubir Kemenperin.</p>',
             true,
-            'img/berita/1738568653-2 (10).JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1738568653-2 (10).JPG',
             '2025-01-22',
             v_layout_id,
             false,
@@ -3377,7 +3377,7 @@ BEGIN
 
 <p>&nbsp;&ldquo;Ini kesempatan besar untuk SatNusa bergerak secepat mungkin merangkul dan menjadi perusahaan yang memiliki&nbsp;<em>line business</em>&nbsp;di berbagai macam lini sektor usaha,&quot; ujar Wamen Faisol.</p>',
             true,
-            'img/berita/1738568841-WhatsApp Image 2025-01-17 at 18.23.42.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1738568841-WhatsApp Image 2025-01-17 at 18.23.42.jpeg',
             '2025-01-17',
             v_layout_id,
             false,
@@ -3439,7 +3439,7 @@ BEGIN
             'Industri otomotif masih menghadapi tantangan yang cukup berat untuk bisa semakin melaju. Tidak hanya terbentur dengan pelemahan daya beli masyarakat serta kenaikan suku bunga kredit kendaraan bermotor...',
             '<p>Industri otomotif masih menghadapi tantangan yang cukup berat untuk bisa semakin melaju. Tidak hanya terbentur dengan pelemahan daya beli masyarakat serta kenaikan suku bunga kredit kendaraan bermotor,&nbsp;di tahun 2025&nbsp;kinerja industri otomotif diproyeksi bisa&nbsp;menurun&nbsp;karena adanya implementasi kebijakan kenaikan pajak pertambahan nilai (PPN) serta penerapan opsen pajak kendaraan bermotor (PKB) dan bea balik nama kendaraan bermotor (BBNKB).&nbsp;</p><p>“Sebagai salah satu sektor yang memiliki kontribusi signifikan terhadap PDB nasional, industri otomotif mencatatkan perkiraan penurunan sebesar Rp4,21 triliun pada 2024. Ini berimbas ke sektor&nbsp;<i>backward linkage</i>&nbsp;sebesar Rp 4,11 triliun dan sektor&nbsp;<i>forward linkage</i>&nbsp;sebesar Rp3,519 triliun,” kata&nbsp;Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILMATE) Setia Darta&nbsp;pada acara&nbsp;diskusi yang bertajuk “Prospek Industri Otomotif 2025 dan Peluang Insentif dari Pemerintah” di Jakarta, Selasa (14/1).</p><p>Menyadari pentingnya sektor otomotif bagi kontribusi ekonomi Indonesia dan tantangan yang dihadapi pada tahun 2025, Kementerian Perindustrian secara aktif menyampaikan usulan insentif dan relaksasi kebijakan kepada pemangku kepentingan terkait. Beberapa usulan insentif itu antara lain PPnBM ditanggung pemerintah (PPnBM DTP) untuk kendaraan&nbsp;<i>hybrid</i>&nbsp;(PHEV,&nbsp;<i>full</i>,&nbsp;<i>mild</i>) sebesar 3%.&nbsp;</p><p>Selain itu, insentif PPN DTP untuk kendaraan EV sebesar 10% untuk mendorong industri kendaraan listrik, dan penundaan atau keringanan pemberlakuan opsen PKB dan BBNKB.&nbsp;&nbsp;“Saat ini sebanyak 25 provinsi yang menerbitkan regulasi terkait relaksasi opsen PKB dan BBNKB. Kebijakan ini diharapkan mampu memberikan dukungan nyata terhadap keberlanjutan industri otomotif nasional serta menjaga daya saingnya di pasar domestik maupun global,” ungkap Dirjen ILMATE.&nbsp;</p><p>Ke-25 provinsi itu di antaranya Jawa Timur, Jawa Barat, Banten, Jawa Tengah, DI Yogyakarta, NTB, Bali, Kepulauan Riau, Sumatra Utara, Sumatra Selatan, Kalimantan Selatan, Kalimantan Timur, dan Sulawesi Selatan.&nbsp;</p><p>Sekretaris Umum Gabungan Industri Kendaraan Bermotor Indonesia (Gaikindo) Kukuh Kumara menuturkan, diperlukan dukungan kebijakan dari pemerintah, termasuk untuk mengatasi dampak opsen pajak kendaraan bermotor sehingga industri kendaraan bermotor nasional tetap bisa tumbuh.</p><p>“Dukungan insentif dapat meningkatkan pertumbuhan industri kendaraan bermotor, yang terlihat pada peningkatan penjualan. Ini akan menggairahkan industri komponen, industri perbankan, hingga lembaga pembiayaan,” ungkapnya.</p><p>Gaikindo, kata Kukuh, meminta semua&nbsp;kendaraan berteknologi elektrifikasi (xEV),&nbsp;meliputi&nbsp;HEV, PHEV, dan BEV,diberi kesempatan untuk mendapatkan insentif sesuai dengan kontribusi dalam penurunan emisi karbon dioksida (CO2) dan bahan bakar minyak (BBM).&nbsp;</p><p>“Meningkatnya perkembangan pasar xEV dapat memberikan dampak pada pendalaman industri untuk xEV juga potensi peningkatan ekspor xEV,” imbuhnya.&nbsp;</p><p>Sementara itu, Pengamat Otomotif LPEM Universitas Indonesia,&nbsp;Riyanto menyatakan, pasar mobil membutuhkan intervensi cepat, karena kondisi semakin berat. Adapun perbaikan fundamental, berupa penguatan daya beli dan akselerasi pertumbuhan ekonomi merupakan solusi jangka panjang.&nbsp;</p><p>Berdasarkan hitungan LPEM Universitas Indonesia, pemberian insentif bakal berdampak positif terhadap ekonomi. Kontribusi industri mobil baik langsung dan tidak langsung terhadap produk domestik bruto (PDB) akan mencapai Rp177 triliun dengan tarif PPnBM 10%, lalu Rp181 triliun dengan PPnBM 7,5%, Rp185 triliun PPnBM 5%, dan Rp194 triliun dengan PPnBM 0%, dibandingkan skema&nbsp;<i>business as usual</i>&nbsp;Rp168 triliun.&nbsp;</p><p>Selain itu, akan ada tambahan tenaga kerja otomotif sebanyak 7.740 orang dengan PPnBM 10%, lalu 11.611 orang (PPnBM 7,5%), 15.481 orang (PPnBM 5%), dan 23.221 orang (PPnBM 0%). Riyanto juga mengusulkan PPnBM mobil murah tahun ini bisa dikembalikan ke 0% dari saat ini 3%. “Adapun insentif PPnBM untuk mobil pertama layak dipertimbangkan, bersama lokalisasi, ekspor, dan litbang karena bakal berimbas positif terhadap industri otomotif,” pungkasnya.</p>',
             true,
-            'img/berita/1737430952-HMS09163.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1737430952-HMS09163.JPG',
             '2025-01-15',
             v_layout_id,
             true,
@@ -3501,7 +3501,7 @@ BEGIN
             'Menteri Perindustrian mengapresiasi kedatangan petinggi Apple dan tim yang telah bersedia datang ke Kemenperin untuk melakukan negosiasi terkait dengan sertifikasi TKDN iPhone 16. Hal tersebut menunju...',
             '<p>Menteri Perindustrian mengapresiasi kedatangan petinggi Apple dan tim yang telah bersedia datang ke Kemenperin untuk melakukan negosiasi terkait dengan sertifikasi TKDN iPhone 16. Hal tersebut menunjukkan itikad baik Apple untuk berinvestasi dan berbisnis di Indonesia.&nbsp;Apple berencana berinvestasi dalam pembangunan pabrik AirTag di Batam senilai USD1 miliar dan telah disampaikan kepada Menteri Investasi dan Hilirisasi. Permenperin 29/2017 secara tegas mengatur bahwa yang bisa dinilai sertifikasi TKDN-nya adalah investasi yang langsung berkaitan dengan HKT. &nbsp;Airtag merupakan aksesoris dari HKT yang bukan merupakan komponen esensial HKT, sehingga tidak bisa dihitung sebagai TKDN produk HKT (TKDN iPhone milik Apple). Dengan demikian, investasi pabrik AirTag dan produk yang dihasilkannya di Batam tidak bisa dihitung dalam perhitungan TKDN iPhone. Jika Apple mau merilis iPhone 16 di Indonesia, harus mengacu kepada 3 skema dalam Permenperin No. 29/2017. Dalam negosiasi, Apple mengajukan proposal 2023-2026 dan memilih skema 3 (skema inovasi), sama dengan skema dalam proposal Apple periode 2020-2023. &nbsp;Apple telah menyampaikan sebuah angka nilai investasi inovasi kepada Kemenperin, tapi nilai yang disampaikan tersebut masih di bawah apa yang menjadi perhatian teknokratis yang pernah kami sampaikan sebelumnya kepada media.Dalam negosiasi dengan Apple, Kemenperin sudah menyampaikan counter proposal dan sebuah angka investasi yang dihitung secara teknokratis dan hati-hati dan sekarang masih menjadi pembahasan internal Apple. Angka dalam counter proposal dari Kemenperin dihitung berdasarkan kriteria:</p><ol><li>Perbandingan investasi Apple di negara lain</li><li>Keadilan investasi di antara produsen HKT di Indonesia</li><li>Penciptaan nilai tambah dan pendapatan negara</li><li>Penciptaan lapangan kerja baru dalam ekosistem</li><li>Penjualan yang dibukukan Apple (sebesar Rp56 Triliun pada 2023-2024)</li></ol><p>Penerapan sanksi administrasi sesuai dengan Permenperin 29/2017Terkait dengan pelunasan utang komitmen investasi Apple senilai USD10 juta, &nbsp;Apple telah memberikan komitmen untuk melunasi. Sedangkan Kemenperin akan menunjuk pihak ketiga untuk melakukan assessment dokumen pelunasan utang tersebut. Hal ini telah disepakati dalam pertemuan negosiasi.&nbsp;Kemenperin memiliki dasar untuk memberikan sanksi, yaitu ketidakpatuhan Apple dalam mengimplementasikan komitmen di dalam skema 3. Implementasi selama ini tidak sesuai dengan Permenperin 29/2017 yang mengatur bahwa skema investasi inovasi meliputi kegiatan pendidikan dan pelatihan, serta R&amp;D di bidang teknologi informasi (TIK). Sejak tahun 2017-2023 atau selama hampir tujuh tahun, Apple baru melakukan kegiatan pendidikan dan pelatihan (diklat), namun belum optimal dalam kegiatan penelitian dan pengembangan (R&amp;D) inovasi bidang TIK. &nbsp;Dalam counter proposal, Kemenperin mendorong agar Apple membentuk fasilitas R&amp;D di Indonesia. Menperin memberikan perhatian bahwa nilai investasi hanya bisa dihitung dari nilai capex murni (fixed capex seperti tanah, bangunan, dan teknologi/mesin) dan tidak termasuk nilai ekspor dan biaya input seperti biaya bahan baku dan upah. Menperin menyampaikan bahwa jangan ada upaya menghitung nilai investasi di luar capex, misalnya memasukkan proyeksi nilai ekspor atau komponen variabel bahan baku. Kemenperin tidak menetapkan batasan waktu dalam perundingan investasi dengan Apple. Yang ditargetkan adalah target pemenuhan substansi yang dirundingkan.</p>',
             true,
-            'img/berita/1736506844-WhatsApp Image 2025-01-09 at 14.31.54_6364d6d4.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1736506844-WhatsApp Image 2025-01-09 at 14.31.54_6364d6d4.jpg',
             '2025-01-09',
             v_layout_id,
             false,
@@ -3563,7 +3563,7 @@ BEGIN
             'Sektor industri elektronika secara konsisten terus memberikan dampak cukup besar pada pertumbuhan industri manufaktur di dalam negeri. Ini bisa dilihat dari pertumbuhan Sektor Industri Barang Logam; K...',
             '<p>Sektor industri elektronika secara konsisten terus memberikan dampak cukup besar pada pertumbuhan industri manufaktur di dalam negeri.&nbsp;Ini bisa dilihat dari pertumbuhan Sektor Industri Barang Logam; Komputer, Barang Elektronik, Optik; dan Peralatan Listrik pada Triwulan III Tahun 2024 yang mencatatkan angka tinggi, yaitu sebesar 7,29 persen.</p><p>Lebih lanjut, nilai ekspor produk elektronika hingga triwulan III - 2024 telah menembus angka USD10,07 Miliar, yang didominasi oleh ekspor peralatan telekomunikasi/telepon, elektronika rumah tangga, peralatan listrik dan komponen. Khusus untuk produk handphone, komputer genggan, dan tablet (HKT), sepanjang tahun 2024 telah mencapai nilai ekspor sebesar 277 juta USD.</p><p>“Dari capaian tersebut, dapat dilihat bahwa Indonesia mampu mengekspor produk berteknologi tinggi seperti&nbsp;<i>smartphones</i>. Kementerian Perindustrian mengapresiasi perusahaan industri HKT yang telah menjadikan Indonesia sebagai sebagai basis produksinya dan terus konsisten mengeskpor produknya, salah satunya PT. Samsung Electronics Indonesia,” kata Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elekronika, Setia Diarta di Cikarang, Selasa (7/1).</p><p>Setia menyampaikan, Kemenperin mengapresiasi kontribusi perusahaan dalam berinvetasi di Indonesia serta upaya perusahaan untuk meningkatkan Tingkat Komponen Dalam Negeri (TKDN) dalam berbagai produk elektronik yang diproduksi, khususnya Telepon Seluler dan Tablet. “Kunjungan ini juga bertujuan untuk mendorong peningkatan nilai TKDN dan mendukung pertumbuhan ekspor produk elektronik ke pasar global,” jelasnya.</p><p>Kemenperin mengapresiasi komitmen PT Samsung Electronics Indonesia dalam memenuhi persyaratan nilai TKDN yang tidak hanya mendorong penguatan industri lokal, tetapi juga menciptakan lapangan pekerjaan dan transfer teknologi di Indonesia, yang merupakan langkah nyata dalam membangun industri yang berdaya saing tinggi.</p><p>Setia menjelaskan, saat ini aturan kebijakan TKDN di Indonesia mengharuskan produk Telepon Seluler dan Tablet memenuhi nilai kandungan lokal minimal sebesar 35% dalam proses produksinya. Aturan ini bertujuan untuk meningkatkan partisipasi industri lokal serta memperkuat ekosistem manufaktur didalam negeri.&nbsp;PT Samsung Electronics Indonesia mencatat perolehan TKDN tertinggi yaitu sebesar 40,30% untuk model SM-A356E.</p><p>Sejak permberlakuan&nbsp;<i>threshold</i>&nbsp;TKDN 35%, industri HKT mengalami pertumbuhan yang sangat pesat. Sebaliknya, nilai impor produk HKT yang semakin menurun. Pada tahun 2023, produksi HKT di dalam negeri mencapai 50 juta unit dengan jumlah impor hanya 3,1 juta unit. Artinya, 94% produk HKT merupakan produksi dalam negeri. Di tahun tersebut, produksi dari PT. Samsung Electronics Indonesia tercatat mencapai 14 juta unit atau sekitar 28% dari seluruh produk HKT yang diproduksi di Indonesia. Hal ini menunjukkan posisi yang kuat dari PT. Samsung Electronics Indonesia di pasar dalam negeri, yang merupakan hasil dari investasinya sejak tahun 2016.</p><p>Selain memenuhi kebutuhan pasar domestik, PT Samsung Electronics Indonesia juga menunjukkan kinerja ekspor yang luar biasa. Sepanjang tahun 2024 kinerja ekspor PT Samsung Electronic Indonesia mencapai 1,56 juta unit yang telah diekspor ke beberapa negara di ASEAN.</p><p>"Kami menyampaikan apresisasi yang sebesar-besarnya kepada PT. Samsung Electronics Indonesia yang telah mengirimkan produk&nbsp;<i>smartphone</i>-nya untuk dieskpor ke Filipina, yang menjadi bagian dari ekspor PT. Samsung Electronics Indonesia sebesar 1,56 juta unit. Kami terus mendorong PT SEIN untuk terus berkolaborasi, berkarya, dan mengembangkan produk teknologi tinggi dalam upaya membangun industri di dalam negeri," kata Dirjen ILMATE.</p><p>Kunjungan Dirjen ILMATE ke PT Samsung Electronics Indonesia ini menjadi momentum penting bagi kedua pihak untuk memperkuat kerja sama dalam pengembangan industri ponsel, meningkatkan daya saing produk Indonesia, serta mempercepat transformasi Indonesia menuju negara dengan ekonomi berbasis industri yang berkelanjutan.</p><p>Dengan harapan dapat mendorong pendalaman struktur industri, Pemerintah berencana menaikkan<i>&nbsp;threshold&nbsp;</i>TKDN HKT menjadi 40%.&nbsp;&nbsp;Salah satu potensi Potensi peningkatan nilai TKDN dapat berasal dari&nbsp;<i>PCB Assembly</i>yang salah satunya telah digunakan oleh PT. Samsung Electronics Indonesia dengan menggunakan mesin SMT. Proses tersebut menyumbang angka TKDN sebesar 8% pada aspek manufaktur.&nbsp;“Kami yakin kebijakan kenaikan&nbsp;<i>threshold</i>&nbsp;TKDN dapat berdampak positif bagi pengembangan industri HKT, dan kami harap PT. Samsung Electronics Indonesia dapat secara bersama-sama mendukung implementasi dari kebijakan ini,” pungkas Dirjen ILMATE.</p>',
             true,
-            'img/berita/1736735017-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1736735017-2.jpeg',
             '2025-01-07',
             v_layout_id,
             true,
@@ -3625,7 +3625,7 @@ BEGIN
             'Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mengapresiasi komitmen PT Chery Motor Indonesia dalam memenuhi Tingkat Komponen Dalam Negeri (TKDN) sebesar 40 persen. Selanjutnya, Wamenperin mend...',
             '<p>Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mengapresiasi komitmen PT Chery Motor Indonesia dalam memenuhi Tingkat Komponen Dalam Negeri (TKDN) sebesar 40 persen. Selanjutnya, Wamenperin mendorong industri otomotif asal Tiongkok tersebut untuk terus meningkatkan TKDN secara bertahap.</p><p>“Untuk saat ini, TKDN Chery memang sudah di angka 40 persen. Namun, saya yakin ke depannya, Chery masih bisa meningkatkan TKDN sampai 60 persen,” kata Wamenperin saat mengunjungi pabrik manufaktur Chery Motor Indonesia di Pondok Ungu, Bekasi, Jawa Barat, Selasa (7/1).</p><p>Wamenperin juga menyinggung mengenai peningkatan investasi berupa pembangunan pabrik mandiri. Sebab, saat ini Chery Motor Indonesia masih bekerja sama dengan PT Handal Indonesia Motor (HIM) untuk perakitan di dalam negeri, dengan kapasitas produksi mencapai 10.000 unit per tahun sejak 2022.</p><p>“Dengan pabrik mandiri, Chery tidak hanya mampu meningkatkan kapasitas produksi dan memperluas ekspansi pasar ekspornya ke luar ASEAN, tetapi juga membuka lapangan pekerjaan baru di Indonesia, dan meningkatkan pertumbuhan ekonomi nasional,” ujar Faisol.</p><p>Dalam kunjungan ini, Wamenperin didampingi anggota Komisi VII DPR RI Kaisar Abu Hanifah, dan Direktur Industri Maritim, Alat Transportasi dan Alat Pertahanan (IMATAP) Dodiet&nbsp;Prasetyo melihat dari dekat jalannya proses produksi dan perakitan berbagai varian merek Chery yang berlangsung di PT Handal Indonesia Motor.</p><p>Wamenperin juga sempat menjajal mobil listrik SUV (electric SUV) terbaru Chery iCAR 03 (J6) yang sudah mencatatkan TKDN 40 persen. Menurut Faisol, merek iCAR 03 secara khusus dan berbagai merek lainnya yang diproduksi Chery secara umum berpotensi untuk bersaing di pasar global.</p><p>“Ini menunjukkan bahwa Indonesia mampu memproduksi kendaraan berkualitas. Pada prinsipnya pemerintah mendorong agar industri otomotif terus mengalami peningkatan, baik melalui regulasi maupun insentif. Termasuk, insentif PPN DTP dan PPnBM DTP yang di antaranya diperuntukkan bagi mobil listrik," paparnya.</p><p>Diketahui, kerja sama PT Chery Motor Indonesia dan PT HIM siap meluncurkan berbagai varian baru tahun ini, antara lain TIGGO Cross, OMODA 5 MY, TIGGO 7 PHEV, OMODO E5 Modification, iCAR 03, TIGGO 8 PHEV, TIGGO 9 PHEV, dan TIGGO 8 Plus.</p>',
             true,
-            'img/berita/1736734727-0.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1736734727-0.JPG',
             '2025-01-07',
             v_layout_id,
             false,
@@ -3687,7 +3687,7 @@ BEGIN
             'Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mengapresiasi komitmen PT Mitsubishi Motors Krama Yudha (MMKI) dalam mematuhi regulasi Tingkat Komponen Dalam Negeri (TKDN). Pemenuhan TKDN dinilai...',
             '<p>Wakil Menteri Perindustrian (Wamenperin) Faisol Riza mengapresiasi komitmen PT Mitsubishi Motors Krama Yudha (MMKI) dalam mematuhi regulasi Tingkat Komponen Dalam Negeri (TKDN). Pemenuhan TKDN dinilai akan dapat memicu pertumbuhan industri komponen dalam negeri, sehingga memberikan kesempatan sektor industri kecil dan menengah (IKM) sebagai bagian dari rantai pasok distribusi.</p><p>“Pencapaian TKDN tidak hanya mendukung kemandirian industri otomotif, namun juga mendorong industri lain berkembang, termasuk IKM,” kata Wamenperin saat menghadiri perayaan produksi 1 juta unit PT MMKI, di Cikarang, Jawa Barat, Jumat (20/12).</p><p>Wamenperin mengatakan saat ini PT MMKI menjadi salah satu produsen kendaraan bermotor terbesar di Indonesia. Produksi 1 juta unit ini menunjukkan komitmen industri asal Jepang itu untuk berkomitmen dalam berinovasi, meningkatkan efisiensi dan produktivitas.</p><p>“Sehingga kita bisa lihat begitu besar kontribusinya pada industri otomotif dan ekonomi nasional. Apalagi komitmen terhadap pemenuhan TKDN yang hingga hari ini terus meningkat,” ujar Wamen Faisol.</p><p>Industri otomotif nasional secara umum mengalami peningkatan. Sepanjang 2023, industri kendaraan roda empat memproduksi total 1,39 juta unit dengan penjualan domestik lebih dari 1 juta unit dan ekspor mobil CBU mencapai 500 ribu unit, meningkat 6,7 persen dari 2022.</p><p>Sementara itu sejak Januari hingga November 2024, industri kendaraan roda empat nasional memproduksi total 1,09 juta unit, dengan 784 ribu unit merupakan penjualan wholesale, 428 ribu ekspor CBU, dan 42 ribu CKD. Adapun total penjualan komponen selama periode ini yakni 143 juta unit.</p><p>“PT MMKI telah menunjukkan komitmen kuat dalam mendukung industri nasional, dengan investasi Rp12,3 triliun dan menciptakan lebih dari 3.600 lapangan kerja,” kata Wamenperin.</p><p>President &amp; Chief Executive Officer Mitsubishi Motors, Takao Kato menyatakan, berkat dukungan dari pemerintah Indonesia, para pemasok, dan perusahaan mitra, pusat produksi Mitsubishi di Indonesia telah menjadi pilar utama bisnis perusahaan. “Kendaraan yang diproduksi di sini dijual di seluruh Indonesia, dan beberapa diekspor ke negara lain, termasuk negara-negara ASEAN, sehingga fasilitas ini memiliki peran penting sebagai lokasi produksi utama ASEAN. Kami akan terus meluncurkan produk-produk yang sangat menarik dan berkontribusi pada pengembangan ekonomi Indonesia lebih lanjut,” paparnya.</p><p>Pusat produksi yang berlokasi di Kawasan Industri GIIC di Kabupaten Bekasi, Jawa Barat tersebut merupakan perusahaan manufaktur bersama yang didirikan oleh Mitsubishi Motors, Mitsubishi Corporation, dan mitra lokal PT Krama Yudha. Pabrik ini mulai berproduksi pada April 2017 dengan kapasitas produksi tahunan sebesar 160.000 kendaraan. Pada tahun fiskal 2019, kapasitas produksi tersebut ditingkatkan menjadi 220.000 kendaraan, dan kendaraan yang diproduksi oleh perusahaan tersebut kini telah diekspor ke sekitar 50 negara.</p><p>“Pencapaian ini merupakan bukti penerimaan yang baik terhadap produk-produk MMKI di pasar domestik dan ekspor. MMKI akan selalu berkomitmen untuk menyediakan kendaraan berkualitas tinggi dan andal untuk memenuhi harapan dan permintaan pelanggan, sekaligus meningkatkan utilisasi fasilitas produksi. Selain itu, kami akan terus menambah jumlah negara tujuan ekspor,” ungkap Minoru Saito, Presiden Direktur MMKI.</p>',
             true,
-            'img/berita/1736736392-3.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1736736392-3.JPG',
             '2024-12-21',
             v_layout_id,
             true,
@@ -3759,7 +3759,7 @@ BEGIN
 
 <p>CFO Huawei Indonesia, Jennifer Feng menyambut positif kunjungan Wamen Faisol ke Huawei Innovation Center. Dia berharap ke depannya dapat bekerja sama dengan pemerintah Indonesia. &ldquo;Ke depannya, kami berharap untuk dapat bekerja sama dengan PemerintahIndonesia untuk berkontribusi lebih banyak kepada bangsamendukung Indonesia dalam mencapai visi besar Indonesia Emas 2045,&rdquo; ungkap Jennifer.</p>',
             true,
-            'img/berita/1736736536-3-2.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1736736536-3-2.JPG',
             '2024-12-20',
             v_layout_id,
             false,
@@ -3821,7 +3821,7 @@ BEGIN
             'Indeks Kepercayaan Industri (IKI) merupakan indikator yang menggambarkan derajat keyakinan atau tingkat optimisme industri pengolahan terhadap kondisi perekonomian, sekaligus gambaran kondisi industri...',
             '<p>Indeks Kepercayaan Industri (IKI) merupakan indikator yang menggambarkan derajat keyakinan atau tingkat optimisme industri pengolahan terhadap kondisi perekonomian, sekaligus gambaran kondisi industri pengolahan dan prospek kondisi bisnis 6 bulang ke depan di Indonesia. Penyusunan Indeks Kepercayaan Industri (IKI) dilakukan berdasarkan pada kegiatan pelaporan perusahaan industri melalui portal Sistem Informasi Industri Nasional (SIINas) sesuai Surat Edaran Menteri Perindustrian Nomor 13 Tahun 2022 tentang Pelaporan Kegiatan Industri Dalam Rangka Penyusunan Indeks Kepercayaan Industri (IKI). Dalam Surat Edaran tersebut, perusahaan industri diwajibkan untuk menyampaikan laporan kegiatan industri pada tanggal 12 sampai 23 setiap bulannya.</p>',
             true,
-            '',
+            NULL,
             '2024-10-14',
             v_layout_id,
             false,
@@ -3839,7 +3839,7 @@ BEGIN
 
     IF v_pub_id IS NOT NULL THEN
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Tata Cara Pelaporan Survey Indeks Kepercayaan Industri (IKI) Tahun 2024', 'url', 'https://www.youtube.com/watch?v=tvoB3Lj26LU', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=tvoB3Lj26LU', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -3893,7 +3893,7 @@ BEGIN
 
 <p>Demikian Siaran Pers ini untuk disebarluaskan.</p>',
             true,
-            'img/berita/1728880605-WhatsApp Image 2024-10-07 at 14.16.40_fa16011c.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1728880605-WhatsApp Image 2024-10-07 at 14.16.40_fa16011c.jpg',
             '2024-10-03',
             v_layout_id,
             false,
@@ -3965,7 +3965,7 @@ BEGIN
 
 <p>Pavillion Indonesia pada Communic Asia 2024 merupakan salah satu kegiatan yang difasilitasi Kementerian Perindustrian bekerjasama dengan Kedutaan Besar Republik Indonesia (KBRI) Singapura yang bertujuan untuk melajukan ekspor dan mendorong kerja sama di sektor industri serta memperkuat posisi Indonesia sebagai salah satu tujuan utama investasi.</p>',
             true,
-            'img/berita/1718089493-WhatsApp Image 2024-06-03 at 13.28.35_b5c7e0a4.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1718089493-WhatsApp Image 2024-06-03 at 13.28.35_b5c7e0a4.jpg',
             '2024-05-30',
             v_layout_id,
             false,
@@ -4057,7 +4057,7 @@ BEGIN
 	</li>
 </ol>',
             true,
-            'img/berita/1718089394-WhatsApp Image 2024-06-03 at 11.00.56_ed4c8320.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1718089394-WhatsApp Image 2024-06-03 at 11.00.56_ed4c8320.jpg',
             '2024-05-29',
             v_layout_id,
             false,
@@ -4104,7 +4104,7 @@ BEGIN
             'Produk-produk kitchen appliances berbasis logam dari dalam negeri, seperti kompor gas, alat masak dan alat makan dari logam serta bak cuci piring diharapkan dapat semakin dikenal oleh masyarakat dan m...',
             '<p>Produk-produk kitchen appliances berbasis logam dari dalam negeri, seperti kompor gas, alat masak dan alat makan dari logam serta bak cuci piring diharapkan dapat semakin dikenal oleh masyarakat dan mampu menguasai pasar. Karenanya, Kemenperin menjalankan berbagai kebijakan, di antaranya dengan pengaturan minimum standar akan kualitas dan mutu produk melalui pemberlakuan SNI wajib. Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan, pemberlakuan SNI salah satunya adalah di industri kompor gas. Di Indonesia, terdapat 31 perusahaan kompor gas dengan kapasitas produksi mencapai 33,7 juta pcs/tahun. &ldquo;Industri ini terbagi atas dua jenis, yakni kompor gas rumah tangga yang SNI wajibnya sudah berlaku dari tahun 2013 dan tahun 2015, sedangkan untuk kompor gas komersial sedang dilakukan pembahasan Rancangan Permenperin pemberlakuan SNI wajib dan menunggu proses harmonisasi di Kemenkumham,&rdquo; terang Menperin saat membuka Kitchen Appliances Expo 2024 di Gedung Kementerian Perindustrian, Jakarta, Senin (1/4).</p>',
             true,
-            '',
+            NULL,
             '2024-04-02',
             v_layout_id,
             false,
@@ -4137,7 +4137,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Kemenperin Pasang Strategi Kembangkan Industri Kitchen Appliances Berbasis Logam', 'url', 'https://www.youtube.com/watch?v=OPtZZQgnPqI', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=OPtZZQgnPqI', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -4185,7 +4185,7 @@ BEGIN
 
 <p>Kitchen Appliances Expo 2024 menampilkan produk-produk dari 27 produsen yang merupakan industri kompor, industri alat masak, industri alat makan, serta industri perlengkapan rumah tangga dari logam. Pameran ini dikhususkan bagi produsen dan produk-produk yang merupakan produksi dalam negeri.</p>',
             true,
-            'img/berita/1712045358-WhatsApp Image 2024-04-01 at 13.57.53.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1712045358-WhatsApp Image 2024-04-01 at 13.57.53.jpeg',
             '2024-04-02',
             v_layout_id,
             false,
@@ -4263,7 +4263,7 @@ BEGIN
 
 <p>Rumah sakit tersebut akan dibangun dengan kapasitas 100&nbsp;<em>bed&nbsp;</em>atau tempat tidur dan dioperasikan khusus untuk spesialisasi jantung/kardiovaskular, yang diharapkan dapat beroperasi pada Oktober 2024. Dalam pembangunan fasilitas tersebut, diharapkan pula industri alat kesehatan Indonesia dapat turut berpartisipasi, utamanya dalam penyediaan sarana dan prasarana penunjang layanan kesehatan seperti&nbsp;<em>hospital bed</em>,&nbsp;<em>operating table</em>, hingga peralatan teknologi.</p>',
             true,
-            'img/berita/1709518773-IMG_0003.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1709518773-IMG_0003.JPG',
             '2024-01-30',
             v_layout_id,
             false,
@@ -4327,7 +4327,7 @@ BEGIN
 
 <p>Pelaksanaan Pembekalan dan Penguatan mendukung tercapai target jumlah perusahaan dengan nilai Indonesia Industry 4.0 Readiness Index (INDI 4.0) &ge; 3.0 sektor ILMATE sebanyak 18 perusahaan pada tahun 2024 sesuai Peraturan Direktur Jenderal ILMATE Nomor 53 Tahun 2021 Tentang Perubahan Peraturan Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika Nomor 38 Tahun 2020 tentang Rencana Strategis Direktorat Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika Tahun 2020 &ndash; 2024.</p>',
             true,
-            '',
+            NULL,
             '2023-12-28',
             v_layout_id,
             false,
@@ -4360,7 +4360,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Workshop Factory Transformasi Industri 4.0 Sektor Industri Logam Mesin Alat Transportasi dan Elektronika', 'url', 'https://www.youtube.com/watch?v=ZmH73GcUdpo', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=ZmH73GcUdpo', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -4412,7 +4412,7 @@ BEGIN
 
 <p>Editor&nbsp;&nbsp;&nbsp;: Danang Krisna Yudha</p>',
             true,
-            'img/berita/1691978674-WhatsApp Image 2023-08-13 at 12.48.40 PM.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1691978674-WhatsApp Image 2023-08-13 at 12.48.40 PM.jpeg',
             '2023-08-11',
             v_layout_id,
             false,
@@ -4504,7 +4504,7 @@ BEGIN
 
 <p>Editor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Danang Krisna Yudha</p>',
             true,
-            'img/berita/1691978852-WhatsApp Image 2023-08-13 at 12.48.09 PM (1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1691978852-WhatsApp Image 2023-08-13 at 12.48.09 PM (1).jpeg',
             '2023-08-10',
             v_layout_id,
             false,
@@ -4575,7 +4575,7 @@ BEGIN
 
 <p>Demikian Siaran Pers ini untuk disebarluaskan.</p>',
             true,
-            'img/berita/1691979106-WhatsApp Image 2023-08-09 at 15.06.54.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1691979106-WhatsApp Image 2023-08-09 at 15.06.54.jpeg',
             '2023-08-09',
             v_layout_id,
             false,
@@ -4665,7 +4665,7 @@ BEGIN
 
 <p>Demikian Siaran Pers ini untuk disebarluaskan</p>',
             true,
-            'img/berita/1691979266-WhatsApp Image 2023-08-08 at 10.53.51.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1691979266-WhatsApp Image 2023-08-08 at 10.53.51.jpeg',
             '2023-08-08',
             v_layout_id,
             false,
@@ -4753,7 +4753,7 @@ BEGIN
 
 <p><em>Sumber : Tempo.co</em></p>',
             true,
-            'img/berita/1691400572-modul surya.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1691400572-modul surya.jpg',
             '2023-08-07',
             v_layout_id,
             false,
@@ -4822,7 +4822,7 @@ BEGIN
 
 <p><em>Sumber : Tempo.co</em></p>',
             true,
-            'img/berita/1689669473-1220342_720.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1689669473-1220342_720.jpg',
             '2023-07-18',
             v_layout_id,
             false,
@@ -4901,7 +4901,7 @@ BEGIN
 
 <p><em>Sumber : Tempo.co</em></p>',
             true,
-            'img/berita/1689064466-ventilator.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1689064466-ventilator.jpg',
             '2023-07-11',
             v_layout_id,
             false,
@@ -4972,7 +4972,7 @@ BEGIN
 
 <p><em>Sumber ; Tempo.co</em></p>',
             true,
-            'img/berita/1688543814-SNI regulator.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1688543814-SNI regulator.png',
             '2023-07-05',
             v_layout_id,
             false,
@@ -5049,7 +5049,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1687768707-1214195_720.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1687768707-1214195_720.jpg',
             '2023-06-23',
             v_layout_id,
             false,
@@ -5132,7 +5132,7 @@ BEGIN
 
 <p>Selain itu, Kementerian Perindustrian berupaya mengembangkan industri melalui perpaduan kebijakan fiskal dan non fiskal. Kebijakan fiskal yang telah disusun oleh Pemerintah diantaranya tax holiday, tax allowance, super tax deduction sebagai salah strategi guna mendorong investasi, penguasaan teknologi, serta penguatan struktur industri yang dapat dimanfaatkan oleh perusahaan industri yang memenuhi persyaratan dan kriteria yang telah ditentukan. Di lain sisi, kebijakan non fiskal yang diberikan kepada perusahaan industri, satu diantaranya fasilitasi keikutsertaan perusahaan industri pada pameran internasional.</p>',
             true,
-            'img/berita/1686626737-Picture999.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1686626737-Picture999.png',
             '2023-06-09',
             v_layout_id,
             false,
@@ -5193,7 +5193,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1686627018-Picture190.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1686627018-Picture190.png',
             '2023-06-07',
             v_layout_id,
             false,
@@ -5253,7 +5253,7 @@ BEGIN
 
 <p>Pemerintah telah mengembangkan peta jalan untuk industri otomotif dalam jangka menengah (2020-2030) dengan fokus pada pengembangan kendaraan listrik dan komponen utamanya seperti baterai, motor listrik, dan konverter. Dukungan insentif Bea Masuk nol persen diharapkan dapat mempercepat pencapaian target tersebut. Pada tahun 2035, Indonesia menargetkan adanya 1 juta kendaraan listrik roda empat atau lebih dan 3,22 juta kendaraan listrik roda dua. Dengan mencapai target ini, diperkirakan penggunaan BBM dapat dihemat sebesar 12,5 juta barel dan emisi CO2 dapat dikurangi sebesar 4,6 juta ton untuk kendaraan roda empat atau lebih. Sedangkan untuk kendaraan roda dua, diharapkan dapat menghemat penggunaan BBM sebesar 4 juta barel dan mengurangi emisi CO2 sebesar 1,4 juta ton. Peta jalan ini sejalan dengan inisiatif global baik di tingkat global maupun regional ASEAN dalam mendorong kendaraan bermotor listrik.&nbsp;</p>',
             true,
-            'img/berita/1688368341-ilustrasi-pengecasan-mobil-listrik---lifepal. (2).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1688368341-ilustrasi-pengecasan-mobil-listrik---lifepal. (2).jpeg',
             '2023-03-22',
             v_layout_id,
             false,
@@ -5329,7 +5329,7 @@ BEGIN
 
 <p>Dirjen ILMATE Kemenperin menyampaikan, kegiatan sosialisasi sistem informasi IMC bertujuan untuk memperkuat dan memperbesar IMC melalui masukan dari berbagai pihak. &ldquo;Sehingga IMC dapat mewujudkan ide-ide kreatif menjadi produk nyata yang berkontribusi terhadap ekonomi dan tujuan untuk memperkuat daya saing industri,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1674010559-WhatsApp Image 2022-12-28 at 16.46.13 (1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1674010559-WhatsApp Image 2022-12-28 at 16.46.13 (1).jpeg',
             '2022-12-29',
             v_layout_id,
             false,
@@ -5409,7 +5409,7 @@ BEGIN
 
 <p>Peningkatan populasi kendaraan listrik harus didukung dengan kolaborasi antar Kementerian/Lembaga yang masing-masing memiliki tugas berbeda dalam mendukung perkembangan kendaraan listrik nasional. Untuk mendukung percepatan eksositem kendaraan listrik di tanah air, Kemenperin juga sedang mempersiapkan satu standar baterai yang sama, sehingga penggunaan charging station dan swap battery akan bisa lebih mudah.</p>',
             true,
-            'img/berita/1674010811-Menperin_3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1674010811-Menperin_3.jpeg',
             '2022-12-15',
             v_layout_id,
             false,
@@ -5505,7 +5505,7 @@ BEGIN
 
 <p>&ldquo;Sebab, dalam proses desain semikonduktor hal yang perlu diperkuat adalah dari sisi R&amp;D, termasuk penyiapan SDM. Selama ini belum ada desain&nbsp;<em>made in</em>&nbsp;Indonesia.&nbsp;Negara tetangga seperti Malaysia sudah memiliki desain tersendiri. Bahkan, satu negara tertentu bisa memiliki lebih dari 20 desain,&rdquo; ungkap Fransiskus.</p>',
             true,
-            'img/berita/1671420153-3-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1671420153-3-3.jpeg',
             '2022-12-08',
             v_layout_id,
             false,
@@ -5585,7 +5585,7 @@ Chief Executive of Product and Global Strategy Piaggio Group Michele Colaninno m
 <br />
 Country Head PT Piaggio Indonesia Marco Noto La Diega menyampaikan terima kasih atas dukungan penuh dari Pemerintah Indonesia dan jajaran kementerian terkait, khususnya Kemenperin atas arahan yang berharga dalam melayani pelanggan di Indonesia. Saat ini Piaggio Group juga menyiapkan fase investasi selanjutnya untuk terus dapat beroperasi di Indonesia. &ldquo;Kami optimis pabrik baru Piaggio Group di Indonesia akan terus berkontribusi menyediakan solusi mobilitas premium Italia seraya memberikan pengalaman gaya hidup yang unik ke industri otomotif Indonesia,&rdquo; ujarnya.</p>',
             true,
-            'img/berita/1670381112-3-3.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1670381112-3-3.jpg',
             '2022-11-23',
             v_layout_id,
             false,
@@ -5892,7 +5892,7 @@ BEGIN
 
 <p>Mayar Soeryo P (Analisis Anggaran Ahli Muda Pada Ditjen ILMATE]</p>',
             true,
-            'img/berita/1670380902-logoAAI.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1670380902-logoAAI.png',
             '2022-11-21',
             v_layout_id,
             false,
@@ -5970,7 +5970,7 @@ BEGIN
 
 <p>Toga Simamora&nbsp;</p>',
             true,
-            'img/berita/1688368013-Informasi-APBN-2023.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1688368013-Informasi-APBN-2023.png',
             '2022-11-14',
             v_layout_id,
             false,
@@ -6039,7 +6039,7 @@ BEGIN
 
 <p>&ldquo;Sudah banyak alat kesehatan produksi Indonesia yang diekspor dan memiliki standar internasional, salah satu contohnya adalah jarum suntik yang sudah mendapatkan sertifikasi dari WHO dan sudah di ekspor dengan volume mencapai 150 juta&nbsp;<em>pieces</em>&nbsp;ke negara-negara Eropa, yang di mana wilayah tersebut tidak mudah untuk dimasuki produk asing,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1666841625-IMG_20221019_145103.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666841625-IMG_20221019_145103.jpg',
             '2022-10-21',
             v_layout_id,
             false,
@@ -6117,7 +6117,7 @@ BEGIN
 
 <p>Kegiatan sosialisasi ini juga turut dihadiri oleh perwakilan dari PT Bank Sumut yang mamaparkan terkait dukungan lembaga keuangan dalam mempermudah user (rumah sakit) untuk pembiayaan investasi atau pengadaan produk alat kesehatan ventilator. &ldquo;Kami siap mendukung peningkatan penggunaan produk alat kesehatan melalui skema-skema pembiayaan yang akan mempermudah rumah sakit di Sumatera Utara untuk membeli produk alat kesehatan terutama ventilator,&rdquo; ucap Perwakilan PT Bank Sumut,&nbsp;Rudi Arif&nbsp;Panjaitan.</p>',
             true,
-            'img/berita/1666243611-WhatsApp Image 2022-10-12 at 22.03.51-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666243611-WhatsApp Image 2022-10-12 at 22.03.51-2.jpeg',
             '2022-10-20',
             v_layout_id,
             false,
@@ -6178,7 +6178,7 @@ BEGIN
 
 <p>Sementara itu, Ketua umum ASTTA Dian Rusdiana Hakim mengapresiasi langkah yang telah diambil oleh Kemenperin untuk membawa sejumlah industri&nbsp;<em>drone&nbsp;</em>di Indonesia untuk ikut berpartisipasi ke ajang internasional seperti ITAP. &ldquo;Saya berharap banyak kerja sama strategis baik melalui&nbsp;<em>business-to-business</em>maupun&nbsp;<em>business-to-government</em>&nbsp;yang dapat terjalin melalui kegiatan ini, sehingga industri kita dapat terus berkembang dan menjadi pemain global,&rdquo; ujarnya.</p>',
             true,
-            'img/berita/1666243547-IMG_20221019_144302.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666243547-IMG_20221019_144302.jpg',
             '2022-10-18',
             v_layout_id,
             false,
@@ -6257,7 +6257,7 @@ BEGIN
 
 <p>&ldquo;Ke depan, kami yakin dengan banyaknya&nbsp;<em>battery swap station</em>&nbsp;dan SPKLU akan meyakinkan masyarakat untuk konversi menggunakan kendaraan listrik,&rdquo; ujarnya.</p>',
             true,
-            'img/berita/1666058078-4-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058078-4-2.jpg',
             '2022-10-15',
             v_layout_id,
             false,
@@ -6306,7 +6306,7 @@ BEGIN
 
 <p>Sementara itu salah seorang peserta pelatihan yaitu Reza dan Ferdian Yoga dari SMKN 1 Mejayan Madiun mengatakan, &quot;Acara Bimtek ini sangat bermanfaat sekali bagi kami, sekalipun kami berasal dari studi Teknik Kendaraan Ringan dan Ototronik, kami bisa tahu mengetahui jenis komponen2 kelistrikan kereta, lalu aneka rangkaian instalasi kelistrikan arus Alternating Current dan Direct Current pada tiap jenis kereta berpenggerak, dan tidak lupa kami diedukasi seputar K3 kelistrikan yang diterapkan di Depo Kereta Api.</p>',
             true,
-            'img/berita/1666058564-WhatsApp Image 2022-10-12 at 8.53.48 AM.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058564-WhatsApp Image 2022-10-12 at 8.53.48 AM.jpeg',
             '2022-10-12',
             v_layout_id,
             false,
@@ -6383,7 +6383,7 @@ BEGIN
 
 <p>Demikian Siaran Pers ini untuk disebarluaskan.</p>',
             true,
-            'img/berita/1666058175-MoU Farmasi Indonesia-Jepang.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058175-MoU Farmasi Indonesia-Jepang.jpeg',
             '2022-10-08',
             v_layout_id,
             false,
@@ -6454,7 +6454,7 @@ BEGIN
 
 <p>Kegiatan Sosialisasi Ventilator Produksi Dalam Negeri tersebut melibatkan berbagai stakeholder dari Dinas Perindustrian dan Perdagangan Jawa Timur, Dinas Kesehatan Provinsi Jawa Timur, Kementerian Kesehatan RI, Perhimpunan Dokter Spesialis Anestesiologi dan Terapi Intensif Indonesia (PERDATIN), Akademisi, Pelaku Industri, dan perwakilan dari rumah sakit pemerintah maupun swasta. &ldquo;Kolaborasi ini merupakan kunci sukses dalam penguatan industri ventilator produksi dalam negeri,&rdquo; tutupnya.&nbsp;</p>',
             true,
-            'img/berita/1666058224-Dirjen ILMATE Kemenperin.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058224-Dirjen ILMATE Kemenperin.JPG',
             '2022-10-06',
             v_layout_id,
             false,
@@ -6527,7 +6527,7 @@ BEGIN
 
 <p>Di sisi internal, IPERINDO juga akan memperkuat sinergi antar-anggota dan mendorong anggota-anggota yang mempunyai potensi untuk melakukan B2B (<em>business to business</em>). Selain itu meningkatkan kualitas SDM, antara lain melalui sertifikasi dan pelatihan. &ldquo;IPERINDO juga mendorong para anggota untuk menghasilkan produk yang dibutuhkan oleh industri maritim, tentunya yang efisien, efektif, dan ramah lingkungan,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1666058312-WhatsApp Image 2022-10-05 at 12.33.40.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058312-WhatsApp Image 2022-10-05 at 12.33.40.jpeg',
             '2022-10-05',
             v_layout_id,
             false,
@@ -6594,7 +6594,7 @@ Kemenperin juga terus mendorong intensifikasi kerjasama dengan perusahaan mitra,
 <br />
 &ldquo;Beberapa contoh terkait percepatan penggunaan sepeda listrik nasional dapat dilihat dari penggunaan ribuan sepeda motor listrik di jasa angkutan seperti Grab, Gojek, dan usaha logistik seperti Si Cepat, dan tentunya usaha lain yang mengikuti jejak bisnis mereka,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1666058387-FGD Web.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058387-FGD Web.jpg',
             '2022-10-04',
             v_layout_id,
             false,
@@ -6667,7 +6667,7 @@ BEGIN
 
 <p>&ldquo;Oleh karena itu, kami mendorong PT PMI agar berinvestasi di sektor komponen elektronika,&rdquo; tuturnya. Ali menambahkan, pengembangan ekosistem untuk produk elektronika selain kulkas masih terbuka lebar, mengingat akan segera diimplementasikannya kebijakan Neraca Komoditas dan masih besarnya potensi pasar domestik.</p>',
             true,
-            'img/berita/1666058702-WhatsApp Image 2022-09-25 at 13.04.09 (1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1666058702-WhatsApp Image 2022-09-25 at 13.04.09 (1).jpeg',
             '2022-09-26',
             v_layout_id,
             false,
@@ -6738,7 +6738,7 @@ Kemudian, ada PT Regio Aviasi Industri yang dengan dukungan pemerintah saat ini 
 <br />
 &ldquo;Mereka turut menjadi tulang punggung transportasi dan konektivitas nasional kita, serta penggerak utama perekonomian Indonesia. Saya senang melihat tiga perusahaan utama, saat ini bekerja pada sangat baik untuk memastikan maskapai kita kembali mengudara,&rdquo; pungkas Menperin.</p>',
             true,
-            'img/berita/1662954400-1-4.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1662954400-1-4.jpeg',
             '2022-09-09',
             v_layout_id,
             false,
@@ -6824,7 +6824,7 @@ BEGIN
 
 <p>Kegiatan Sosialisasi Ventilator Produksi Dalam Negeri diikuti berbagai stakeholder dari Dinas Perindustrian dan Perdagangan Jawa Tengah, Dinas Kesehatan Provinsi Jawa Tengah, BPD Jateng, Kementerian Kesehatan RI, Perhimpunan Dokter Spesialis Anestesiologi dan Terapi Intensif Indonesia (PERDATIN), pelaku industri dan perwakilan RS swasta dan pemerintah. Kolaborasi diyakini merupakan kunci sukses dalam penguatan industri ventilator produksi dalam negeri.&nbsp;</p>',
             true,
-            'img/berita/1662954346-ART_6753.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1662954346-ART_6753.jpg',
             '2022-09-09',
             v_layout_id,
             false,
@@ -6908,7 +6908,7 @@ BEGIN
 
 <p>Ajang GIIAS ini juga merupakan salah satu upaya meningkatkan output sektor otomotif dengan banyak melibatkan supplier komponen dari industri kecil dan menengah (IKM). &ldquo;Kemenperin terus mendukung agar IKM komponen otomotif meningkatkan daya saingnya sehingga mampu menjadi bagian dari supply chain industri otomotif, baik di dalam maupun luar negeri,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1662954661-Menperin_GIIAS.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1662954661-Menperin_GIIAS.jpg',
             '2022-09-06',
             v_layout_id,
             false,
@@ -6982,7 +6982,7 @@ BEGIN
 
 <p>Sementara itu Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Kemenperin, Taufiek Bawazier menegaskan tentang keseriusan Kemenperin dalam hal menjaga iklim investasi baru agar tetap berkembang dan mampu menyeimbangkan&nbsp;<em>trade balance</em>&nbsp;sektor elektronika. &ldquo;Target ini dapat dilakukan melalui salah satu instrumen berupa Neraca Komoditas (NK) untuk produk-produk elektronika termasuk AC yang akan diimplementasikan di tahun mendatang,&rdquo; ujarnya.</p>',
             true,
-            'img/berita/1662954724-WhatsApp Image 2022-08-31 at 11.55.58.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1662954724-WhatsApp Image 2022-08-31 at 11.55.58.jpeg',
             '2022-09-03',
             v_layout_id,
             false,
@@ -7062,7 +7062,7 @@ BEGIN
 
 <p>Hasan menambahkan, pihaknya juga merasa terhormat dapat bekerjasama dengan HMD Indonesia di level kolaborasi yang lebih tinggi dalam menghadirkan ponsel besutan anak negeri. &ldquo;Kami harapkan inisiatif ini dapat memberikan dampak positif kepada masyarakat luas, khususnya di Semarang,&rdquo; ucapnya.</p>',
             true,
-            'img/berita/1660624398-WhatsApp Image 2022-06-14 at 12.12.12.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660624398-WhatsApp Image 2022-06-14 at 12.12.12.jpeg',
             '2022-08-15',
             v_layout_id,
             false,
@@ -7140,7 +7140,7 @@ BEGIN
 
 <p>Dalam hal pencapaian realisasi investasi secara global, pada semester I tahun 2022, total nilai investasi nasional tercatat Rp584,6 triliun atau naik 32% dibanding periode yang sama tahun lalu sebesar Rp442,8 triliun. Realisasi investasi nasional selama semester ini telah mencapai 48,7% dari target Rp1.200 triliun pada tahun 2022.&nbsp;&nbsp;Khusus untuk sektor industri elektronika, total nilai investasi pada semester 1 tahun 2022 adalah sebesar Rp1,19 triliun.</p>',
             true,
-            'img/berita/1660624727-WhatsApp Image 2022-08-12 at 15.58.53.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660624727-WhatsApp Image 2022-08-12 at 15.58.53.jpeg',
             '2022-08-13',
             v_layout_id,
             false,
@@ -7224,7 +7224,7 @@ BEGIN
 
 <p>&ldquo;Saya berpesan kepada para produsen kendaraan yang mengikuti GIIAS 2022 agar menindaklanjuti keikutsertaan dalam pameran ini dengan memperluas pasarnya, terutama secara global,&rdquo; pungkas Menperin.</p>',
             true,
-            'img/berita/1660624895-Menperin_Power Dinner GIIAS.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660624895-Menperin_Power Dinner GIIAS.jpg',
             '2022-08-10',
             v_layout_id,
             false,
@@ -7303,7 +7303,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1660030869-1. Menperin (1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660030869-1. Menperin (1).jpeg',
             '2022-08-04',
             v_layout_id,
             false,
@@ -7399,7 +7399,7 @@ Ia mengungkapkan ada banyak investor yang&nbsp;mengajukan proposal untuk berkont
 
 <p>Pangsa pasar ekspor produk otomotif Indonesia telah menembus lebih dari 80 negara dengan kinerja ekspor tahun 2021&nbsp;mencapai&nbsp;294 ribu unit kendaraan CBU dengan nilai sebesar Rp52,90&nbsp;Triliun, 91 ribu set CKD dengan nilai sebesar Rp1,31&nbsp;Triliun, dan 85 juta&nbsp;<em>pieces</em>&nbsp;komponen dengan nilai sebesar Rp29,13&nbsp;Triliun.&nbsp;Pada triwulan I &ndash; 2022,&nbsp;industri&nbsp;alat&nbsp;angkutan&nbsp;mengalami pertumbuhan&nbsp;paling tinggi di antara subsektor industri pengolahan lainnya, dengan capaian&nbsp;sebesar 14,2%&nbsp;(<em>y-on-y</em>).</p>',
             true,
-            'img/berita/1660030385-WhatsApp Image 2022-07-29 at 20.27.32.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660030385-WhatsApp Image 2022-07-29 at 20.27.32.jpeg',
             '2022-07-29',
             v_layout_id,
             false,
@@ -7489,7 +7489,7 @@ BEGIN
 
 <p>Dalam kesempatan tersebut, Menperin dan Dubes Heri Akhmadi menyaksikan penandatanganan&nbsp;<em>Letter of Intent</em>antara APINDO dan PIKKO dengan MUFG Bank terkait penyiapan skema pendanaan bagi IKM Indonesia.</p>',
             true,
-            'img/berita/1660028203-DSC.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1660028203-DSC.jpg',
             '2022-07-28',
             v_layout_id,
             false,
@@ -7587,7 +7587,7 @@ BEGIN
 
 <p>&rdquo;Jika proses ini dapat berjalan dengan baik, diharapkan industri alat kesehatan Indonesia akan mampu tumbuh mandiri dalam memenuhi kebutuhan dalam negeri,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1655350730-WhatsApp Image 2022-06-15 at 4.23.28 PM.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1655350730-WhatsApp Image 2022-06-15 at 4.23.28 PM.jpeg',
             '2022-06-15',
             v_layout_id,
             false,
@@ -7658,7 +7658,7 @@ Peluang ini harus kita disikapi dengan menyiapkan kemanpuan baik dari sisi tekno
 
 <p>&nbsp;</p>',
             true,
-            '',
+            NULL,
             '2022-03-30',
             v_layout_id,
             false,
@@ -7691,7 +7691,7 @@ Peluang ini harus kita disikapi dengan menyiapkan kemanpuan baik dari sisi tekno
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Seminar Hidrogen untuk Industri: Tantangan dan Peluang dalam Mendukung Kemandirian Sektor Industri', 'url', 'https://www.youtube.com/watch?v=eHtVpU1bs_c', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=eHtVpU1bs_c', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -7749,7 +7749,7 @@ BEGIN
 
 <p>Demikian Siaran Pers ini untuk disebarluaskan.</p>',
             true,
-            'img/berita/1649836851-WhatsApp Image 2022-03-29 at 10.08.02.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1649836851-WhatsApp Image 2022-03-29 at 10.08.02.jpeg',
             '2022-03-30',
             v_layout_id,
             false,
@@ -7872,7 +7872,7 @@ BEGIN
 
 <p>Mayar SP, Analisis Anggaran Ahli Muda pada Direktorat Jenderal ILMATE &ndash;&nbsp;Kementerian Perindustrian</p>',
             true,
-            'img/berita/1649911143-slider_g20.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1649911143-slider_g20.jpg',
             '2022-03-28',
             v_layout_id,
             false,
@@ -7962,7 +7962,7 @@ BEGIN
 
 <p>&ldquo;Dengan kolaborasi ini pula, kami ingin memperlihatkan bahwa kita mampu untuk secara bersama-sama membangkitkan kemandirian rantai ekosistem industri Indonesia serta membangkitkan kemampuan pelaku industri dalam negeri untuk berinovasi secara berkelanjutan,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1648636171-WhatsApp Image 2022-03-24 at 13.44.16.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1648636171-WhatsApp Image 2022-03-24 at 13.44.16.jpeg',
             '2022-03-24',
             v_layout_id,
             false,
@@ -8076,7 +8076,7 @@ BEGIN
 	</tbody>
 </table>',
             true,
-            'img/berita/1648094402-WhatsApp Image 2022-03-24 at 09.30.11.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1648094402-WhatsApp Image 2022-03-24 at 09.30.11.jpeg',
             '2022-03-24',
             v_layout_id,
             false,
@@ -8167,7 +8167,7 @@ BEGIN
 
 <p>PT. GRP yang berdiri sejak tahun 1970 ini merupakan salah satu perusahaan baja yang memiliki peran strategis pada pengembangan industri baja nasional.&nbsp;&nbsp;Hal ini ditunjukkan dengan&nbsp;&nbsp;realisasi investasi PT. GRP sampai&nbsp;&nbsp;tahun 2021 sebesar USD488,71 juta (sekitar Rp7 triliun) dengan memproduksi baja dari hulu sampai hilir. Selain penjualan dalam negeri, PT. GRP telah melakukan ekspor dengan nilai sebesar USD45 juta atau meningkat dibandingkan tahun 2020 yang mencapai USD28 juta.</p>',
             true,
-            'img/berita/1648636301-WhatsApp Image 2022-03-21 at 14.21.27.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1648636301-WhatsApp Image 2022-03-21 at 14.21.27.jpeg',
             '2022-03-21',
             v_layout_id,
             false,
@@ -8244,7 +8244,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1641174837-Web2-3.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1641174837-Web2-3.jpg',
             '2021-12-31',
             v_layout_id,
             false,
@@ -8320,7 +8320,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1640921412-3-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640921412-3-2.jpg',
             '2021-12-29',
             v_layout_id,
             false,
@@ -8438,7 +8438,7 @@ BEGIN
 
 <p>Selain itu, sebagai upaya dalam meningkatkan penggunaan produk dalam negeri, pada tahun 2022, Kemenperin akan kembali memberikan fasilitasi sertifikasi secara gratis kepada perusahaan industri dalam negeri meliputi tidak terbatas terhadap produk industri alat kesehatan, alsintan, farmasi, permesinan, elektronika dan telematika, logam, kelistrikan, kimia, pupuk, otomotif dan komponennya, keramik, semen, tekstil, dan produk IKM. Fasilitasi sertifikasi TKDN pada tahun 2022 diberikan sekurang-kurangnya untuk 1.250 sertifikat produk.</p>',
             true,
-            'img/berita/1640920235-WhatsApp Image 2021-12-29 at 15.30.29.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640920235-WhatsApp Image 2021-12-29 at 15.30.29.jpeg',
             '2021-12-29',
             v_layout_id,
             false,
@@ -8528,7 +8528,7 @@ BEGIN
 
 <p>&ldquo;Segala macam itu harus dari sini semua sehingga sudah tidak lagi ke luar negeri, semuanya dipakai untuk kita, barangnya barang kita, kemudian nanti untuk menyejahterakan semuanya. Nanti ada alih teknologinya, metalurginya, anak-anak lebih pintar, semua lapangan pekerjaan ya semua Indonesia kaya, semua ada di sini,&rdquo; ujar Wisma.</p>',
             true,
-            'img/berita/1640766634-WhatsApp Image 2021-12-28 at 11.51.31 (1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640766634-WhatsApp Image 2021-12-28 at 11.51.31 (1).jpeg',
             '2021-12-28',
             v_layout_id,
             false,
@@ -8602,7 +8602,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1640668293-3 (1).jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640668293-3 (1).jpg',
             '2021-12-27',
             v_layout_id,
             false,
@@ -8667,7 +8667,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            '',
+            NULL,
             '2021-12-23',
             v_layout_id,
             false,
@@ -8700,7 +8700,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Profiling Direktorat Industri Logam Ditjen ILMATE', 'url', 'https://www.youtube.com/watch?v=n5hGwiBRuDc', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=n5hGwiBRuDc', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -8762,7 +8762,7 @@ BEGIN
 
 <p>&ldquo;SDI didirikan khusus untuk memenuhi kebutuhan ekspor&nbsp;<em>vacuum cleaner</em>&nbsp;ke Amerika Serikat. Rata-rata volume ekspor&nbsp;<em>vacuum cleaner</em>&nbsp;ke Amerika Serikat adalah 100 kontainer per bulan,&rdquo; sebutnya. Selain&nbsp;<em>brand</em>&nbsp;Bissel, pada awal bulan Desember 2021, SCNP juga mulai memproduksi&nbsp;<em>air purifier</em>&nbsp;dengan merek BlueAir yang bertaraf internasional dan juga telah diekspor ke Amerika Serikat.</p>',
             true,
-            'img/berita/1640667587-WhatsApp Image 2021-12-20 at 12.12.13.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640667587-WhatsApp Image 2021-12-20 at 12.12.13.jpeg',
             '2021-12-20',
             v_layout_id,
             false,
@@ -8838,7 +8838,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1637937333-Picture pavilion.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1637937333-Picture pavilion.png',
             '2021-11-25',
             v_layout_id,
             false,
@@ -9194,7 +9194,7 @@ BEGIN
 
 <p>Toga Simamora</p>',
             true,
-            'img/berita/1638409842-2019_03_28_68720_1553764762._large-1200x675.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1638409842-2019_03_28_68720_1553764762._large-1200x675.jpg',
             '2021-11-20',
             v_layout_id,
             false,
@@ -9292,7 +9292,7 @@ BEGIN
 
 <p>Toga Simamora</p>',
             true,
-            'img/berita/1638352663-menkeu-konpers-nota-keuangan-dan-ruu-apbn-2022-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1638352663-menkeu-konpers-nota-keuangan-dan-ruu-apbn-2022-2.jpeg',
             '2021-11-20',
             v_layout_id,
             false,
@@ -9375,7 +9375,7 @@ BEGIN
 
 <p>Toga Simamora</p>',
             true,
-            'img/berita/1638410656-Screen Shot 2021-12-02 at 09.02.17.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1638410656-Screen Shot 2021-12-02 at 09.02.17.png',
             '2021-11-05',
             v_layout_id,
             false,
@@ -9452,7 +9452,7 @@ BEGIN
 
 <p>Toga Simamora</p>',
             true,
-            'img/berita/1636375950-Unknown.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1636375950-Unknown.jpg',
             '2021-11-03',
             v_layout_id,
             false,
@@ -9535,7 +9535,7 @@ BEGIN
 
 <p>&rdquo;Tingginya proyeksi peningkatan populasi kendaraan listrik dunia sedikit banyak dipengaruhi oleh&nbsp;<em>global initiative campaign</em>&nbsp;yang diprakarsai oleh berbagai negara maju dengan bekerjasama dengan para produsen EV global serta organisasi nirlaba lainnya,&rdquo; papar Agus.</p>',
             true,
-            'img/berita/1634616452-0.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1634616452-0.jpeg',
             '2021-10-16',
             v_layout_id,
             false,
@@ -9617,7 +9617,7 @@ BEGIN
 
 <p>&ldquo;Kami juga mengapresiasi perusahaan alat berat yang menjadi mentor bagi mahasiswa yang magang di perusahaan&nbsp;<em>supplier</em>&nbsp;dalam rangka program Kampus Merdeka. Hal ini mendukung revitalisasi&nbsp;<em>supplier&nbsp;</em>yang berdampak positif pada industri alat berat di Indonesia,&rdquo; pungkas Menperin.</p>',
             true,
-            'img/berita/1634615519-2-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1634615519-2-2.jpeg',
             '2021-10-16',
             v_layout_id,
             false,
@@ -9680,7 +9680,7 @@ BEGIN
 
 <p>&ldquo;Kementerian Perindustrian terus mendukung dan mendorong tumbuhnya kawasan Industri berstatus KEK ke seluruh penjuru NKRI dalam rangka mempercepat penyebaran dan pemerataan industri nasional,&rdquo; pungkas Menperin.</p>',
             true,
-            'img/berita/1634616759-WhatsApp Image 2021-10-12 at 13.41.57.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1634616759-WhatsApp Image 2021-10-12 at 13.41.57.jpeg',
             '2021-10-12',
             v_layout_id,
             false,
@@ -9785,7 +9785,7 @@ BEGIN
 
 <p>Untuk itu, guna membangun rumusan bersama antara pemangku kepentingan sektor industri khususnya Pemerintah Pusat dan Pemerintah Daerah guna mengakselarasi pertumbuhan industri, kami menyelenggarakan Forum Koordinasi dan Sinkronisasi Pelaksanaan Kebijakan Penumbuhan Nilai Tambah dan Daya Saing Industri Logam, Mesin, Alat Transportasi dan Elektronika dengan Pemerintah Daerah Jawa Barat.&nbsp;&nbsp;&nbsp;</p>',
             true,
-            '',
+            NULL,
             '2021-09-29',
             v_layout_id,
             false,
@@ -9803,7 +9803,7 @@ BEGIN
 
     IF v_pub_id IS NOT NULL THEN
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Forum Koordinasi Dan Sinkronisasi Pelaksanaan Kebijakan', 'url', 'https://www.youtube.com/watch?v=3XsP9F5jTMY', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=3XsP9F5jTMY', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -9837,7 +9837,7 @@ BEGIN
 
 <p>Ditengah kondisi pandemic di Indonesia, Direktorat IPAMP akan berkolaborasi dengan berbagai pemangku kepentingan untuk dapat menumbuhkan sektor alat kesehatan sehingga dapat mengatasi kondisi pandemic di Indonesia serta untuk dapat meningkatkan penggunaan produk dalam negeri.</p>',
             true,
-            '',
+            NULL,
             '2021-09-24',
             v_layout_id,
             false,
@@ -9870,7 +9870,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'Kolaborasi Alat Kesehatan dalam Negeri', 'url', 'https://www.youtube.com/watch?v=n_edz2qxvtU', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=n_edz2qxvtU', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -9931,7 +9931,7 @@ BEGIN
 
 <p>Sebanya 16 perusahaan Industri binaan Direktorat Jenderal ILMATE yang telah menikmati insentif pajak Super Deduction Tax, yaitu Komatsu Indonesia, Dharma Electrindo Manufacturing, Beon Intermedia, E-T-A Indonesia, Dharma Polimetal, Yogya Presisi Tehnikatama Industri, Unggul Semesta, Riasarana Electrindo, Citra Tubindo, TDK Electrics Indonesia, Profab Indonesia, Toyota Motor Manufacturing Indonesia, Star Cosmos, Sanken Argadwija, Hartono Istana Teknologi dan Astra Honda Motor.</p>',
             true,
-            'img/berita/1638346670-Picture19.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1638346670-Picture19.png',
             '2021-09-17',
             v_layout_id,
             false,
@@ -10087,7 +10087,7 @@ BEGIN
 
 <p><strong>Direktorat Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika</strong></p>',
             true,
-            'img/berita/1640575969-2-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1640575969-2-2.jpeg',
             '2021-07-10',
             v_layout_id,
             false,
@@ -10241,7 +10241,7 @@ Pembahasan kali ini akan berfokus pada&nbsp;<em>major project</em>&nbsp;&nbsp;In
 	<li>Program pada industri 4.0 sektor logam dapat didorong sebagai&nbsp;<em>role model</em>&nbsp;atau percontohan atas pelaksanaan rantai&nbsp;<em>supply (blockchain)</em>&nbsp;pada industry 4.0&nbsp;<em>(horinzontal spectrum)</em>.</li>
 </ol>',
             true,
-            'img/berita/1627277425-1-2-3.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1627277425-1-2-3.jpg',
             '2021-07-10',
             v_layout_id,
             false,
@@ -10333,7 +10333,7 @@ BEGIN
 
 <p>&ldquo;Keduanya dengan protokol kesehatan secara ketat. Instansi dan aparat pemerintah daerah dibantu oleh TNI dan Polri diberikan kewenangan untuk mengoordinasikan dan mengawasi pelaksanaan PPKM Darurat Covid-19 tersebut,&rdquo; tuturnya.</p>',
             true,
-            'img/berita/1625466782-WhatsApp Image 2021-07-01 at 12.41.42.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1625466782-WhatsApp Image 2021-07-01 at 12.41.42.jpeg',
             '2021-07-04',
             v_layout_id,
             false,
@@ -10429,7 +10429,7 @@ BEGIN
 
 <p>&ldquo;Kemenperin akan melakukan evaluasi dan pengawasan atas laporan operasionalisasi dan mobilitas kegiatan industri, termasuk pelaksanaan protokol kesehatan pada perusahaan industri atau perusahaan kawasan industri yang telah memiliki IOMKI, serta akan menindak dengan tegas dalam hal perusahaan industri atau perusahaan kawasan industri melakukan pelanggaran atas IOMKI,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1625466285-Ministerial Statements.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1625466285-Ministerial Statements.jpg',
             '2021-07-03',
             v_layout_id,
             false,
@@ -10507,7 +10507,7 @@ BEGIN
 
 <p>Peraturan Pemerintah No 29 Tahun 2018 Tentang Pemberdayaan Industri menyatakan bahwa produk yang telah mencapai nilai 40% dari penjumlahan nilai TKDN dan BMP sebesar 40% dengan nilai TKDN minimal 25%, wajib digunakan di dalam negeri.</p>',
             true,
-            'img/berita/1625466946-1-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1625466946-1-2.jpeg',
             '2021-06-30',
             v_layout_id,
             false,
@@ -10591,7 +10591,7 @@ BEGIN
 
 <p>Pengembangan industri baterai juga perlu didukung dengan industri daur ulang. Baterai yang nantinya akan menjadi limbah memerlukan penanganan yang komprehensif, antara lain dengan daur ulang agar proses pemurnian dapat dilakukan. &ldquo;Limbah baterai serta beberapa jenis&nbsp;<em>scrap</em>&nbsp;dari paduan nikel sangat memungkinkan untuk didaur ulang sehingga dihasilkan beberapa jenis produk yang bernilai tinggi,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1625467884-1-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1625467884-1-3.jpeg',
             '2021-06-24',
             v_layout_id,
             false,
@@ -10686,7 +10686,7 @@ BEGIN
 
 <p>Peran fasilitas BMDTP ini sangat penting untuk mendorong daya saing sektor industri sepeda dan menggairahkan kegiatan sektor ini meskipun pada kondisi ekonomi yang kurang kondusif dengan adanya pandemi COVID-19 sehingga progran fasilitas ini sangat bermanfaat dalam pengembangan sektor industri.&nbsp;&nbsp;</p>',
             true,
-            'img/berita/1622170744-2-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1622170744-2-2.jpg',
             '2021-05-28',
             v_layout_id,
             false,
@@ -10820,7 +10820,7 @@ BEGIN
 
 <p>Sebagai contoh, kendaraan model SUV telah menggunakan komponen lokal seperti&nbsp;<em>body and chassis</em>&nbsp;dan komponen pelengkap antara lain&nbsp;<em>velg</em>,&nbsp;<em>exhaust system</em>,&nbsp;<em>interior parts</em>, dan sebagainya. Apabila model ini mendapatkan insentif, maka dampak ke industri komponen cukup besar. (*)</p>',
             true,
-            'img/berita/1621948307-1(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1621948307-1(1).jpeg',
             '2021-05-25',
             v_layout_id,
             false,
@@ -10958,7 +10958,7 @@ BEGIN
 <hr />
 <p><a href="applewebdata://A5F3792A-7C1D-4119-BC83-2011A1A29BE3#_ftnref1" name="_ftn1">[1]</a>&nbsp;Informasi APBN 2021: &ldquo;Percepatan Pemulihan Ekonomi dan Penguatan Reformasi&rdquo;</p>',
             true,
-            'img/berita/1621559056-1536721390_industri_4mudacom.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1621559056-1536721390_industri_4mudacom.jpg',
             '2021-05-21',
             v_layout_id,
             false,
@@ -11020,7 +11020,7 @@ BEGIN
             'Dalam rangka Pelaksanaan Pemanfaatan Kendaraan Bermotor Dengan Pajak Penjualan Atas Barang Mewah Atas Penyerahan Barang Kena Pajak Yang Tergolong Mewah Ditanggung Oleh Pemerintah, perlu penetapan/penu...',
             '<p>Dalam rangka Pelaksanaan&nbsp;Pemanfaatan&nbsp;Kendaraan Bermotor Dengan Pajak Penjualan Atas Barang Mewah Atas Penyerahan Barang Kena Pajak Yang Tergolong Mewah Ditanggung Oleh Pemerintah, perlu penetapan/penunjukan Lembaga Pelaksana Verifikasi yang diakui Kementerian Perindustrian sebagai Pelaksana Verifikasi Industri dalam rangka Pelaksanaan&nbsp;Pemanfaatan&nbsp;Kendaraan Bermotor Dengan Pajak Penjualan Atas Barang Mewah Atas Penyerahan Barang Kena Pajak Yang Tergolong Mewah Ditanggung Oleh Pemerintah, berikut kami sampaikan&nbsp;Pengumuman Hasil Penilaian Sayembara Beauty Contest Verifikasi Industri dalam rangka Pelaksanaan Pemanfaatan Kendaraan Bermotor dengan Pajak Penjualan Atas Barang Mewah Atas Penyeraahaan Barang Kena Pajak Yang Tergolong Mewah Ditanggung Oleh Pemerintah (PPnBM DTP)</p>',
             true,
-            'img/berita/1618370508-Screen Shot 2021-04-05 at 18.05.39.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1618370508-Screen Shot 2021-04-05 at 18.05.39.png',
             '2021-04-21',
             v_layout_id,
             false,
@@ -11111,7 +11111,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1618798799-1.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1618798799-1.jpeg',
             '2021-04-18',
             v_layout_id,
             false,
@@ -11213,7 +11213,7 @@ BEGIN
 
 <p>Sejumlah prinsipal otomotif ternama kelas global, seperti yang berasal dari Jepang, sudah menyatakan komitmennya untuk menanamkan investasinya dalam pengembangan kendaraan listrik di Indonesia. &ldquo;Misalnya, Toyota, Honda, dan Mitsubishi, khususnya pengembangan yang berbasis&nbsp;<em>hybrid</em>,&rdquo; sebutnya.</p>',
             true,
-            'img/berita/1618798578-WhatsApp Image 2021-04-15 at 16.04.07.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1618798578-WhatsApp Image 2021-04-15 at 16.04.07.jpeg',
             '2021-04-15',
             v_layout_id,
             false,
@@ -11358,7 +11358,7 @@ BEGIN
 
 <p><a href="applewebdata://EA9B1492-9EDA-43CE-BD4B-FFCB724B189D#_ftnref2" name="_ftn2">[2]</a>&nbsp;Penahapan Capaian Pembangunan Industri PP No. 14 Tahun 2015</p>',
             true,
-            'img/berita/1618800449-Screen Shot 2021-04-19 at 09.36.56.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1618800449-Screen Shot 2021-04-19 at 09.36.56.png',
             '2021-04-07',
             v_layout_id,
             false,
@@ -11486,7 +11486,7 @@ BEGIN
 <hr />
 <p><a href="applewebdata://C1BC65F2-BBB7-45B3-B784-8CD8E5021662#_ftnref1" name="_ftn1">[1]</a>&nbsp;Lanskap Ilmu Pengetahuan dan Teknologi Indonesia,&nbsp;<a href="applewebdata://A3B5CF97-ED7D-44A3-BEA4-4387A3A3BE16#_ftnref1" name="_ftn1">[2]</a>&nbsp;2020 Global R&amp;D Funding Forecast,<a href="applewebdata://CCB3AF51-CF35-4DB3-9BFF-C128C7A81DC4#_ftnref1" name="_ftn1">[3]</a>&nbsp;IMD World Competitiveness Rangking 2020,&nbsp;<a href="applewebdata://9C60C465-70A6-4595-9361-FEBC3A2D2ABB#_ftnref1" name="_ftn1">[4]</a>&nbsp;Jong, Marc De, et al. &ldquo;The eight essentials of innovation.&rdquo; McKinsey Quaterly, no. April, 2015, hal. 3, doi:10.4028/www.scientific.net/AMR.768.34,&nbsp;<a href="applewebdata://29AF34AB-F31A-4426-B990-CB20B80A4AB9#_ftnref1" name="_ftn1">[5]</a>Dr. Ir. Agus Puji Prasetyono, M.Eng, Mencermati&nbsp;&nbsp;&ldquo;Valley of Death&rdquo; Inovasi</p>',
             true,
-            'img/berita/1617634026-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1617634026-3.jpeg',
             '2021-04-05',
             v_layout_id,
             false,
@@ -11586,7 +11586,7 @@ BEGIN
 
 <p>Menperin juga melakukan pertemuan dengan&nbsp;Minister of State of Economic and Fiscal Policy,&nbsp;Nishimura Yasutoshi. Keduanya merupakan sahabat lama sebelum bertugas sebagai menteri dinegara masing-masing.&nbsp;&nbsp;Menteri Nishimura bertanggung jawab pada beberapa sektor, di antaranya penanganan Covid-19, revitalisasi ekonomi, reformasi social security, serta&nbsp;<em>Trans-Pacific Partnership</em>&nbsp;(TPP).</p>',
             true,
-            'img/berita/1615534681-WhatsApp Image 2021-03-12 at 12.25.43 PM.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1615534681-WhatsApp Image 2021-03-12 at 12.25.43 PM.jpeg',
             '2021-03-12',
             v_layout_id,
             false,
@@ -11668,7 +11668,7 @@ BEGIN
 
 <p>Pertemuan yang dilakukan Menperin di Jepang diatur dengan protokol kesehatan yang sangat ketat dan peserta delegasi yang terbatas. Kunjungan Menperin kali ini merupakan kunjungan kerja menteri pertama di dunia yang diterima secara resmi oleh pemerintah Jepang semenjak negara Sakura tersebut menetapkan status&nbsp;<em>State of Emergency</em>. Hal ini menunjukkan bahwa Indonesia merupakan mitra bilateral yang sangat penting bagi Jepang.</p>',
             true,
-            'img/berita/1615534875-mitsubishi.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1615534875-mitsubishi.jpeg',
             '2021-03-10',
             v_layout_id,
             false,
@@ -11732,7 +11732,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1601460827-RF_mix_industry-(14).jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1601460827-RF_mix_industry-(14).jpg',
             '2020-10-27',
             v_layout_id,
             false,
@@ -11845,7 +11845,7 @@ BEGIN
 
 <p><strong>Analis Anggaran Muda</strong></p>',
             true,
-            'img/berita/1603789691-Picture1.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1603789691-Picture1.png',
             '2020-10-19',
             v_layout_id,
             false,
@@ -12053,7 +12053,7 @@ BEGIN
 
 <p><a href="applewebdata://810C43A9-AE16-47AC-95DD-295ED080B468#_ftnref9" name="_ftn9">[9]</a>&nbsp;BPPT</p>',
             true,
-            'img/berita/1600229354-web2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1600229354-web2.jpg',
             '2020-09-08',
             v_layout_id,
             false,
@@ -12115,7 +12115,7 @@ BEGIN
             '',
             '',
             true,
-            '',
+            NULL,
             '2020-09-07',
             v_layout_id,
             false,
@@ -12148,7 +12148,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'AMMDes Optimalkan Komponen Dalam Negeri', 'url', 'https://www.youtube.com/watch?v=cygJBaRZliQ', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=cygJBaRZliQ', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -12198,7 +12198,7 @@ BEGIN
 
 <p>Pendaftaran dan pemasukan dokumen calon peserta dapat diserahkan kepada panitia selambat-lambatnya tanggal 14 September 2020. Informasi lebih lanjut dapat menghubungi panitia melalui CP&nbsp;atas nama&nbsp;Rahmad (085360011407) atau Agustina (082298127623),&nbsp;atau dapat dilihat pada dokumen yang terlampir.</p>',
             true,
-            'img/berita/1599480885-WhatsApp Image 2020-07-23 at 11.33.18.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1599480885-WhatsApp Image 2020-07-23 at 11.33.18.jpeg',
             '2020-09-07',
             v_layout_id,
             false,
@@ -12289,7 +12289,7 @@ BEGIN
 
 <p>Kegiatan ini sepenuhnya dilakukan secara online. Peserta yang ingin berpartisipasi cukup mengunduh formulir dan file gambar AMMDes pada laman&nbsp;<a href="http://www.ammdesdigimodz.com/">www.ammdesdigimodz.com</a>. Desain digital AMMDes yang telah dibuat peserta, selanjutnya dikirim ke email&nbsp;<a href="mailto:ammdesdigimodz@gmail.com">ammdesdigimodz@gmail.com</a>.</p>',
             true,
-            'img/berita/1599532981-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1599532981-2.jpeg',
             '2020-09-04',
             v_layout_id,
             false,
@@ -12351,7 +12351,7 @@ BEGIN
             'Kementerian Perindustrian bekerjasama dengan PT. Kreasi Mandiri Wintor Indonesia dan National Modificator and After Market Association (NMAA) akan melaksanakan kegiatan kompetisi desain digital modifi...',
             '<p>Kementerian Perindustrian bekerjasama dengan PT. Kreasi Mandiri Wintor Indonesia dan National Modificator and After Market Association (NMAA) akan melaksanakan kegiatan kompetisi desain digital modifikasi AMMDes Digimodz dengan tema &ldquo;Born to Insipre&rdquo;</p>',
             true,
-            '',
+            NULL,
             '2020-09-03',
             v_layout_id,
             false,
@@ -12369,7 +12369,7 @@ BEGIN
 
     IF v_pub_id IS NOT NULL THEN
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'AMMDes Digimodz 2', 'url', 'https://www.youtube.com/watch?v=r2ckULRFx2k', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=r2ckULRFx2k', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -12431,7 +12431,7 @@ BEGIN
 
 <p>Link Registrasi :&nbsp;<a href="https://bit.ly/sosialisasi-supertaxdeduction-ditjenilmate2">https://bit.ly/sosialisasi-supertaxdeduction-ditjenilmate2</a></p>',
             true,
-            'img/berita/1618903386-Artboard 73.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1618903386-Artboard 73.jpg',
             '2020-10-21',
             v_layout_id,
             false,
@@ -12493,7 +12493,7 @@ BEGIN
             '',
             '',
             true,
-            '',
+            NULL,
             '2020-08-11',
             v_layout_id,
             false,
@@ -12526,7 +12526,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=V_rvmAfpXug', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=V_rvmAfpXug', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -12582,7 +12582,7 @@ BEGIN
 
 <p>Selanjutnya, untuk mengembangkan sektor industri kecil dan menengah (IKM), Kemenperin telah menempuh beberapa upaya, antara lain memfasilitasi penyerapan bahan baku bagi pelaku IKM, optimalisasi Kredit Usaha Rakyat (KUR) untuk semua sektor, menjalankan kampanye Bangga Buatan Indonesia, serta terus mendorong pelaksanaan Program P3DN. &ldquo;Untuk itu, kami terus mengimbau kementerian, lembaga, dan BUMN serta pihak lainnya untuk menggunakan produk-produk dalam negeri,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1597210555-1-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1597210555-1-2.jpeg',
             '2020-07-29',
             v_layout_id,
             false,
@@ -12647,7 +12647,7 @@ BEGIN
 
 <p>&ldquo;Pada prinsipnya kemajuan teknologi di sektor otomotif melalui pengembangan baterai kendaraan listrik tetap harus memperhatikan kelestarian lingkungan sehingga dampaknya dapat dirasakan baik itu untu memajukan sektor ekonomi dan industri sekaligus tetap menjaga kelestarian alam,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1597210132-2-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1597210132-2-3.jpeg',
             '2020-07-29',
             v_layout_id,
             false,
@@ -12725,7 +12725,7 @@ BEGIN
 
 <p>Langkah strategis tersebut merupakan wujud nyata dari komitmen pemerintah untuk mencari solusi dalam pengembangan kualitas SDM guna mencapai visi Indonesia yang tangguh menghadapi ekonomi digital. &ldquo;Contohnya seperti penyiapan SDM kompeten digital yang telah diciptakan oleh Apple Developer Academy, dan ini kami akan dorong dan dukung terus,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1597211114-WhatsApp Image 2020-07-23 at 18.23.02(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1597211114-WhatsApp Image 2020-07-23 at 18.23.02(1).jpeg',
             '2020-07-24',
             v_layout_id,
             false,
@@ -12817,7 +12817,7 @@ BEGIN
 
 <p><strong>Link Registrasi :&nbsp;<a href="https://bit.ly/sosialisasi-supertaxdeduction-ditjenilmate">https://bit.ly/sosialisasi-supertaxdeduction-ditjenilmate</a></strong></p>',
             true,
-            'img/berita/1595388035-infografis-1Artboard 58.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1595388035-infografis-1Artboard 58.png',
             '2020-07-22',
             v_layout_id,
             false,
@@ -12889,7 +12889,7 @@ BEGIN
 
 <p><img alt="" height="480" src="/assets/plugins/kcfinder/upload/files/Web3-OK.jpg" width="720" /></p>',
             true,
-            'img/berita/1597210909-Web1-OK.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1597210909-Web1-OK.jpg',
             '2020-07-16',
             v_layout_id,
             false,
@@ -12979,7 +12979,7 @@ BEGIN
 
 <p>&ldquo;Ini merupakan langkah agar surplus pelaku industri TPT dapat terus berkontribusi, tidak hanya terhadap pemenuhan permintaan dalam negeri, tetapi juga terhadap neraca ekspor. Tentu kebijakan ini harus kita dukung,&rdquo; ungkap Menperin.</p>',
             true,
-            'img/berita/1593999032-1.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1593999032-1.JPG',
             '2020-07-05',
             v_layout_id,
             false,
@@ -13041,7 +13041,7 @@ BEGIN
             '',
             '',
             true,
-            '',
+            NULL,
             '2020-07-01',
             v_layout_id,
             false,
@@ -13074,7 +13074,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=zWstOM4OARY', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=zWstOM4OARY', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -13134,7 +13134,7 @@ BEGIN
 
 <p>&ldquo;Optimalisasi TKDN tentu akan meningkatkan produksi dalam negeri dan mampu menjadi substitusi impor,&rdquo; ungkapnya.</p>',
             true,
-            'img/berita/1593999691-1.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1593999691-1.jpeg',
             '2020-06-21',
             v_layout_id,
             false,
@@ -13205,7 +13205,7 @@ BEGIN
 
 <p>&ldquo;Bisa dibaca sisi ekonomi jadi hal yang sangat penting, walaupun sisi kesehatan ini tetap harus kita kedepankan dan jadi prioritas. Sisi ekonomi dalam konteks kami, pembangunan industri manufaktur harus bisa mengikuti dari belakang, berkaitan dengan penanganan kesehatan yang dilakukan oleh pemerintah,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1594000222-WhatsApp Image 2020-06-17 at 13.57.22.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1594000222-WhatsApp Image 2020-06-17 at 13.57.22.jpeg',
             '2020-06-19',
             v_layout_id,
             false,
@@ -13277,7 +13277,7 @@ BEGIN
 
 <p><img alt="" src="/assets/plugins/kcfinder/upload/files/web6.jpg" /></p>',
             true,
-            'img/berita/1589950402-web6.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1589950402-web6.jpg',
             '2020-05-08',
             v_layout_id,
             false,
@@ -13339,7 +13339,7 @@ BEGIN
             'Kementerian Perindustrian memberikan apresiasi kepada KMWI selaku produsen AMMDes karena telah berhasil merancang AMMDes Water Tank sebagai fasilitas penyemprotan cairan disinfektan untuk penganan pen...',
             '<p>Kementerian Perindustrian memberikan apresiasi kepada KMWI selaku produsen AMMDes karena telah berhasil merancang AMMDes Water Tank sebagai fasilitas penyemprotan cairan disinfektan untuk penganan penyebaran Covid-19</p>',
             true,
-            '',
+            NULL,
             '2020-05-01',
             v_layout_id,
             false,
@@ -13372,7 +13372,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=Mu4wHdQmDgs', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=Mu4wHdQmDgs', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -13440,7 +13440,7 @@ BEGIN
 
 <p>Selain itu, sektor industri juga didorong untuk mampu melihat berbagai peluang yang dapat dikembangkan di tengah-tengah masa sulit akibat wabah Covid-19. &ldquo;Permintaan tinggi di sektor makanan dan minuman adalah peluang bagi industri tersebut untuk tetap bertahan dalam situasi ini,&rdquo; ungkapnya.</p>',
             true,
-            'img/berita/1587954464-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1587954464-3.jpeg',
             '2020-04-22',
             v_layout_id,
             false,
@@ -13536,7 +13536,7 @@ BEGIN
 
 <p>&ldquo;Kita masih punya modal yang kuat. Artinya, kemungkinan kita bisa&nbsp;<em>rebound</em>&nbsp;cukup besar. Apalagi kita lihat bahwa kompetensi bangsa kita juga cukup besar. Jadi sesungguhnya, apa yang akan terjadi dalam sektor manufaktur nanti setelah Covid-19 sangat tergantung dengan apa yang kita lakukan sekarang,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1587958464-2-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1587958464-2-2.jpeg',
             '2020-04-21',
             v_layout_id,
             false,
@@ -13624,7 +13624,7 @@ BEGIN
 
 <p>Sebelumnya, Kementerian Komunikasi dan Informatika (Kominfo) menyatakan, para pengguna HKT akan mendapatkan notifikasi dan pemberitahuan mengenai status&nbsp;IMEI secara bertahap dari operator seluler yang digunakan dalam kurun waktu kurang lebih 2 (dua) minggu. Artinya, pengguna HKT yang saat ini sedang aktif digunakan tidak perlu melakukan registrasi individual. Sehingga, perangkat yang sudah aktif sebelum masa berlaku 18 April 2020 akan tetap dapat tersambung ke jaringan bergerak seluler sampai perangkat tersebut tidak ingin digunakan lagi atau telah rusak.</p>',
             true,
-            'img/berita/1587957525-DSC_3973.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1587957525-DSC_3973.JPG',
             '2020-04-19',
             v_layout_id,
             false,
@@ -13708,7 +13708,7 @@ BEGIN
 
 <p>&ldquo;AMMDes-KMW penjernih air pernah dimanfaatkan untuk memenuhi kebutuhan air bersih pada saat musim kemarau maupun tanggap darurat bencana seperti di Palu, Sigi, dan Donggala pascabencana gempa bumi dan tsunami beberapa waktu lalu,&rdquo; ungkap Reiza.</p>',
             true,
-            'img/berita/1587956055-ammdes-1.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1587956055-ammdes-1.png',
             '2020-04-19',
             v_layout_id,
             false,
@@ -13780,7 +13780,7 @@ BEGIN
 
 <p>Melalui pengabdiannya tersebut, almarhum mendapat penghargaan Satyalancana Karya Satya 10 Tahun (pada 2016) dan Satyalancana Karya Satya 30 Tahun (2018). Almarhum merupakan lulusan Sarjana Teknik Metalurgi Universitas Indonesia tahun 1986 dan meraih gelar Magister Mechinical Engineering dari KEIO University, Jepang tahun 1992.</p>',
             true,
-            'img/berita/1585035860-ET1lzVDVAAIF95T.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1585035860-ET1lzVDVAAIF95T.jpeg',
             '2020-03-23',
             v_layout_id,
             false,
@@ -13878,7 +13878,7 @@ BEGIN
 
 <p>&ldquo;Dengan relaksasi dan pembebasan bea masuk terhadap bahan baku industri tersebut, tidak akan boleh menganggu produk-produk yang sudah dihasilkan oleh industri di dalam negeri. Selain itu, tidak boleh ada produk impor barang jadi. Intinya, pemerintah tidak mau ada&nbsp;<em>free rider</em>,&rdquo; papar Menperin.</p>',
             true,
-            'img/berita/1584491436-WhatsApp Image 2020-03-13 at 14.51.17.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584491436-WhatsApp Image 2020-03-13 at 14.51.17.jpeg',
             '2020-03-13',
             v_layout_id,
             false,
@@ -13942,7 +13942,7 @@ BEGIN
 
 <p>ILMATE dalam Angka Tahun 2019 memuat data capaian kinerja Ditjen ILMATE Tahun 2019 seperti pertumbuhan, ekspor impor dan investasi yang tentu nya akan bermanfaat bagi Ditjen ILMATE maupun bagi industri-industri serta stakeholder terkait lain nya. Semoga dengan adanya ILMATE dalam Angka Tahun 2019 dapat dijadikan salah satu dasar dalam pengambilan kebijakan ke depan dalam rangka mengakselerasi pertumbuhan industri untuk menjadikan Indonesia sebagai negara industri tangguh.</p>',
             true,
-            'img/berita/1593669053-Capture.PNG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1593669053-Capture.PNG',
             '2020-03-09',
             v_layout_id,
             false,
@@ -14014,7 +14014,7 @@ BEGIN
 
 <p>&ldquo;Kami terus berkoordinasi dengan Gaikindo, termasuk mengenai terjaganya kebutuhan bahan baku di tengah dampak Covid-19. Rata-rata industri otomotif ini masih punya cadangan bahan baku yang cukup. Kami juga mengikuti informasi bahwa beberapa industri di China dan Jepang, mulai kembali normal berproduksi,&rdquo; paparnya.</p>',
             true,
-            'img/berita/1584491953-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584491953-2.jpeg',
             '2020-03-06',
             v_layout_id,
             false,
@@ -14100,7 +14100,7 @@ BEGIN
 
 <p>Ke depannya, industri kendaraan komersial diharapkan kontribusinya untuk terus menyukseskan kebijakan-kebijakan pemerintah lainnya seperti penerapan kebijakan Zero Over Dimension Over Loading (ODOL) yang akan berlaku efektif per 1 Januari 2023 dalam rangka meningkatkan keselamatan di jalan raya, serta kebijakan penerapan standar baku mutu standar emisi Euro 4 yang akan berlaku efektif pada bulan April 2021 untuk kendaraan bermotor berbahan bakar diesel.</p>',
             true,
-            'img/berita/1584492389-WhatsApp Image 2020-03-05 at 13.45.19.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584492389-WhatsApp Image 2020-03-05 at 13.45.19.jpeg',
             '2020-03-05',
             v_layout_id,
             false,
@@ -14178,7 +14178,7 @@ BEGIN
 
 <p>Harjanto menambahkan, pihaknya akan bersinergi dengan pemangku kepentingan guna merumuskan dan melaksanakan kebijakan serta strategi penumbuhan dan pengembangan industri khususnya sektor ILMATE dalam rangka menciptakan percepatan pertumbuhan dan nilai tambah.</p>',
             true,
-            'img/berita/1584490301-1db51f8c-4495-41e5-8b35-417c855dcbb6.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584490301-1db51f8c-4495-41e5-8b35-417c855dcbb6.jpg',
             '2020-03-03',
             v_layout_id,
             false,
@@ -14260,7 +14260,7 @@ BEGIN
 
 <p>Pada hasil kesimpulan raker tersebut, Komisi VI DPR mendukung strategi pembangunan industri yang diusulkan oleh Kemenperin. Raker dipimpin oleh Wakil Ketua Komisi VI DPR RI, Arya Bima Wikantyasa.</p>',
             true,
-            'img/berita/1584494349-00.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584494349-00.jpeg',
             '2020-02-20',
             v_layout_id,
             false,
@@ -14362,7 +14362,7 @@ BEGIN
 
 <p>&ldquo;Penguasaan teknologi di bidang-bidang tersebut dapat membuat suatu industri menjadi pemimpin pasar sehingga banyak perusahaan berskala internasional berlomba-lomba untuk dapat menguasai teknologi tersebut terlebih dahulu,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1584493464-0.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584493464-0.JPG',
             '2020-02-19',
             v_layout_id,
             false,
@@ -14432,7 +14432,7 @@ BEGIN
 
 <p>(Dit IPAMP, dioleh dari berbagai sumber)</p>',
             true,
-            'img/berita/1582020343-17 februari 2020.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1582020343-17 februari 2020.jpeg',
             '2020-02-17',
             v_layout_id,
             false,
@@ -14522,7 +14522,7 @@ BEGIN
 
 <p>&ldquo;Kami pun sangat berharap agar para eksportir juga dapat diberikan fasilitas kemudahan impor bahan baku dengan baik. Sehingga, rencana dan waktu produksi kami bisa berjalan tepat waktu. Saat ini, kami melakukan impor barang material menggunakan fasilitas KITE (Kemudahan Impor Tujuan Ekspor),&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1584495078-WhatsApp Image 2020-02-12 at 11.11.02.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584495078-WhatsApp Image 2020-02-12 at 11.11.02.jpeg',
             '2020-02-14',
             v_layout_id,
             false,
@@ -14610,7 +14610,7 @@ BEGIN
 
 <p>Selain itu, penggunaan&nbsp;<em>scrap</em>&nbsp;juga dinilai akan berdampak positif dengan meningkatnya daya saing industri hilir karena mendapatkan bahan baku yang lebih kompetitif serta memperluas peluang kerja.</p>',
             true,
-            'img/berita/1584494968-WhatsApp Image 2020-02-12 at 16.19.24(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584494968-WhatsApp Image 2020-02-12 at 16.19.24(1).jpeg',
             '2020-02-12',
             v_layout_id,
             false,
@@ -14712,7 +14712,7 @@ BEGIN
 
 <p>Di samping itu, PT ASDP Indonesia Ferry (Persero) pada tahun ini menganggarkan untuk membeli 11 kapal. Bahkan, dalam lima tahun, ASDP memerlukan sebanyak 54 kapal. &ldquo;Ini menjadi potensi dan&nbsp;<em>challenge</em>&nbsp;bagi industri galangan kapal kita. Ini harus bisa dimanfaatkan sebesarnya untuk kepentingan dalam negeri khususnya untuk menyuplai kebutuhan kapal di Indonesia,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1584494767-WhatsApp Image 2020-02-10 at 14.41.10.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1584494767-WhatsApp Image 2020-02-10 at 14.41.10.jpeg',
             '2020-02-10',
             v_layout_id,
             false,
@@ -14790,7 +14790,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1579754792-fajar_harry_sampurno_210454_big.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1579754792-fajar_harry_sampurno_210454_big.jpg',
             '2020-01-20',
             v_layout_id,
             false,
@@ -14872,7 +14872,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1578624420-WhatsApp Image 2020-01-08 at 12.24.57.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1578624420-WhatsApp Image 2020-01-08 at 12.24.57.jpeg',
             '2020-01-08',
             v_layout_id,
             false,
@@ -14976,7 +14976,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1577694801-20191223_153602-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1577694801-20191223_153602-2.jpeg',
             '2019-12-26',
             v_layout_id,
             false,
@@ -15060,7 +15060,7 @@ BEGIN
 
 <p>&ldquo;Ini suatu yang sangat luar biasa, mudah-mudahan para produsen bisa memanfaatkan dengan baik kebijakan dari pemerintah tersebut. Bagi&nbsp;<em>principal</em>&nbsp;yang belum ada kegiatan produksi di sini, saya kira ini adalah momentum yang tepat untuk melakukan invetasi di Indonesia,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1577695293-20191220_134450.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1577695293-20191220_134450.jpg',
             '2019-12-23',
             v_layout_id,
             false,
@@ -15143,7 +15143,7 @@ BEGIN
 
 <p>&ldquo;AMMDes ini dilengkapi&nbsp;<em>defential lock</em>&nbsp;dengan ban yang bisa disesuaikan dengan medan jalannya, sehingga tidak selip untuk menempuh medan ekstrim dan infarstruktur minim,&rdquo; ungkapnya. AMMDes telah memiliki tingkat kandungan komponen lokal yang cukup tinggi, yakni mencapai 70%.</p>',
             true,
-            'img/berita/1577695905-WhatsApp Image 2019-12-22 at 08.51.03(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1577695905-WhatsApp Image 2019-12-22 at 08.51.03(1).jpeg',
             '2019-12-22',
             v_layout_id,
             false,
@@ -15225,7 +15225,7 @@ BEGIN
 
 <p>Sepanjang tahun 2018, nilai investasi industri elektronik menyentuh angka Rp12,86 Triliun, naik dibanding tahun 2017 sebesar Rp7,81 triliun. &ldquo;Tahun ini, ada beberapa yang akan investasi, misalnya LG mau tambah USD100 juta lebih,&rdquo; ungkapnya.</p>',
             true,
-            'img/berita/1577695973-1-2.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1577695973-1-2.jpeg',
             '2019-12-18',
             v_layout_id,
             false,
@@ -15337,7 +15337,7 @@ BEGIN
 
 <p>&ldquo;Kami mencoba membangunnya bersama. Kami ingin mendorong revolusi industri 4.0 ini dengan trasnformasi yang besar, dengan perubahan yang tak pernah kita hadapi sebelumnya. Terkait industri, kita akan lakukan kerja sama,&rdquo; terangnya.</p>',
             true,
-            'img/berita/1576546811-WhatsApp Image 2019-12-14 at 01.33.03(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1576546811-WhatsApp Image 2019-12-14 at 01.33.03(1).jpeg',
             '2019-12-14',
             v_layout_id,
             false,
@@ -15423,7 +15423,7 @@ BEGIN
 
 <p>Berdasarkan data Gaikindo, total ekspor kendaraan secara utuh sepanjang 10 bulan tahun ini berjalan mencapai 275.364 unit. Jumlah ini meningkat 28,2% dibandingkan ekspor pada periode yang sama tahun lalu sebanyak 214.743 unit.</p>',
             true,
-            'img/berita/1576547181-1-6.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1576547181-1-6.jpg',
             '2019-12-13',
             v_layout_id,
             false,
@@ -15504,7 +15504,7 @@ Menteri Perindustrian Agus Gumiwang Kartasasmita menyampaikan sambutan pada pemb
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1575254679-WhatsApp Image 2019-11-29 at 15.48.44.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1575254679-WhatsApp Image 2019-11-29 at 15.48.44.jpeg',
             '2019-11-29',
             v_layout_id,
             false,
@@ -15597,7 +15597,7 @@ Pada kesempatan itu, Menperin memberikan apresiasi kepada PT. Dyandra Promosindo
 <p><br />
 &ldquo;Semoga rangkaian kegiatan pemeran, presentasi produk,&nbsp;<em>test drive</em>, dan kegiatan atraktif lainnya dapat menjadi barometer baru pameran industri sepeda motor berskala internasional serta meningkatkan kegairahan industri sepeda motor listrik di tanah air,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1575254507-3-3.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1575254507-3-3.jpg',
             '2019-11-29',
             v_layout_id,
             false,
@@ -15683,7 +15683,7 @@ BEGIN
 
 <p>&ldquo;<em>Startup</em>&nbsp;tersebut didukung dengan pendanaan kuat dan menciptakan bisnis yang&nbsp;<em>out-of-the-box</em>, sehingga mampu menunjukkan posisi mereka di dunia dan siap untuk bersaing dengan kompetisi&nbsp;<em>startup</em>&nbsp;yang kian ketat,&rdquo; terangnya.</p>',
             true,
-            'img/berita/1575009026-2-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1575009026-2-3.jpeg',
             '2019-11-28',
             v_layout_id,
             false,
@@ -15745,7 +15745,7 @@ BEGIN
             'Sobat industri, sudah tau kan kalau Indonesia akan menjadi negara mitra resmi Hannover Messe 2020 ?',
             '<p>Sobat industri, sudah tau kan kalau Indonesia akan menjadi negara mitra resmi Hannover Messe 2020 ?</p>',
             true,
-            '',
+            NULL,
             '2019-11-22',
             v_layout_id,
             false,
@@ -15778,7 +15778,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=Bbjw2E36Oss', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=Bbjw2E36Oss', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -15852,7 +15852,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1575008549-0-3.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1575008549-0-3.jpeg',
             '2019-11-19',
             v_layout_id,
             false,
@@ -15942,7 +15942,7 @@ BEGIN
 
 <p>Dalam lawatan ini, Menperin didampingi Sekjen Kemenperin Achmad Sigit Dwiwahjono, Inspektur Jenderal Kemenperin Setyo Wasisto, Direktur Industri Maritim Alat Transportasi dan Alat Pertahanan Ditjen ILMATE Kemenperin Putu Juli Ardika, Direktur Industri Kimia Hulu Ditjen IKFT Kemenperin Fridy Juwono.</p>',
             true,
-            'img/berita/1575008107-WhatsApp Image 2019-11-18 at 14.49.14.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1575008107-WhatsApp Image 2019-11-18 at 14.49.14.jpeg',
             '2019-11-18',
             v_layout_id,
             false,
@@ -16004,7 +16004,7 @@ BEGIN
             'Halo sobat industri. Tahukah kamu fakta menarik tentang penjualan ponsel di Indonesia? Tentunya kamu sudah sering mendengar pula tentang maraknya ponsel yang dijual secara ilegal atau diistilahkan Bla...',
             '<p>Halo sobat industri. Tahukah kamu fakta menarik tentang penjualan ponsel di Indonesia? Tentunya kamu sudah sering mendengar pula tentang maraknya ponsel yang dijual secara ilegal atau diistilahkan Black Market (BM). Apa sih fakta-faktanya yang perlu kita ketahui? Simak videonya ya.</p>',
             true,
-            '',
+            NULL,
             '2019-11-04',
             v_layout_id,
             false,
@@ -16037,7 +16037,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=6mEUV5TbRpo', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=6mEUV5TbRpo', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -16109,7 +16109,7 @@ BEGIN
 
 <p>&ldquo;Kemenperin telah mendorong pola pendidikan vokasi industri yang mengutamakan adanya&nbsp;<em>link and match</em>antara SMK dengan Industri. Melalui upaya tersebut, diharapkan SMK dapat menyediakan SDM yang sesuai kebutuhan industri,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1572595062-WhatsApp Image 2019-10-29 at 10.34.27.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1572595062-WhatsApp Image 2019-10-29 at 10.34.27.jpeg',
             '2019-10-30',
             v_layout_id,
             false,
@@ -16188,7 +16188,7 @@ BEGIN
 
 <p>Selain itu,&nbsp;<em>smelter&nbsp;</em>Freeport diproyeksikan menghasilkan pula produk utama sebesar 30 hingga 60 ton emas per tahun dengan konsumsi dalam negeri sebanyak 10 ton emas. Sedangkan sisanya akan diekspor. Lalu, turunan lain yang dapat diproduksi juga oleh&nbsp;<em>smelter&nbsp;</em>di Gresik adalah 120 ton logam perak.</p>',
             true,
-            'img/berita/1572406179-DSC_6715.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1572406179-DSC_6715.JPG',
             '2019-10-29',
             v_layout_id,
             false,
@@ -16250,7 +16250,7 @@ BEGIN
             'Menteri Perindustrian Kabinet Kerja Airlangga Hartarto menyerahkan jabatannya kepada Menteri Perindustrian Kabinet Indonesia Maju Agus Gumiwang Kartasasmita di Gedung Kementerian Perindustrian pada 23...',
             '<p>Menteri Perindustrian Kabinet Kerja Airlangga Hartarto menyerahkan jabatannya kepada Menteri Perindustrian Kabinet Indonesia Maju Agus Gumiwang Kartasasmita di Gedung Kementerian Perindustrian pada 23 Oktober 2019.</p>',
             true,
-            '',
+            NULL,
             '2019-10-24',
             v_layout_id,
             false,
@@ -16283,7 +16283,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=-U3_udhdanE', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=-U3_udhdanE', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -16328,7 +16328,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1572402240-sertijab.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1572402240-sertijab.jpg',
             '2019-10-23',
             v_layout_id,
             false,
@@ -16416,7 +16416,7 @@ BEGIN
 
 <p>Rudiantara menjelaskan, sebelum aturan berlaku, berbagai pihak agar dapat turut menyosialisasikan aturan IMEI dan mengintegrasikan sistem, baik yang ada di operator seluler, kementerian dan sistem IMEI internasional di Asosiasi Sistem Global untuk Komunikasi Bergerak (GSMA).</p>',
             true,
-            'img/berita/1571639419-WhatsApp Image 2019-10-18 at 11.38.28.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571639419-WhatsApp Image 2019-10-18 at 11.38.28.jpeg',
             '2019-10-18',
             v_layout_id,
             false,
@@ -16482,7 +16482,7 @@ BEGIN
 
 <p>Menteri Perindustrian Airlangga Hartarto didamping Dirjen ILMATE Kemenperin Harjanto beserta jajaran melakukan peninjauan pabrik serta produk yang dihasilkan PT Twink Indonesia seusai meresmikan Pabrik Tegangan Tinggi Kerjasama PT Twink Indonesia dengan Siemens AG di Bogor, 15 Oktober 2019. Produk yang dihasilkan diantaranya peralatan pembangkit, transmisi dan distribusi listrik.</p>',
             true,
-            'img/berita/1579750578-2.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1579750578-2.jpg',
             '2019-10-15',
             v_layout_id,
             false,
@@ -16580,7 +16580,7 @@ BEGIN
 
 <p>&ldquo;Maka itu, kami yakin bahwa Twink merupakan&nbsp;<em>partner</em>&nbsp;yang tepat.Kami akan membuktikan produk yang dihasilkan berkualitas dan bisa dipercaya. Apalagi, adanya program training di pusat pelatihan kami di Jerman. Ini hanya awal dari perjalanan panjang, Siemens akan terus mendampingi pertumbuhan PT Twink,&rdquo; paparnya.</p>',
             true,
-            'img/berita/1571370343-WhatsApp Image 2019-10-15 at 14.52.18.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571370343-WhatsApp Image 2019-10-15 at 14.52.18.jpeg',
             '2019-10-15',
             v_layout_id,
             false,
@@ -16642,7 +16642,7 @@ BEGIN
             'Menteri Perindustrian Airlangga Hartarto didamping Dirjen ILMATE Kemenperin Harjanto serta Direksi PT Twink Indonesia Stanley Milikan dan CEO Switching Product Siemens AG Dr. Ulf Kachinsky melakukan p...',
             '<p>Menteri Perindustrian Airlangga Hartarto didamping Dirjen ILMATE Kemenperin Harjanto serta Direksi PT Twink Indonesia Stanley Milikan dan CEO Switching Product Siemens AG Dr. Ulf Kachinsky melakukan penekanan tombol secara simbolis sebagai tanda telah diresmikannya Pabrik Tegangan Tinggi Kerjasama PT Twink Indonesia dengan Siemens AG di Bogor, 15 Oktober 2019. Nilai investasi pabrik tersebut mencapai Rp500 miliar yang ditargetkan bisa menghasilkan nilai penjualan produknya sebesar Rp500-600 miliar serta menyerap tenaga kerja sebanyak 100 orang.</p>',
             true,
-            '',
+            NULL,
             '2019-10-15',
             v_layout_id,
             false,
@@ -16675,7 +16675,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=Jq_7hZBiEtg', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=Jq_7hZBiEtg', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -16747,7 +16747,7 @@ BEGIN
 
 <p>Janu mengemukakan, investor tersebut di antaranya dari industri semikonduktor dan komponen elektronik, industri peralatan listrik rumah tangga, industri komputer, barang elektronik, dan optik, serta industri peralatan teknik. Mereka itu, di antaranya PT Sammyung Precision Batam, PT Simatelex Manufactory Batam, PT Pegatron Technology Indonesia, dan PT Siix Electronics Indonesia.</p>',
             true,
-            'img/berita/1571130407-WhatsApp Image 2019-10-15 at 13.55.40(3).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571130407-WhatsApp Image 2019-10-15 at 13.55.40(3).jpeg',
             '2019-10-15',
             v_layout_id,
             false,
@@ -16821,7 +16821,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1571128804-02__.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571128804-02__.jpg',
             '2019-10-15',
             v_layout_id,
             false,
@@ -16919,7 +16919,7 @@ BEGIN
 
 <p>Sementara itu, Indonesia mengekspor produk tekstil, sepatu, elektronik, makanan dan bahan baku ke Jerman. Saat ini lebih dari 250 perusahaan Jerman menjalankan bisnis di Indonesia, di antaranya Festo, Robert Bosch, SAP, T&Uuml;V NORD, Siemens, MAN, ThyssenKrupp, BASF, Bayer, Daimler dan BMW.</p>',
             true,
-            'img/berita/1571130913-WhatsApp Image 2019-10-04 at 08.13.39.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571130913-WhatsApp Image 2019-10-04 at 08.13.39.jpeg',
             '2019-10-04',
             v_layout_id,
             false,
@@ -16981,7 +16981,7 @@ BEGIN
             'Pada tanggal 3 Oktober 2019, Indonesia mengukuhkan dirinya sebagai Negara Mitra Resmi Hannover Messe 2020 pada acara Kick Off Hannover Messe 2020.',
             '<p>Pada tanggal 3 Oktober 2019, Indonesia mengukuhkan dirinya sebagai Negara Mitra Resmi Hannover Messe 2020 pada acara Kick Off Hannover Messe 2020.</p>',
             true,
-            '',
+            NULL,
             '2019-10-04',
             v_layout_id,
             false,
@@ -17014,7 +17014,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=HqqR-rLNa0o', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=HqqR-rLNa0o', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -17056,7 +17056,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1571130663-Web1.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571130663-Web1.jpg',
             '2019-10-03',
             v_layout_id,
             false,
@@ -17144,7 +17144,7 @@ BEGIN
 
 <p>Konsep tersebut dinilai kuat dan bisa berguna jika dikembangkan pada AMMDes untuk pembangunan jalan dan bangunan di pedesaan dengan kawasan yang tak mungkin dimasuki truk &ldquo;molen&rdquo; berukuran besar. &ldquo;Jadi, modifikasi ini mendorong talenta-talenta muda untuk terus berkreasi, apalagi prototipenya dibangun oleh industrinya,&rdquo; tandasnya.</p>',
             true,
-            'img/berita/1570437808-WhatsApp Image 2019-09-28 at 12.12.54.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1570437808-WhatsApp Image 2019-09-28 at 12.12.54.jpeg',
             '2019-09-29',
             v_layout_id,
             false,
@@ -17211,7 +17211,7 @@ BEGIN
 
 <p>Rabu (25/9), PT SGMW melakukan ekspor perdananya yaitu produk kendaraan jenis SUV untuk diekspor ke Thailand, Brunei Darussalam, dan Kepulauan Fiji. Kita simak video liputannya yuk, Sobat Industri !</p>',
             true,
-            '',
+            NULL,
             '2019-09-28',
             v_layout_id,
             false,
@@ -17244,7 +17244,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=dyP7_ZJsKVM', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=dyP7_ZJsKVM', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -17324,7 +17324,7 @@ BEGIN
 
 <p>&ldquo;Kabar baik bagi industri tidak hanya sampai di situ saja, pemerintah juga telah mengeluarkan PP Nomor 45/2019, di mana salah satunya mengatur tentang pemberian super deduction tax bagi kegiatan riset, inovasi dan vokasi yang dapat diberikan pengurangan penghasilan bruto sebesar 200% sampai 300%,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1571131172-WhatsApp Image 2019-09-25 at 12.04.00.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1571131172-WhatsApp Image 2019-09-25 at 12.04.00.jpeg',
             '2019-09-26',
             v_layout_id,
             false,
@@ -17432,7 +17432,7 @@ BEGIN
 
 <p>Populasi industri elektronika di Indonesia sampai dengan triwulan II-2019, ada penambahan sejumlah 21 perusahaan. &ldquo;Industri elektronika dinilai sebagai salah satu sektor yang mampu memberikan kontribusi signifikan terhadap perekonomian nasional,&rdquo; tegas Janu.</p>',
             true,
-            'img/berita/1569224289-WhatsApp Image 2019-09-20 at 18.25.00(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1569224289-WhatsApp Image 2019-09-20 at 18.25.00(1).jpeg',
             '2019-09-22',
             v_layout_id,
             false,
@@ -17518,7 +17518,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1568859172-Hannover Messe_Indonesia_v7-01.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568859172-Hannover Messe_Indonesia_v7-01.png',
             '2019-09-19',
             v_layout_id,
             false,
@@ -17625,7 +17625,7 @@ BEGIN
 
 <p>Kemenperin bertekad mendorong agar mobil Esemka dapat meningkatkan penggunaan komponen dalam negeri (TKDN). &ldquo;Mobil buatan anak bangsa ini diharapkan tidak banyak didominasi oleh komponen impor, sehingga TKDN harus menjadi prioritas mobil ESEMKA,&rdquo; ungkap Direktur Jenderal Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Kemenperin, Harjanto.</p>',
             true,
-            'img/berita/1568689938-WhatsApp Image 2019-09-06 at 12.56.02.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568689938-WhatsApp Image 2019-09-06 at 12.56.02.jpeg',
             '2019-09-06',
             v_layout_id,
             false,
@@ -17697,7 +17697,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1568614427-esemka 1.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568614427-esemka 1.jpg',
             '2019-09-06',
             v_layout_id,
             false,
@@ -17770,7 +17770,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1568692062-Web1.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568692062-Web1.jpg',
             '2019-09-04',
             v_layout_id,
             false,
@@ -17870,7 +17870,7 @@ BEGIN
 
 <p>Langkah tersebut juga sejalan dengan implementasi program prioritas Making Indonesia 4.0. &ldquo;Jadi, langkah strategis sudah disiapkan secara bertahap, sehingga kita bisa melompat untuk menuju produksi mobil atau sepeda motor listrik yang berdaya saing di pasar domestik maupun ekspor,&quot; tuturnya.</p>',
             true,
-            'img/berita/1568690302-WhatsApp Image 2019-08-28 at 19.19.13.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568690302-WhatsApp Image 2019-08-28 at 19.19.13.jpeg',
             '2019-08-29',
             v_layout_id,
             false,
@@ -17962,7 +17962,7 @@ BEGIN
 
 <p>Selanjutnya, untuk memacu daya saing, produktivitas dan inovasi industri, Pemerintah memberikaninsentif pemotongan pajak hingga 300% bagi industri yang melakukan kegiatan kegiatan R&amp;D&amp;D yang diatur dalam Peraturan Pemerintah (PP) Nomor 45 Tahun 2019 tentang Perubahan Atas PP Nomor 94 Tahun 2010 tentang Perhitungan Penghasilan Kena Pajak dan Pelunasan PPh dalam Tahun Berjalan.</p>',
             true,
-            'img/berita/1568690574-WhatsApp Image 2019-08-28 at 14.46.02.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568690574-WhatsApp Image 2019-08-28 at 14.46.02.jpeg',
             '2019-08-28',
             v_layout_id,
             false,
@@ -18054,7 +18054,7 @@ BEGIN
 
 <p>&ldquo;Dalam skema PPnBM yang baru, akan ditambahkan parameter penghitungan konsumsi bahan bakar dan emisi CO2. Ini juga untuk menyesuaikan minat pasar global, sehingga kita bisa mendorong produksi kendaraan seperti sedan,&rdquo; imbuhnya,&rdquo; imbuhnya.</p>',
             true,
-            'img/berita/1568691012-WhatsApp Image 2019-08-15 at 14.04.21(1).jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1568691012-WhatsApp Image 2019-08-15 at 14.04.21(1).jpeg',
             '2019-08-15',
             v_layout_id,
             false,
@@ -18124,7 +18124,7 @@ BEGIN
 
 <p>Dalam konsep pelatihan ini, peserta dan tim diberikan materi-materi teknis mengenai proses, quality control, manufacturing process analysis, termasuk juga workshop pembuatan Gugus Kendali Mutu (GKM) atau dalam kata lain disebut Quality Control Circle. Terlebih pelatihan ini tidak hanya di dalam kelas, namun peserta diminta Hands-on atau mempraktekkan langsung teori yang sudah dipelajari untuk membuat suatu produk. Dimana produk tersebut dibuat dengan mengintegrasikan proses pengecoran, pemotongan plat, bending, pengelasan, permesinan serta proses inspeksinya. Harapannya, dengan mengikuti pelatihan ini peserta mampu tidak hanya dalam hal teori melainkan juga diberikan pengalaman untuk pembuatan produknya, aau dengan kata lain out put trainingnya adalah pembuatan suatu produk secara langsung dengan mempertimbangkan sisi safety, quality dan costnya.</p>',
             true,
-            'img/berita/1564449433.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1564449433.jpeg',
             '2019-07-15',
             v_layout_id,
             false,
@@ -18179,7 +18179,7 @@ BEGIN
 
 <p>Expo Boiler 2019 merupakan pameran niaga yang khusus menampilkan boiler industri beserta komponen, aksesoris, layanan teknis. Selain itu, memberikan edukasi, sertifikasi dan pertukaran informasi melalui bimbingan teknis dan seminar.</p>',
             true,
-            'img/berita/1564374698.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1564374698.jpeg',
             '2019-07-11',
             v_layout_id,
             false,
@@ -18254,7 +18254,7 @@ BEGIN
 
 <p>&ldquo;Adapun yang menerapkan TKDN hardware sebanyak 44 merek, software dan hardware sebanyak 2&nbsp;&nbsp;merek, dan 1 merek melalui skema pusat inovasi yaitu yang dibangun oleh Apple,&rdquo; sebut Janu.&nbsp;&nbsp;Angka impor smartphone juga menurun dari 60 juta unit pada 2014 menjadi 3,89 juta unit pada semester I tahun 2018.</p>',
             true,
-            'img/berita/1562892868.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1562892868.jpeg',
             '2019-07-10',
             v_layout_id,
             false,
@@ -18375,7 +18375,7 @@ BEGIN
 
 <p>- sekian-</p>',
             true,
-            'img/berita/1561246912.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1561246912.jpeg',
             '2019-06-19',
             v_layout_id,
             false,
@@ -18443,7 +18443,7 @@ BEGIN
 	<li>Semua area teknologi dalam satu tempat pameran</li>
 </ul>',
             true,
-            'img/berita/1554453544.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554453544.jpg',
             '2019-03-31',
             v_layout_id,
             false,
@@ -18502,7 +18502,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1554092224.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554092224.JPG',
             '2019-03-29',
             v_layout_id,
             false,
@@ -18603,7 +18603,7 @@ BEGIN
 
 <p>&ldquo;Dengan mendukung revolusi&nbsp;industri 4.0, kami optimitis akan mampu meningkatkan efisiensi produksi dan daya saing.&nbsp;Terlebih lagi dengan didukung industri tier-1 dan 2 yang cukup banyak, sehingga dapat mendorong pengembangan IKM otomotif,&rdquo; ungkapnya.</p>',
             true,
-            'img/berita/1554091044.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554091044.jpeg',
             '2019-03-29',
             v_layout_id,
             false,
@@ -18660,7 +18660,7 @@ BEGIN
 
 <p>Workshop yang dihadiri oleh lebih dari 150 peserta sektor industri otomotif ini, dimulai dengan registrasi SIINas (Sistem Informasi Industri Nasional) bagi perusahaan yang belum terdaftar. Dr.-Ing Paryanto, Dosen Teknik Mesin Universitas Diponegoro, menjadi trainer pada workshop ini yang mendetailkan penjelasan pada History and definition of Industry 4.0, Opportunities, challenges and risk through Industry 4.0, core technologies for Industry 4.0, and how to self assessment.</p>',
             true,
-            'img/berita/1554091387.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554091387.jpg',
             '2019-03-28',
             v_layout_id,
             false,
@@ -18758,7 +18758,7 @@ BEGIN
 
 <p><img alt="" src="https://lh3.googleusercontent.com/hklVtaGXCANJBBHWWRenS8tENC33wUP8vTz_-FmyaktrctHwwAzx2ks0IvbvwkhICfMkh8Wqtzl7dXDCvR6s39mabjS2oE2af_otj4jlsnXW_usIHEZrM902GoFw-2PjxF7l9c4opC4jFds-UWLu1Wm2dL0-JaNRB5L-ZajS8lw5be3ljvMk13SS7mhQaVoMOLq1g_Oi_JHW1MB9F9rwVAfuklKipktzO6YZnABh867zBrBSU3VuDVI3V38lSv09RuSZEIUbeigSqpP115WerZNZi2xRmWwAoYTXUjTr4BhDA40bP7W4GRpMOUpyHpLse2kVbxIV2FUxfQHVKT1siHbwy5UWieBqpTNu3m63Ed1lMWf6fqfQ6f2wOQDdqII-aFNtw6fCcmzeyA0rqGVssDdM-lM_WZd9_yYJ2CbFcvgByBrr-16oT7I1khDJFEOsutL18rIiS3H45JOdmj6Ay6CjgfLEdAsUOfX5Gm7ObRvjuuTi1cNvPx67s7KkVA4DvzLXU9vcHcrxIfUtoaG32cGb0BbYJ70jDUHvJGrXzc3ulGmRTtH7dsx3e7PwMVszCqvv7OLSDkNgCFasi0I7z4OT3G6T0aUWnL0cREzvJmZxRVjtW76wEHWYyFe5B7s7MhYSHwa-i9_wTLazJyQtkMp_Amoic6o=w1079-h810-no" style="height:540px; width:720px" /></p>',
             true,
-            'img/berita/1553840463.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553840463.jpeg',
             '2019-03-28',
             v_layout_id,
             false,
@@ -18820,7 +18820,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1554425972.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554425972.jpg',
             '2019-03-27',
             v_layout_id,
             false,
@@ -18905,7 +18905,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1553839064.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553839064.jpeg',
             '2019-03-27',
             v_layout_id,
             false,
@@ -18982,7 +18982,7 @@ BEGIN
 
 <p>Selain itu, KMWI&nbsp;<em>Production System</em>&nbsp;juga menjamin kualitas produk AMMDes-KMW yang akan dipasarkan melalui sistem&nbsp;<em>quality built in process&nbsp;</em>di dalam proses produksinya dan disempurnakan melalui&nbsp;<em>final inspection process</em>, sehingga produk yang akan dipasarkan telah lolos uji kualitas dan kelengkapan.&nbsp;&ldquo;Ke depannya diharapkan AMMDes-KMW dapat berkontribusi secara nyata dalam meningkatkan laju perekonomian masyarakat di pedesaan,&rdquo; imbuhnya.</p>',
             true,
-            'img/berita/1554092592.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554092592.jpeg',
             '2019-03-26',
             v_layout_id,
             false,
@@ -19085,7 +19085,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1553674517.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553674517.jpeg',
             '2019-03-26',
             v_layout_id,
             false,
@@ -19158,7 +19158,7 @@ BEGIN
 
 <p>Pencapaian perusahaan dalam memproduksi&nbsp;fiber optic cable systemdiharapkan dapat memberikan kontribusi yang positif dalam program pembangunan infrastruktur oleh Pemerintah sekaligus membuka lapangan kerja baru di daerah Jawa Tengah, khususnya Kabupaten Kendal.</p>',
             true,
-            'img/berita/1553503802.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553503802.jpg',
             '2019-03-21',
             v_layout_id,
             false,
@@ -19241,7 +19241,7 @@ BEGIN
 
 <p>&ldquo;Kami mengapresiasi program pendidikan vokasi yang&nbsp;<em>link and match&nbsp;</em>antara SMK dengan industri ini. Apalagi, di Indonesia ada 14.260 SMK, yang 10.600 di antaranya berstatus swasta. Selain itu, 5.000 SMK belum punya kerja sama dengan industri. Untuk itu, kami harapkan program ini terus dilanjutkan,&rdquo; ujarnya.</p>',
             true,
-            'img/berita/1553048824.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553048824.JPG',
             '2019-03-18',
             v_layout_id,
             false,
@@ -19292,7 +19292,7 @@ BEGIN
 
 <p>Kegiatan temu usaha ini dihadiri oleh 370 orang dari 146 industri yang terdiri dari berbagai macam sektor binaan Kementerian Perindustrian. Baik skala kecil, menengah dan besar.&nbsp;&nbsp;Dari sektor ILMATE dihadiri oleh 51 perusahaan.</p>',
             true,
-            'img/berita/1553156286.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553156286.jpg',
             '2019-03-15',
             v_layout_id,
             false,
@@ -19369,7 +19369,7 @@ BEGIN
 
 <p>Selanjutnya, industri galangan kapal dan industri kelautan, bengkel mobil, industri penerbangan, serta industri makanan dan minuman. Diproyeksi, pada lima tahun ke depan, total kebutuhan tenaga kerja di Jepang pada 14 bidang usaha, akan mencapai 345.150 orang, dengan sektor industri sebanyak 87.650 orang.</p>',
             true,
-            'img/berita/1553082329.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553082329.JPG',
             '2019-03-15',
             v_layout_id,
             false,
@@ -19444,7 +19444,7 @@ BEGIN
 
 <p>&ldquo;Inilah kesempatannya untuk semua lulusan akademi Apple bisa merebut pasar terebut. Diharapkan, selain dapat meningkatkan pasar domestik, juga dapat memperluas untuk pasar ekspor.&nbsp;Sehingga semakin banyak lulusan yang mampu mengembangkan aplikasi iOS dan dapat mengembangkan ekonomi berbasis digital, tidak hanya di Indonesia tetapi juga dunia,&rdquo; pungkasnya.</p>',
             true,
-            'img/berita/1553046136.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553046136.jpg',
             '2019-03-12',
             v_layout_id,
             false,
@@ -19525,7 +19525,7 @@ BEGIN
 
 <p>Berdasarkan kategori, ekspor Thailand kebanyakan adalah jenus&nbsp;<em>pick up</em>&nbsp;dan mobil dengan berat satu ton kemudian mobil penumpang SUV dan sedan. &ldquo;Yang membedakan dengan Indonesia, ekspor terbesar kita adalah MPV seperti Kijang dan kelompoknya yang tujuh penumpang, SUV dan&nbsp;<em>hatchback</em>,&rdquo; jelas Airlangga.</p>',
             true,
-            'img/berita/1553046310.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553046310.JPG',
             '2019-03-11',
             v_layout_id,
             false,
@@ -19601,7 +19601,7 @@ BEGIN
 
 <p>Maka dengan adanya BMDTP industri hilirnya makin berkembang, sehinga banyak investor yang dapat masuk investasi di sektor industri hulu. Setditjen ILMATE memfasilitasi BMDTP dalam jangka waktu berjalan untuk 5 tahunan dari 2020 &ndash; 2024 rencana penyiapan BMDTP kiranya dapat segera di persiapkan.</p>',
             true,
-            'img/berita/1554081966.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554081966.jpg',
             '2019-03-04',
             v_layout_id,
             false,
@@ -19710,7 +19710,7 @@ BEGIN
 
 <p>Maka dengan adanya BMDTP industri hilirnya makin berkembang, sehinga banyak investor yang dapat masuk investasi di sektor industri hulu. Setditjen ILMATE memfasilitasi BMDTP dalam jangka waktu berjalan untuk 5 tahunan dari 2020 &ndash; 2024 rencana penyiapan BMDTP kiranya dapat segera di persiapkan.</p>',
             true,
-            'img/berita/1552038664.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1552038664.jpeg',
             '2019-03-04',
             v_layout_id,
             false,
@@ -19799,7 +19799,7 @@ BEGIN
 
 <p>Selanjutnya, dalam rangka menciptakan tenaga kerja yang kompeten dan sesuai dengan kebutuhan dunia industri saat ini, Kemenperin telah meluncurkan program pendidikan vokasi yang&nbsp;<em>link and match</em>&nbsp;antara Sekolah Menengah Kejuruan (SMK) dengan industri di beberapa wilayah di Indonesia. Dalam hal ini, pemerintah akan menyiapkan insentif kepada industri dalam negeri yang melakukan pengembangan SDM melalui pemberian&nbsp;<em>super dedutible tax&nbsp;</em>sebesar 200 persen.</p>',
             true,
-            'img/berita/1553049152.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1553049152.jpeg',
             '2019-02-25',
             v_layout_id,
             false,
@@ -19854,7 +19854,7 @@ BEGIN
 
 <p><img alt="" src="https://lh3.googleusercontent.com/V1NDLok_zwMCYaiCBoyT2T_uljvgrXNKmxftcqwF_52yBfB0JB0_LRmV39jhbDoWsvL7VnqeFt-laEMZTXkJZ8f9n6x5tNADu456S3_xdAEr2P5-5GQSH2LRkdQ9nulJbfVFCxqDh9Q29X-3iA5KrkxL7hZPDG04hklJGuzSGsHaXW-wKiV_qVMR8JrWxEmqEKg4G2XF0ugXQlEGJ_anJoQrTdcYsimBHXON9kZW2Lv3v-lZw9buQV4RllYDSNzlloObbZN9f3VjFtgTTj-bo_4uD_jm2gOoy6vj1QCjBr6StYOboIpkxb68RxcXkh39yCNPL5YfPzt2JbfNeEcl18fizywA7OpVpf0TC-RwGiMqev452vLlIPFro43WsoJneXReog9IylilJLkYtl2Hnw_6OKp1nsRnXqC_sRJvhMCCX18JrQANDXI-izYROAXqr_Cntl_vfvcfkl52-2oMPSaVuDd5d84SkmkWK4S5h-0MDp2uSW3IX4Rtn7K0dmDPEANc3enQd0DoYIIFTCzYNh_lcD72_sfLRFLC0kNQsMZlaR5cFaydpdg7S4rH3UZ7IiRr7RZh_4b4Rzv1557_6CulV7uUhdEH9J_WLOauNg81bDnUFcGjfyTo4hE-EuAwu0eThcFkmmDRezHgB1QBpCb_qq6PizcIkL_yGehkao0dQhveW84PY5x8q2lCp_dNEHqQCQf_2pTo7LXH2ydbDk4=w1086-h814-no" style="height:375px; width:500px" /></p>',
             true,
-            'img/berita/1551073379.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1551073379.jpg',
             '2019-02-22',
             v_layout_id,
             false,
@@ -19905,7 +19905,7 @@ BEGIN
 
 <p>Inti Bimtek ini adalah mengajarkan bagaimana pengoperasian aplikasi SAS di lingkungan Ditjen ILMATE. Sistem Aplikasi SAS (SAS) adalah aplikasi utama yang digunakan oleh satuan kerja yang menjadi pengguna layanan Kantor Pelayanan Perbendaharaan Negara (KPPN) seluruh Indonesia, termasuk Ditjen ILMATE. Dengan Aplikasi ini, Pengelola Keuangan Ditjen ILMATE dapat membuat Surat Perintah Membayar (SPM) yang menjadi dasar KPPN menerbitkan Surat Perintah Pencairan Dana (SP2D) di mana setelah itu dana APBN yang masuk dalam DIPA satker tersebut bisa dicairkan.&nbsp;Bukan hanya itu, di aplikasi ini juga Bendahara bisa membuat Laporan Pertanggungjawaban (LPJ), baik Bendahara Pengeluaran maupun Bendahara Penerimaan.</p>',
             true,
-            'img/berita/1550803047.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550803047.jpeg',
             '2019-02-22',
             v_layout_id,
             false,
@@ -19974,7 +19974,7 @@ BEGIN
 
 <p>Dengan sosialisasi ini Direktur Jenderal Industri Logam Mesin Alat Transportasi dan Elektronika mengharapkan kerjasama dan partisipasi industri untuk berkolaborasi dalam mendukung program pendidikan vokasi. Hasil dari kegiatan Vokasi ini diharapkan dapat meningkatkan kualitas SDM dan mendorong pertumbuhan industri dalam negeri.</p>',
             true,
-            'img/berita/1551058580.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1551058580.jpg',
             '2019-02-21',
             v_layout_id,
             false,
@@ -20037,7 +20037,7 @@ BEGIN
 
 <p>Dari Workshop ini, diperoleh tambahan 15 perusahaan yang konfirm berpartisipasi dalam acara peluncuran program pendidikan vokasi, baik di Jawa Tengah maupun Jawa Barat, yaitu PT. Metalindo Teratai, PT. Ispat Bukit Baja, PT. Evercorss, PT. Federal Izumi, PT. Hariff Daya, PT. Sungnam Electronics, PT. Sarana Steel, PT. PEC GI, PT. Komatsu, PT. Indonesia Steel Tube, PT. Raja Besi, PT. PESGMFID, PT. INTI, PT. SKy Wotrth, dan PT. Samsung.</p>',
             true,
-            'img/berita/1550650717.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550650717.jpeg',
             '2019-02-20',
             v_layout_id,
             false,
@@ -20098,7 +20098,7 @@ BEGIN
 
 <p>Pada peluncuran ini, Dirjen ILMATE berharap PT Voksel Electric Tbk. untuk terus meningkatkan tingkat komponen lokal untuk produk-produknya, sehingga industri komponen dalam negeri juga terus tumbuh dan semakin memperkuat struktur industri dalam negeri.</p>',
             true,
-            'img/berita/1550802500.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550802500.jpeg',
             '2019-02-20',
             v_layout_id,
             false,
@@ -20157,7 +20157,7 @@ BEGIN
 
 <p>Dengan konsinyering ini diharapkan dapat menyamakan persepsi, saling bersinergi dengan pemangku kepentingan guma merumuskan program, kegiatan, dan kebijakan serta strategi penumbuhan dan pengembangan industri khususnya sektor ILMATE dalam rangka menciptakan pertumbuhan dan nilai tambah.&nbsp;</p>',
             true,
-            'img/berita/1550653331.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550653331.jpg',
             '2019-02-19',
             v_layout_id,
             false,
@@ -20210,7 +20210,7 @@ BEGIN
 
 <p>Pada akhir sosialisasi ini, segenap peserta Sosialisasi Pertunjuk Teknis Pertanggungjawaban menyepakati untuk perbaikan pertanggungjawaban keuangan seperti SPD dalam negeri, SPD luar negeri, laporan kegiatan, dokumen at cost, BAST kontrak -kontrak, uang muka, dan revolving pertanggungjawaban keuangan.</p>',
             true,
-            'img/berita/1550649013.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550649013.png',
             '2019-02-15',
             v_layout_id,
             false,
@@ -20304,7 +20304,7 @@ Kemenperin sudah melakukan&nbsp;<em>link &amp; match</em>&nbsp;700 lebih industr
 
 <p>Dalam hal ini,pemerintah&nbsp;sedang&nbsp;menyiapkan insentif kepada industri dalam negeri yang melakukan pengembangan SDM melalui pemberian&nbsp;insentif fiskal berupa&nbsp;<em>super deductible</em><em>tax</em>&nbsp;sampai 200&nbsp;persen&nbsp;hingga 300 persen.&nbsp;&ldquo;Pemberian insentif fiskal tersebut diharapkan dapat memberikan keringanan bagi investor dalam membangun industri logam di dalam negeri,&rdquo; terangnya.</p>',
             true,
-            'img/berita/1550462291.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1550462291.JPG',
             '2019-02-15',
             v_layout_id,
             false,
@@ -20373,7 +20373,7 @@ BEGIN
 
 <p>Di tahap awal, INALUM akan memasok 10% kebutuhan Aluminium Foundry Alloy di PAKO yang kemudian akan&nbsp;dipergunakan bagi produksi velg kendaraan bermerek Toyota model Kijang Innova, Fortuner dan Sienta. Volume ini&nbsp;akan terus ditambah secara bertahap seiring dengan kemampuan INALUM dalam memasok alloy yang sejalan&nbsp;dengan rencana pengembangan kapasitas produksi secara berkelanjutan.</p>',
             true,
-            'img/berita/1554425742.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1554425742.jpeg',
             '2019-02-14',
             v_layout_id,
             false,
@@ -20426,7 +20426,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1548821771.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1548821771.jpeg',
             '2019-01-29',
             v_layout_id,
             false,
@@ -20475,7 +20475,7 @@ BEGIN
 
 <p>PT. Java Pacific juga telah memiliki rencana pada tahun 2021 untuk menambah kapasitas produksi produk HRC dan CRC menjadi 1 Juta Ton untuk produk HRC dan 900 ribu Ton utnuk produk CRC. Hal ini dilakukan karena memperkirakan demand kebutuhan baja hulu yang semakin meningkat kedepan serta untuk memenuhi kebutuhan bahan baku produk hilirnya sendiri.</p>',
             true,
-            'img/berita/1549436013.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1549436013.jpeg',
             '2019-01-25',
             v_layout_id,
             false,
@@ -20602,7 +20602,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1548735362.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1548735362.JPG',
             '2019-01-24',
             v_layout_id,
             false,
@@ -20657,7 +20657,7 @@ BEGIN
 
 <p>PT Caterpillar Remanufacturing Indonesia didirikan untuk pelayanan konsumen yang lebih baik. Komponen yang diremanufaktur adalah&nbsp;<em>cylinder heads</em>(4 jenis part&nbsp;<em>number</em>) dengan kapasitas produksi 1.700 unit/tahun. Sedangkan impor bahan baku (<em>core</em>: rongsokan&nbsp;<em>cylinder head</em>) sebesar 750 &ndash; 1000 unit/tahun. Komponen yang telah diremanufaktur ditujukan untuk mendukung produksi dan populasi peralatan Caterpillar yang&nbsp;&nbsp;beredar di Indonesia sebanyak 50% dan juga untuk keperluan ekspor sebesar 50%. Berikut adalah gambar cylinder head yang merupakan bagian dari&nbsp;<em>diesel engine</em>:</p>',
             true,
-            'img/berita/1549436305.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1549436305.png',
             '2019-01-24',
             v_layout_id,
             false,
@@ -20720,7 +20720,7 @@ BEGIN
 
 <p>(Beny Adi Purwanto)</p>',
             true,
-            'img/berita/1548663852.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1548663852.jpeg',
             '2019-01-21',
             v_layout_id,
             false,
@@ -20787,7 +20787,7 @@ BEGIN
 
 <p>Sumber : bisnis.com</p>',
             true,
-            'img/berita/1548662703.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1548662703.jpg',
             '2019-01-03',
             v_layout_id,
             false,
@@ -20849,7 +20849,7 @@ BEGIN
 
 <p>Sebelumnya, Menperin menyampaikan bahwa industri yang berlokasi di Cilegon dan Serang tidak terdampak bencana tsunami tersebut. &ldquo;Industri sudah mengantisipasi dan memitigasi bencana seperti tsunami dan gempa, jadi standarnya lebih tinggi,&rdquo; ujar Menperin.</p>',
             true,
-            'img/berita/1546401288.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546401288.jpeg',
             '2018-12-31',
             v_layout_id,
             false,
@@ -20918,7 +20918,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1545795467.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545795467.jpg',
             '2018-12-24',
             v_layout_id,
             false,
@@ -20973,7 +20973,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1545204280.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545204280.jpg',
             '2018-12-19',
             v_layout_id,
             false,
@@ -21030,7 +21030,7 @@ BEGIN
 
 <p>Acara ditutup dengan sambutan dan peresmian PLTGU Jawa-1 1760 MW oleh Menteri Koordinator bidang Perekonomian Darmin Nasution. Dalam sambutannya, Menko Darmin Nasution mengungkapkan bahwa PLTGU Jawa-1 merupakan proyek yang menggabungkan bisnis LNG di hulu dengan bisnis kelistrikan di hilir. PLTGU ini nantinya akan memiliki kapasitas terpasang sebesar 1760 MW dengan memanfaatkan 400 juta kaki kubik LNG per hari yang dikirim langsung dari Tangguh. Dengan adanya PLTGU Jawa-1 apabila telah selesai dibangun, merupakan salah satu pembangkit penting&nbsp;&nbsp;dalam menopang kehandalan sistem kelistrikan Jawa Bali. Selanjutnya, beliau menambahkan bahwa pemerintah telah menetapkan proyek PLTGU Jawa-1 ini tidak hanya sebagai Proyek Strategis Nasional, tetapi juga sebagai proyek prioritas dari Komite Percepatan Penyediaan Infrastruktur Prioritas (KPPIP). Diakhir sambutannya, Menko Darmin Nasution berpesan kepada PT. Pertamina, PT. PLN, dan semua pihak yang terlibat agar kerjasama ini dijalankan sesuai dengan rencana langkah-langkah yang telah ditetapkan, sehingga pembangunan dapat berjalan lancar dan sesuai dengan waktu yang ditargetkan.&nbsp;(R.A)</p>',
             true,
-            'img/berita/1545875566.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545875566.png',
             '2018-12-19',
             v_layout_id,
             false,
@@ -21087,7 +21087,7 @@ Baru-baru ini, NaSDEC telah melakukan Analisa stabilitas terhadap kapal-kapal ya
 <br />
 Budi mengapresiasi bahwa dalam pendesainan kapal untuk danau Toba tetap mempertahankan local wisdom daerah tersebut. &ldquo;Saya sampaikan kalau itu bisa dibuat dengan harga kompetitif (sesuai anggaran ) kami bisa bangun seperti di Palembang, di Danau Toba dan di beberapa tempat, supaya kearifan lokal yang dikembangkan ITS menyebar ke seluruh tanah air.&rdquo; Ungkapnya.</p>',
             true,
-            'img/berita/1545277071.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545277071.jpg',
             '2018-12-14',
             v_layout_id,
             false,
@@ -21166,7 +21166,7 @@ BEGIN
 
 <p>Meningkatnya permintaan produksi kereta api saat ini, telah membuat kinerja dan aset PT INKA (Persero) mengalami pertumbuhan yang signiWkan. Dimana nilai aset pada tahun 2017 mencapai Rp6,04 triliun. Peningkatan terjadi ikarena INKA semakin dipercaya untuk mengerjakan beberapa proyek besar, berskala global dalam industri perkeretaapian, prestasi yang membanggakan dan layak dikembangkan.</p>',
             true,
-            'img/berita/1545276777.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545276777.jpg',
             '2018-12-14',
             v_layout_id,
             false,
@@ -21226,7 +21226,7 @@ Pesawat CN212i ini adalah pesawat yang dimiliki Angkatan Udara Filipina dan sepe
 <p><br />
 Dikutip dari&nbsp;<em>http://www.industry.co.id/read/36864/angkatan-udar</em>???????</p>',
             true,
-            'img/berita/1545280754.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545280754.jpg',
             '2018-12-14',
             v_layout_id,
             false,
@@ -21286,7 +21286,7 @@ Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika (ILM
 <img src="http://kemenperin.go.id/download/20555" /><br />
 &nbsp;</p>',
             true,
-            'img/berita/1546403849.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546403849.JPG',
             '2018-12-10',
             v_layout_id,
             false,
@@ -21365,7 +21365,7 @@ BEGIN
 
 <p>sumber : Kontan.co.id</p>',
             true,
-            'img/berita/1548059950.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1548059950.jpg',
             '2018-12-07',
             v_layout_id,
             false,
@@ -21422,7 +21422,7 @@ BEGIN
 
 <p><img alt="" src="http://kemenperin.go.id/download/20542" /></p>',
             true,
-            'img/berita/1546402824.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546402824.JPG',
             '2018-12-07',
             v_layout_id,
             false,
@@ -21495,7 +21495,7 @@ BEGIN
 
 <p>Sumber :&nbsp;http://www.kemenperin.go.id</p>',
             true,
-            'img/berita/1545356145.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545356145.JPG',
             '2018-12-03',
             v_layout_id,
             false,
@@ -21596,7 +21596,7 @@ BEGIN
 
 <p>sumber :&nbsp;https://www.indotelko.com/kanal?c=id&amp;it=animo-iot-pemerintah-regulasi</p>',
             true,
-            'img/berita/1544438130.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544438130.jpg',
             '2018-11-30',
             v_layout_id,
             false,
@@ -21655,7 +21655,7 @@ BEGIN
 
 <p>Dengan dilakukannya Workshop Pengembangan Industri Photovoltaic (PV),diharapkan terjadi pertukaran informasi antara pemerintah, asosiasi, dan industri sehingga dapat diterbitkan regulasi yang dapat menumbuhkan industri PV dan komponen penyusun modul surya dalam negeri untuk dapat bersaing dengan produk modul surya impor maupun komponen-komponen modul surya impor. (R.A)</p>',
             true,
-            'img/berita/1543979782.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543979782.jpg',
             '2018-11-29',
             v_layout_id,
             false,
@@ -21719,7 +21719,7 @@ BEGIN
 
 <p>Produsen baja Jepang diproyeksi akan membukukan laba yang positif, tapi produsen Korsel seperti POSCO dan Hyundai Steel Company diperkirakan mengalami penurunan pada 2019. Sementara itu, di India, konsolidasi di sektor <a href="https://www.tempo.co/tag/baja">baja</a> dan besarnya permintaan untuk komoditas ini bakal mendukung kinerja laba Tata Steel Ltd. dan JSW Steel Limited.</p>',
             true,
-            'img/berita/1544436372.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544436372.jpg',
             '2018-11-29',
             v_layout_id,
             false,
@@ -21806,7 +21806,7 @@ Pabrik baterai tersebut akan mulai groundbreaking pada 11 Januari 2019. Proses p
 
 <p>Sumber : https://oto.detik.com/berita/d-4323107/indonesia-bakal-punya-pabrik-baterai-lithium-terbesar-di-dunia</p>',
             true,
-            'img/berita/1544437427.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544437427.jpeg',
             '2018-11-29',
             v_layout_id,
             false,
@@ -21879,7 +21879,7 @@ BEGIN
 
 <p>Sumber:&nbsp;&nbsp;<a href="http://www.kemenperin.go.id/artikel/19963/Pengoptimalan-TKDN-Mampu-Dongkrak-Kemampuan-Industri-Nasional">http://www.kemenperin.go.id/artikel/19963/Pengoptimalan-TKDN-Mampu-Dongkrak-Kemampuan-Industri-Nasional</a></p>',
             true,
-            'img/berita/1545961204.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545961204.jpg',
             '2018-11-28',
             v_layout_id,
             false,
@@ -21946,7 +21946,7 @@ BEGIN
 
 <p>(Sumber: http://www.industry.co.id)</p>',
             true,
-            'img/berita/1543484776.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543484776.jpg',
             '2018-11-28',
             v_layout_id,
             false,
@@ -22003,7 +22003,7 @@ BEGIN
 
 <p>&ldquo;Jadi dalam hal ini istilahnya kami berusaha bersama karena BUMN juga milik pemerintah untuk bisa membangkitkan industri baja nasional. Salah satunya adalah merevisi Permendag 22. Maksudnya baik, untuk menurunkan dwelling time, tapi itu disalahgunakan oleh pelaku untuk melakukan pengelabuan HS number,&rdquo; terangnya.</p>',
             true,
-            'img/berita/1544437025.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544437025.jpg',
             '2018-11-24',
             v_layout_id,
             false,
@@ -22064,7 +22064,7 @@ Selain itu, Ia menambahkan harga baja seharusnya bisa kompetitif. Karena jika ha
 
 <p>Sumber:&nbsp;https://ekbis.sindonews.com/read/1357172/34/krakatau-steel-waspadai-banjir-produk-baja-impor-di-tanah-air-1543031792</p>',
             true,
-            'img/berita/1544364007.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544364007.jpg',
             '2018-11-24',
             v_layout_id,
             false,
@@ -22119,7 +22119,7 @@ BEGIN
 
 <p>Di samping itu, Kementerian Perindustrian telah menginisiasi usulan insentif pembebasan tarif bea masuk komponen kapal melalui skema khusus serta usulan insentif tax holiday sebagai stimulus untuk meningkatkan daya saing industri galangan kapal nasional.</p>',
             true,
-            'img/berita/1544429304.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544429304.jpg',
             '2018-11-19',
             v_layout_id,
             false,
@@ -22172,7 +22172,7 @@ BEGIN
 
 <p>Meningkatnya pertumbuhan industri dibidang energi dan ketenagalistrikan sangat diharapkan oleh Kementerian Perindustrian pada umumnya, khususnya Direktorat IPAMP selaku pembina industri sektor ketenagalistrikan. Hal ini sejalan dengan terus meningkatnya kebutuhan produk ketenagalistrikan seperti Boiler yang nantinya digunakan dalam proyek pembangkit listrik dan industri. Dengan diresmikannya Divisi Komponen Turbin PT. Barata Indonesia yang mampu memproduksi produk komponen ketenagalistrikan, diharapkan dapat menurunkan importasi dan meningkatkan penggunaan produk dalam negeri pada proyek pembangkit listrik. (R.A)</p>',
             true,
-            'img/berita/1542265472.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1542265472.jpg',
             '2018-11-15',
             v_layout_id,
             false,
@@ -22246,7 +22246,7 @@ Dalam kurun waktu sepuluh tahun terakhir Barata Indonesia juga telah menyelesaik
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1546504318.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546504318.jpg',
             '2018-11-15',
             v_layout_id,
             false,
@@ -22330,7 +22330,7 @@ BEGIN
 
 <p>sumber :&nbsp;https://www.indotelko.com/kanal?c=id&amp;it=xl-laboratorium-iot</p>',
             true,
-            'img/berita/1544439626.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544439626.jpg',
             '2018-11-13',
             v_layout_id,
             false,
@@ -22377,7 +22377,7 @@ BEGIN
             '',
             '',
             true,
-            '',
+            NULL,
             '2018-11-13',
             v_layout_id,
             false,
@@ -22410,7 +22410,7 @@ BEGIN
         END IF;
 
         INSERT INTO content_additional_videos (content_type, content_id, title, type, url, video_path, "order", created_at, updated_at)
-        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, 'test_ilmate', 'url', 'https://www.youtube.com/watch?v=ZuasRtdgutM', '', 0, NOW(), NOW());
+        VALUES ('App\\Models\\ContentDetailPublication', v_pub_id, '', 'url', 'https://www.youtube.com/watch?v=ZuasRtdgutM', '', 0, NOW(), NOW());
 
     END IF;
 END $BODY$;
@@ -22456,7 +22456,7 @@ Kepala SKK Migas, Amien Sunaryadi, mengatakan hal ini menjadi tantangan tersendi
 <br />
 Sementara, Deputi Pengendalian Pengadaan SKK Migas, Tunggal, menyampaikan bahwa SKK Migas sudah mulai meninggalkan cara tradisional dalam memperoleh sumber-sumber pengadaan. Sampai saat ini, telah banyak sinergi yang dilakukan dengan pelaku bisnis, khususnya untuk komoditas terbesar dalam pengeluaran biaya pada kegiatan usaha hulu migas.</p>',
             true,
-            'img/berita/1544433674.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544433674.jpg',
             '2018-11-09',
             v_layout_id,
             false,
@@ -22513,7 +22513,7 @@ BEGIN
 
 <p>Selanjutnya, dalam proyek pembangkit, sebagian besar <em>Design and Engineering Company </em>berasal dari luar negeri, padahal peranan <em>Design and Engineering Company </em>sangat penting dalam menentukan daftar peralatan yang dipakai. Jadi keterlibatan <em>Design and Engineering Company </em>dalam negeri harus didorong sehingga setiap design dari infrastruktur ketenagalistrikan akan memaksimalkan produk-produk dalam negeri. (R.A)</p>',
             true,
-            'img/berita/1543977869.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543977869.jpg',
             '2018-11-07',
             v_layout_id,
             false,
@@ -22568,7 +22568,7 @@ BEGIN
 
 <p>Agenda Firled Research Program diawali dengan sambutan Mr. Hong Gil (Vice President of National research Center). Mr Hong Gil menyampaikan mengenai penandatanganan MoU antara Kementerian perindustrian dan NRC dan saat ini NRSC sedang menyusun proposal kerjasama riset dan pembiayaan dari pemerintah Korea. Selanjutnya adalah paparan mengenai profil NRC yang berisi tentang tugas utama dari NRC antara lain merencanakan arah kebijakan Research and Development, mengatur fungsi lembaga riset dan melakukan evaluasi terhadap lembaga riset. Di lain pihak, DELRI menyampaikan mengenai roadmap Making Indonesia 4.0, dimaa sektor otomotif dan elektronika menjadi fokus pengembangan industri yang mengimplementasikan revolusi industri keempat.</p>',
             true,
-            'img/berita/1543807216.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543807216.png',
             '2018-11-06',
             v_layout_id,
             false,
@@ -22639,7 +22639,7 @@ BEGIN
 
 <p>Nasir menambahkan, pemerintah juga berencana untuk memfasilitasi dan memediasi antara akademisi dengan industri yang akan memanfaatkan hasil studi tersebut. Salah satunya, melalui pemberian insentif industri seperti&nbsp;<em>super tax deduction</em>. &ldquo;Kalau ini bisa dilakukan, saya optimistis bisa berhasil,&rdquo; tegasnya.</p>',
             true,
-            'img/berita/1545356294.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545356294.jpg',
             '2018-11-06',
             v_layout_id,
             false,
@@ -22695,7 +22695,7 @@ BEGIN
 
 <p>Gabungan Industri Kendaraan Bermotor Indonesia (GAIKINDO) sangat mendukung kebijakan pemerintah tentang pelaksanaan standar Euro 4, yang akan diikuti lahirnya kendaraan-kendaraan rendah emisi ini. Menurut Ketua Umum GAIKINDO, Yohannes Nangoi, kendaraan emisi karbon rendah atau LCEV itu tak hanya mobil listrik. Masih ada yang lainnya, yaitu kendaraan-kendaraan yang menggunakan bio-fuel dan kendaraan berbasis hidrogen (<em>fuell cell</em>).</p>',
             true,
-            'img/berita/1541394475.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1541394475.jpg',
             '2018-11-05',
             v_layout_id,
             false,
@@ -22783,7 +22783,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1541393285.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1541393285.jpg',
             '2018-11-05',
             v_layout_id,
             false,
@@ -22852,7 +22852,7 @@ Sebagai bentuk dukungan terhadap manufaktur dalam negeri, katanya, PLN dalam kon
 
 <p>Sumber: http://industri.bisnis.com</p>',
             true,
-            'img/berita/1543485607.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543485607.jpg',
             '2018-11-01',
             v_layout_id,
             false,
@@ -22923,7 +22923,7 @@ BEGIN
 
 <p>sumber:&nbsp;<a href="http://jogja.tribunnews.com/2018/11/01/mak-lepas-ekspor-alkes-ke-lima-negara">http://jogja.tribunnews.com/2018/11/01/mak-lepas-ekspor-alkes-ke-lima-negara</a></p>',
             true,
-            'img/berita/1545876105.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545876105.jpg',
             '2018-11-01',
             v_layout_id,
             false,
@@ -22990,7 +22990,7 @@ BEGIN
 
 <p>Sumber :&nbsp;<a href="https://ekonomi.bisnis.com/read/20181026/257/853566/trafoindo-dan-siemens-bentuk-perusahaan-patungan-">https://ekonomi.bisnis.com/read/20181026/257/853566/trafoindo-dan-siemens-bentuk-perusahaan-patungan-</a></p>',
             true,
-            'img/berita/1546595546.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546595546.jpg',
             '2018-10-26',
             v_layout_id,
             false,
@@ -23059,7 +23059,7 @@ BEGIN
 
 <p>Sumber : http://www.kemenperin.go.id/artikel/19806/Industri-Baja-Nasional-Dipacu-Penuhi-Kebutuhan-Domestik</p>',
             true,
-            'img/berita/1544363606.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544363606.JPG',
             '2018-10-18',
             v_layout_id,
             false,
@@ -23137,7 +23137,7 @@ BEGIN
 
 <p>Sumber:&nbsp;&nbsp;http://www.tribunnews.com/kesehatan/2018/10/18/aspaki-dan-kmdica-tanda-tangani-mou-pengembangan-teknologi-industri-alat-kesehatan</p>',
             true,
-            'img/berita/1544782565.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544782565.jpg',
             '2018-10-18',
             v_layout_id,
             false,
@@ -23206,7 +23206,7 @@ BEGIN
 
 <p>Sumber: BeritaSatu.com</p>',
             true,
-            'img/berita/1544436809.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544436809.jpg',
             '2018-10-17',
             v_layout_id,
             false,
@@ -23272,7 +23272,7 @@ BEGIN
 
 <p>Sumber:&nbsp; https://surabaya.bisnis.com/read/20181016/532/849915/barata-indonesia-mulai-ekspor-komponen-listrik-ke-taiwan&nbsp;</p>',
             true,
-            'img/berita/1546505370.png',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546505370.png',
             '2018-10-16',
             v_layout_id,
             false,
@@ -23343,7 +23343,7 @@ BEGIN
 
 <p>Adapun Mega Baja Super Store yang berada di Jl. Raya Trosobo Sidoarjo ini memiliki luas area 1 ha. Outlet senilai investasi Rp10 miliar ini akan menjadi pusat distribusi sejumlah produk besi dan baja dari beberapa pabrikan, salah satunya Krakatau Wajatama khususnya produk baja tulangan beton.</p>',
             true,
-            'img/berita/1544436672.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544436672.jpg',
             '2018-10-15',
             v_layout_id,
             false,
@@ -23400,7 +23400,7 @@ Dengan kerjasama tersebut, Pindad akan menyiapkan lokasi untuk pengembangan pabr
 <br />
 Waterbury Farrel merupakan salah satu divisi dari Magnum Integrated Technologies Inc., yang merupakan industri penyedia amunisi lengkap dan pabrikan rolling mill, memiliki keahlian membuat peralatan membentuk logam, rolling, dan produk-produk industri pertahanan.</p>',
             true,
-            'img/berita/1545276933.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545276933.jpg',
             '2018-10-12',
             v_layout_id,
             false,
@@ -23470,7 +23470,7 @@ BEGIN
 
 <p>Sumber: <a href="http://industri.bisnis.com/">http://industri.bisnis.com/</a></p>',
             true,
-            'img/berita/1544782801.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544782801.jpg',
             '2018-10-09',
             v_layout_id,
             false,
@@ -23541,7 +23541,7 @@ BEGIN
 
 <p>Di samping itu, Masuko menambahkan,&nbsp;mesin Xpander akan diproduksi di Nissan Motor Indonesia (NMI), anak perusahaan Nissan Motor Co., Ltd di Indonesia, mulai tahun 2020. Hal ini akan meningkatkan rasio penggunaan suku cadang lokal pada Xpander dari 71 persen menjadi 80 persen&nbsp;yang tentunya akan membawa manfaat ekonomi bagi rantai pasokan lokal. Pengembangan di fasilitas NMI akan mampu memproduksi 160.000 unit mesin per tahun.</p>',
             true,
-            'img/berita/1547777939.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547777939.JPG',
             '2018-10-03',
             v_layout_id,
             false,
@@ -23632,7 +23632,7 @@ BEGIN
 
 <p>Selanjutnya, pemerintah sedang fokus meningkatkan keunggulan industri nasional agar lebih kompetitif di kancah global. &ldquo;Misalnya, pemerintah mengambil langkah pengembangan fasilitas yang mendukung pertumbuhan industri seperti pembangunan infrastruktur energi dan transportasi serta fasilitasi lainnya yang dapat mendongkrak keunggulan kompetitif industri,&rdquo; paparnya.</p>',
             true,
-            'img/berita/1547778260.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547778260.jpeg',
             '2018-09-25',
             v_layout_id,
             false,
@@ -23685,7 +23685,7 @@ BEGIN
 
 <p>Berbagai keberhasilan ini merupakan hasil dari rangkaian komitmen investasi Toyota Group di Indonesia pasca kunjungan Bapak Presiden ke Toyota Motor Corporation Jepang tahun 2015. Sejak tahun 2015 hingga 2017 nilai investasi Toyota Group telah mencapai Rp. 20 Triliun. Dengan investasi tersebut, PT TMMIN terus meningkatkan kapasitas produksinya dan sampai saat ini telah mencapai 250 ribu unit kendaraan, 411 ribu unit mesin, dan 12.000 ton besi cor.</p>',
             true,
-            'img/berita/1544364379.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544364379.jpg',
             '2018-09-05',
             v_layout_id,
             false,
@@ -23754,7 +23754,7 @@ BEGIN
 
 <p>sumber : https://www.liputan6.com/otomotif/read/3615295/jelang-lcgc-jilid-2-komponen-lokal-mobil-murah-sudah-berapa-persen</p>',
             true,
-            'img/berita/1535203639.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203639.jpg',
             '2018-08-10',
             v_layout_id,
             false,
@@ -23838,7 +23838,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1535203546.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203546.jpg',
             '2018-08-10',
             v_layout_id,
             false,
@@ -23909,7 +23909,7 @@ BEGIN
 
 <p>sumber: http://www.tribunnews.com/otomotif/2018/08/09/hyundai-siapkan-fasilitas-perakitan-mobil-di-indonesia.</p>',
             true,
-            'img/berita/1535202924.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535202924.jpg',
             '2018-08-09',
             v_layout_id,
             false,
@@ -23974,7 +23974,7 @@ BEGIN
 
 <p>sumber : https://otomotif.kompas.com/read/2018/08/09/164200215/mobil-murah-jilid-ii-bisa-berteknologi-mild-hybrid-.</p>',
             true,
-            'img/berita/1535203445.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203445.jpg',
             '2018-08-09',
             v_layout_id,
             false,
@@ -24031,7 +24031,7 @@ BEGIN
 
 <p>&ldquo;Jadi sudah disampaikan sudah dihitung juga dengan teman-teman BKF mengenai konsep yang kami ajukan itu, dan ternyata pemasukan negara lebih baik (daripada cukai),&rdquo; kata Harjanto.</p>',
             true,
-            'img/berita/1535203609.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203609.jpg',
             '2018-08-08',
             v_layout_id,
             false,
@@ -24086,7 +24086,7 @@ BEGIN
 
 <p>Dibuka untuk umum mulai sore hari pukul 17.00, berbagai program interaktif dan edukatif, dan fasilitas pameran yang nyaman menjamin hadirnya beragam ide dan inspirasi. Untuk Senin &ndash; Jumat pameran dibuka 11.00-21.00 dengan harga tiket Rp 50.000. Pada Sabtu-Minggu pameran buka 10.00-21.00 dengan harga tiket Rp 100.000. Untuk pengunjung anak-anak dibawah 7 tahun atau diatas 65 tahun, free entry, alias gak usah beli tiket.</p>',
             true,
-            'img/berita/1535203472.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203472.jpeg',
             '2018-08-07',
             v_layout_id,
             false,
@@ -24153,7 +24153,7 @@ BEGIN
 
 <p>sumber:&nbsp; http://www.industry.co.id/read/39781/pabrik-baja-senilai-usd-300-juta-resmi-beroperasi-di-cilegon</p>',
             true,
-            'img/berita/1535203517.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1535203517.jpg',
             '2018-08-07',
             v_layout_id,
             false,
@@ -24217,7 +24217,7 @@ Kementerian Perhubungan dan Balai Pengkajian dan Penerapan Teknologi dalam hal p
 
 <p>(Dok. SINDOnews).</p>',
             true,
-            'img/berita/1544431845.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544431845.jpg',
             '2018-07-23',
             v_layout_id,
             false,
@@ -24300,7 +24300,7 @@ BEGIN
 
 <p>&ldquo;Industri hilir memang keberatan, tetapi menurut saya dengan fasilitas user specific duty free scheme (USDFS) yang merupakan kesepakatan bersama Jepang, mereka bisa menggunakan itu. Cara permanen supaya tidak ada pelarian HS number ya naikkan saja bea masuk,&rdquo; katanya.</p>',
             true,
-            'img/berita/1544432683.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544432683.jpg',
             '2018-07-13',
             v_layout_id,
             false,
@@ -24367,7 +24367,7 @@ BEGIN
 
 <p>Sumber: <a href="http://industri.bisnis.com">http://industri.bisnis.com</a></p>',
             true,
-            'img/berita/1543975338.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543975338.jpg',
             '2018-07-06',
             v_layout_id,
             false,
@@ -24440,7 +24440,7 @@ BEGIN
 
 <p>Pada tahap berikutnya, peneliti dari UNS, ITS dan Udayana juga akan melakukan rangkaian studi yang sama dengan tujuan agar data yang diperoleh lebih beragam dan komprehensif. Nantinya, data-data yang terkumpul akan dianalisa dan disimpulkan untuk menjadi referensi bagi Kemenperin. Selain itu, penelitian juga akan mempelajari mengenai rantai pasok industri termasuk kebutuhan ketenagakerjaan.</p>',
             true,
-            'img/berita/1544364082.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544364082.jpeg',
             '2018-07-04',
             v_layout_id,
             false,
@@ -24491,7 +24491,7 @@ BEGIN
 
 <p>Direktur Utama PT INKA (Persero) mengatakan, saat ini pihaknya sedang menyelesaikan proses perizinan dan rancang bangun untuk pabrik modern yang akan digunakan untuk memproduksi sarana kereta api berbasis alumunium dan stainless steel. Proses pembangunan tahap 1 direncanakan mulai pada akhir 2018 dan dapat mulai beroperasi pada awal 2020. Total investasi dari pembangunan proyek ini tercatat mencapai Rp 1,6 triliun. PT INKA mencatat kontribusi penjualan ekspor perseroan meningkat dalam tiga tahun terakhir, dari Rp 850 miliar pada 2015 menjadi Rp 1,33 triliun pada 2017. Sementara, negara- negara yang menjadi tujuan ekspor adalah Bangladesh, Malaysia, Singapura, Australia dan Filipina.</p>',
             true,
-            'img/berita/1544364739.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544364739.JPG',
             '2018-07-01',
             v_layout_id,
             false,
@@ -24560,7 +24560,7 @@ BEGIN
 
 <p>In the future we are indeed trying to reach the larger component maintenance market outside Garuda Indonesia Group,&rdquo; Iwan said. He added that in 2018 GMF is planning to continue to increase the capability of its targeted 120 part numbers for various types of aircraft until the end of the year. &ldquo;This is in line with the start of business focus to the maintenance of component and engine, in addition to airframe maintenance which becomes GMF supremacy,&rdquo; Iwan lid.</p>',
             true,
-            'img/berita/1545276655.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545276655.jpg',
             '2018-06-08',
             v_layout_id,
             false,
@@ -24622,7 +24622,7 @@ BEGIN
 
 <p>Sumber :&nbsp;<a href="https://ekonomi.bisnis.com/read/20180504/257/791822/investasi-jerman-di-ri-berikut-catatan-menperin-airlangga">https://ekonomi.bisnis.com/read/20180504/257/791822/investasi-jerman-di-ri-berikut-catatan-menperin-airlangga</a></p>',
             true,
-            'img/berita/1546595360.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1546595360.jpg',
             '2018-05-04',
             v_layout_id,
             false,
@@ -24687,7 +24687,7 @@ BEGIN
 
 <p>Kedepanya, MMKI akan memperluas dan meningkatan ekspor xpander ke berbagai negara, antara lain &nbsp;Vietnam dan Thailand di Asia Tenggara, serta negara-negara di Amerika Selatan, Timur Tengah, dan Afrika. Pada tahun ini MMKI menargetkan total ekspor Xpander sebesar 30.000 unit.</p>',
             true,
-            'img/berita/1544429528.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544429528.JPG',
             '2018-04-26',
             v_layout_id,
             false,
@@ -24763,7 +24763,7 @@ BEGIN
 <p>Sumber:&nbsp;&nbsp;http://technology-indonesia.com/pertanian-dan-pangan/perkebunan/standar-pabrik-gula/.<br />
 &nbsp;</p>',
             true,
-            'img/berita/1545961478.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1545961478.jpg',
             '2018-03-20',
             v_layout_id,
             false,
@@ -24835,7 +24835,7 @@ Dirjen Industri Logam, Mesin, Alat Transportasi dan Elektronika (ILMATE) Harjant
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1544430589.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544430589.JPG',
             '2018-02-26',
             v_layout_id,
             false,
@@ -24894,7 +24894,7 @@ BEGIN
 
 <p>Adapun, rincian pengamanan terhadap impor produk I dan H&nbsp;<em>section&nbsp;</em>&nbsp;dari baja tpaduan lainnya itu yakni pada tahun pertama menjadi 17.75% terhadap nilai impor, turun dari aturannya sebelumnya yaotu 26%. Selanjutnya pada tahun kedua menjadi 17,50% terhadap nilai impor, turun dari aturan sebelumnya 22%. Pada tahun ketiga menjadi 17,25% terhadap nilai impor, turun menjadi 17,25% terhadap nilai impor, turun dari aturan sebelumnya yaitu 18%.&nbsp;</p>',
             true,
-            'img/berita/1544431227.PNG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544431227.PNG',
             '2018-02-08',
             v_layout_id,
             false,
@@ -24953,7 +24953,7 @@ BEGIN
 
 <p>Sumber: <a href="https://bisnis.tempo.co">https://bisnis.tempo.co</a></p>',
             true,
-            'img/berita/1543975873.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1543975873.jpg',
             '2018-01-11',
             v_layout_id,
             false,
@@ -25014,7 +25014,7 @@ BEGIN
 
 <p>&nbsp;</p>',
             true,
-            'img/berita/1544431529.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1544431529.jpg',
             '2018-01-10',
             v_layout_id,
             false,
@@ -25079,7 +25079,7 @@ BEGIN
 
 <p>Pameran modifikasi terbesar di Indonesia itu dimeriahkan oleh puluhan mobil dengan berbagai aliran modifikasi serta sederet produk&nbsp;<em>aftermarket</em>. &ldquo;Amerika Serikat dan Jepang, juga negara besar lainnya, punya expo modifikasi sendiri. Dan kini Indonesia untuk pertama kalinya memiliki IMX. Terima kasih banyak atas dukungan dari semua pihak karena turut menyukseskan acara ini,&quot; paparnya.</p>',
             true,
-            'img/berita/1547010142.jpg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547010142.jpg',
             '2017-11-21',
             v_layout_id,
             false,
@@ -25154,7 +25154,7 @@ BEGIN
 
 <p>Presiden Direktur XL Axiata, Dian Siswarini menyampaikan, konsep IoT Open Lab dan fasilitas yang dimiliki saat ini, X-Camp merupakan IoT Innovation Lab terlengkap yang dimiliki oleh operator telekomunikasi di Indonesia. X-Camp juga menjadi satu-satunya Lab IoT yang tergabung di GSMA Lab Alliance di Kawasan Asia Tenggara.&nbsp;X-Camp akan turut aktif mengembangkan potensi sumber daya lokal, termasuk dari kalangan perguruan tinggi.</p>',
             true,
-            'img/berita/1547010388.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547010388.jpeg',
             '2017-11-13',
             v_layout_id,
             false,
@@ -25241,7 +25241,7 @@ BEGIN
 
 <p>Menteri&nbsp;<em>Altmaier mengemukakan, I</em>ndonesia punya basis industri yang kuat seperti Jerman. Untuk itu, agar bisa terus berinovasi terutama dalam era revolusi industri 4.0, diperlukan program pendidikan vokasi yang dapat menghasilkan SDM kompeten. &ldquo;Pendidikan vokasi menciptakan&nbsp;<em>high skilled worker</em>. Saat ini, kami punya lebih dari empat ribu anak muda yang dididik melalui vokasi,&rdquo; terangnya.</p>',
             true,
-            'img/berita/1547010774.JPG',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547010774.JPG',
             '2017-11-01',
             v_layout_id,
             false,
@@ -25320,7 +25320,7 @@ BEGIN
 
 <p>Studi tersebut dibarengi dengan&nbsp;<em>d</em><em>emo&nbsp;p</em><em>roject&nbsp;</em>yang&nbsp;akan dilakukan&nbsp;di beberapa kota di Jawa Barat dan Bali&nbsp;yang akan dimulai awal 2019sampai Desember 2020&nbsp;dengan&nbsp;melibatkan instansi litbang lokal dan beberapa universitas sehingga dapat menghasilkan masukan bagi pemerintah untuk&nbsp;dapat&nbsp;menerapkan kebijakan yang tepat terkait dengan kendaraan listrik.</p>',
             true,
-            'img/berita/1547011295.jpeg',
+            'https://ilmate.kemenperin.go.id/files/img/berita/1547011295.jpeg',
             '2017-10-31',
             v_layout_id,
             false,
