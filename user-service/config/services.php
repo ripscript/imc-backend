@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'siinas' => [
+        'base_url' => env('SIINAS_BASE_URL', 'https://api.kemenperin.go.id/SIINas'),
+        'timeout' => (int) env('SIINAS_TIMEOUT', 15),
+    ],
+
 ];

@@ -3,11 +3,13 @@
 namespace App\Exceptions;
 
 use App\Exceptions\Domain\AccountBlockedException;
+use App\Exceptions\Domain\AccountConflictException;
 use App\Exceptions\Domain\AuthenticationException;
 use App\Exceptions\Domain\EntityNotFoundException;
 use App\Exceptions\Domain\InvalidRoleException;
 use App\Exceptions\Domain\OtpException;
 use App\Exceptions\Domain\RateLimitException;
+use App\Exceptions\Domain\SiinasServiceException;
 use App\Exceptions\Domain\ValidationException as DomainValidationException;
 use App\Helpers\ApiResponse;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -55,6 +57,14 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof OtpException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof SiinasServiceException) {
+            return ApiResponse::error($e->getMessage(), null, $e->getCode());
+        }
+
+        if ($e instanceof AccountConflictException) {
             return ApiResponse::error($e->getMessage(), null, $e->getCode());
         }
 
