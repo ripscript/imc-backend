@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BulkPasswordController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\SiinasAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,7 @@ Route::get('/health', function () {
 });
 
 Route::post('auth/login', [AdminAuthController::class, 'login']);
+Route::post('auth/sso/siinas', [SiinasAuthController::class, 'login']);
 
 Route::middleware(['jwt.error:admin'])->group(function () {
     Route::prefix('auth')->group(function () {

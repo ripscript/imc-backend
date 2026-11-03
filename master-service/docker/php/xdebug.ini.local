@@ -1,0 +1,9 @@
+; Xdebug 3 — mode is controlled by the XDEBUG_MODE *environment variable* in docker-compose.
+; The ini value below is the fallback when the env var is not set.
+; DO NOT use shell substitution here (e.g. ${VAR:-default}) — PHP ini does not support it.
+xdebug.mode = off
+xdebug.start_with_request = yes
+xdebug.client_host = host.docker.internal
+xdebug.client_port = 9003
+xdebug.log = /tmp/xdebug.log
+xdebug.idekey = PHPSTORM
