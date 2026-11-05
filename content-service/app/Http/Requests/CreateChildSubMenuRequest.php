@@ -20,6 +20,7 @@ class CreateChildSubMenuRequest extends FormRequest
                 $query->where('sub_menu_id', $this->sub_menu_id);
             })],
             'title' => 'required|string|max:200',
+            'description' => 'nullable|string|max:255',
             'is_active' => 'required',
             'order' => 'required',
             'type' => 'required',

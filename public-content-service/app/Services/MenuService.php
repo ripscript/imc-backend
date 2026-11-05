@@ -28,6 +28,7 @@ class MenuService
             if (($menu->has_sub && count($menu->subMenu) > 0) || ! $menu->has_sub) {
                 $row = [
                     'title' => $menu->title,
+                    'description' => $menu->description,
                     'slug' => $menu->slug,
                     'has_sub' => $menu->has_sub,
                     'is_show_front' => $menu->is_show_front,
@@ -37,6 +38,7 @@ class MenuService
                         if (($sub->has_child && count($sub->childSubMenu) > 0) || ! $sub->has_child) {
                             $rowSub = [
                                 'title' => $sub->title,
+                                'description' => $sub->description,
                                 'slug' => $sub->slug,
                                 'has_child' => $sub->has_child,
                             ];
@@ -45,6 +47,7 @@ class MenuService
                                     if ($child->content) {
                                         $rowChild = [
                                             'title' => $child->title,
+                                            'description' => $child->description,
                                             'slug' => $child->slug,
                                             'content' => [
                                                 'type' => $child->content->type,

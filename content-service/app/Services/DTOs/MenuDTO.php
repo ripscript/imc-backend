@@ -6,6 +6,8 @@ class MenuDTO extends BaseDTO
 {
     public string $title;
 
+    public ?string $description;
+
     public string $slug;
 
     public ?bool $is_active;
@@ -73,6 +75,7 @@ class MenuDTO extends BaseDTO
     public function __construct(array $data = [])
     {
         $this->title = $data['title'] ?? '';
+        $this->description = $data['description'] ?? null;
         $this->slug = $data['slug'] ?? '';
         $this->is_active = $data['is_active'] ?? null;
         $this->order = $data['order'] ?? null;

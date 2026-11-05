@@ -20,6 +20,7 @@ class Content extends Model
         'title',
         'slug',
         'section_title',
+        'section_description',
         'order',
         'is_section',
         'is_accessible',

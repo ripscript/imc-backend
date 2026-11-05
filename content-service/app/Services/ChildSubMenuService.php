@@ -35,6 +35,7 @@ class ChildSubMenuService
                 'menus.title as menu_title',
                 'sub_menus.title as sub_menu_title',
                 'child_sub_menus.title',
+                'child_sub_menus.description',
                 'child_sub_menus.is_active',
                 'child_sub_menus.slug',
                 'contents.type',
@@ -58,7 +59,7 @@ class ChildSubMenuService
             ];
         }
 
-        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['child_sub_menus.title', 'contents.type']);
+        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['child_sub_menus.title', 'contents.type'], 'child_sub_menus.updated_at');
     }
 
     public function detail($id)
@@ -78,6 +79,7 @@ class ChildSubMenuService
             $childSubMenu = new ChildSubMenu;
             $childSubMenu->sub_menu_id = $dto->sub_menu_id;
             $childSubMenu->title = $dto->title;
+            $childSubMenu->description = $dto->description;
             $childSubMenu->slug = $dto->slug;
             $childSubMenu->is_active = $dto->is_active;
             $childSubMenu->order = $dto->order;
@@ -126,6 +128,7 @@ class ChildSubMenuService
 
             $childSubMenu->sub_menu_id = $dto->sub_menu_id;
             $childSubMenu->title = $dto->title;
+            $childSubMenu->description = $dto->description;
             $childSubMenu->slug = $dto->slug;
             $childSubMenu->is_active = $dto->is_active;
             $childSubMenu->order = $dto->order;

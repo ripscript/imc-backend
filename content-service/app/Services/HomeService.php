@@ -34,6 +34,7 @@ class HomeService
                 'contents.order',
                 'contents.type',
                 'contents.section_title',
+                'contents.section_description',
                 'contents.is_section'
             );
 
@@ -64,6 +65,7 @@ class HomeService
             $content->parent_type = Menu::class;
             $content->parent_id = $beranda->id;
             $content->section_title = $dto->section_title;
+            $content->section_description = $dto->section_description;
             $content->is_section = $dto->is_section;
             $content->order = $dto->order;
             $content->type = $dto->type;
@@ -93,6 +95,7 @@ class HomeService
 
             $content->is_section = $dto->is_section;
             $content->section_title = $dto->section_title;
+            $content->section_description = $dto->section_description;
             $content->order = $dto->order;
             $content->updated_by = $dto->updated_by;
             $content->save();
