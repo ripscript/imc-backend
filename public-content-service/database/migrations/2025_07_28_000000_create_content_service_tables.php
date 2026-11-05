@@ -551,9 +551,9 @@ return new class extends Migration
             Schema::create('latest_informations', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
-                $table->string('link')->nullable();
-                $table->integer('order')->default(0);
                 $table->boolean('is_active')->default(true);
+                $table->dateTime('publish_date')->nullable();
+                $table->text('url')->nullable();
                 $table->string('created_by')->nullable();
                 $table->string('updated_by')->nullable();
                 $table->timestamps();

@@ -32,15 +32,24 @@ class HomeService
             return [
                 'content_id' => md5($content->id),
                 'type' => $content->type,
+                'section_title' => $content->section_title,
+                'section_description' => $content->section_description,
             ];
         });
     }
 
     public function detail($id)
     {
-        $content = Content::whereRaw('MD5(id::text) = ?', [$id])
-            ->select('id', 'section_title', 'type', 'order')
-            ->first();
+        if (DB::connection()->getDriverName() === 'sqlite') {
+            $content = Content::select('id', 'section_title', 'section_description', 'type', 'order')
+                ->get()
+                ->first(fn ($item) => md5($item->id) === (string) $id);
+        } else {
+            $content = Content::whereRaw('MD5(id::text) = ?', [$id])
+                ->select('id', 'section_title', 'section_description', 'type', 'order')
+                ->first();
+        }
+
         if (! $content) {
             throw new EntityNotFoundException('Section');
         }
