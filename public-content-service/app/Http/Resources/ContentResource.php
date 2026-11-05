@@ -13,6 +13,7 @@ class ContentResource extends JsonResource
             'content_id' => $this->content_id,
             'type' => $this->type,
             'section_title' => $this->section_title,
+            'section_description' => $this->section_description,
             'title' => $this->title,
             'slug' => $this->slug,
             'layout' => $this->layout,
