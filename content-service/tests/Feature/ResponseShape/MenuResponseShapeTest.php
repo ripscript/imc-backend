@@ -26,6 +26,7 @@ class MenuResponseShapeTest extends TestCase
     "data": {
         "id": 1,
         "title": "Profil Industri",
+        "description": "Profil Industri Deskripsi",
         "slug": "profil-industri",
         "is_active": true,
         "order": 1,
@@ -115,6 +116,7 @@ JSON;
     protected array $expectedResourceKeys = [
         'id',
         'title',
+        'description',
         'slug',
         'is_active',
         'order',

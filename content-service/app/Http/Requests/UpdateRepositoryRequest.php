@@ -21,6 +21,7 @@ class UpdateRepositoryRequest extends FormRequest
             'slug' => ['required', 'string', 'max:255', Rule::unique('content_detail_repositories')->where(function ($query) {
                 $query->where('content_id', $this->content_id);
             })->ignore($id)],
+            'description' => 'nullable|string',
             'file_path' => 'required',
             'thumbnail_path' => 'required',
             'publish_date' => 'required',

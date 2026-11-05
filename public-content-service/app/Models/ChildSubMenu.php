@@ -12,6 +12,7 @@ class ChildSubMenu extends Model
     protected $fillable = [
         'sub_menu_id',
         'title',
+        'description',
         'slug',
         'order',
         'is_active',

@@ -40,6 +40,7 @@ class MenuService
             ->select(
                 'menus.id',
                 'menus.title',
+                'menus.description',
                 'menus.is_active',
                 'menus.slug',
                 'contents.type',
@@ -78,7 +79,7 @@ class MenuService
             ];
         }
 
-        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['menus.title', 'contents.type']);
+        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['menus.title', 'contents.type'], 'menus.updated_at');
     }
 
     public function detail($id)
@@ -100,6 +101,7 @@ class MenuService
         try {
             $menu = new Menu;
             $menu->title = $dto->title;
+            $menu->description = $dto->description;
             $menu->slug = $dto->slug;
             $menu->is_active = $dto->is_active;
             $menu->order = $dto->order;
@@ -158,6 +160,7 @@ class MenuService
             $menu = Menu::findOrFail($id);
 
             $menu->title = $dto->title;
+            $menu->description = $dto->description;
             $menu->slug = $dto->slug;
             $menu->is_active = $dto->is_active;
             $menu->order = $dto->order;

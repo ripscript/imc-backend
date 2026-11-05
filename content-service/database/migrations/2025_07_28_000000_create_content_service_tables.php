@@ -45,6 +45,7 @@ return new class extends Migration
             Schema::create('menus', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
+                $table->string('description', 255)->nullable();
                 $table->string('slug');
                 $table->integer('order')->default(0);
                 $table->boolean('has_sub')->default(false);
@@ -64,6 +65,7 @@ return new class extends Migration
                 $table->id();
                 $table->foreignId('menu_id')->references('id')->on('menus')->onDelete('cascade');
                 $table->string('title');
+                $table->string('description', 255)->nullable();
                 $table->string('slug');
                 $table->integer('order')->default(0);
                 $table->boolean('has_child')->default(false);
@@ -81,6 +83,7 @@ return new class extends Migration
                 $table->id();
                 $table->foreignId('sub_menu_id')->references('id')->on('sub_menus')->onDelete('cascade');
                 $table->string('title');
+                $table->string('description', 255)->nullable();
                 $table->string('slug');
                 $table->integer('order')->default(0);
                 $table->boolean('is_active')->default(true);
@@ -99,6 +102,7 @@ return new class extends Migration
                 $table->string('type');
                 $table->unsignedBigInteger('layout_id')->nullable();
                 $table->string('section_title')->nullable();
+                $table->string('section_description', 255)->nullable();
                 $table->boolean('is_section')->default(false);
                 $table->boolean('is_show_home')->nullable();
                 $table->boolean('is_show_tag')->nullable();
