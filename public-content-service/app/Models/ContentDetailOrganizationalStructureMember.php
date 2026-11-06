@@ -22,10 +22,20 @@ class ContentDetailOrganizationalStructureMember extends Model
         'created_by',
         'updated_by',
     ];
-    protected $hidden = ['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'content_detail_organizational_structure_group_id', 'parent_id'];
+    protected $hidden = ['created_at', 'updated_at', 'created_by', 'updated_by', 'content_detail_organizational_structure_group_id'];
 
     public function group()
     {
         return $this->belongsTo(ContentDetailOrganizationalStructureGroup::class, 'content_detail_organizational_structure_group_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id')->orderBy('order', 'asc');
     }
 }

@@ -1,0 +1,313 @@
+{
+  "info": {
+    "name": "Content Service - Organizational Structure (Parent-Child Hierarchy)",
+    "description": "Postman Collection untuk CRUD Konten Tipe Organizational Structure (Struktur Organisasi) dengan dukungan relasi Parent-Child (Hierarki Multi-Tier) sesuai diagram Kementerian Perindustrian / BTIM.\n\n### Fitur Otomatis:\n- **Auto-Capture IDs**: Request 1 (Create) dan Request 2 (Detail) otomatis menyimpan `menu_id`, `group_id`, `member_id_root`, dan `member_id_child` ke variabel koleksi Postman, sehingga Request 3 (Update) dapat langsung dieksekusi tanpa perlu copy-paste ID database secara manual!\n- **Format Fleksibel**: Mendukung format array langsung `content: [ ... ]` (sama dengan output GET) maupun format `{ groups: [ ... ] }`.\n\n### Base URL:\n- Content Service: `http://localhost:4076/content-service/api`\n- Public Content Service: `http://localhost:4076/public-content-service/api`",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/content-service/api"
+    },
+    {
+      "key": "public_base_url",
+      "value": "http://localhost:4076/public-content-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_ADMIN"
+    },
+    {
+      "key": "menu_id",
+      "value": "1"
+    },
+    {
+      "key": "group_id",
+      "value": "1"
+    },
+    {
+      "key": "member_id_root",
+      "value": "1"
+    },
+    {
+      "key": "member_id_child",
+      "value": "2"
+    },
+    {
+      "key": "menu_slug",
+      "value": "struktur-organisasi"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create Menu - Organizational Structure (5-Tier Hierarchy)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    var res = pm.response.json();",
+              "    if (res.data && res.data.id) {",
+              "        pm.collectionVariables.set('menu_id', res.data.id);",
+              "        if (res.data.slug) {",
+              "            pm.collectionVariables.set('menu_slug', res.data.slug);",
+              "        }",
+              "        console.log('Auto-saved menu_id:', res.data.id);",
+              "    }",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Struktur Organisasi\",\n  \"slug\": \"struktur-organisasi\",\n  \"has_sub\": false,\n  \"is_active\": true,\n  \"is_show_front\": false,\n  \"order\": 1,\n  \"type\": \"organizational_structure\",\n  \"layout_id\": 1,\n  \"content\": [\n    {\n      \"id\": null,\n      \"name\": \"Balai Teknologi Industri Manufaktur (BTIM)\",\n      \"order\": 1,\n      \"members\": [\n        {\n          \"id\": null,\n          \"temp_id\": \"menteri\",\n          \"name\": \"Budi Santoso\",\n          \"position\": \"MENTERI PERINDUSTRIAN\",\n          \"description\": \"Menteri Perindustrian Republik Indonesia\",\n          \"image_path\": \"/images/pejabat/budi-santoso.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": null,\n          \"order\": 1\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"dirjen\",\n          \"name\": \"Aditya Wijaya\",\n          \"position\": \"DIRJEN ILMATE\",\n          \"description\": \"Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika\",\n          \"image_path\": \"/images/pejabat/aditya-wijaya.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"menteri\",\n          \"order\": 2\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"ka_balai\",\n          \"name\": \"Farhan Maulana\",\n          \"position\": \"KEPALA BALAI TEKNOLOGI INDUSTRI MANUFAKTUR (BTIM)\",\n          \"description\": \"Kepala Balai Teknologi Industri Manufaktur\",\n          \"image_path\": \"/images/pejabat/farhan-maulana.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"dirjen\",\n          \"order\": 3\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"tim_inovasi\",\n          \"name\": \"Siti Nurhaliza\",\n          \"position\": \"TIM INOVASI, PENGEMBANGAN PRODUK DAN TRANSFER TEKNOLOGI\",\n          \"description\": \"Koordinator Tim Inovasi dan Transfer Teknologi\",\n          \"image_path\": \"/images/pejabat/siti-nurhaliza.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"ka_balai\",\n          \"order\": 4\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"tim_talenta\",\n          \"name\": \"Anisa Rahmawati\",\n          \"position\": \"TIM PENGEMBANGAN TALENTA\",\n          \"description\": \"Koordinator Tim Pengembangan Talenta\",\n          \"image_path\": \"/images/pejabat/anisa-rahmawati.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"ka_balai\",\n          \"order\": 5\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"tim_teknologi\",\n          \"name\": \"Putri Lestari\",\n          \"position\": \"TIM PENGEMBANGAN TEKNOLOGI MANUFAKTUR\",\n          \"description\": \"Koordinator Tim Pengembangan Teknologi Manufaktur\",\n          \"image_path\": \"/images/pejabat/putri-lestari.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"ka_balai\",\n          \"order\": 6\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"tim_jejaring\",\n          \"name\": \"Dewi Maharani\",\n          \"position\": \"TIM JEJARING KERJASAMA DAN PEMASARAN\",\n          \"description\": \"Koordinator Tim Jejaring Kerjasama dan Pemasaran\",\n          \"image_path\": \"/images/pejabat/dewi-maharani.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"ka_balai\",\n          \"order\": 7\n        },\n        {\n          \"id\": null,\n          \"name\": \"Ahmad Dahlan\",\n          \"position\": \"SUBTIM INOVASI DAN TRANSFER TEKNOLOGI\",\n          \"description\": \"Subtim Inovasi dan Transfer Teknologi\",\n          \"image_path\": \"/images/pejabat/ahmad-dahlan.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_inovasi\",\n          \"order\": 8\n        },\n        {\n          \"id\": null,\n          \"name\": \"Amanda Citra\",\n          \"position\": \"SUBTIM DESAIN DAN PROTOTIPE\",\n          \"description\": \"Subtim Desain dan Prototipe\",\n          \"image_path\": \"/images/pejabat/amanda-citra.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_inovasi\",\n          \"order\": 9\n        },\n        {\n          \"id\": null,\n          \"name\": \"Michael Scott\",\n          \"position\": \"SUBTIM PENGEMBANGAN TALENTA MANUFAKTUR\",\n          \"description\": \"Subtim Pengembangan Talenta Manufaktur\",\n          \"image_path\": \"/images/pejabat/michael-scott.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_talenta\",\n          \"order\": 10\n        },\n        {\n          \"id\": null,\n          \"name\": \"Daniel Vance\",\n          \"position\": \"SUBTIM INKUBASI DAN TECHNOPRENEUR\",\n          \"description\": \"Subtim Inkubasi dan Technopreneur\",\n          \"image_path\": \"/images/pejabat/daniel-vance.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_talenta\",\n          \"order\": 11\n        },\n        {\n          \"id\": null,\n          \"name\": \"Liam Hudson\",\n          \"position\": \"SUBTIM TEKNOLOGI PROSES\",\n          \"description\": \"Subtim Teknologi Proses\",\n          \"image_path\": \"/images/pejabat/liam-hudson.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_teknologi\",\n          \"order\": 12\n        },\n        {\n          \"id\": null,\n          \"name\": \"Emily Watson\",\n          \"position\": \"SUBTIM EFISIENSI DAN TRANSFORMASI DIGITAL\",\n          \"description\": \"Subtim Efisiensi dan Transformasi Digital\",\n          \"image_path\": \"/images/pejabat/emily-watson.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_teknologi\",\n          \"order\": 13\n        },\n        {\n          \"id\": null,\n          \"name\": \"Sophia Bennett\",\n          \"position\": \"SUBTIM PENGEMBANGAN JEJARING INDUSTRI\",\n          \"description\": \"Subtim Pengembangan Jejaring Industri\",\n          \"image_path\": \"/images/pejabat/sophia-bennett.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_jejaring\",\n          \"order\": 14\n        },\n        {\n          \"id\": null,\n          \"name\": \"Olivia Harris\",\n          \"position\": \"SUBTIM KERJASAMA DAN PEMASARAN\",\n          \"description\": \"Subtim Kerjasama dan Pemasaran\",\n          \"image_path\": \"/images/pejabat/olivia-harris.jpg\",\n          \"parent_id\": null,\n          \"parent_temp_id\": \"tim_jejaring\",\n          \"order\": 15\n        }\n      ]\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/menu",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "menu"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201 - Menu Created with 5-Tier Structure",
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Berhasil menambahkan data menu\",\n  \"data\": {\n    \"id\": 1,\n    \"title\": \"Struktur Organisasi\",\n    \"slug\": \"struktur-organisasi\",\n    \"is_active\": true,\n    \"order\": 1,\n    \"has_sub\": false,\n    \"is_show_front\": false,\n    \"type\": \"organizational_structure\",\n    \"layout_id\": 1\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. Get Detail Menu - Organizational Structure (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var res = pm.response.json();",
+              "    if (res.data && res.data.content && res.data.content.length > 0) {",
+              "        var firstGroup = res.data.content[0];",
+              "        pm.collectionVariables.set('group_id', firstGroup.id);",
+              "        if (firstGroup.members && firstGroup.members.length > 0) {",
+              "            pm.collectionVariables.set('member_id_root', firstGroup.members[0].id);",
+              "            if (firstGroup.members.length > 1) {",
+              "                pm.collectionVariables.set('member_id_child', firstGroup.members[1].id);",
+              "            }",
+              "        }",
+              "        console.log('Auto-captured group_id:', firstGroup.id);",
+              "    }",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/menu/{{menu_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "menu",
+            "{{menu_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Detail Menu Success",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Berhasil mengambil data detail menu\",\n  \"data\": {\n    \"id\": 1,\n    \"title\": \"Struktur Organisasi\",\n    \"slug\": \"struktur-organisasi\",\n    \"is_active\": true,\n    \"type\": \"organizational_structure\",\n    \"content\": [\n      {\n        \"id\": 1,\n        \"content_id\": 10,\n        \"name\": \"Balai Teknologi Industri Manufaktur (BTIM)\",\n        \"order\": 1,\n        \"members\": [\n          {\n            \"id\": 101,\n            \"content_detail_organizational_structure_group_id\": 1,\n            \"name\": \"Budi Santoso\",\n            \"level\": 1,\n            \"position\": \"MENTERI PERINDUSTRIAN\",\n            \"description\": \"Menteri Perindustrian Republik Indonesia\",\n            \"image_path\": \"/images/pejabat/budi-santoso.jpg\",\n            \"is_child\": false,\n            \"have_child\": true,\n            \"parent_id\": null,\n            \"order\": 1\n          },\n          {\n            \"id\": 102,\n            \"content_detail_organizational_structure_group_id\": 1,\n            \"name\": \"Aditya Wijaya\",\n            \"level\": 2,\n            \"position\": \"DIRJEN ILMATE\",\n            \"description\": \"Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika\",\n            \"image_path\": \"/images/pejabat/aditya-wijaya.jpg\",\n            \"is_child\": true,\n            \"have_child\": true,\n            \"parent_id\": 101,\n            \"order\": 2\n          },\n          {\n            \"id\": 103,\n            \"content_detail_organizational_structure_group_id\": 1,\n            \"name\": \"Farhan Maulana\",\n            \"level\": 3,\n            \"position\": \"KEPALA BALAI TEKNOLOGI INDUSTRI MANUFAKTUR (BTIM)\",\n            \"description\": \"Kepala Balai Teknologi Industri Manufaktur\",\n            \"image_path\": \"/images/pejabat/farhan-maulana.jpg\",\n            \"is_child\": true,\n            \"have_child\": true,\n            \"parent_id\": 102,\n            \"order\": 3\n          }\n        ]\n      }\n    ]\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "3. Update Menu - Reorganize & Modify Hierarchy",
+      "request": {
+        "description": "Menggunakan variabel {{group_id}}, {{member_id_root}}, dan {{member_id_child}} yang telah otomatis disimpan dari Request 2. Untuk menambah personil baru, gunakan 'id': null.",
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Struktur Organisasi (Updated)\",\n  \"slug\": \"struktur-organisasi\",\n  \"has_sub\": false,\n  \"is_active\": true,\n  \"is_show_front\": false,\n  \"order\": 1,\n  \"type\": \"organizational_structure\",\n  \"layout_id\": 1,\n  \"content\": [\n    {\n      \"id\": {{group_id}},\n      \"name\": \"Balai Teknologi Industri Manufaktur (BTIM)\",\n      \"order\": 1,\n      \"members\": [\n        {\n          \"id\": {{member_id_root}},\n          \"name\": \"Budi Santoso\",\n          \"position\": \"MENTERI PERINDUSTRIAN\",\n          \"description\": \"Menteri Perindustrian Republik Indonesia\",\n          \"image_path\": \"/images/pejabat/budi-santoso.jpg\",\n          \"parent_id\": null,\n          \"order\": 1\n        },\n        {\n          \"id\": {{member_id_child}},\n          \"name\": \"Aditya Wijaya\",\n          \"position\": \"DIRJEN ILMATE (Plt)\",\n          \"description\": \"Plt Direktur Jenderal ILMATE\",\n          \"image_path\": \"/images/pejabat/aditya-wijaya.jpg\",\n          \"parent_id\": {{member_id_root}},\n          \"order\": 2\n        },\n        {\n          \"id\": null,\n          \"temp_id\": \"staff_khusus\",\n          \"name\": \"Rian Pratama\",\n          \"position\": \"Staf Khusus Menteri\",\n          \"description\": \"Staf Khusus Bidang Percepatan Industri\",\n          \"image_path\": \"/images/pejabat/rian-pratama.jpg\",\n          \"parent_id\": {{member_id_root}},\n          \"order\": 3\n        }\n      ]\n    }\n  ],\n  \"deleted_content_detail_id\": [],\n  \"deleted_content_detail_list_id\": []\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/menu/{{menu_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "menu",
+            "{{menu_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Menu Updated Successfully",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Berhasil memperbarui data menu\",\n  \"data\": {\n    \"id\": 1,\n    \"title\": \"Struktur Organisasi (Updated)\",\n    \"slug\": \"struktur-organisasi\",\n    \"is_active\": true,\n    \"order\": 1,\n    \"has_sub\": false,\n    \"type\": \"organizational_structure\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Get Public Content - Organizational Structure Tree",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{public_base_url}}/content?type=menu&slug={{menu_slug}}",
+          "host": [
+            "{{public_base_url}}"
+          ],
+          "path": [
+            "content"
+          ],
+          "query": [
+            {
+              "key": "type",
+              "value": "menu"
+            },
+            {
+              "key": "slug",
+              "value": "{{menu_slug}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Public Content with id & parent_id",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Berhasil mengambil detail content menu\",\n  \"data\": {\n    \"id\": 1,\n    \"title\": \"Struktur Organisasi\",\n    \"slug\": \"struktur-organisasi\",\n    \"type\": \"organizational_structure\",\n    \"content\": [\n      {\n        \"id\": 1,\n        \"name\": \"Balai Teknologi Industri Manufaktur (BTIM)\",\n        \"order\": 1,\n        \"members\": [\n          {\n            \"id\": 101,\n            \"name\": \"Budi Santoso\",\n            \"level\": 1,\n            \"position\": \"MENTERI PERINDUSTRIAN\",\n            \"description\": \"Menteri Perindustrian Republik Indonesia\",\n            \"image_path\": \"/images/pejabat/budi-santoso.jpg\",\n            \"is_child\": false,\n            \"have_child\": true,\n            \"parent_id\": null,\n            \"order\": 1\n          },\n          {\n            \"id\": 102,\n            \"name\": \"Aditya Wijaya\",\n            \"level\": 2,\n            \"position\": \"DIRJEN ILMATE\",\n            \"description\": \"Direktur Jenderal Industri Logam, Mesin, Alat Transportasi, dan Elektronika\",\n            \"image_path\": \"/images/pejabat/aditya-wijaya.jpg\",\n            \"is_child\": true,\n            \"have_child\": true,\n            \"parent_id\": 101,\n            \"order\": 2\n          },\n          {\n            \"id\": 103,\n            \"name\": \"Farhan Maulana\",\n            \"level\": 3,\n            \"position\": \"KEPALA BALAI TEKNOLOGI INDUSTRI MANUFAKTUR (BTIM)\",\n            \"description\": \"Kepala Balai Teknologi Industri Manufaktur\",\n            \"image_path\": \"/images/pejabat/farhan-maulana.jpg\",\n            \"is_child\": true,\n            \"have_child\": true,\n            \"parent_id\": 102,\n            \"order\": 3\n          }\n        ]\n      }\n    ]\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Delete Menu (Cascade Delete Structure)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/menu/{{menu_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "menu",
+            "{{menu_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Menu Deleted",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Berhasil menghapus menu\",\n  \"data\": \"\"\n}"
+        }
+      ]
+    }
+  ]
+}
