@@ -16,6 +16,7 @@ class Content extends Model
         'type',
         'layout_id',
         'section_title',
+        'section_description',
         'is_section',
         'is_show_home',
         'is_show_tag',

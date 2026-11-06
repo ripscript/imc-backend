@@ -10,6 +10,8 @@ class ContentDTO extends BaseDTO
 
     public ?string $section_title;
 
+    public ?string $section_description;
+
     public ?bool $is_section;
 
     public ?int $order;
@@ -41,6 +43,7 @@ class ContentDTO extends BaseDTO
         $this->parent_type = $data['parent_type'] ?? '';
         $this->parent_id = $data['parent_id'] ?? null;
         $this->section_title = $data['section_title'] ?? null;
+        $this->section_description = $data['section_description'] ?? null;
         $this->is_section = $data['is_section'] ?? null;
         $this->order = $data['order'] ?? null;
         $this->type = $data['type'] ?? null;

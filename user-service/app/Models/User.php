@@ -54,8 +54,29 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
+    public function getPermissionsList(): array
+    {
+        if (! $this->role) {
+            return [];
+        }
+
+        if ($this->relationLoaded('role') && $this->role->relationLoaded('permissions')) {
+            return $this->role->permissions->pluck('code')->values()->toArray();
+        }
+
+        return $this->role->permissions()->pluck('code')->toArray();
+    }
+
+    public function getPermissionsAttribute(): array
+    {
+        return $this->getPermissionsList();
+    }
+
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'role' => $this->role?->code,
+            'permissions' => $this->getPermissionsList(),
+        ];
     }
 }

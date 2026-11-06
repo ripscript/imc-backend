@@ -151,9 +151,14 @@ JSON;
         $this->assertAllResourceKeys($this->expectedResourceKeys, $data);
         $this->assertEquals($payload['title'], $data['title']);
         $this->assertEquals($payload['slug'], $data['slug']);
+        $this->assertEquals($payload['description'], $data['description']);
         $this->assertEquals($payload['file_path'], $data['file_path']);
         $this->assertEquals($payload['thumbnail_path'], $data['thumbnail_path']);
         $this->assertTrue((bool) $data['is_publicated']);
+        $this->assertDatabaseHas('content_detail_repositories', [
+            'id' => $data['id'],
+            'description' => $payload['description'],
+        ]);
     }
 
     public function test_update_repository_matches_resource_shape()
@@ -181,7 +186,12 @@ JSON;
         $this->assertAllResourceKeys($this->expectedResourceKeys, $data);
         $this->assertEquals($updatePayload['title'], $data['title']);
         $this->assertEquals($updatePayload['slug'], $data['slug']);
+        $this->assertEquals($updatePayload['description'], $data['description']);
         $this->assertEquals($updatePayload['file_path'], $data['file_path']);
         $this->assertFalse((bool) $data['is_publicated']);
+        $this->assertDatabaseHas('content_detail_repositories', [
+            'id' => $repository->id,
+            'description' => $updatePayload['description'],
+        ]);
     }
 }

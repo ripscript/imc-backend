@@ -19,6 +19,7 @@ class UpdateMenuRequest extends FormRequest
         return [
             'slug' => ['required', 'string', 'max:200', Rule::unique('menus', 'slug')->ignore($id)],
             'title' => 'required|string|max:200',
+            'description' => 'nullable|string|max:255',
             'type' => 'nullable|string',
             'is_active' => 'required',
             'is_show_front' => 'required|boolean',

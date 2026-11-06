@@ -14,6 +14,7 @@ class ContentDetailRepository extends Model
         'slug',
         'description',
         'type',
+        'file_path',
         'is_publicated',
         'layout_id',
         'publish_date',

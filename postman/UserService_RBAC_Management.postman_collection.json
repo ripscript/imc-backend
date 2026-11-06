@@ -1,0 +1,505 @@
+{
+  "info": {
+    "name": "User Service - RBAC (Roles & Permissions)",
+    "description": "Koleksi Postman untuk modul Role-Based Access Control (RBAC) pada user-service.\n\nMencakup:\n1. Autentikasi Admin (Login & Profil dengan JWT Claims role + permissions)\n2. Manajemen Hak Akses (Permissions CRUD, filter group, search, list all)\n3. Manajemen Peran (Roles CRUD & sinkronisasi permissions ke role)\n\nSemua endpoint dilindungi JWT (Authorization: Bearer {{token}}) dan peran super_admin/admin_pusat/admin_pustik.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4076/user-service/api"
+    },
+    {
+      "key": "token",
+      "value": "PASTE_JWT_TOKEN_HERE"
+    },
+    {
+      "key": "permission_id",
+      "value": "1"
+    },
+    {
+      "key": "role_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "1. Login Admin (Auto Set Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.data && res.data.access_token) {",
+                  "    pm.collectionVariables.set('token', res.data.access_token);",
+                  "    pm.environment.set('token', res.data.access_token);",
+                  "    console.log('Token successfully captured');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. Get Profile & Permissions Claim",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Permission Management",
+      "item": [
+        {
+          "name": "1. List Permissions (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. List Permissions (All / Tanpa Pagination)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission?all=true",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission"
+              ],
+              "query": [
+                {
+                  "key": "all",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. Filter Permissions by Group",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission?group=Manajemen Proyek",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission"
+              ],
+              "query": [
+                {
+                  "key": "group",
+                  "value": "Manajemen Proyek"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. Search Permission",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission?search=dashboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "dashboard"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "5. Detail Permission",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission/{{permission_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission",
+                "{{permission_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "6. Create Permission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"custom_report\",\n  \"action\": \"export\",\n  \"label\": \"Ekspor Laporan Kustom\",\n  \"group\": \"Laporan & Statistik\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/permission",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission"
+              ]
+            }
+          }
+        },
+        {
+          "name": "7. Update Permission",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Ekspor Laporan Kustom (Diperbarui)\",\n  \"group\": \"Laporan\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/permission/{{permission_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission",
+                "{{permission_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "8. Delete Permission",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/permission/{{permission_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "permission",
+                "{{permission_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Role Management",
+      "item": [
+        {
+          "name": "1. List Roles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/role",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "role"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. Detail Role (with Permissions)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/role/{{role_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "role",
+                "{{role_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. Create Role with Assigned Permissions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Editor Konten\",\n  \"code\": \"content_editor\",\n  \"is_active\": true,\n  \"permission_ids\": [1, 2, 3, 4, 10, 11]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/role",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "role"
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. Update Role & Sync Permissions",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Editor Konten Senior\",\n  \"is_active\": true,\n  \"permission_ids\": [1, 2, 3, 4, 10, 11, 12, 13]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/role/{{role_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "role",
+                "{{role_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5. Delete Role",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/role/{{role_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "role",
+                "{{role_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

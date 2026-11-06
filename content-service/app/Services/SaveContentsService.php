@@ -143,8 +143,11 @@ class SaveContentsService
                 $results = [];
                 $ids = [];
                 foreach ($dataContent as $key => $value) {
-                    $consumeId = $value['consume_id'];
-                    $consumeType = $value['consume_type'];
+                    $consumeId = $value['consume_id'] ?? null;
+                    $consumeType = $value['consume_type'] ?? null;
+                    if (! $consumeId || ! $consumeType) {
+                        continue;
+                    }
                     $result = ContentDetailConsume::updateOrCreate(
                         [
                             'content_id' => $content->id,
@@ -167,7 +170,8 @@ class SaveContentsService
 
             case 'organizational_structure':
                 $results = [];
-                foreach ($dataContent['groups'] as $key => $group) {
+                $groups = $dataContent['groups'] ?? (is_array($dataContent) ? $dataContent : []);
+                foreach ($groups as $key => $group) {
                     $payload = [
                         'content_id' => $content->id,
                         'name' => $group['name'],
@@ -177,33 +181,83 @@ class SaveContentsService
                     $resultGroup = $this->saveRecord(ContentDetailOrganizationalStructureGroup::class, $group['id'] ?? null, $payload, $user);
 
                     $resultMembers = [];
-                    foreach ($group['members'] as $keyMember => $member) {
+                    $rawMembers = [];
+                    $tempIdToDbId = [];
+
+                    // Pass 1: Persist members and map temp_id -> generated database id
+                    foreach ($group['members'] ?? [] as $keyMember => $member) {
+                        $initialParentId = null;
+                        if (! empty($member['parent_id']) && is_numeric($member['parent_id'])) {
+                            $initialParentId = (int) $member['parent_id'];
+                        }
+
                         $memberPayload = [
                             'content_detail_organizational_structure_group_id' => $resultGroup->id,
                             'name' => $member['name'],
-                            'level' => $member['level'] ?? 1,
                             'position' => $member['position'] ?? '',
                             'description' => $member['description'] ?? '',
                             'image_path' => $member['image_path'] ?? '',
-                            'is_child' => $member['is_child'] ?? ($keyMember > 0),
-                            'have_child' => $member['have_child'] ?? ($keyMember === 0),
-                            'parent_id' => $member['parent_id'] ?? null,
+                            'level' => $member['level'] ?? 1,
+                            'is_child' => $member['is_child'] ?? false,
+                            'have_child' => $member['have_child'] ?? false,
+                            'parent_id' => $initialParentId,
                             'order' => $member['order'] ?? ($keyMember + 1),
                             'updated_by' => $user,
                         ];
                         $resultMember = $this->saveRecord(ContentDetailOrganizationalStructureMember::class, $member['id'] ?? null, $memberPayload, $user);
+
+                        if (! empty($member['temp_id'])) {
+                            $tempIdToDbId[(string) $member['temp_id']] = $resultMember->id;
+                        }
+
                         $resultMembers[] = $resultMember;
+                        $rawMembers[] = $member;
                     }
 
-                    if (count($resultMembers) > 1) {
-                        $parentId = $resultMembers[0]->id;
-                        for ($i = 1; $i < count($resultMembers); $i++) {
-                            if (! ($group['members'][$i]['is_child'] ?? true)) {
-                                continue;
-                            }
-                            $resultMembers[$i]->parent_id = $parentId;
-                            $resultMembers[$i]->save();
+                    // Pass 2: Resolve temporary parent IDs (parent_temp_id or string parent_id)
+                    foreach ($resultMembers as $idx => $resultMember) {
+                        $raw = $rawMembers[$idx];
+                        $targetParentTempId = $raw['parent_temp_id'] ?? null;
+                        if (empty($targetParentTempId) && ! empty($raw['parent_id']) && ! is_numeric($raw['parent_id'])) {
+                            $targetParentTempId = $raw['parent_id'];
                         }
+
+                        if (! empty($targetParentTempId) && isset($tempIdToDbId[(string) $targetParentTempId])) {
+                            $resultMember->parent_id = $tempIdToDbId[(string) $targetParentTempId];
+                            $resultMember->save();
+                        }
+                    }
+
+                    // Pass 3: Derive hierarchy metadata (is_child, have_child, level)
+                    $memberMap = [];
+                    $parentIds = [];
+                    foreach ($resultMembers as $m) {
+                        $memberMap[$m->id] = $m;
+                        if ($m->parent_id) {
+                            $parentIds[$m->parent_id] = true;
+                        }
+                    }
+
+                    $calculateLevel = function ($memberId, array &$visited = []) use (&$calculateLevel, $memberMap): int {
+                        if (isset($visited[$memberId])) {
+                            return 1;
+                        }
+                        $visited[$memberId] = true;
+
+                        $mem = $memberMap[$memberId] ?? null;
+                        if (! $mem || empty($mem->parent_id) || ! isset($memberMap[$mem->parent_id])) {
+                            return 1;
+                        }
+
+                        return 1 + $calculateLevel($mem->parent_id, $visited);
+                    };
+
+                    foreach ($resultMembers as $m) {
+                        $visited = [];
+                        $m->level = $calculateLevel($m->id, $visited);
+                        $m->is_child = ! empty($m->parent_id);
+                        $m->have_child = isset($parentIds[$m->id]);
+                        $m->save();
                     }
 
                     $resultGroup->members = $resultMembers;
@@ -255,7 +309,7 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'content' => $data['content'],
+            'content' => $data['content'] ?? '',
             'updated_by' => $user,
         ];
     }
@@ -264,9 +318,9 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title' => $data['title'],
-            'color_code' => $data['color_code'],
-            'link' => $data['link'],
+            'title' => $data['title'] ?? '',
+            'color_code' => $data['color_code'] ?? null,
+            'link' => $data['link'] ?? null,
             'order' => ($key + 1),
             'updated_by' => $user,
         ];
@@ -276,9 +330,9 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title' => $data['title'],
-            'image_path' => $data['image_path'],
-            'link' => $data['link'],
+            'title' => $data['title'] ?? '',
+            'image_path' => $data['image_path'] ?? null,
+            'link' => $data['link'] ?? null,
             'order' => ($key + 1),
             'updated_by' => $user,
         ];
@@ -288,8 +342,8 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title' => $data['title'],
-            'image_path' => $data['image_path'],
+            'title' => $data['title'] ?? '',
+            'image_path' => $data['image_path'] ?? null,
             'description' => $data['description'] ?? '',
             'order' => ($key + 1),
             'updated_by' => $user,
@@ -311,16 +365,16 @@ class SaveContentsService
 
     private function buildVideoCarouselPayload($content, $data, $user, $key = 0)
     {
-        $type = $this->uploadVideoEnabled ? $data['type'] : 'link';
+        $type = $this->uploadVideoEnabled ? ($data['type'] ?? 'link') : 'link';
 
         return [
             'content_id' => $content->id,
-            'title' => $data['title'],
+            'title' => $data['title'] ?? '',
             'order' => ($key + 1),
             'updated_by' => $user,
             'type' => $type,
-            'url' => $type == 'link' ? $data['url'] : null,
-            'video_path' => $type == 'upload' ? $data['video_path'] : null,
+            'url' => $type == 'link' ? ($data['url'] ?? null) : null,
+            'video_path' => $type == 'upload' ? ($data['video_path'] ?? null) : null,
         ];
     }
 
@@ -328,7 +382,7 @@ class SaveContentsService
     {
         return [
             'content_id' => $content->id,
-            'title' => $data['title'],
+            'title' => $data['title'] ?? '',
             'order' => ($key + 1),
             'updated_by' => $user,
         ];
@@ -338,8 +392,8 @@ class SaveContentsService
     {
         return [
             'content_detail_accordion_group_id' => $accordionGroup->id,
-            'title' => $data['title'],
-            'description' => $data['description'],
+            'title' => $data['title'] ?? '',
+            'description' => $data['description'] ?? '',
             'file_path' => $data['file_path'] ?? '',
             'link' => $data['link'] ?? '',
             'order' => ($key + 1),

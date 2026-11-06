@@ -8,6 +8,8 @@ class SubMenuDTO extends BaseDTO
 
     public string $title;
 
+    public ?string $description;
+
     public string $slug;
 
     public ?bool $is_active;
@@ -74,6 +76,7 @@ class SubMenuDTO extends BaseDTO
     {
         $this->menu_id = $data['menu_id'] ?? 0;
         $this->title = $data['title'] ?? '';
+        $this->description = $data['description'] ?? null;
         $this->slug = $data['slug'] ?? '';
         $this->is_active = $data['is_active'] ?? null;
         $this->order = $data['order'] ?? null;

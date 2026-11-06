@@ -16,7 +16,7 @@ class ContentDetailRepositoryFactory extends Factory
             'title' => fake()->sentence(),
             'slug' => fake()->unique()->slug(),
             'description' => fake()->paragraph(),
-            'type' => 'repository',
+            'file_path' => 'uploads/'.fake()->uuid().'.pdf',
             'is_publicated' => true,
             'layout_id' => null,
             'publish_date' => fake()->date(),

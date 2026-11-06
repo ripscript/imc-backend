@@ -18,6 +18,7 @@ class UserResource extends JsonResource
             'status' => $this->status,
             'role_id' => $this->role_id,
             'role' => $this->whenLoaded('role', fn () => $this->role->name),
+            'permissions' => $this->getPermissionsList(),
             'satuan_kerja_id' => $this->satuan_kerja_id,
             'sub_satuan_kerja_id' => $this->sub_satuan_kerja_id,
             'perwakilan_id' => $this->perwakilan_id,

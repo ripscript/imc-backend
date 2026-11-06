@@ -14,8 +14,14 @@ class JwtErrorHandlerMiddleware
 {
     public function handle($request, Closure $next, $guard = null)
     {
+        $auth = auth($guard);
+        if ($auth->check()) {
+            $request->attributes->set('guard', $guard);
+
+            return $next($request);
+        }
+
         try {
-            $auth = auth($guard);
             $token = JWTAuth::parseToken()->getToken();
             $user = $auth->setToken($token)->authenticate();
             if (! $user) {
