@@ -45,15 +45,15 @@ class MenuSeeder extends Seeder
             'is_show_front' => true,
         ]);
 
-        $hasilId = $this->createMenu([
-            'title' => 'Hasil Kolaborasi',
-            'slug' => 'hasil-kolaborasi',
-            'is_active' => 1,
-            'is_dedicated' => 1,
-            'has_sub' => false,
-            'order' => 4,
-            'is_show_front' => true,
-        ]);
+        // $hasilId = $this->createMenu([
+        //     'title' => 'Hasil Kolaborasi',
+        //     'slug' => 'hasil-kolaborasi',
+        //     'is_active' => 1,
+        //     'is_dedicated' => 1,
+        //     'has_sub' => false,
+        //     'order' => 4,
+        //     'is_show_front' => true,
+        // ]);
 
         $showcaseId = $this->createMenu([
             'title' => 'Showcase',
