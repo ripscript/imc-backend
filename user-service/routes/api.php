@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BulkPasswordController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiinasAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +64,22 @@ Route::middleware(['jwt.error:admin'])->group(function () {
             Route::put('{id}', [UserController::class, 'update']);
             Route::get('{id}', [UserController::class, 'detail']);
             Route::delete('{id}', [UserController::class, 'destroy']);
+        });
+
+        Route::prefix('permission')->group(function () {
+            Route::get('/', [PermissionController::class, 'index']);
+            Route::post('/', [PermissionController::class, 'create']);
+            Route::get('{id}', [PermissionController::class, 'detail']);
+            Route::put('{id}', [PermissionController::class, 'update']);
+            Route::delete('{id}', [PermissionController::class, 'destroy']);
+        });
+
+        Route::prefix('role')->group(function () {
+            Route::get('/', [RoleController::class, 'index']);
+            Route::post('/', [RoleController::class, 'create']);
+            Route::get('{id}', [RoleController::class, 'detail']);
+            Route::put('{id}', [RoleController::class, 'update']);
+            Route::delete('{id}', [RoleController::class, 'destroy']);
         });
 
         Route::prefix('log')->group(function () {

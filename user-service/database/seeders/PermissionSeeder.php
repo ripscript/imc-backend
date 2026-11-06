@@ -22,6 +22,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'user', 'action' => 'update', 'label' => 'Ubah Pengguna', 'group' => 'Manajemen Pengguna'],
             ['name' => 'user', 'action' => 'delete', 'label' => 'Hapus Pengguna', 'group' => 'Manajemen Pengguna'],
 
+            // User Profile
+            ['name' => 'profile', 'action' => 'read', 'label' => 'Lihat Profil', 'group' => 'Profil Pengguna'],
+
             // Role Management
             ['name' => 'role', 'action' => 'create', 'label' => 'Tambah Peran', 'group' => 'Manajemen Peran & Akses'],
             ['name' => 'role', 'action' => 'read', 'label' => 'Lihat Peran', 'group' => 'Manajemen Peran & Akses'],
@@ -185,6 +188,18 @@ class PermissionSeeder extends Seeder
             foreach ($allPermissionIds as $pId) {
                 DB::table('ms_role_permissions')->updateOrInsert(
                     ['role_id' => $adminPusat->id, 'permission_id' => $pId],
+                    ['created_at' => now(), 'updated_at' => now()]
+                );
+            }
+        }
+
+        // Assign profile.read to all roles so any authenticated user can view their own profile
+        $profilePerm = DB::table('ms_permissions')->where('code', 'profile.read')->first();
+        if ($profilePerm) {
+            $allRoles = DB::table('ms_roles')->pluck('id');
+            foreach ($allRoles as $rId) {
+                DB::table('ms_role_permissions')->updateOrInsert(
+                    ['role_id' => $rId, 'permission_id' => $profilePerm->id],
                     ['created_at' => now(), 'updated_at' => now()]
                 );
             }

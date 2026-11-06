@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.error' => \App\Http\Middleware\JwtErrorHandlerMiddleware::class,
         'check.role' => \App\Http\Middleware\CheckRole::class,
+        'check.permission' => \App\Http\Middleware\CheckPermission::class,
     ];
 }
