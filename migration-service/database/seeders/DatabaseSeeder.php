@@ -48,5 +48,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SiteSettingSeeder::class);
         $this->call(GlobalSearchIndexSeeder::class);
+        $this->call(PermissionSeeder::class);
     }
 }
