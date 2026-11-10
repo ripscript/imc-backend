@@ -1,0 +1,92 @@
+server {
+    listen 8080;
+    server_name localhost;
+
+    proxy_read_timeout 600;
+    proxy_connect_timeout 600;
+    proxy_send_timeout 600;
+    client_max_body_size 500M;
+
+    # Health check
+    location /healthy {
+        add_header Content-Type "application/json";
+        return 200 '{"status": true, "message": "Healthy System nginx E-PPID"}';
+    }
+
+    # Mapping ke master-service
+    location /master-service/ {
+        proxy_pass http://imc-new-engine-master-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "master-service" always;
+    }
+
+    # Mapping ke user-service
+    location /user-service/ {
+        proxy_pass http://imc-new-engine-user-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "user-service" always;
+    }
+
+    # Mapping ke content-service
+    location /content-service/ {
+        proxy_pass http://imc-new-engine-content-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "content-service" always;
+    }
+
+    # Mapping ke public-content-service
+    location /public-content-service/ {
+        proxy_pass http://imc-new-engine-public-content-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "public-content-service" always;
+    }
+
+    # Mapping ke file-service
+    location /file-service/ {
+        proxy_pass http://imc-new-engine-file-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "file-service" always;
+    }
+
+    # Mapping ke setting-service
+    location /setting-service/ {
+        proxy_pass http://imc-new-engine-setting-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "setting-service" always;
+    }
+
+    # Mapping ke setting-service
+    location /project-service/ {
+        proxy_pass http://imc-new-engine-project-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header X-Debug-Upstream "project-service" always;
+    }
+}
