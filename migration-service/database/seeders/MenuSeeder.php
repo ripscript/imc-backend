@@ -182,15 +182,12 @@ class MenuSeeder extends Seeder
     private function createBerandaSections(int $berandaId): void
     {
         $sections = [
-            ['title' => 'Hero', 'type' => 'hero_carousel'],
-            ['title' => 'Proyek Kolaborasi & Manufaktur', 'type' => 'consume'],
-            ['title' => 'Showcase Teknologi & Hasil Karya Manufaktur', 'type' => 'consume'],
-            ['title' => 'Bagaimana Ekosistem IMC Bekerja untuk Industri?', 'type' => 'image_link'],
-            ['title' => 'Video', 'type' => 'video_carousel'],
-            ['title' => 'Layanan Unggulan', 'type' => 'card_link'],
-            ['title' => 'Accordion', 'type' => 'accordion'],
-            ['title' => 'Repository', 'type' => 'repository'],
-            ['title' => 'Organizational Structure', 'type' => 'organizational_structure'],
+            ['title' => 'Hero', 'type' => 'hero_carousel', 'description'=> '', 'order' => 1],
+            ['title' => 'Layanan Unggulan', 'type' => 'image_link', 'description'=> 'Solusi terpadu dari pengembangan konsep hingga produksi massal yang siap bersaing di pasar.', 'order' => 2],
+            ['title' => 'Proyek Kolaborasi & Manufaktur', 'type' => 'consume', 'description'=> 'Sinergi riset, rekayasa industri, dan pengembangan komponen utama mesin manufaktur yang diproduksi oleh talenta nasional.', 'order' => 3],
+            ['title' => 'Showcase Teknologi & Hasil Karya Manufaktur', 'type' => 'consume', 'description'=> 'Eksplorasi prototipe, mesin hasil rekkayasa balik (reverse engineering), dan proyek kolaborasi teknologi karya anak bangsa binaan Indonesia Manufacturing Center (IMC)', 'order' => 4],
+            ['title' => 'Bagaimana Ekosistem IMC Bekerja untuk Industri?', 'type' => 'image_link', 'description'=> 'Indonesia Manufacturing Center (IMC) adalah jembatan akselerasi teknologi industri yang mendukung percepatan kemandirian mesin dan alat rekayasa manufaktur nasional melalui kolaborasi terstruktur akademisi, riset asosiasi, dan pelaku industri.', 'order' => 5],
+            ['title' => 'Mitra', 'type' => 'image_link', 'description'=> '', 'order' => 6],
         ];
 
         foreach ($sections as $key => $section) {
@@ -199,7 +196,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => $berandaId,
                 'section_title' => $section['title'],
                 'type' => $section['type'],
-                'order' => $key + 1,
+                'order' => $section['order'],
+                'section_description' => $section['description'],
                 'is_section' => true,
                 'is_show_home' => true,
                 'is_show_tag' => false,

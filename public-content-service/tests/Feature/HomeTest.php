@@ -21,6 +21,7 @@ class HomeTest extends TestCase
             'is_section' => true,
             'section_title' => 'Layanan Unggulan',
             'section_description' => 'Deskripsi Layanan Unggulan',
+            'order' => 1,
         ]);
 
         $response = $this->getJson('/api/home');
@@ -32,6 +33,7 @@ class HomeTest extends TestCase
         $this->assertNotEmpty($data);
         $this->assertEquals('Layanan Unggulan', $data[0]['section_title']);
         $this->assertEquals('Deskripsi Layanan Unggulan', $data[0]['section_description']);
+        $this->assertEquals(1, $data[0]['order']);
     }
 
     public function test_can_get_section_detail_with_description(): void
