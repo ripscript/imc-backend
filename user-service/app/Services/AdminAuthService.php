@@ -30,7 +30,7 @@ class AdminAuthService
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('admin')->factory()->getTTL() * 60,
-            'user' => User::find(auth('admin')->id()),
+            'user' => User::with(['role.permissions'])->find(auth('admin')->id()),
         ];
     }
 
@@ -44,6 +44,6 @@ class AdminAuthService
 
     public function profile()
     {
-        return User::find(auth('admin')->id());
+        return User::with(['role.permissions'])->find(auth('admin')->id());
     }
 }

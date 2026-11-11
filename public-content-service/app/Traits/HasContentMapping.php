@@ -60,6 +60,7 @@ trait HasContentMapping
                             'title',
                             'slug',
                             'description',
+                            'file_path',
                             'thumbnail_path',
                             'publish_date'
                         );

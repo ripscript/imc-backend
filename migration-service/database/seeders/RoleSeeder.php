@@ -19,22 +19,6 @@ class RoleSeeder extends Seeder
                 'name' => 'Superadmin',
             ],
             [
-                'code' => 'admin_pusat',
-                'name' => 'Admin Pusat',
-            ],
-            [
-                'code' => 'admin_satker',
-                'name' => 'Admin Satker/Perwakilan',
-            ],
-            [
-                'code' => 'pimpinan',
-                'name' => 'Pimpinan',
-            ],
-            [
-                'code' => 'admin_pustik',
-                'name' => 'Admin Pustik KP',
-            ],
-            [
                 'code' => 'industri',
                 'name' => 'Industri',
             ],
@@ -48,12 +32,17 @@ class RoleSeeder extends Seeder
                 ->update(['code' => $role['code']]);
 
             // Insert hanya jika code belum ada
-            DB::table('ms_roles')
-                ->where('code', $role['code'])
-                ->doesntExist() && DB::table('ms_roles')->insert([
+            if (DB::table('ms_roles')->where('code', $role['code'])->doesntExist()) {
+                DB::table('ms_roles')->insert([
                     'code' => $role['code'],
                     'name' => $role['name'],
+                    'is_system' => true,
                 ]);
+            } else {
+                DB::table('ms_roles')
+                    ->where('code', $role['code'])
+                    ->update(['is_system' => true]);
+            }
         }
     }
 }

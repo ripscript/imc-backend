@@ -34,6 +34,7 @@ class HomeService
                 'type' => $content->type,
                 'section_title' => $content->section_title,
                 'section_description' => $content->section_description,
+                'order' => $content->order,
             ];
         });
     }
