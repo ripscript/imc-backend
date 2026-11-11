@@ -45,7 +45,7 @@ Route::get('/health', function () {
 Route::pattern('project_id', '[0-9]+');
 Route::pattern('change_request_id', '[0-9]+');
 
-Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik,admin_satker,pimpinan'])
+Route::middleware(['jwt.error:admin'])
     ->prefix('approvals')
     ->group(function () {
         Route::get('/', [UnifiedApprovalController::class, 'index']);
@@ -53,7 +53,7 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
         Route::post('{id}/reject', [UnifiedApprovalController::class, 'reject'])->whereNumber('id');
     });
 
-Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_pustik'])
+Route::middleware(['jwt.error:admin'])
     ->prefix('projects')
     ->group(function () {
         // Project collection
@@ -75,12 +75,8 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
             // Activation
             Route::prefix('activate')->group(function () {
                 Route::post('/', [ProjectActivationController::class, 'activate']);
-
-                // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
-                Route::middleware(['check.role:super_admin,admin_pusat'])->group(function () {
-                    Route::post('approve', [ProjectActivationController::class, 'approveActivation']);
-                    Route::post('reject', [ProjectActivationController::class, 'rejectActivation']);
-                });
+                Route::post('approve', [ProjectActivationController::class, 'approveActivation']);
+                Route::post('reject', [ProjectActivationController::class, 'rejectActivation']);
             });
 
             // Members
@@ -95,14 +91,11 @@ Route::middleware(['jwt.error:admin', 'check.role:super_admin,admin_pusat,admin_
                 Route::get('/', [ProjectChangeRequestController::class, 'index']);
                 Route::post('/', [ProjectChangeRequestController::class, 'store']);
 
-                // Decision endpoints — fixed approver role only (specs/005 gate 1 & 3).
-                Route::middleware(['check.role:super_admin,admin_pusat'])
-                    ->prefix('{change_request_id}')
-                    ->group(function () {
-                        Route::post('approve', [ProjectChangeRequestController::class, 'approve']);
-                        Route::post('reject', [ProjectChangeRequestController::class, 'reject']);
-                        Route::post('apply', [ProjectChangeRequestController::class, 'apply']);
-                    });
+                Route::prefix('{change_request_id}')->group(function () {
+                    Route::post('approve', [ProjectChangeRequestController::class, 'approve']);
+                    Route::post('reject', [ProjectChangeRequestController::class, 'reject']);
+                    Route::post('apply', [ProjectChangeRequestController::class, 'apply']);
+                });
             });
 
             // Standalone task toggle
