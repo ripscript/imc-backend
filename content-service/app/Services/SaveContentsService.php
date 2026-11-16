@@ -240,13 +240,13 @@ class SaveContentsService
 
                     $calculateLevel = function ($memberId, array &$visited = []) use (&$calculateLevel, $memberMap): int {
                         if (isset($visited[$memberId])) {
-                            return 1;
+                            return 0;
                         }
                         $visited[$memberId] = true;
 
                         $mem = $memberMap[$memberId] ?? null;
                         if (! $mem || empty($mem->parent_id) || ! isset($memberMap[$mem->parent_id])) {
-                            return 1;
+                            return 0;
                         }
 
                         return 1 + $calculateLevel($mem->parent_id, $visited);

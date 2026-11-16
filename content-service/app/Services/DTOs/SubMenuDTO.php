@@ -28,6 +28,8 @@ class SubMenuDTO extends BaseDTO
 
     public ?bool $is_show_home;
 
+    public ?bool $is_show_image;
+
     public ?bool $is_show_tag;
 
     public mixed $content;
@@ -85,6 +87,7 @@ class SubMenuDTO extends BaseDTO
         $this->type = $data['type'] ?? null;
         $this->layout_id = $data['layout_id'] ?? null;
         $this->is_accessible = $data['is_accessible'] ?? null;
+        $this->is_show_image = $data['is_show_image'] ?? null;
         $this->is_show_home = $data['is_show_home'] ?? null;
         $this->is_show_tag = $data['is_show_tag'] ?? null;
         $this->content = $data['content'] ?? null;

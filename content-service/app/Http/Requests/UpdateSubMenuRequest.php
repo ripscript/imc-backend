@@ -28,6 +28,7 @@ class UpdateSubMenuRequest extends FormRequest
             'order' => 'required',
             'layout_id' => 'required_if:has_child,false',
             'is_accessible' => 'boolean',
+            'is_show_image' => 'boolean',
             'is_show_home' => 'boolean',
             'is_show_tag' => 'boolean',
             'content' => 'nullable|array',

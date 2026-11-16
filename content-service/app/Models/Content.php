@@ -19,6 +19,7 @@ class Content extends Model
         'section_description',
         'is_section',
         'is_show_home',
+        'is_show_image',
         'is_show_tag',
         'sub_type',
         'is_accessible',

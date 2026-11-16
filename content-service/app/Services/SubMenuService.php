@@ -135,6 +135,7 @@ class SubMenuService
 
     public function update($id, SubMenuDTO $dto)
     {
+        \Log::info(json_encode($dto->toArray(), JSON_PRETTY_PRINT));
         DB::beginTransaction();
         try {
             $subMenu = SubMenu::findOrFail($id);
@@ -160,6 +161,9 @@ class SubMenuService
                 if (in_array($dto->type, ['publication', 'repository', 'gallery'])) {
                     $content->is_show_home = $dto->is_show_home;
                     $content->is_show_tag = $dto->is_show_tag;
+                }
+                if (in_array($dto->type, ['organizational_structure'])) {
+                    $content->is_show_image = $dto->is_show_image;
                 }
                 $content->save();
 

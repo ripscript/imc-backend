@@ -21,7 +21,7 @@ class ContentResource extends JsonResource
             'is_section' => $this->is_section,
             'is_accessible' => $this->is_accessible,
             'sub_type' => $this->sub_type,
-            'content' => $this->content,
+            'content' => $this->resolveContent(),
             'meta' => $this->meta ?? null,
             'breadcrumb' => $this->breadcrumb,
             'parent_menu' => $this->when(isset($this->parent_menu), $this->parent_menu),
@@ -40,5 +40,23 @@ class ContentResource extends JsonResource
             'additional_file' => $this->whenLoaded('contentAdditionalFile'),
             'additional_text' => $this->content_additional_text ?? null,
         ];
+    }
+
+    /**
+     * Khusus organizational_structure, bungkus content jadi { data, setting }.
+     * Tipe lain tetap return content apa adanya.
+     */
+    private function resolveContent()
+    {
+        if ($this->type === 'organizational_structure') {
+            return [
+                'data' => $this->content,
+                'setting' => [
+                    'is_show_image' => (bool) $this->is_show_image,
+                ],
+            ];
+        }
+
+        return $this->content;
     }
 }
