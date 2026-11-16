@@ -79,7 +79,7 @@ server {
         add_header X-Debug-Upstream "setting-service" always;
     }
 
-    # Mapping ke setting-service
+    # Mapping ke project-service
     location /project-service/ {
         proxy_pass http://imc-new-engine-project-service:8080/;
         proxy_set_header Host $host;
