@@ -25,6 +25,7 @@ class UpdateShowcaseRequest extends FormRequest
             'thumbnail_path' => 'nullable|string',
             'publish_date' => 'nullable|date',
             'is_publicated' => 'required|boolean',
+            'kategori_content_id' => 'required|integer|exists:ms_kategori_contents,id',
             'tag_id' => 'nullable|array',
             'has_additional_image' => 'nullable|boolean',
             'has_additional_video' => 'nullable|boolean',

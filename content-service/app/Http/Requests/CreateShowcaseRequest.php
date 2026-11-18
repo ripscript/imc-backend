@@ -21,6 +21,7 @@ class CreateShowcaseRequest extends FormRequest
                 $query->where('content_id', $this->content_id);
             })],
             'description' => 'nullable|string',
+            'kategori_content_id' => 'required|integer|exists:ms_kategori_contents,id',
             'thumbnail_path' => 'nullable|string',
             'publish_date' => 'nullable|date',
             'is_publicated' => 'required|boolean',

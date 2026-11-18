@@ -50,7 +50,13 @@ class PublicationService
             )
             ->selectRaw('? as parent_url', [$parentSlug]);
 
-        return $this->queryService->applyFiltersAndPaginate($query, $filter, ['title']);
+        return $this->queryService->applyFiltersAndPaginate(
+            $query,
+            $filter,
+            ['title'],
+            'updated_at',
+            ['title', 'publish_date', 'is_publicated', 'updated_at']
+        );
     }
 
     public function detail($id)

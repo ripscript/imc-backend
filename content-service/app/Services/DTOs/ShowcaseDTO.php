@@ -12,6 +12,8 @@ class ShowcaseDTO extends BaseDTO
 
     public ?string $description;
 
+    public ?int $kategori_content_id;
+
     public ?string $thumbnail_path;
 
     public ?bool $is_publicated;
@@ -72,6 +74,7 @@ class ShowcaseDTO extends BaseDTO
         $this->title = $data['title'] ?? '';
         $this->slug = $data['slug'] ?? '';
         $this->description = $data['description'] ?? null;
+        $this->kategori_content_id = $data['kategori_content_id'] ?? null;
         $this->thumbnail_path = $data['thumbnail_path'] ?? null;
         $this->is_publicated = $data['is_publicated'] ?? null;
         $this->publish_date = $data['publish_date'] ?? null;

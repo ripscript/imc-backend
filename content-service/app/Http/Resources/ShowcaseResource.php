@@ -14,6 +14,7 @@ class ShowcaseResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
+            'kategori_content_id' => $this->kategori_content_id,
             'thumbnail_path' => $this->thumbnail_path,
             'is_publicated' => $this->is_publicated,
             'publish_date' => $this->publish_date,

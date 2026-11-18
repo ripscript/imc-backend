@@ -50,7 +50,7 @@ trait HasContentMapping
                                 ->where('ct.content_type', ContentDetailPublication::class);
                         }, 'tags');
 
-                    $listContent = (new QueryService)->applyFiltersAndPaginate($query, $request, ['title']);
+                    $listContent = (new QueryService)->applyFiltersAndPaginate($query, $request, ['title'], 'publish_date');
                     break;
                 case 'repository':
                     $query = DB::table('content_detail_repositories')

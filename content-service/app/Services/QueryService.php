@@ -8,10 +8,10 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class QueryService
 {
-    public function applyFiltersAndPaginate(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, array $searchable = [], $defaultSort = 'updated_at')
+    public function applyFiltersAndPaginate(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, array $searchable = [], $defaultSort = 'updated_at', array $sortable = [])
     {
         $query = $this->search($query, $filter, $searchable);
-        $query = $this->sort($query, $filter, $defaultSort);
+        $query = $this->sort($query, $filter, $defaultSort, $sortable);
 
         return $this->paginate($query, $filter);
     }
@@ -30,11 +30,13 @@ class QueryService
         return $query;
     }
 
-    public function sort(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, $defaultSort)
+    public function sort(EloquentBuilder|QueryBuilder $query, QueryFilterDTO $filter, $defaultSort, array $sortable = [])
     {
         $query->orderBy($defaultSort, 'desc');
-        if ($sortBy = $filter->sort_by) {
-            $sortOrder = $filter->sort_order ?? 'asc';
+        
+        $sortBy = $filter->sort_by;
+        if ($sortBy && in_array($sortBy, $sortable, true)) {
+            $sortOrder = strtolower($filter->sort_order ?? 'asc') === 'desc' ? 'desc' : 'asc';
             $query->orderBy($sortBy, $sortOrder);
         }
 

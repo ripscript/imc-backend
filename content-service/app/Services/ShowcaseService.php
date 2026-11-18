@@ -79,6 +79,7 @@ class ShowcaseService
             $data->title = $dto->title;
             $data->slug = $dto->slug;
             $data->description = $dto->description;
+            $data->kategori_content_id = $dto->kategori_content_id;
             $data->thumbnail_path = $dto->thumbnail_path;
             $data->publish_date = $dto->publish_date;
             $data->is_publicated = $dto->is_publicated;
@@ -118,6 +119,7 @@ class ShowcaseService
             $data->title = $dto->title;
             $data->slug = $dto->slug;
             $data->description = $dto->description;
+            $data->kategori_content_id = $dto->kategori_content_id;
             $data->thumbnail_path = $dto->thumbnail_path;
             $data->publish_date = $dto->publish_date;
             $data->is_publicated = $dto->is_publicated;
